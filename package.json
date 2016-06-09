@@ -1,22 +1,27 @@
 {
-  "name": "ice_box",
+  "name": "icebox",
   "version": "1.0.0",
   "description": "A food inventory management application",
   "main": "app.js",
   "scripts": {
-    "test": "none"
+    "test": "none",
+    "start-ios": "node node_modules/react-native/local-cli/cli.js start"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/natesMI/ice_box.git"
   },
+  "homepage": "https://github.com/natesMI/ice_box#readme",
   "keywords": [
     "none"
   ],
-  "author": "Nathaniel Schwab",
+  "author": "Nathaniel Schwab, Colin Zarnegar, Andrew Yao, Austin Sefton",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/natesMI/ice_box/issues"
   },
-  "homepage": "https://github.com/natesMI/ice_box#readme"
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-native": "^0.27.2"
+  }
 }
