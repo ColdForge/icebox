@@ -1,0 +1,22 @@
+{
+  "name": "ice_box",
+  "version": "1.0.0",
+  "description": "A food inventory management application",
+  "main": "app.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natesMI/ice_box.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Nathaniel Schwab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/natesMI/ice_box/issues"
+  },
+  "homepage": "https://github.com/natesMI/ice_box#readme"
+}
