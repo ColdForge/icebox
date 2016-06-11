@@ -1,7 +1,10 @@
 **/.DS-Store
-
+*.log
 
 /node_modules
+
+dist
+coverage
 
 # OSX
 #
