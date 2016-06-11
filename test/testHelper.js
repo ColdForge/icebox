@@ -4,12 +4,17 @@ import TestUtils from 'react-addons-test-utils';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import reduxThunk from 'redux-thunk';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import reducers from '../src/reducers';
 import chai, { expect } from 'chai';
 import chaiJquery from 'chai-jquery';
+
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 // Set up testing environment to run like a browser in the CL
 // same as using window.document in the browser
@@ -19,9 +24,11 @@ const $ = jquery(global.window);
 
 // Build 'renderComponent' helper that should render a given react class
 function renderComponent(ComponentClass, props = {}, state = {}) {
+  let store = createStoreWithMiddleware(reducers,state);
+
   const componentInstance = TestUtils.renderIntoDocument(
-    <MuiThemeProvider>
-      <Provider store={createStore(reducers,state)}>
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <Provider store={store}>
         <ComponentClass {...props}/>
       </Provider>
     </MuiThemeProvider>

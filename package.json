@@ -22,6 +22,7 @@
     "url": "https://github.com/natesMI/ice_box/issues"
   },
   "dependencies": {
+    "axios": "^0.12.0",
     "body-parser": "^1.15.1",
     "express": "4.13.4",
     "knex": "^0.11.5",

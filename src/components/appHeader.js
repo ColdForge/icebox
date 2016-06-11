@@ -19,7 +19,7 @@ class AppHeader extends Component {
 
 	renderButtons(){
 		// if a user is currently authenticated
-		if(this.props.auth){
+		if(this.props.authenticated){
 			// render the help and signout buttons
 			return (
 				<div>
@@ -69,7 +69,7 @@ class AppHeader extends Component {
 }
 
 function mapStateToProps(state) {
-	return { auth: state.auth };
+	return { authenticated: state.auth.authenticated };
 }
 
 export default connect(mapStateToProps)(AppHeader);
