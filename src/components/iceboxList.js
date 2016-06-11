@@ -7,7 +7,7 @@ class IceboxList extends Component {
 		return (
       <List>
         {this.props.contents.map(item => (
-          <IceboxListItem  />
+          <IceboxListItem  item={item}/>
         ))}
       </List>
 		);
