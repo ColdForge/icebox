@@ -18,16 +18,12 @@ describe('AppHeader' , () => {
 
   describe('AppHeader interactivity', () => {
   	it('should hide the side drawer by default', () => {
-  		// expect(component.find('.app-drawer-overlay')).to.be.disabled;
-  		// expect(component.find('.app-drawer-overlay')).to.have.css('opacity','0');
-  		expect(component.find('.app-drawer-component')).to.exist;
+  		expect(component.find('.app-drawer-overlay').css('opacity','0')).to.exist;
   	});
 
   	it('should show the side drawer when the MenuIconButton is clicked', () => {
   		component.find('.appheader-menu-button').simulate('click');
-  		// expect(component.find('.app-drawer-overlay')).to.be.visible;
-  		// expect(component.find('.app-drawer-overlay')).to.have.css('opacity','1');
-  		expect(component.find('.app-drawer-component')).to.exist;
+  		expect(component.find('.app-drawer-overlay').css('opacity','1')).to.exist;
   	});
 
   	describe('when no user signed in', () => {
