@@ -27,11 +27,11 @@ describe('AppHeader' , () => {
   		});
 
   		it('should have a signup button', () => {
-
+  			expect(component.find('.signup-button')).to.exist;
   		});
 
   		it('should have a signin button', () => {
-  			
+  			expect(component.find('.signin-button')).to.exist;
   		});
   	});
 
@@ -40,12 +40,12 @@ describe('AppHeader' , () => {
   			component = renderComponent(AppHeader, null, { auth: true });
   		});
 
-  		it('should have a signup button', () => {
-
+  		it('should have a help button', () => {
+  			expect(component.find('.help-button')).to.exist;
   		});
 
-  		it('should have a signin button', () => {
-  			
+  		it('should have a signout button', () => {
+  			expect(component.find('.signout-button')).to.exist;
   		});
   	});
   });
