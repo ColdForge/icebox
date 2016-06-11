@@ -5,6 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import reducers from '../src/reducers';
 import chai, { expect } from 'chai';
 import chaiJquery from 'chai-jquery';
@@ -18,9 +20,11 @@ const $ = jquery(global.window);
 // Build 'renderComponent' helper that should render a given react class
 function renderComponent(ComponentClass, props = {}, state = {}) {
   const componentInstance = TestUtils.renderIntoDocument(
-    <Provider store={createStore(reducers,state)}>
-      <ComponentClass {...props}/>
-    </Provider>
+    <MuiThemeProvider>
+      <Provider store={createStore(reducers,state)}>
+        <ComponentClass {...props}/>
+      </Provider>
+    </MuiThemeProvider>
   );
   return $(ReactDOM.findDOMNode(componentInstance)); // produces HTML
 }
