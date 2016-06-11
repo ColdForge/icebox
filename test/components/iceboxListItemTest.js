@@ -17,8 +17,7 @@ describe('IceboxListItem' , () => {
   });
 
   it('should render the food group of item passed in', () => {
-    console.log(component.find('.food-group-icon'))
-    expect(component.find('.food-group-icon')).to.exist;
+    expect(component.find('.food-group-icon')).to.exist();
   });
 
   it('should render the expiration of item passed in', () => {
