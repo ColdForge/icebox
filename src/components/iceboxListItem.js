@@ -1,8 +1,8 @@
 import React from 'react';
 import { ListItem } from 'material-ui/List';
 
-const IceboxListItem = () => (
-  <ListItem className="iceboxListItem" primaryText="Food Item" />
+const IceboxListItem = ({name, foodGroup, expiration}) => (
+  <ListItem className="iceboxListItem" primaryText={name} />
 );
 
 export default IceboxListItem;
