@@ -6,6 +6,7 @@ class IceboxToolbar extends Component {
 		return (
 			<Toolbar>
 				<ToolbarGroup>
+					<h4>IceboxToolbar</h4>
 				</ToolbarGroup>
 			</Toolbar>
 		);

@@ -11,7 +11,7 @@ describe('App' , () => {
   });
 
   // Use 'it' to test a single attribute of a target
-  it('renders something', () => {
+  it('is rendered successfully', () => {
   	// Use 'expect' to make an 'assertion' about a target
     expect(component).to.exist;
   });
