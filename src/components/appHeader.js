@@ -11,16 +11,16 @@ class AppHeader extends Component {
 			// render the help and signout buttons
 			return (
 				<div>
-					<FlatButton label="Help" />
-					<FlatButton label="Signout" />
+					<FlatButton className='help-button' label="Help" />
+					<FlatButton className='signout-button' label="Signout" />
 				</div>
 			);
 		} else { // else
 			// render the signup and signin buttons
 			return (
 				<div>
-					<FlatButton label="Signup" />
-					<FlatButton label="Signin" />
+					<FlatButton className='signup-button' label="Signup" />
+					<FlatButton className='signin-button' label="Signin" />
 				</div>
 			);
 		}
@@ -35,4 +35,8 @@ class AppHeader extends Component {
 	}
 }
 
-export default AppHeader;
+function mapStateToProps(state) {
+	return { auth: state.auth };
+}
+
+export default connect(mapStateToProps)(AppHeader);
