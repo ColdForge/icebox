@@ -12,6 +12,8 @@ describe('IceboxList' , () => {
     expect(component).to.exist;
   });
 
+  xit('should contain as many iceboxListItems as are passed in', () => {
 
+  });
 
 });

@@ -23,7 +23,9 @@
   },
   "dependencies": {
     "express": "4.13.4",
+    "knex": "^0.11.5",
     "material-ui": "^0.15.0",
+    "mysql": "^2.11.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-native": "^0.27.2",

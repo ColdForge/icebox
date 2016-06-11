@@ -12,6 +12,12 @@ describe('Icebox' , () => {
     expect(component).to.exist;
   });
 
+  xit('should have an iceboxToolbar component', () => {
 
+  });
+
+  xit('should have an iceboxList component', () => {
+
+  });
 
 });
