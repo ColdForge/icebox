@@ -7,6 +7,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './components/app';
 import reducers from './reducers';
 
+import injectTapEventPlugin from "react-tap-event-plugin";
+injectTapEventPlugin();
+
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(reducers,window.devToolsExtension ? window.devToolsExtension() : f => f);
 
