@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
+import AppDrawer from './appDrawer';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
 class AppHeader extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			drawerOpen: false
+		}
+	}
+	// Methods for handling AppDrawer behavior
+	handleToggle(){this.setState({drawerOpen: !this.state.drawerOpen})};
+
 	renderButtons(){
 		// if a user is currently authenticated
 		if(this.props.auth){
@@ -27,10 +37,19 @@ class AppHeader extends Component {
 	}
 	render(){
 		return (
-			<AppBar
-				title="Icebox"
-				children={this.renderButtons()}
-			/>
+			<div>
+				<AppBar
+					title="Icebox"
+					iconClassNameLeft="appheader-menu-button"
+					onLeftIconButtonTouchTap={() => this.handleToggle()}
+					children={this.renderButtons()}
+				/>
+				<AppDrawer
+					className="app-drawer-component" 
+					drawerOpen={this.state.drawerOpen}
+					updateDrawer={this.handleToggle.bind(this)}
+				/>
+			</div>
 		);
 	}
 }
