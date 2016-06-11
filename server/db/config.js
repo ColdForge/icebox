@@ -1,12 +1,12 @@
-import Config from './envConfig';
+var Config = require('./envConfig');
 
 var knex = require('knex')({
 	client: 'mysql',
 	connection: {
-		host: Config.MYSQL_HOST,
-		user: Config.MYSQL_USER,
-		password: Config.MYSQL_PASSWORD,
-		database: "icebox",
+		host      : Config.MYSQL_HOST,
+		user      : Config.MYSQL_USER,
+		password  : Config.MYSQL_PASSWORD,
+		database  : "icebox",
 		charset		: 'utf8'
 	}
 });
