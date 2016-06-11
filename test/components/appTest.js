@@ -16,4 +16,8 @@ describe('App' , () => {
     expect(component).to.exist;
   });
 
+  xit('has a Header component', () => {
+    expect(component.find('app-header')).to.exist;
+  });
+
 });
