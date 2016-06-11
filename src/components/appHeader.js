@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import SvgIcon from 'material-ui/SvgIcon';
 import AppDrawer from './appDrawer';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
@@ -40,15 +42,27 @@ class AppHeader extends Component {
 			<div>
 				<AppBar
 					title="Icebox"
-					iconClassNameLeft="appheader-menu-button"
-					onLeftIconButtonTouchTap={() => this.handleToggle()}
+					iconElementLeft={
+						<IconButton 
+							className="appheader-menu-button"
+							children={
+								<SvgIcon>
+									<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+								</SvgIcon>
+							}
+							onClick={() => this.handleToggle()} 
+						/>
+
+					}
 					children={this.renderButtons()}
 				/>
+				<div style={{height: 1000}}>
 				<AppDrawer
 					className="app-drawer-component" 
 					drawerOpen={this.state.drawerOpen}
 					updateDrawer={this.handleToggle.bind(this)}
 				/>
+				</div>
 			</div>
 		);
 	}
