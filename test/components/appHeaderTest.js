@@ -28,7 +28,7 @@ describe('AppHeader' , () => {
 
   	describe('when no user signed in', () => {
   		beforeEach(() => {
-  			component = renderComponent(AppHeader, null, { auth: false });
+  			component = renderComponent(AppHeader, null, { auth: { authenticated: false } });
   		});
 
   		it('should have a signup button', () => {
@@ -42,7 +42,7 @@ describe('AppHeader' , () => {
 
   	describe('when a user is signed in', () => {
   		beforeEach(() => {
-  			component = renderComponent(AppHeader, null, { auth: true });
+  			component = renderComponent(AppHeader, null, { auth: { authenticated: true } });
   		});
 
   		it('should have a help button', () => {
