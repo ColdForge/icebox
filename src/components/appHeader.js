@@ -56,7 +56,7 @@ class AppHeader extends Component {
 					}
 					children={this.renderButtons()}
 				/>
-				<div style={{height: 1000}}>
+				<div>
 				<AppDrawer
 					className="app-drawer-component" 
 					drawerOpen={this.state.drawerOpen}
