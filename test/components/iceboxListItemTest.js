@@ -5,11 +5,23 @@ describe('IceboxListItem' , () => {
   let component;
 
   beforeEach(() => {
-    component = renderComponent(IceboxListItem);
+    component = renderComponent(IceboxListItem, {name: 'Bananas', foodGroup: 'Produce', expiration: 5});
   });
 
   it('is rendered successfully', () => {
     expect(component).to.exist;
+  });
+
+  it('should render the name of item passed in', () => {
+    expect(component).to.contain('Bananas');
+  });
+
+  xit('should render the food group of item passed in', () => {
+    expect(component).to.contain('');
+  });
+
+  xit('should render the expiration of item passed in', () => {
+    expect(component).to.contain(5);
   });
 
 });
