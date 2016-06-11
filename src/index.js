@@ -22,4 +22,4 @@ ReactDOM.render(
 		  <App />
 		</Provider>
   </MuiThemeProvider>
-  , document.querySelector('.container'));
+  , document.getElementById('app'));
