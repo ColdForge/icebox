@@ -7,6 +7,25 @@ import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
+const style = {
+	buttonContainer: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	button: {
+
+	},
+	title: {
+		color: '#FFFFFF',
+		fontSize: 30
+	},
+	label: {
+		color: '#FFFFFF',
+		fontSize: 18
+	}
+}
+
 class AppHeader extends Component {
 	constructor(props){
 		super(props);
@@ -22,17 +41,17 @@ class AppHeader extends Component {
 		if(this.props.authenticated){
 			// render the help and signout buttons
 			return (
-				<div>
-					<FlatButton className='help-button' label="Help" />
-					<FlatButton className='signout-button' label="Signout" />
+				<div style={style.buttonContainer}>
+					<FlatButton className='help-button' label="Help" labelStyle={style.label}/>
+					<FlatButton className='signout-button' label="Signout" labelStyle={style.label}/>
 				</div>
 			);
 		} else { // else
 			// render the signup and signin buttons
 			return (
-				<div>
-					<FlatButton className='signup-button' label="Signup" />
-					<FlatButton className='signin-button' label="Signin" />
+				<div style={style.buttonContainer}>
+					<FlatButton className='signup-button' label="Signup" labelStyle={style.label}/>
+					<FlatButton className='signin-button' label="Signin" labelStyle={style.label}/>
 				</div>
 			);
 		}
@@ -42,6 +61,7 @@ class AppHeader extends Component {
 			<div>
 				<AppBar
 					title="Icebox"
+					titleStyle={style.title}
 					iconElementLeft={
 						<IconButton 
 							className="appheader-menu-button"
@@ -56,7 +76,7 @@ class AppHeader extends Component {
 					}
 					children={this.renderButtons()}
 				/>
-				<div style={{height: 1000}}>
+				<div>
 				<AppDrawer
 					className="app-drawer-component" 
 					drawerOpen={this.state.drawerOpen}
