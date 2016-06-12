@@ -25,6 +25,9 @@ const ICONS = {
   },
   Sort: {
     d: "M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"
+  },
+  SortArrows: {
+    d: "M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3L5 6.99h3V14h2V6.99h3L9 3z"
   }
 };
 
