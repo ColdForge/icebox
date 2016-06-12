@@ -15,4 +15,8 @@ class Icebox extends Component {
 	}
 }
 
-export default Icebox;
+function mapStateToProps(state){
+	return { icebox: state.icebox, user: state.user };
+}
+
+export default connect(mapStateToProps,actions)(Icebox);
