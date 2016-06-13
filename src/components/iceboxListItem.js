@@ -6,7 +6,7 @@ import ICONS from '../styles/icons';
 const styles = {
   ListItem: {
     text: {
-      color: "#000000",
+      color: "#000000"
     }
   }
 }
@@ -16,26 +16,26 @@ const IceboxListItem = ({ name, foodGroup, expiration, key }) => {
     return <ListItem primaryText="Loading..." />
   }
 
-  console.log("This is d: ", ICONS.Dairy.d)
-
   return (
 
     <ListItem
       key={key}
       className="iceboxListItem"
-      primaryText={name}
       leftIcon={
         <SvgIcon className="food-group-icon">
           <path className="icon" d={ICONS.Dairy.d} />
-         </SvgIcon>
+        </SvgIcon>
        }
-      children={
-        <div>
-          <p>{expiration}</p>
-        </div>
-      }
       style={styles.ListItem.text}
-    />
+    >
+
+      {name}
+
+      <div className="text-right expiration">
+        {expiration}
+      </div>
+
+    </ListItem>
   );
 
 };
