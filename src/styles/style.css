@@ -32,4 +32,8 @@ html,
 
 .landing-title {
 	color: black;
+
+.expiration {
+  display: inline-block;
+  float: right;
 }
