@@ -40,7 +40,6 @@ ReactDOM.render(
 					<Route path="icebox" component={Icebox} />
 				</Route>
 			</Router>
-		  <App />
 		</Provider>
   </MuiThemeProvider>
   , document.getElementById('app'));
