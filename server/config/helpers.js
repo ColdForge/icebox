@@ -8,7 +8,7 @@ module.exports = {
 
     db.select('*')
     .from('icebox_items')
-    .where('iceboxID', 2)
+    .where('iceboxID', user.iceboxID)
     .innerJoin('foods', 'icebox_items.foodID', 'foods.id')
     .then(function(resp){
       console.log('Join lookup', resp);
@@ -31,22 +31,24 @@ module.exports = {
       var user = req.body.user;
       var item = req.params.food_id
 
-      // db.select(item)
-      // .from('icebox_item')
-      // .where('iceboxID', user.iceboxID)
-      // .then(function(resp){
-      // 	console.log('Food item retrieved successfully', resp);
-      // 	res.send(resp);
-      // })
-      // .catch(function(err){
-      // 	console.log('Food item lookup error', err);
-      // 	res.send('Item could not be added');
-      // });
+      db.select('*')
+      .from('icebox_items')
+      .where('iceboxID', user.iceboxID)
+      .andWhere('foodID', item)
+      .innerJoin('foods', 'icebox_items.foodID', 'foods.id' )
+      .then(function(resp){
+      	console.log('Food item retrieved successfully', resp);
+      	res.send(resp);
+      })
+      .catch(function(err){
+      	console.log('Food item lookup error', err);
+      	res.send('Item could not be added');
+      });
 
 	},
 
 	postItem: function(req, res){
-    
+
 	  var user = req.body.user;
     var foodName = req.body.food_name;
 
@@ -54,7 +56,7 @@ module.exports = {
     .from('foods')
     .where('name', foodName)
     .then(function(resp){
-      console.log('food item found', resp); 
+      console.log('food item found', resp);
       db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
       .into('icebox_items')
       .then(function(resp){
