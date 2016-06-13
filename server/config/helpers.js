@@ -22,9 +22,33 @@ module.exports = {
 
 	postAllItems: function(req, res){
 		var user = req.body.user;
-		var items = req.body.items;
-    //batch insert
+		//var items = req.body.items;
+    var items = ['milk', 'eggs', 'blueberries', 'steak'];
 
+
+
+    items.forEach(function (item){
+      db.select('*')
+      .from('foods')
+      .where('name', item)
+      .then(function(resp){
+        console.log('food item found', resp);
+        db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
+        .into('icebox_items')
+        .then(function(resp){
+          console.log('Item added to icebox', resp);
+        })
+        .catch(function(err){
+          console.log('Item insertion error', err);
+        });
+      })
+      .catch(function(err){
+        console.log('Could not find item in foods table', err);
+        //lookup items information from API
+      });
+    });
+
+    res.send("Icebox items updated");
 	},
 
 	getItem: function(req, res){
