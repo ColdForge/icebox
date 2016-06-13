@@ -7,7 +7,13 @@ import reduxThunk from 'redux-thunk';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import App from './components/app';
+import Landing from './components/landing';
+import Signin from './containers/signin';
+import Signup from './containers/signup';
+import Icebox from './containers/icebox';
+
 import reducers from './reducers';
 
 import injectTapEventPlugin from "react-tap-event-plugin";
@@ -25,8 +31,15 @@ if(token) {
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme()}>
-		<Provider store={store}>
-		  <App />
+		<Provider className="container" store={store}>
+			<Router history={browserHistory}>
+				<Route path="/" component={App}>
+					<IndexRoute component={Landing} />
+					<Route path="signin" component={Signin} />
+					<Route path="signup" component={Signup} />
+					<Route path="icebox" component={Icebox} />
+				</Route>
+			</Router>
 		</Provider>
   </MuiThemeProvider>
   , document.getElementById('app'));

@@ -1,0 +1,35 @@
+body,
+html,
+.container-fluid {
+	height: 100%;
+}
+
+#app {
+	height: 100%;
+}
+
+.landing-div {
+	height: 100%;
+	padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+  padding-bottom: 50px;
+  text-align: center;
+  color: #f8f8f8;
+  background: url(../../assets/icebox-landing.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.intro-message {
+  position: relative;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+  margin: 0;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  font-size: 5em;
+}
+
+.landing-title {
+	color: black;
+}

@@ -5,7 +5,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import * as actions from '../../actions';
+import * as actions from '../actions';
 
 
 class Signup extends Component {
