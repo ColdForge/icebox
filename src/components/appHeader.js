@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import SvgIcon from 'material-ui/SvgIcon';
@@ -75,6 +75,7 @@ class AppHeader extends Component {
 						/>
 
 					}
+					onTitleTouchTap={() => browserHistory.push('/')}
 					children={this.renderButtons()}
 				/>
 				<div>
