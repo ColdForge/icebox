@@ -21,6 +21,7 @@ var localLogin = new LocalStrategy(localOptions, function(email, password, done)
 				console.log(response);
 				return done(null,false);
 			}
+			console.log('response length > 0, response is : ',response);
 			userController.comparePassword(password, response[0], function(err, isMatch){
 				if (err) { 
 					console.log('err inside localLogin comparePassword');
@@ -54,6 +55,7 @@ var jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
 			if(response.length === 0){
 				done(null, false);
 			}
+			console.log('response length > 0, response is : ',response);
 			done(null,response[0]);
 		});
 });
