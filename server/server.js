@@ -3,12 +3,15 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var path = require('path');
 var db = require('./db/config').knex;
+
 var passportService = require('./config/passport');
 var passport = require('passport');
 var userController = require('./controllers/userController');
 var requireAuth = passport.authenticate('jwt', {session: false});
 var requireSignin = passport.authenticate('local', {session: false});
-var router = require('./router/routes');
+
+var router = require('./routes/router');
+
 
 
 var app = express();

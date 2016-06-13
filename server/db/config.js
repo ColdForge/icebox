@@ -29,7 +29,7 @@ knex.schema.hasTable('foods').then(function(exists){
 			food.increments('id').primary();
 			food.varchar('category', 255);
 			food.varchar('name', 255);
-			food.datetime('expiration');
+			food.integer('freshDuration');
 			food.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
 		}).then(function (table) {
       console.log('Created foods Table', table);
@@ -61,6 +61,7 @@ knex.schema.hasTable('icebox_items').then(function(exists){
 			item.foreign('foodID').references('id').inTable('foods');
 			item.integer('iceboxID', 11).unsigned();
 			item.foreign('iceboxID').references('id').inTable('iceboxes');
+			item.integer('daysToExpire');
 			item.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
 		}).then(function (table) {
       console.log('Created icebox_items Table', table);
