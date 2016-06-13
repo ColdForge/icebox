@@ -34,6 +34,7 @@ module.exports = {
 				userController.insertUser(response[0])
 					.then(function(response){
 						console.log('New user created in authController.signup!');
+						console.log('response is : ',response);
 						res.json({ token: tokenForUser(user) });
 					})
 			})

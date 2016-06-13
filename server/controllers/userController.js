@@ -20,6 +20,12 @@ module.exports = {
 					})
 					.then(function(response){
 						console.log('inside hashPassword insert, response is : ',response);
+						return { 
+							id: response, 
+							email: user.email, 
+							name: user.name,
+							password: hash 
+						};
 					})
 			})
 	},
