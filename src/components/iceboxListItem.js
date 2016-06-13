@@ -11,14 +11,17 @@ const styles = {
   }
 }
 
-const IceboxListItem = ({ name, foodGroup, expiration }) => {
+const IceboxListItem = ({ name, foodGroup, expiration, key }) => {
   if (!name) {
     return <ListItem primaryText="Loading..." />
   }
 
+  console.log("This is d: ", ICONS.Dairy.d)
+
   return (
 
     <ListItem
+      key={key}
       className="iceboxListItem"
       primaryText={name}
       leftIcon={
