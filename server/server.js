@@ -3,6 +3,9 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var path = require('path');
 var db = require('./db/config').knex;
+var passportService = require('./config/passport');
+var passport = require('passport');
+
 
 var app = express();
 
