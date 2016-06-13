@@ -28,28 +28,6 @@ app.post('/user/signin', requireSignin, Auth.signin);
 // route when new user signs up
 app.post('/user/signup', Auth.signup);
 
-// db.select('*')
-//     .from('foods')
-//     .where('name', foodName)
-//     .then(function(resp){
-//       console.log('food item found', resp);
-//       db.insert({foodID: resp[0], iceboxID: box, daysToExpire: })
-//       .into('icebox_items')
-//       .then(function(resp){
-//         console.log('Item added to icebox', resp);
-//         res.send('Item added');
-//       })
-//       .catch(function(err){
-//         console.log('Item insertion error', err);
-//       });
-//     })
-//     .catch(function(err){
-//       console.log('Could not find item in foods table', err);
-//       //lookup items information
-//     });
-
-
-
 
 var port = process.env.PORT || 8080;
 var server = require('http').createServer(app);
