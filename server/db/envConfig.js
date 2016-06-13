@@ -3,5 +3,6 @@ module.exports = {
   "DATA_BACKEND": "cloudsql",
   "MYSQL_USER": "root",
   "MYSQL_PASSWORD": "iceboxCAAN2016",
-  "MYSQL_HOST": "104.154.249.98"
+  "MYSQL_HOST": "104.154.249.98",
+  "SECRET": "ICEBOXCAAN20166102NAACXOBECI"
 }
