@@ -23,7 +23,7 @@ module.exports = {
 	postAllItems: function(req, res){
 		var user = req.body.user;
 		var items = req.body.items;
-        //batch insert
+    //batch insert
 
 	},
 
@@ -55,10 +55,20 @@ module.exports = {
     // .from('foods')
     // .where('name', foodName)
     // .then(function(resp){
-    //   db.insert({foodID: resp[0], iceboxID: box, })
+    //   console.log('food item found', resp);
+    //   db.insert({foodID: resp[0], iceboxID: box, daysToExpire: })
+    //   .into('icebox_items')
+    //   .then(function(resp){
+    //     console.log('Item added to icebox', resp);
+    //     res.send('Item added');
+    //   })
+    //   .catch(function(err){
+    //     console.log('Item insertion error', err);
+    //   });
     // })
     // .catch(function(err){
-
+    //   console.log('Could not find item in foods table', err);
+    //   //lookup items information
     // });
 
 	},

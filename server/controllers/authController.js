@@ -3,7 +3,7 @@ var jwt = require('jwt-simple');
 var userController = require('./userController');
 var db = require('../db/config').knex;
 // import JWT secret from here
-var EnvConfig = require('../config/envConfig');
+var EnvConfig = require('../db/envConfig');
 
 module.exports = {
 	// Signin function:

@@ -2,7 +2,8 @@ var passport = require('passport');
 var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
 var LocalStrategy = require('passport-local');
-var db = require('./db/config').knex;
+var db = require('../db/config').knex;
+var EnvConfig = require('../db/envConfig');
 var userController = require('../controllers/userController');
 
 // Create local strategy
@@ -40,7 +41,7 @@ var localLogin = new LocalStrategy(localOptions, function(email, password, done)
 // Setup options for JWT Strategy
 var jwtOptions = {
 	jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-	secretOrKey: EnvConfig.secret
+	secretOrKey: EnvConfig.SECRET
 };
 
 // Create JWT strategy
