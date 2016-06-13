@@ -3,7 +3,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as TYPES from '../constants/actions';
 
-const API_URL = 'http://localhost:3090';
+const API_URL = 'http://localhost:8080';
 
 export function signinUser({ email, password }) {
 	return function(dispatch) {
