@@ -7,7 +7,7 @@ const Landing = () => {
 				<div className="row">
 					<div className="col-lg-12">
 						<div className="landing-message">
-							<h1>Landing Page</h1>
+							<h1 className="landing-title">Landing Page</h1>
 						</div>
 					</div>
 				</div>

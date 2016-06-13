@@ -31,7 +31,7 @@ if(token) {
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme()}>
-		<Provider store={store}>
+		<Provider className="container" store={store}>
 			<Router history={browserHistory}>
 				<Route path="/" component={App}>
 					<IndexRoute component={Landing} />
