@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
       	<AppHeader />
-      	<Icebox />
+      	{this.props.children}
       </div>
     );
   }
