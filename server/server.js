@@ -8,13 +8,16 @@ var passport = require('passport');
 var userController = require('./controllers/userController');
 var requireAuth = passport.authenticate('jwt', {session: false});
 var requireSignin = passport.authenticate('local', {session: false});
+var router = require('./router/routes');
+
 
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 app.use(express.static(__dirname + '/../'));
+app.use('/api/users', router);
+app.use('/api/icebox', router);
 
 app.get('/', function(req,res) {
   res.sendFile(__dirname + '../index.html');

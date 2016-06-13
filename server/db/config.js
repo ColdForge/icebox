@@ -15,7 +15,7 @@ knex.schema.hasTable('iceboxes').then(function(exists){
 	if(!exists){
 		knex.schema.createTable('iceboxes',function(icebox){
 			icebox.increments('id').primary();
-			icebox.varchar('name', 255);
+			icebox.varchar('user_email', 255);
 			icebox.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
 		}).then(function (table) {
       console.log('Created iceboxes Table', table);
