@@ -13,12 +13,12 @@ const styles = {
 
 const IceboxListItem = ({ name, foodGroup, expiration }) => {
   if (!name) {
-    // return <ListItem Loading...;
+    return <ListItem primaryText="Loading..." />
   }
-  // const { name, foodGroup, expiration } = item;
-  return (
-    <ListItem
 
+  return (
+
+    <ListItem
       className="iceboxListItem"
       primaryText={name}
       leftIcon={
@@ -34,6 +34,7 @@ const IceboxListItem = ({ name, foodGroup, expiration }) => {
       style={styles.ListItem.text}
     />
   );
+
 };
 
 export default IceboxListItem;
