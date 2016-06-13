@@ -16,6 +16,13 @@ injectTapEventPlugin();
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers,window.devToolsExtension ? window.devToolsExtension() : f => f);
 
+const token = localStorage.getItem('token');
+// If we have a token, consider the user to be signed in
+if(token) {
+  // We need to update application state
+  store.dispatch({ type: AUTHORIZE_USER });
+}
+
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme()}>
 		<Provider store={store}>
