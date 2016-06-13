@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import SvgIcon from 'material-ui/SvgIcon';
 import AppDrawer from './appDrawer';
 import FlatButton from 'material-ui/FlatButton';
-import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
 const style = {
@@ -50,8 +51,8 @@ class AppHeader extends Component {
 			// render the signup and signin buttons
 			return (
 				<div style={style.buttonContainer}>
-					<FlatButton className='signup-button' label="Signup" labelStyle={style.label}/>
-					<FlatButton className='signin-button' label="Signin" labelStyle={style.label}/>
+					<Link to="/signup" key={3}><FlatButton className='signup-button' label="Signup" labelStyle={style.label}/></Link>
+					<Link to="/signin" key={4}><FlatButton className='signin-button' label="Signin" labelStyle={style.label}/></Link>
 				</div>
 			);
 		}
