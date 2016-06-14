@@ -20,11 +20,10 @@ module.exports = {
     function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
     var info = JSON.parse(body);
-    console.log ("Recipe request result ", info)
     }
 
   }
 
-  request (options, callback);
+  return request (options, callback);
   }
 }
