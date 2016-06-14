@@ -40,12 +40,31 @@ html,
 }
 
 .item-expiration {
+
+}
+
+.item-name {
+  text-align: center;
+}
+
+.expiration-red {
+  color: red;
   float: right;
   display: table-cell;
   vertical-align: middle;
   bottom: 30px;
 }
-
-.item-name {
-  text-align: center;
+.expiration-orange {
+  color: orange;
+  float: right;
+  display: table-cell;
+  vertical-align: middle;
+  bottom: 30px;
+}
+.expiration-black {
+  color: black;
+  float: right;
+  display: table-cell;
+  vertical-align: middle;
+  bottom: 30px;
 }
