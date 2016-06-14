@@ -35,7 +35,12 @@ class AppHeader extends Component {
 		}
 	}
 	// Methods for handling AppDrawer behavior
-	handleToggle(){this.setState({drawerOpen: !this.state.drawerOpen})};
+	handleToggle(){
+		if(this.props.authenticated){
+			console.log('auth true, handleToggle fired');
+			this.setState({drawerOpen: !this.state.drawerOpen})			
+		}
+	};
 
 	renderButtons(){
 		// if a user is currently authenticated
@@ -44,7 +49,7 @@ class AppHeader extends Component {
 			return (
 				<div style={style.buttonContainer}>
 					<FlatButton className='help-button' label="Help" labelStyle={style.label}/>
-					<FlatButton className='signout-button' label="Signout" labelStyle={style.label}/>
+					<FlatButton onClick={this.props.signoutUser}className='signout-button' label="Signout" labelStyle={style.label}/>
 				</div>
 			);
 		} else { // else
@@ -54,6 +59,18 @@ class AppHeader extends Component {
 					<Link to="/signup" key={3}><FlatButton className='signup-button' label="Signup" labelStyle={style.label}/></Link>
 					<Link to="/signin" key={4}><FlatButton className='signin-button' label="Signin" labelStyle={style.label}/></Link>
 				</div>
+			);
+		}
+	}
+
+	renderDrawer(){
+		if(this.props.authenticated){
+			return (
+				<AppDrawer
+					className="app-drawer-component" 
+					drawerOpen={this.state.drawerOpen}
+					updateDrawer={this.handleToggle.bind(this)}
+				/>
 			);
 		}
 	}
@@ -79,11 +96,7 @@ class AppHeader extends Component {
 					children={this.renderButtons()}
 				/>
 				<div>
-				<AppDrawer
-					className="app-drawer-component" 
-					drawerOpen={this.state.drawerOpen}
-					updateDrawer={this.handleToggle.bind(this)}
-				/>
+				{this.renderDrawer()}
 				</div>
 			</div>
 		);
@@ -94,4 +107,4 @@ function mapStateToProps(state) {
 	return { authenticated: state.auth.authenticated };
 }
 
-export default connect(mapStateToProps)(AppHeader);
+export default connect(mapStateToProps, actions)(AppHeader);
