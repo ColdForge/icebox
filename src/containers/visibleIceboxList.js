@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import IceboxList from '../components/iceboxList';
 import { SORT_EXPIRATION, SORT_FOODGROUP, SORT_FOODNAME, ASCENDING, DESCENDING } from '../constants/sorts';
-import _sortBy from 'lodash/collection/sortBy';
+import _sortBy from 'lodash/sortBy';
 
 const orderIceboxItems = (items, sortBy, sortOrder) => {
 	let sorted;
