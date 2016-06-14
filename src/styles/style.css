@@ -30,11 +30,22 @@ html,
   font-size: 5em;
 }
 
+.iceboxListItem {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 .landing-title {
 	color: black;
 }
 
-.expiration {
-  display: inline-block;
+.item-expiration {
   float: right;
+  display: table-cell;
+  vertical-align: middle;
+  bottom: 30px;
+}
+
+.item-name {
+  text-align: center;
 }
