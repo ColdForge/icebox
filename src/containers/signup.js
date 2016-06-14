@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form'; 
 import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -11,6 +10,12 @@ import * as actions from '../actions';
 class Signup extends Component {
 	handleFormSubmit({ email, name, password }) {
 		this.props.signupUser({ email, name, password });
+	}
+
+	renderError(){
+		if(this.props.errorMessage){
+			return <div>{this.props.errorMessage}</div>
+		}
 	}
 
 	render() {
@@ -31,6 +36,7 @@ class Signup extends Component {
 					<TextField {...passwordConfirm} type="password" floatingLabelText="Confirm your password:" errorText={passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>} />
 				</fieldset>
 				<RaisedButton type="submit" label="Sign up!" primary={true}></RaisedButton>
+				{this.renderError()}
 			</form>
 		);
 	}
