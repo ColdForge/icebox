@@ -37,7 +37,6 @@ class IceboxToolbar extends Component {
 
 	changeSortDirection(){
 		this.props.sortOrder === ASCENDING ? this.props.setSortOrder(DESCENDING) : this.props.setSortOrder(ASCENDING);
-		// this.setState({ sortDescending: !this.state.sortDescending });
 	}
 
 	handleFilterChange(event, value) {
