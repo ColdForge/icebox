@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import { SORT_EXPIRATION, SORT_FOODGROUP, SORT_FOODNAME, ASCENDING, DESCENDING } from '../constants/sorts';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
@@ -24,8 +27,6 @@ class IceboxToolbar extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			filterValue: "expiration",
-			sortDescending: true,
 			searchTerm: ''
 		}
 	}
@@ -35,11 +36,12 @@ class IceboxToolbar extends Component {
 	}
 
 	changeSortDirection(){
-		this.setState({ sortDescending: !this.state.sortDescending });
+		this.props.sortOrder === ASCENDING ? this.props.setSortOrder(DESCENDING) : this.props.setSortOrder(ASCENDING);
+		// this.setState({ sortDescending: !this.state.sortDescending });
 	}
 
 	handleFilterChange(event, value) {
-		this.setState({ filterValue: value });
+		this.props.setSortBy(value)
 	}
 
 	render() {
@@ -100,17 +102,17 @@ class IceboxToolbar extends Component {
 						}
 						anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 	      		targetOrigin={{horizontal: 'right', vertical: 'top'}}
-	      		value={this.state.filterValue}
+	      		value={this.props.sortBy}
 	      		onChange={(event,value) => this.handleFilterChange(event,value)}
 					>
 						<MenuItem 
-							value="expiration"
+							value={SORT_EXPIRATION}
 							primaryText="Sort By: Expiration"/>
 						<MenuItem
-							value="group" 
+							value={SORT_FOODGROUP}
 							primaryText="Sort By: Food Group"/>
 						<MenuItem 
-							value="name"
+							value={SORT_FOODNAME}
 							primaryText="Sort By: Food Name"/>
 					</IconMenu>
 				</ToolbarGroup>
@@ -119,4 +121,8 @@ class IceboxToolbar extends Component {
 	}
 }
 
-export default IceboxToolbar;
+function mapStateToProps(state) {
+	return { sortBy: state.sortBy, sortOrder: state.sortOrder };
+}
+
+export default connect(mapStateToProps, actions)(IceboxToolbar);
