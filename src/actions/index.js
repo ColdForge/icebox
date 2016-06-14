@@ -5,7 +5,7 @@ import * as TYPES from '../constants/actions';
 
 const API_URL = 'http://localhost:8080';
 
-export function signinUser({ email, password }) {
+export const signinUser = ({ email, password }) => {
 	return function(dispatch) {
 		axios.post(`${API_URL}/user/signin`, { email, password })
 			// if signin is successful
@@ -23,7 +23,7 @@ export function signinUser({ email, password }) {
 	}
 }
 
-export function signupUser({ email, name, password }) {
+export const signupUser = ({ email, name, password }) => {
 	return function(dispatch) {
 		axios.post(`${API_URL}/user/signup`, { email, name, password })
 			// if signup is successful
@@ -41,7 +41,7 @@ export function signupUser({ email, name, password }) {
 	}
 }
 
-export function signoutUser() {
+export const signoutUser = () => {
 	localStorage.removeItem('token');
 	browserHistory.push('/');
 	return function(dispatch) {
@@ -49,12 +49,10 @@ export function signoutUser() {
 	}
 }
 
-export function authError(error) {
-	return {
-		type: TYPES.AUTHORIZE_ERROR,
-		payload: error
-	}
-}
+export const authError = (error) => ({
+	type: TYPES.AUTHORIZE_ERROR,
+	payload: error
+})
 
 export const setSortBy = (sort) => ({
 	type: TYPES.SET_SORT,
