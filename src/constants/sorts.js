@@ -1,0 +1,6 @@
+export const SORT_EXPIRATION = "SORT_EXPIRATION";
+export const SORT_FOODGROUP = "SORT_FOODGROUP";
+export const SORT_FOODNAME = "SORT_FOODNAME";
+
+export const ASCENDING = "ASCENDING";
+export const DESCENDING = "DESCENDING";

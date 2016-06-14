@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import reduxThunk from 'redux-thunk';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -14,21 +12,11 @@ import Signin from './containers/signin';
 import Signup from './containers/signup';
 import Icebox from './containers/icebox';
 
-import { AUTHORIZE_USER } from './constants/actions';
-import reducers from './reducers';
-
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers,window.devToolsExtension ? window.devToolsExtension() : f => f);
-
-const token = localStorage.getItem('token');
-// If we have a token, consider the user to be signed in
-if(token) {
-  // We need to update application state
-  store.dispatch({ type: AUTHORIZE_USER });
-}
+import configureStore from './state/configureStore';
+const store = configureStore();
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme()}>
