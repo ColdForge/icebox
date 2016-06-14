@@ -20,8 +20,10 @@ import reducers from './reducers';
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
+import DUMMY_ICEBOX from './data/dummyFoodList';
+
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers,window.devToolsExtension ? window.devToolsExtension() : f => f);
+const store = createStoreWithMiddleware(reducers,{ icebox: DUMMY_ICEBOX }, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
 const token = localStorage.getItem('token');
 // If we have a token, consider the user to be signed in
