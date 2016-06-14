@@ -98,6 +98,7 @@ class AppHeader extends Component {
 					}
 					onTitleTouchTap={() => browserHistory.push('/')}
 					children={this.renderButtons()}
+					showMenuIconButton={this.props.authenticated ? true : false}
 				/>
 				<div>
 				{this.renderDrawer()}
