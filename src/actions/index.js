@@ -10,9 +10,11 @@ export function signinUser({ email, password }) {
 		axios.post(`${API_URL}/user/signin`, { email, password })
 			// if signin is successful
 			.then(response => {
+				console.log('response inside signinUser : ',response);
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				// -Save the JWT token
 				localStorage.setItem('token', response.data.token);
+				browserHistory.push('/icebox');
 			})
 			// else, dispatch authError action creator
 			.catch(response => {
@@ -29,16 +31,19 @@ export function signupUser({ email, name, password }) {
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				// -Save the JWT token
 				localStorage.setItem('token', response.data.token);
+				browserHistory.push('/icebox');
 			})
 			// else, dispatch authError action creator
 			.catch(response => {
-				dispatch(authError(response));
+				console.log('error in signup user, response of : ',response);
+				dispatch(authError(response.data.error));
 			});
 	}
 }
 
 export function signoutUser() {
 	localStorage.removeItem('token');
+	browserHistory.push('/');
 	return function(dispatch) {
 		dispatch({ type: TYPES.DEAUTHORIZE_USER });
 	}

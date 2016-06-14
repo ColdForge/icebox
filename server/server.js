@@ -19,7 +19,7 @@ app.use('/api/users', router);
 app.use('/api/icebox', router);
 
 app.get('/', function(req,res) {
-  res.sendFile(__dirname + '../index.html');
+  res.sendFile(__dirname + '/../index.html');
 });
 
 // route when user signs in
