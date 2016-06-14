@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import IceboxToolbar from './iceboxToolbar';
-import IceboxList from '../components/iceboxList';
+import VisibleIceboxList from '../containers/visibleIceboxList';
 
 class Icebox extends Component {
 	render(){
 		return (
 			<div>
 				<IceboxToolbar />
-        <IceboxList />
+        <VisibleIceboxList />
       </div>
 		);
 	}
