@@ -1,6 +1,6 @@
 **/.DS-Store
 *.log
-
+server/config/apikeys.js
 /node_modules
 /server/db/envConfig.js
 

@@ -11,6 +11,7 @@ var requireSignin = passport.authenticate('local', {session: false});
 var router = require('./routes/router');
 var Auth = require('./controllers/authController');
 var app = express();
+var food = require('./config/apiutils');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
