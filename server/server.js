@@ -10,6 +10,7 @@ var requireAuth = passport.authenticate('jwt', {session: false});
 var requireSignin = passport.authenticate('local', {session: false});
 var router = require('./routes/router');
 var Auth = require('./controllers/authController');
+var schedule = require('node-schedule');
 var app = express();
 var food = require('./config/apiutils');
 
@@ -28,6 +29,31 @@ app.post('/user/signin', requireSignin, Auth.signin);
 
 // route when new user signs up
 app.post('/user/signup', Auth.signup);
+
+
+
+
+var rule = new schedule.RecurrenceRule();
+rule.hour = 0;
+
+var j = schedule.scheduleJob(rule, function(){
+  console.log('Cron has executed');
+  db.select('*')
+    .from('icebox_items')
+    .then(function(resp){
+    	resp.forEach(function(item){
+    		db('icebox_items')
+    		.where('id', item.id)
+    		  .update({daysToExpire: item.daysToExpire-1})
+    		  .then(function(resp){
+    		  	console.log('Item has been updated');
+    		  });
+    	});
+    })
+    .catch(function(err){
+    	console.log('Cron job execution error', err);
+    });
+});
 
 
 var port = process.env.PORT || 8080;

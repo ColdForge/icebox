@@ -22,10 +22,8 @@ module.exports = {
 
 	postAllItems: function(req, res){
 		var user = req.body.user;
-		//var items = req.body.items;
+		//var items = req.body.data;
     var items = ['milk', 'eggs', 'blueberries', 'steak'];
-
-
 
     items.forEach(function (item){
       db.select('*')
@@ -74,11 +72,11 @@ module.exports = {
 	postItem: function(req, res){
 
 	  var user = req.body.user;
-    var foodName = req.body.food_name;
+    //var item = req.body.data;
 
     db.select('*')
     .from('foods')
-    .where('name', foodName)
+    .where('name', item)
     .then(function(resp){
       console.log('food item found', resp);
       db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
