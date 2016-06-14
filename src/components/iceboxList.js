@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List } from 'material-ui/List';
 import IceboxListItem from './iceboxListItem';
+import dataList from '../data/dummyFoodList';
 
 const keyGenerator = () => {
   return Math.floor(Math.random()*100*Math.random()*22*Math.random()*43*Math.random()*1010102);
@@ -11,18 +12,20 @@ const CONTENTS = [
     {name: 'Milk', foodGroup: 'Dairy', expiration: 1, iconPath: '../../assets/dairy.png', key: keyGenerator()}
 ];
 
+console.log('dummyData: ', dataList)
+
 class IceboxList extends Component {
 	render(){
 		return (
       <List subheader="Grocery List Items">
-        {CONTENTS.map(item => {
+        {dataList.map(item => {
           return (
             <IceboxListItem
               name={item.name}
               foodGroup={item.foodGroup}
               expiration={item.expiration}
               iconPath={item.iconPath}
-              key={item.key}
+              key={item.id}
             />
           );
         })}
