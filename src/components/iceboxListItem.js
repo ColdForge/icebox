@@ -3,23 +3,65 @@ import { ListItem } from 'material-ui/List';
 import SvgIcon from 'material-ui/SvgIcon';
 import ICONS from '../styles/icons';
 
-const IceboxListItem = ({ name, foodGroup, expiration }) => (
-      <ListItem
-        key={name+foodGroup}
-        className="iceboxListItem"
-        primaryText={name}
-        leftIcon={
-          <SvgIcon className="food-group-icon">
-            <path className="icon" d={ICONS.Dairy.d} />
-          </SvgIcon>
-        }
-        children={
-          <div>
-            <p>{expiration}</p>
-          </div>
-        }
-      />
-);
+var classNames = require('classnames');
+
+const styles = {
+  ListItem: {
+    text: {
+      color: "#000000"
+    }
+  }
+}
+
+const IceboxListItem = ({ name, foodGroup, iconPath, expiration, key }) => {
+  if (!name) {
+    return <ListItem primaryText="Loading..." />
+  }
+
+  let textColor = 'expiration-black';
+
+  // if the expiration === 1
+  if (expiration > 0 && expiration <= 3) {
+    // class will equal red for expiration div
+    textColor = 'expiration-red';
+  }
+  // if the expiration > 1 && <= 3
+  if (expiration > 3 && expiration <= 6){
+    // class will equal orange for expiration date
+    textColor = 'expiration-orange'
+  }
+  // if the expiration > 3
+  if (expiration > 7) {
+    // class will be default
+    textColor = 'expiration-black'
+  }
+
+
+
+
+  return (
+
+    <ListItem
+      key={key}
+      className="iceboxListItem"
+      leftIcon={<img className="food-group-icon" src={iconPath}/>}
+      style={styles.ListItem.text}>
+      <div className="container-fluid">
+        <div className="item-name">
+          {name}
+        </div>
+
+        <div className={textColor}>
+
+          {expiration}
+        </div>
+      </div>
+
+    </ListItem>
+
+  );
+
+};
 
 export default IceboxListItem;
 

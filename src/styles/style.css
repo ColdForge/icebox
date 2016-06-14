@@ -30,6 +30,41 @@ html,
   font-size: 5em;
 }
 
+.iceboxListItem {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 .landing-title {
 	color: black;
+}
+
+.item-expiration {
+
+}
+
+.item-name {
+  text-align: center;
+}
+
+.expiration-red {
+  color: red;
+  float: right;
+  display: table-cell;
+  vertical-align: middle;
+  bottom: 30px;
+}
+.expiration-orange {
+  color: orange;
+  float: right;
+  display: table-cell;
+  vertical-align: middle;
+  bottom: 30px;
+}
+.expiration-black {
+  color: black;
+  float: right;
+  display: table-cell;
+  vertical-align: middle;
+  bottom: 30px;
 }
