@@ -32,6 +32,7 @@
     "material-ui": "^0.15.0",
     "mysql": "^2.11.1",
     "node-schedule": "^1.1.0",
+    "node-uuid": "^1.4.7",
     "passport": "^0.3.2",
     "passport-jwt": "^2.0.0",
     "passport-local": "^1.0.0",
