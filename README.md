@@ -5,7 +5,8 @@
 #### All requests to server require a user object including iceboxID.
 
  Upon signup a user object including iceboxID will be returned to the client,
- like so: {token: token, id: user-id, name: 'Andy Yao', email: 'andy@gmail.com', iceboxID: 1}
+ like so: 
+ ```{token: token, id: user-id, name: 'Andy Yao', email: 'andy@gmail.com', iceboxID: 1}```
 
  When making a request to GET or DELETE a specific item
  inlcude the food item id on the route.
