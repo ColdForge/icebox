@@ -6,9 +6,9 @@ const keyGenerator = () => {
   return Math.floor(Math.random()*100*Math.random()*22*Math.random()*43*Math.random()*1010102);
 }
 const CONTENTS = [
-    {name: 'Bananas', foodGroup: 'Produce', expiration: 5, key: keyGenerator()},
-    {name: 'Ground Beef', foodGroup: 'Meat', expiration: 6, key: keyGenerator()},
-    {name: 'Milk', foodGroup: 'Dairy', expiration: 1, key: keyGenerator()}
+    {name: 'Bananas', foodGroup: 'Produce', expiration: 5, iconPath: '../../assets/fruit.png', key: keyGenerator()},
+    {name: 'Ground Beef', foodGroup: 'Meat', expiration: 6, iconPath: '../../assets/meat.png', key: keyGenerator()},
+    {name: 'Milk', foodGroup: 'Dairy', expiration: 1, iconPath: '../../assets/dairy.png', key: keyGenerator()}
 ];
 
 class IceboxList extends Component {
@@ -21,12 +21,13 @@ class IceboxList extends Component {
               name={item.name}
               foodGroup={item.foodGroup}
               expiration={item.expiration}
+              iconPath={item.iconPath}
               key={item.key}
             />
           );
         })}
       </List>
-		);
+    );
 	}
 }
 
