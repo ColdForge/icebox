@@ -8,7 +8,10 @@ import AppDrawer from './appDrawer';
 import FlatButton from 'material-ui/FlatButton';
 import * as actions from '../actions/index';
 
-const style = {
+const styles = {
+	bar: {
+		backgroundColor: '#556270',
+	},
 	buttonContainer: {
 		display: 'flex',
 		alignItems: 'center',
@@ -47,17 +50,17 @@ class AppHeader extends Component {
 		if(this.props.authenticated){
 			// render the help and signout buttons
 			return (
-				<div style={style.buttonContainer}>
-					<FlatButton className='help-button' label="Help" labelStyle={style.label}/>
-					<FlatButton onClick={this.props.signoutUser}className='signout-button' label="Signout" labelStyle={style.label}/>
+				<div style={styles.buttonContainer}>
+					<FlatButton className='help-button' label="Help" labelStyle={styles.label}/>
+					<FlatButton onClick={this.props.signoutUser}className='signout-button' label="Signout" labelStyle={styles.label}/>
 				</div>
 			);
 		} else { // else
 			// render the signup and signin buttons
 			return (
-				<div style={style.buttonContainer}>
-					<Link to="/signup" key={3}><FlatButton className='signup-button' label="Signup" labelStyle={style.label}/></Link>
-					<Link to="/signin" key={4}><FlatButton className='signin-button' label="Signin" labelStyle={style.label}/></Link>
+				<div style={styles.buttonContainer}>
+					<Link to="/signup" key={3}><FlatButton className='signup-button' label="Signup" labelStyle={styles.label}/></Link>
+					<Link to="/signin" key={4}><FlatButton className='signin-button' label="Signin" labelStyle={styles.label}/></Link>
 				</div>
 			);
 		}
@@ -79,7 +82,8 @@ class AppHeader extends Component {
 			<div>
 				<AppBar
 					title="Icebox"
-					titleStyle={style.title}
+					titleStyle={styles.title}
+					style={styles.bar}
 					iconElementLeft={
 						<IconButton 
 							className="appheader-menu-button"
