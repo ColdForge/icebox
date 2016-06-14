@@ -13,12 +13,16 @@ describe('AppDrawer' , () => {
     expect(component.find('.app-drawer')).to.exist;
   });
 
-  it('has a profile menu item', () => {
-    expect(component.find('.app-drawer-profile')).to.exist;
+  it('has a profile button', () => {
+    expect(component.find('.app-drawer-icebox')).to.exist;
   });
 
-  it('has a recipes menu item', () => {
+  it('has a recipes button', () => {
     expect(component.find('.app-drawer-recipes')).to.exist;
+  });
+
+  it('has a settings button', () => {
+    expect(component.find('.app-drawer-settings')).to.exist;
   });
 
 });
