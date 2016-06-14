@@ -55,3 +55,8 @@ export function authError(error) {
 		payload: error
 	}
 }
+
+export const setSortBy = (sort) => ({
+	type: TYPES.SET_SORT,
+	sort
+});
