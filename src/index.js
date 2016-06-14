@@ -14,6 +14,7 @@ import Signin from './containers/signin';
 import Signup from './containers/signup';
 import Icebox from './containers/icebox';
 
+import { AUTHORIZE_USER } from './constants/actions';
 import reducers from './reducers';
 
 import injectTapEventPlugin from "react-tap-event-plugin";
