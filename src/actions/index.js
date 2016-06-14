@@ -60,3 +60,8 @@ export const setSortBy = (sort) => ({
 	type: TYPES.SET_SORT,
 	sort
 });
+
+export const setSortOrder = (order) => ({
+	type: TYPES.SET_SORT_ORDER,
+	order
+});
