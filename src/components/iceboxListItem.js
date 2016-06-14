@@ -11,7 +11,7 @@ const styles = {
   }
 }
 
-const IceboxListItem = ({ name, foodGroup, expiration, key }) => {
+const IceboxListItem = ({ name, foodGroup, iconPath, expiration, key }) => {
   if (!name) {
     return <ListItem primaryText="Loading..." />
   }
@@ -22,9 +22,7 @@ const IceboxListItem = ({ name, foodGroup, expiration, key }) => {
       key={key}
       className="iceboxListItem"
       leftIcon={
-        <SvgIcon className="food-group-icon">
-          <path className="icon" d={ICONS.Dairy.d} />
-        </SvgIcon>
+        <img src={iconPath} />
        }
       style={styles.ListItem.text}
     >
@@ -36,6 +34,7 @@ const IceboxListItem = ({ name, foodGroup, expiration, key }) => {
       </div>
 
     </ListItem>
+
   );
 
 };
