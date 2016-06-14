@@ -12,7 +12,7 @@
  inlcude the food item id on the route.
 
  When sending any number of items to be posted, they should 
- be an array of item names, like so: ['milk', 'eggs', 'blueberries', 'steak']
+ be an array of item names, like so: ```['milk', 'eggs', 'blueberries', 'steak']```
 
  After the items have been posted, the server will return an array
  of food objects to the client, like so:
