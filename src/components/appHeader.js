@@ -37,26 +37,21 @@ class AppHeader extends Component {
 			drawerOpen: false
 		}
 	}
-	// Methods for handling AppDrawer behavior
 	handleToggle(){
 		if(this.props.authenticated){
-			console.log('auth true, handleToggle fired');
 			this.setState({drawerOpen: !this.state.drawerOpen})			
 		}
 	};
 
 	renderButtons(){
-		// if a user is currently authenticated
 		if(this.props.authenticated){
-			// render the help and signout buttons
 			return (
 				<div style={styles.buttonContainer}>
 					<FlatButton className='help-button' label="Help" labelStyle={styles.label}/>
 					<FlatButton onClick={this.props.signoutUser}className='signout-button' label="Signout" labelStyle={styles.label}/>
 				</div>
 			);
-		} else { // else
-			// render the signup and signin buttons
+		} else { 
 			return (
 				<div style={styles.buttonContainer}>
 					<Link to="/signup" key={3}><FlatButton className='signup-button' label="Signup" labelStyle={styles.label}/></Link>
