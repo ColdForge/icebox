@@ -12,7 +12,7 @@ const orderIceboxItems = (items, sortBy, sortOrder) => {
 				return sorted;
 			} else {
 				sorted = _sortBy(items, (item) => item.expiration);
-				
+
 				return sorted.reverse();
 			}
 		case SORT_FOODGROUP:
