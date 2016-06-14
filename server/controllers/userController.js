@@ -5,8 +5,12 @@ var _ = require('lodash');
 
 module.exports = {
 	insertUser: function(user) {
-		var pHash = Promise.promisify(hashPassword);
-		return pHash(user);
+		var pHash = this.hashPassword;
+		return new Promise(function(resolve){
+			var result = pHash(user);
+			console.log('result insider insertUser: ',result);
+			resolve(result);
+		})
 	},
 	hashPassword: function(user) {
 		var cipher = Promise.promisify(bcrypt.hash);
@@ -18,15 +22,15 @@ module.exports = {
 						name: user.name,
 						password: hash
 					})
-					.then(function(response){
-						console.log('inside hashPassword insert, response is : ',response);
-						return { 
-							id: response, 
-							email: user.email, 
-							name: user.name,
-							password: hash 
-						};
-					})
+					// .then(function(response){
+					// 	console.log('inside hashPassword insert, response is : ',response);
+					// 	return { 
+					// 		id: response, 
+					// 		email: user.email, 
+					// 		name: user.name,
+					// 		password: hash 
+					// 	};
+					// })
 			})
 	},
 	comparePassword: function(testPassword, user, callback) {
