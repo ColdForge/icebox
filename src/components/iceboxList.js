@@ -6,13 +6,6 @@ import dataList from '../data/dummyFoodList';
 const keyGenerator = () => {
   return Math.floor(Math.random()*100*Math.random()*22*Math.random()*43*Math.random()*1010102);
 }
-const CONTENTS = [
-    {name: 'Bananas', foodGroup: 'Produce', expiration: 5, iconPath: '../../assets/fruit.png', key: keyGenerator()},
-    {name: 'Ground Beef', foodGroup: 'Meat', expiration: 6, iconPath: '../../assets/meat.png', key: keyGenerator()},
-    {name: 'Milk', foodGroup: 'Dairy', expiration: 1, iconPath: '../../assets/dairy.png', key: keyGenerator()}
-];
-
-console.log('dummyData: ', dataList)
 
 class IceboxList extends Component {
 	render(){
