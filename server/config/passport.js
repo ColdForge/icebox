@@ -22,8 +22,9 @@ var localLogin = new LocalStrategy(localOptions, function(email, password, done)
 				console.log(response);
 				return done(null,false);
 			}
+			var user = response[0];
 			console.log('response length > 0, response is : ',response);
-			userController.comparePassword(password, response[0], function(err, isMatch){
+			userController.comparePassword(password, user, function(err, isMatch){
 				if (err) { 
 					console.log('err inside localLogin comparePassword');
 					return done(err); 
