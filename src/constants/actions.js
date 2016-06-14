@@ -9,4 +9,7 @@ export const SET_SORT_ORDER = "SET_SORTORDER";
 export const POPULATE_ICEBOX = "POPULATE_ICEBOX";
 export const ADD_ITEMS = "ADD_ITEMS";
 export const REMOVE_ITEMS = "REMOVE_ITEMS";
-
+// ActionTypes for handling user
+export const GET_USER_INFO = "GET_USER_INFO";
+export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
+export const CLEAR_USER_INFO = "CLEAR_USER_INFO";
