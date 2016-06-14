@@ -21,16 +21,16 @@ const IceboxListItem = ({ name, foodGroup, iconPath, expiration, key }) => {
     <ListItem
       key={key}
       className="iceboxListItem"
-      leftIcon={
-        <img src={iconPath} />
-       }
-      style={styles.ListItem.text}
-    >
+      leftIcon={<img src={iconPath}/>}
+      style={styles.ListItem.text}>
+      <div className="container-fluid">
+        <div className="item-name">
+          {name}
+        </div>
 
-      {name}
-
-      <div className="text-right expiration">
-        {expiration}
+        <div className="item-expiration">
+          {expiration}
+        </div>
       </div>
 
     </ListItem>
