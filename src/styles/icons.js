@@ -29,7 +29,10 @@ const ICONS = {
   },
   SortArrows: {
     d: "M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3L5 6.99h3V14h2V6.99h3L9 3z"
-  }
+  },
+  ClearSearch: {
+    d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+  },
 };
 
 export default ICONS;
