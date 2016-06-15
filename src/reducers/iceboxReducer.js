@@ -6,7 +6,7 @@ export default function(state = [], action) {
 	switch(action.type){
 		case POPULATE_ICEBOX:
 			newItems = action.payload.map(item => {
-				switch(item.foodGroup){
+				switch(item.foodGroup.toLowerCase()){
 					case "fruit":
 						return ({...item, key: v4(), iconPath: '../../assets/fruit.png' })
 					case "vegetables":
