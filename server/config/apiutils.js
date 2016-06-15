@@ -53,12 +53,3 @@ module.exports = {
 }
 
 
-// These code snippets use an open-source library.
-unirest.post()
-.header("X-Mashape-Key", "btG3CP4enrmshNwnqEmUCgBetu4Zp1aiOQhjsnNNhHxEvK3B65")
-.header("Content-Type", "application/x-www-form-urlencoded")
-.send("ingredientList=cilantro")
-.send("servings=<required>")
-.end(function (result) {
-  console.log(result.status, result.headers, result.body);
-});
