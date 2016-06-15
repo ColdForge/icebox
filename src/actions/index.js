@@ -60,3 +60,12 @@ export const setSortOrder = (order) => ({
 	type: TYPES.SET_SORT_ORDER,
 	order
 });
+
+export const setIceboxSearch = (searchTerm) => ({
+	type: TYPES.SET_ICEBOX_SEARCH,
+	searchTerm
+});
+
+export const clearIceboxSearch = () => ({
+	type: TYPES.CLEAR_ICEBOX_SEARCH
+});
