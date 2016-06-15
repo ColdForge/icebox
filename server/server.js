@@ -30,11 +30,6 @@ app.post('/user/signin', requireSignin, Auth.signin);
 // route when new user signs up
 app.post('/user/signup', Auth.signup);
 
-//console.log("Server:",food.getRecipeListFromIngredients(['milk', 'bananas', 'sugar']));
-//food.getRecipeDetailWithID(98668);
-
-
-
 var rule = new schedule.RecurrenceRule();
 rule.hour = 0;
 

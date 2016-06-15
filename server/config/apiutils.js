@@ -34,7 +34,7 @@ module.exports = {
       }
     }
 
-  request (options, callback);
+    request (options, callback);
   },
 
 
@@ -53,11 +53,27 @@ module.exports = {
       }
     }
 
-  request (options, callback);
+    request (options, callback);
   },
 
   getFoodType : function (food) {
+    var options = {
+      url : FOODTYPE,
+      headers: {
+        "X-Mashape-Key" : key.RECIPE_KEY,
+      },
+      form : {"ingredientList" : food,
+              "servings": 2}
+    }
 
+    function callback(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var info = JSON.parse(body);
+        console.log ("getFoodType Callback: ", info);
+      }
+    }
+
+    request.post (options, callback);
 
   }
 
