@@ -17,7 +17,8 @@ var FOODTYPE = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/"+
 
 module.exports = {
 
-  getRecipeListFromIngredients : function (fooditems) {
+  getRecipeFromIngredients : function (fooditems, cb) {
+
     var ingredQueryString = fooditems.join('%2C');
     var options = {
       url : RECQUERY+ingredQueryString+RECQUERY_TAIL,
@@ -30,11 +31,13 @@ module.exports = {
     function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
-        console.log ("getRecipe Callback: ", info);
-      }
-    }
+            console.log('This is API response', info);
+            cb(info);
+          }
 
-    request (options, callback);
+    }
+    request(options, callback);
+
   },
 
 
