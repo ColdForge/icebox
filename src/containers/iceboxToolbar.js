@@ -92,8 +92,8 @@ class IceboxToolbar extends Component {
 					firstChild={true}
 					style={styles.toolbarGroup1}
 				>
-					<IconButton 
-						tooltip="Search" 
+					<IconButton
+						tooltip="Search"
 						style={styles.button}
 						className="icebox-toolbar-search"
 					>
@@ -112,8 +112,8 @@ class IceboxToolbar extends Component {
 				<ToolbarGroup
 					style={styles.toolbarGroup2}
 				>
-					<IconButton 
-						tooltip="Speech" 
+					<IconButton
+						tooltip="Speech"
 						style={styles.button}
 						className="icebox-toolbar-speech"
 
@@ -127,7 +127,7 @@ class IceboxToolbar extends Component {
 					style={styles.toolbarGroup3}
 				>
 					<IconButton
-						tooltip="Asc/Desc" 
+						tooltip="Asc/Desc"
 						style={styles.button}
 						className="icebox-toolbar-sort-arrows"
 						onClick={() => this.changeSortDirection()}
@@ -139,8 +139,8 @@ class IceboxToolbar extends Component {
 					<ToolbarSeparator />
 					<IconMenu
 						iconButtonElement={
-							<IconButton 
-								tooltip="Sort" 
+							<IconButton
+								tooltip="Sort"
 								style={styles.button}
 								className="icebox-toolbar-sort"
 							>
@@ -154,13 +154,13 @@ class IceboxToolbar extends Component {
 	      		value={this.props.sortBy}
 	      		onChange={(event,value) => this.handleFilterChange(event,value)}
 					>
-						<MenuItem 
+						<MenuItem
 							value={SORT_EXPIRATION}
 							primaryText="Sort By: Expiration"/>
 						<MenuItem
 							value={SORT_FOODGROUP}
 							primaryText="Sort By: Food Group"/>
-						<MenuItem 
+						<MenuItem
 							value={SORT_FOODNAME}
 							primaryText="Sort By: Food Name"/>
 					</IconMenu>
