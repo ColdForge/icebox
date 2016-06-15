@@ -30,9 +30,6 @@ app.post('/user/signin', requireSignin, Auth.signin);
 // route when new user signs up
 app.post('/user/signup', Auth.signup);
 
-
-
-
 var rule = new schedule.RecurrenceRule();
 rule.hour = 0;
 

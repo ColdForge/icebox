@@ -1,0 +1,119 @@
+{
+  "vegetarian": false,
+  "vegan": false,
+  "glutenFree": false,
+  "dairyFree": false,
+  "veryHealthy": false,
+  "cheap": false,
+  "veryPopular": false,
+  "sustainable": false,
+  "weightWatcherSmartPoints": 31,
+  "gaps": "no",
+  "lowFodmap": false,
+  "ketogenic": false,
+  "whole30": false,
+  "servings": 1,
+  "preparationMinutes": 15,
+  "cookingMinutes": 10,
+  "sourceUrl": "http://www.food.com/recipe/wisconsin-badger-burger-411984",
+  "spoonacularSourceUrl": "https://spoonacular.com/wisconsin-badger-burger-98668",
+  "aggregateLikes": 3,
+  "creditText": "Food.com",
+  "sourceName": "Food.com",
+  "extendedIngredients": [
+    {
+      "aisle": "Meat",
+      "name": "bacon",
+      "amount": 2,
+      "unit": "slices",
+      "unitShort": "slices",
+      "unitLong": "slices",
+      "originalString": "2 slices smoked bacon, thick slice",
+      "metaInformation": []
+    },
+    {
+      "aisle": "Meat",
+      "name": "bratwurst",
+      "amount": 1,
+      "unit": "",
+      "unitShort": "",
+      "unitLong": "",
+      "originalString": "1 bratwurst, pattie 1/4 lb",
+      "metaInformation": []
+    },
+    {
+      "aisle": "Cheese",
+      "name": "cheddar cheese",
+      "amount": 1,
+      "unit": "slice",
+      "unitShort": "slice",
+      "unitLong": "slice",
+      "originalString": "1 slice wi cheddar cheese",
+      "metaInformation": []
+    },
+    {
+      "aisle": "Meat",
+      "name": "cooked hamburger patty",
+      "amount": 1,
+      "unit": "",
+      "unitShort": "",
+      "unitLong": "",
+      "originalString": "1 hamburger patty, 1/4 lb",
+      "metaInformation": []
+    },
+    {
+      "aisle": "Bakery/Bread",
+      "name": "hamburger bun",
+      "amount": 1,
+      "unit": "",
+      "unitShort": "",
+      "unitLong": "",
+      "originalString": "1 hamburger bun with sesame seeds, slightly toasted",
+      "metaInformation": []
+    },
+    {
+      "aisle": "Produce",
+      "name": "lettuce",
+      "amount": 1,
+      "unit": "serving",
+      "unitShort": "serving",
+      "unitLong": "serving",
+      "originalString": "lettuce",
+      "metaInformation": []
+    },
+    {
+      "aisle": "Cheese",
+      "name": "monterey jack cheese",
+      "amount": 1,
+      "unit": "slice",
+      "unitShort": "slice",
+      "unitLong": "slice",
+      "originalString": "1 slice wi monterey jack cheese",
+      "metaInformation": []
+    },
+    {
+      "aisle": "Produce",
+      "name": "onion",
+      "amount": 1,
+      "unit": "slice",
+      "unitShort": "slice",
+      "unitLong": "slice",
+      "originalString": "onion, slice",
+      "metaInformation": []
+    },
+    {
+      "aisle": "Produce",
+      "name": "tomato",
+      "amount": 1,
+      "unit": "slice",
+      "unitShort": "slice",
+      "unitLong": "slice",
+      "originalString": "tomato, slice",
+      "metaInformation": []
+    }
+  ],
+  "id": 98668,
+  "title": "Wisconsin Badger Burger",
+  "readyInMinutes": 25,
+  "image": "https://spoonacular.com/recipeImages/wisconsin-badger-burger-2-98668.jpg"
+}
