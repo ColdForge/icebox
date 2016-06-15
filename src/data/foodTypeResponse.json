@@ -1,1 +1,13 @@
-[{"id":10072,"original":"3 oz pork shoulder","name":"pork shoulder","amount":3.0,"unitShort":"oz","unitLong":"ounces","aisle":"Meat","image":"https://spoonacular.com/cdn/ingredients_100x100/pork-shoulder.jpg","meta":[]}]
+[
+  {
+    "id": 9040,
+    "original": "\"bananas\"",
+    "name": "bananas",
+    "amount": 2,
+    "unitShort": "servings",
+    "unitLong": "servings",
+    "aisle": "Produce",
+    "image": "https://spoonacular.com/cdn/ingredients_100x100/bananas.jpg",
+    "meta": []
+  }
+]
