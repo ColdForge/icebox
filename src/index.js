@@ -27,6 +27,7 @@ ReactDOM.render(
 					<Route path="signin" component={Signin} />
 					<Route path="signup" component={Signup} />
 					<Route path="icebox" component={Icebox} />
+          <Route path="recipes" component={Recipes} />
 				</Route>
 			</Router>
 		</Provider>
