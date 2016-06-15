@@ -58,6 +58,7 @@ class IceboxToolbar extends Component {
 						</SvgIcon>
 					</IconButton>
 					<TextField
+						id="icebox-toolbar-search-field"
 						value={this.state.searchTerm}
 						onChange={event => this.handleSearch(event)}
 						style={styles.textField}
