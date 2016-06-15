@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form'; 
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 import * as actions from '../actions';
 
+const styles = {
+	labelStyle: {
+		color: '#FFFFFF',
+	},
+}
 
 class Signup extends Component {
 	handleFormSubmit({ email, name, password }) {
@@ -22,22 +27,33 @@ class Signup extends Component {
 		const { handleSubmit, fields: { email, name, password, passwordConfirm }} = this.props;
 
 		return (
-			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-				<fieldset className="form-group">
-					<TextField {...email} floatingLabelText="Email" errorText={email.touched && email.error && <div className="error">{email.error}</div>} />
-				</fieldset>
-				<fieldset className="form-group">
-					<TextField {...name} floatingLabelText="Name" errorText={name.touched && name.error && <div className="error">{name.error}</div>} />
-				</fieldset>
-				<fieldset className="form-group">
-					<TextField {...password} type="password" floatingLabelText="Password" errorText={password.touched && password.error && <div className="error">{password.error}</div>} />
-				</fieldset>
-				<fieldset className="form-group">
-					<TextField {...passwordConfirm} type="password" floatingLabelText="Confirm your password:" errorText={passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>} />
-				</fieldset>
-				<RaisedButton type="submit" label="Sign up!" primary={true}></RaisedButton>
-				{this.renderError()}
-			</form>
+			<div className="signup-div">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-4 col-md-offset-4">
+							<div className="signup-form">
+								<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+									<fieldset className="form-group text-field-input">
+										<TextField {...email} floatingLabelText="Email" inputStyle={styles.labelStyle} floatingLabelStyle={styles.labelStyle} errorText={email.touched && email.error && <div className="error">{email.error}</div>} />
+									</fieldset>
+									<fieldset className="form-group text-field-input">
+										<TextField {...name} floatingLabelText="Name" inputStyle={styles.labelStyle} floatingLabelStyle={styles.labelStyle} errorText={name.touched && name.error && <div className="error">{name.error}</div>} />
+									</fieldset>
+									<fieldset className="form-group text-field-input">
+										<TextField {...password} type="password" floatingLabelText="Password" inputStyle={styles.labelStyle} floatingLabelStyle={styles.labelStyle} errorText={password.touched && password.error && <div className="error">{password.error}</div>} />
+									</fieldset>
+									<fieldset className="form-group text-field-input">
+										<TextField {...passwordConfirm} type="password" floatingLabelText="Confirm your password:" inputStyle={styles.labelStyle} floatingLabelStyle={styles.labelStyle} errorText={passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>} />
+									</fieldset>
+									<FlatButton type="submit" label="Sign up!" className="signup-form-button" backgroundColor="#FA6900" hoverColor="#F38630" />
+									{this.renderError()}
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 		);
 	}
 }
