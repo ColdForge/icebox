@@ -1,43 +1,44 @@
 import { connect } from 'react-redux';
 import IceboxList from '../components/iceboxList';
 import { SORT_EXPIRATION, SORT_FOODGROUP, SORT_FOODNAME, ASCENDING, DESCENDING } from '../constants/sorts';
-import _sortBy from 'lodash/sortBy';
+// import _chain from 'lodash/chain';
+// import _sortBy from 'lodash/sortBy';
+import _ from 'lodash'
 
-const orderIceboxItems = (items, sortBy, sortOrder) => {
+const orderIceboxItems = (items, sortBy, sortOrder, searchTerm) => {
 	let sorted;
 	switch (sortBy) {
 		case SORT_EXPIRATION:
-			if(sortOrder === ASCENDING){
-				sorted = _sortBy(items, (item) => item.expiration);
-				return sorted;
-			} else {
-				sorted = _sortBy(items, (item) => item.expiration);
-				
-				return sorted.reverse();
-			}
+			return itemSorter(items, "expiration", sortOrder, searchTerm);
 		case SORT_FOODGROUP:
-			if(sortOrder === ASCENDING){
-				sorted = _sortBy(items, (item) => item.foodGroup);
-				return sorted;
-			} else {
-				sorted = _sortBy(items, (item) => item.foodGroup);
-				return sorted.reverse();
-			}
+			return itemSorter(items, "foodGroup", sortOrder, searchTerm);
 		case SORT_FOODNAME:
-			if(sortOrder === ASCENDING){
-				sorted = _sortBy(items, (item) => item.name);
-				return sorted;
-			} else {
-				sorted = _sortBy(items, (item) => item.name);
-				return sorted.reverse();
-			}
+			return itemSorter(items, "name", sortOrder, searchTerm);
+	}
+}
 
+const itemSorter = (array, sortBy, sortOrder, searchTerm) => {
+	if(sortOrder === ASCENDING){
+		return _.chain(array)
+			.sortBy((item) => item[sortBy])
+			.filter((item) => {
+				return !searchTerm ? true : (!!~item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) || !!~item.foodGroup.toLowerCase().indexOf(searchTerm.toLowerCase())) ? true : false;
+			})
+			.value() 
+	} else {
+		return _.chain(array)
+			.sortBy((item) => item[sortBy])
+			.filter((item) => {
+				return !searchTerm ? true : (!!~item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) || !!~item.foodGroup.toLowerCase().indexOf(searchTerm.toLowerCase())) ? true : false;
+			})
+			.reverse()
+			.value() 
 	}
 }
 
 
 function mapStateToProps(state) {
-	return { contents: orderIceboxItems(state.icebox, state.sortBy, state.sortOrder) };
+	return { contents: orderIceboxItems(state.icebox, state.sortBy, state.sortOrder, state.iceboxSearch) };
 }
 
 const VisibleIceboxList = connect(mapStateToProps)(IceboxList);
