@@ -10,7 +10,7 @@ import App from './components/app';
 import Landing from './components/landing';
 import Signin from './containers/signin';
 import Signup from './containers/signup';
-import Icebox from './containers/icebox';
+import Icebox from './components/icebox';
 
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
