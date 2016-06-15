@@ -3,7 +3,7 @@ const dataList = [
     {name: 'Ground Beef', foodGroup: 'Meat', expiration: 6, iconPath: '../../assets/meat.png', id: 2},
     {name: 'Milk', foodGroup: 'Dairy', expiration: 1, iconPath: '../../assets/dairy.png', id: 3},
     {name: 'Lettuce', foodGroup: 'Vegetables', expiration: 1, iconPath: '../../assets/vegetables.png', id: 4},
-    {name: 'Tomatoes', foodGroup: 'Vegetables', expiration: 3, iconPath: '../../assets/fruit.png', id: 5},
+    {name: 'Tomatoes', foodGroup: 'Vegetables', expiration: 3, iconPath: '../../assets/fruits.png', id: 5},
     {name: 'Potatoes', foodGroup: 'Vegetables', expiration: 21, iconPath: '../../assets/vegetables.png', id: 6},
     {name: 'Chicken Breast', foodGroup: 'Meat', expiration: 4, iconPath: '../../assets/meat.png', id: 7},
     {name: 'Munster Cheese', foodGroup: 'Dairy', expiration: 11, iconPath: '../../assets/dairy.png', id: 8},
@@ -24,7 +24,6 @@ const dataList = [
     {name: 'Peaches', foodGroup: 'Fruit', expiration: 8, iconPath: '../../assets/fruit.png', id: 23},
     {name: 'Pineapple', foodGroup: 'Fruit', expiration: 17, iconPath: '../../assets/fruit.png', id: 24},
     {name: 'Dates', foodGroup: 'Fruit', expiration: 17, iconPath: '../../assets/fruit.png', id: 25}
-
 ];
 
 export default dataList;
