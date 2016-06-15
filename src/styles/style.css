@@ -17,6 +17,7 @@ p, div {
 	height: 100%;
 }
 
+/* CSS for Animations */
 .animation-container {
   height: 100%;
   width: 100%;
@@ -67,10 +68,12 @@ p, div {
   transform: translate3d(250px, 0, 0);
 }
 
+/* Main App Component Styling */
+
 .app-body {
   height: 100%;
-  padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-  padding-bottom: 50px;
+/*  padding-top: 50px;
+  padding-bottom: 50px;*/
   text-align: center;
   color: #f8f8f8;
   background: url(../../assets/icebox-landing.jpg) no-repeat center center;
@@ -86,6 +89,8 @@ p, div {
   background: url(../../assets/icebox-landing.jpg) no-repeat center center;
   background-size: cover;
 }*/
+
+/* Signin and Signup Components Styling */
 
 .signin-form, .signup-form {
   /*background-color: #556270;*/
@@ -134,6 +139,11 @@ form .text-field-input div label {
   width: 90%;
 }
 
+/* Landing Page Component Styling */
+
+.landing-title {
+  color: black;
+}
 .intro-message {
   position: relative;
   padding-top: 20%;
@@ -146,13 +156,16 @@ form .text-field-input div label {
   font-size: 5em;
 }
 
+/* Icebox Component Styling */
+
+.icebox-container {
+  background: #F1F1F1 no-repeat center center;
+  background-size: cover;
+}
+
 .iceboxListItem {
   display: table-cell;
   vertical-align: middle;
-}
-
-.landing-title {
-	color: black;
 }
 
 .item-expiration {
