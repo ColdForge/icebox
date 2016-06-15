@@ -24,11 +24,11 @@ const dataList = [
     {name: 'Zucchini', foodGroup: 'Vegetables', expiration: 4, iconPath: '../../assets/vegetables.png', id: 19},
     {name: 'Squash', foodGroup: 'Vegetables', expiration: 7, iconPath: '../../assets/vegetables.png', id: 20},
     {name: 'Cherries', foodGroup: 'Fruit', expiration: 7, iconPath: '../../assets/fruit.png', id: 21},
-    {name: 'Cereal', foodGroup: 'Grains', expiration: 16, iconPath: '../../assets/grains.png', id: 29},
+    {name: 'Cereal', foodGroup: 'Grains', expiration: 16, iconPath: '../../assets/grains.png', id: 25},
     {name: 'Plums', foodGroup: 'Fruit', expiration: 8, iconPath: '../../assets/fruit.png', id: 22},
     {name: 'Peaches', foodGroup: 'Fruit', expiration: 8, iconPath: '../../assets/fruit.png', id: 23},
     {name: 'Pineapple', foodGroup: 'Fruit', expiration: 17, iconPath: '../../assets/fruit.png', id: 24},
-    {name: 'Dates', foodGroup: 'Fruit', expiration: 17, iconPath: '../../assets/fruit.png', id: 25}
+    {name: 'Dates', foodGroup: 'Fruit', expiration: 17, iconPath: '../../assets/fruit.png', id: 29}
 ];
 
 export default dataList;
