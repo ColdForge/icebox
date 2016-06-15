@@ -5,6 +5,9 @@ export const AUTHORIZE_ERROR = "AUTHORIZE_ERROR";
 // ActionTypes for handling sort
 export const SET_SORT = "SET_SORT";
 export const SET_SORT_ORDER = "SET_SORTORDER";
+// ActionTypes for handling icebox search
+export const SET_ICEBOX_SEARCH = "SET_ICEBOX_SEARCH";
+export const CLEAR_ICEBOX_SEARCH = "CLEAR_ICEBOX_SEARCH";
 // ActionTypes for handling icebox contents
 export const POPULATE_ICEBOX = "POPULATE_ICEBOX";
 export const ADD_ITEMS = "ADD_ITEMS";
