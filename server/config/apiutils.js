@@ -5,15 +5,15 @@ var key = require ('./apikeys');
 // based on a list of ingredients passed into the function
 
 var RECQUERY = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/" +
-  "recipes/findByIngredients?fillIngredients=true&ingredients="
-var RECQUERY_TAIL = "&limitLicense=false&number=5&ranking=1"
+  "recipes/findByIngredients?fillIngredients=true&ingredients=";
+var RECQUERY_TAIL = "&limitLicense=false&number=5&ranking=1";
 
 // This gets a specific recipe based on the recipeID
 var RECDETAIL_QUERY = "https://spoonacular-recipe-food-nutrition-" +
-  "v1.p.mashape.com/recipes/{id}/information"
+  "v1.p.mashape.com/recipes/";
 
 var FOODTYPE = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/"+
-  "recipes/parseIngredients"
+  "recipes/parseIngredients";
 
 module.exports = {
 
@@ -30,7 +30,7 @@ module.exports = {
     function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
-        console.log (info);
+        console.log ("getRecipe Callback: ", info);
       }
     }
 
@@ -39,8 +39,21 @@ module.exports = {
 
 
   getRecipeDetailWithID : function (recipeID) {
+    var options = {
+      url : RECDETAIL_QUERY+recipeID+"/information?includeNutrition=false",
+      headers: {
+        "X-Mashape-Key" : key.RECIPE_KEY,
+      }
+    }
 
+    function callback(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var info = JSON.parse(body);
+        console.log ("getRecipeDetail Callback: ", info);
+      }
+    }
 
+  request (options, callback);
   },
 
   getFoodType : function (food) {
