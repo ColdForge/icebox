@@ -4,15 +4,16 @@ import IceboxListItem from './iceboxListItem';
 
 const IceboxList = ({ contents }) => {
   return (
-    <List subheader="Grocery List Items">
+    <List className="icebox-list">
       {contents.map(item => {
         return (
           <IceboxListItem
+            key={item.key}
+            item={item}
             name={item.name}
             foodGroup={item.foodGroup}
             expiration={item.expiration}
             iconPath={item.iconPath}
-            key={item.id}
           />
         );
       })}
