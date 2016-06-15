@@ -82,7 +82,7 @@ p, div {
 
 /*.landing-div, .signin-div, .signup-div {
 	height: 100%;
-	padding-top: 50px;  
+	padding-top: 50px;
   padding-bottom: 50px;
   text-align: center;
   color: #f8f8f8;
@@ -168,8 +168,8 @@ form .text-field-input div label {
   vertical-align: middle;
 }
 
-.item-expiration {
-
+.food-group-icon {
+  float: left;
 }
 
 .item-name {
@@ -177,23 +177,29 @@ form .text-field-input div label {
 }
 
 .expiration-red {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
   color: red;
   float: right;
   display: table-cell;
   vertical-align: middle;
-  bottom: 30px;
 }
 .expiration-orange {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
   color: orange;
   float: right;
   display: table-cell;
   vertical-align: middle;
-  bottom: 30px;
 }
 .expiration-black {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
   color: black;
   float: right;
   display: table-cell;
   vertical-align: middle;
-  bottom: 30px;
 }
