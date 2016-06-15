@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { SORT_EXPIRATION, SORT_FOODGROUP, SORT_FOODNAME, ASCENDING, DESCENDING } from '../constants/sorts';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 import IconMenu from 'material-ui/IconMenu';
@@ -14,25 +14,46 @@ const styles = {
 	button: {
 		zIndex: 100
 	},
+	buttonPlaceholder: {
+		width: 48,
+		height: 48,
+	},
 	textField: {
 		marginTop: '8px',
 		height: '40px',
 		width: '200px',
 		borderRadius: '10px',
 		backgroundColor: '#F5F5F5'
-	}
+	},
+	toolbar: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'stretch',
+
+	},
+	toolbarGroup1: {
+		marginLeft: '10px',
+		width: '33%',
+		display: 'flex',
+		justifyContent: 'flex-start',
+	},
+	toolbarGroup2: {
+		width: '34%',
+		display: 'flex',
+		justifyContent: 'center',
+	},
+	toolbarGroup3: {
+		width: '33%',
+		display: 'flex',
+		justifyContent: 'flex-end',
+	},
 }
 
 class IceboxToolbar extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			searchTerm: ''
-		}
-	}
 
 	handleSearch(event) {
-		this.setState({ searchTerm: event.target.value });
+		this.props.setIceboxSearch(event.target.value);
 	}
 
 	changeSortDirection(){
@@ -43,15 +64,38 @@ class IceboxToolbar extends Component {
 		this.props.setSortBy(value)
 	}
 
+	renderClearSearchButton() {
+		if(this.props.iceboxSearch){
+			return (
+				<IconButton
+					tooltip="Clear Search"
+					style={styles.button}
+					className="icebox-toolbar-clear-search"
+					onTouchTap={() => this.props.clearIceboxSearch()}
+				>
+					<SvgIcon className="icebox-toolbar-clear-search-svgicon">
+						<path d={ICONS.ClearSearch.d} />
+					</SvgIcon>
+				</IconButton>
+			);
+		} else {
+			return (
+				<div style={styles.buttonPlaceholder} />
+			);
+		}
+	}
+
 	render() {
 		return (
-			<Toolbar>
-				<ToolbarGroup>
+			<Toolbar style={styles.toolbar} noGutter={true}>
+				<ToolbarGroup
+					firstChild={true}
+					style={styles.toolbarGroup1}
+				>
 					<IconButton 
 						tooltip="Search" 
 						style={styles.button}
 						className="icebox-toolbar-search"
-
 					>
 						<SvgIcon className="icebox-toolbar-svgicon-search">
 							<path d={ICONS.Search.d} />
@@ -59,12 +103,15 @@ class IceboxToolbar extends Component {
 					</IconButton>
 					<TextField
 						id="icebox-toolbar-search-field"
-						value={this.state.searchTerm}
+						value={this.props.iceboxSearch}
 						onChange={event => this.handleSearch(event)}
 						style={styles.textField}
 					/>
+					{this.renderClearSearchButton()}
 				</ToolbarGroup>
-				<ToolbarGroup>
+				<ToolbarGroup
+					style={styles.toolbarGroup2}
+				>
 					<IconButton 
 						tooltip="Speech" 
 						style={styles.button}
@@ -76,7 +123,9 @@ class IceboxToolbar extends Component {
 						</SvgIcon>
 					</IconButton>
 				</ToolbarGroup>
-				<ToolbarGroup>
+				<ToolbarGroup
+					style={styles.toolbarGroup3}
+				>
 					<IconButton
 						tooltip="Asc/Desc" 
 						style={styles.button}
@@ -122,7 +171,7 @@ class IceboxToolbar extends Component {
 }
 
 function mapStateToProps(state) {
-	return { sortBy: state.sortBy, sortOrder: state.sortOrder };
+	return { sortBy: state.sortBy, sortOrder: state.sortOrder, iceboxSearch: state.iceboxSearch };
 }
 
 export default connect(mapStateToProps, actions)(IceboxToolbar);
