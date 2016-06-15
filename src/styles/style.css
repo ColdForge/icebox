@@ -155,10 +155,6 @@ form .text-field-input div label {
 	color: black;
 }
 
-.item-expiration {
-
-}
-
 .item-name {
   text-align: center;
 }
@@ -168,19 +164,18 @@ form .text-field-input div label {
   float: right;
   display: table-cell;
   vertical-align: middle;
-  bottom: 30px;
 }
+
 .expiration-orange {
   color: orange;
   float: right;
   display: table-cell;
   vertical-align: middle;
-  bottom: 30px;
 }
+
 .expiration-black {
   color: black;
   float: right;
   display: table-cell;
   vertical-align: middle;
-  bottom: 30px;
 }
