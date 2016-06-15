@@ -78,7 +78,21 @@ module.exports = {
   },
 
   postRecipe: function(req, res){
-    
+    var user = req.body.user;
+    var recipe = req.body.data;
+
+    db.insert({iceboxID: user.iceboxID, title: recipe.title, 
+      pic_url: recipe.pic_url, ingredients_used: recipe.ingredients_used, 
+      ingredients_missing: recipe.ingredients_missing})
+      .into('users')
+      .where('users.email', user.email)
+      .then(function(resp){
+        console.log('Recipe has been added to user account', resp);
+        res.send(resp);
+      })
+      .catch(function(err){
+        console.log('Error posting recipe', err);
+      });
   },
 
 	getItem: function(req, res){
