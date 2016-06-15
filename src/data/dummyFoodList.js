@@ -1,9 +1,9 @@
 const dataList = [
-    {name: 'Bananas', foodGroup: 'Produce', expiration: 5, iconPath: '../../assets/fruit.png', id: 1, key: "4kswGMuPMeV8Z8vZ"},
+    {name: 'Bananas', foodGroup: 'Fruit', expiration: 5, iconPath: '../../assets/fruit.png', id: 1, key: "4kswGMuPMeV8Z8vZ"},
     {name: 'Ground Beef', foodGroup: 'Meat', expiration: 6, iconPath: '../../assets/meat.png', id: 2, key: "b5a9T5yYBAhnXcuZ"},
     {name: 'Milk', foodGroup: 'Dairy', expiration: 1, iconPath: '../../assets/dairy.png', id: 3, key: "ThQ4PyrB48KkpB7b"},
     {name: 'Lettuce', foodGroup: 'Vegetables', expiration: 1, iconPath: '../../assets/vegetables.png', id: 4, key: "tK4Tt6ncY2RAb4BY"},
-    {name: 'Tomatoes', foodGroup: 'Vegetables', expiration: 3, iconPath: '../../assets/fruit.png', id: 5, key: "zGeDxsDu337pcvRF"},
+    {name: 'Tomatoes', foodGroup: 'Vegetables', expiration: 3, iconPath: '../../assets/vegetables.png', id: 5, key: "zGeDxsDu337pcvRF"},
     {name: 'Potatoes', foodGroup: 'Vegetables', expiration: 21, iconPath: '../../assets/vegetables.png', id: 6, key: "PBfbmzu5PDGyGM7s"},
     {name: 'Chicken Breast', foodGroup: 'Meat', expiration: 4, iconPath: '../../assets/meat.png', id: 7, key: "Vyu8SFCeL4sJmp8u"},
     {name: 'Munster Cheese', foodGroup: 'Dairy', expiration: 11, iconPath: '../../assets/dairy.png', id: 8, key: "TtqBCPXeRUdB38y5"},
