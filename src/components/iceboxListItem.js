@@ -13,7 +13,7 @@ const styles = {
   }
 }
 
-const IceboxListItem = ({ name, foodGroup, iconPath, expiration, key }) => {
+const IceboxListItem = ({ name, foodGroup, iconPath, expiration }) => {
   if (!name) {
     return <ListItem primaryText="Loading..." />
   }
@@ -38,11 +38,8 @@ const IceboxListItem = ({ name, foodGroup, iconPath, expiration, key }) => {
 
 
 
-
   return (
-
     <ListItem
-      key={key}
       className="iceboxListItem"
       leftIcon={<img className="food-group-icon" src={iconPath}/>}
       style={styles.ListItem.text}>
@@ -50,13 +47,10 @@ const IceboxListItem = ({ name, foodGroup, iconPath, expiration, key }) => {
         <div className="item-name">
           {name}
         </div>
-
         <div className={textColor}>
-
           {expiration}
         </div>
       </div>
-
     </ListItem>
 
   );
