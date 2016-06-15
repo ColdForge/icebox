@@ -17,14 +17,121 @@ p, div {
 	height: 100%;
 }
 
-.landing-div {
-	height: 100%;
-	padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+.animation-container {
+  height: 100%;
+  width: 100%;
+}
+
+.example-appear {
+  opacity: 0;
+  transform: translate(-250px, 0);
+  transform: translate3d(-250px, 0, 0);
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+}
+
+.example-enter {
+  opacity: 0;
+  transform: translate(-250px, 0);
+  transform: translate3d(-250px, 0, 0);
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+}
+
+.example-leave {
+  opacity: 1;
+  transform: translate(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0;
+  transform: translate(250px, 0);
+  transform: translate3d(250px, 0, 0);
+}
+
+.app-body {
+  height: 100%;
+  padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
   padding-bottom: 50px;
   text-align: center;
   color: #f8f8f8;
   background: url(../../assets/icebox-landing.jpg) no-repeat center center;
   background-size: cover;
+}
+
+/*.landing-div, .signin-div, .signup-div {
+	height: 100%;
+	padding-top: 50px;  
+  padding-bottom: 50px;
+  text-align: center;
+  color: #f8f8f8;
+  background: url(../../assets/icebox-landing.jpg) no-repeat center center;
+  background-size: cover;
+}*/
+
+.signin-form, .signup-form {
+  /*background-color: #556270;*/
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form .text-field-input {
+  -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    outline: 0;
+    border: 1px solid rgba(85, 98, 112, 0.7);
+    background-color: rgba(85, 98, 112, 0.6);
+    width: 90%;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 10px auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    -webkit-transition-duration: 0.25s;
+            transition-duration: 0.25s;
+    font-weight: 300;
+}
+
+form .text-field-input:hover {
+  background-color: rgba(85, 98, 112, 0.8);
+}
+form .text-field-input:focus {
+  background-color: white;
+  width: 300px;
+  color: #53e3a6;
+}
+
+form .text-field-input div label {
+  color: white;
+}
+
+.signin-form-button, .signup-form-button {
+  width: 90%;
 }
 
 .intro-message {
