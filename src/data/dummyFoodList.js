@@ -9,7 +9,6 @@ const dataList = [
     {name: 'Chicken Breast', foodGroup: 'Meat', expiration: 4, iconPath: '../../assets/meat.png', id: 7},
     {name: 'Munster Cheese', foodGroup: 'Dairy', expiration: 11, iconPath: '../../assets/dairy.png', id: 8},
     {name: 'Apples', foodGroup: 'Fruits', expiration: 5, iconPath: '../../assets/fruit.png', id: 9},
-    {name: 'Popcorn', foodGroup: 'Snacks', expiration: 30, iconPath: '../../assets/snacks.png', id: 18},
     {name: 'Oranges', foodGroup: 'Fruits', expiration: 6, iconPath: '../../assets/fruit.png', id: 10},
     {name: 'Sourdough Bread', foodGroup: 'Grains', expiration: 3, iconPath: '../../assets/grains.png', id:27 },
     {name: 'Venison', foodGroup: 'Meat', expiration: 10, iconPath: '../../assets/meat.png', id: 11},
