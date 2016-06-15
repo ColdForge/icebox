@@ -37,21 +37,22 @@ const IceboxListItem = ({ name, foodGroup, iconPath, expiration }) => {
   }
 
 
-
   return (
-    <ListItem
-      className="iceboxListItem"
-      leftIcon={<img className="food-group-icon" src={iconPath}/>}
-      style={styles.ListItem.text}>
-      <div className="container-fluid">
-        <div className="item-name">
-          {name}
+
+      <ListItem
+        className="iceboxListItem"
+        // leftIcon={<img className="food-group-icon" src={iconPath}/>}
+        style={styles.ListItem.text}>
+        <div className="list-item-container">
+          <img className="food-group-icon" src={iconPath}/>
+          <div className="item-name">
+            {name}
+          </div>
+          <div className={textColor}>
+            {expiration}
+          </div>
         </div>
-        <div className={textColor}>
-          {expiration}
-        </div>
-      </div>
-    </ListItem>
+      </ListItem>
 
   );
 
