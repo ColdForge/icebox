@@ -55,7 +55,7 @@ module.exports = {
 
     db.select('*')
     .from('icebox_items')
-    .where('iceboxID', 2)
+    .where('iceboxID', icebox)
     .innerJoin('foods', 'icebox_items.foodID', 'foods.id')
     .then(function(resp){
       resp.forEach(function(food){
@@ -75,6 +75,10 @@ module.exports = {
       res.send('Icebox items could not be found');
     });
 
+  },
+
+  postRecipe: function(req, res){
+    
   },
 
 	getItem: function(req, res){
