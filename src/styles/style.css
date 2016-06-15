@@ -168,6 +168,14 @@ form .text-field-input div label {
   vertical-align: middle;
 }
 
+.list-item-container {
+  font-size: 25px;
+  text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+  -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+}
+
 .food-group-icon {
   float: left;
 }
