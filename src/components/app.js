@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import AppHeader from './appHeader';
 
 const styles = {
@@ -24,8 +25,15 @@ class App extends Component {
       	<div style={styles.header}>
       		<AppHeader />
       	</div>
-      	<div style={styles.body}>
-      		{this.props.children}
+      	<div style={styles.body} className="app-body">
+      		<ReactCSSTransitionGroup
+		        component="div" transitionName="example" className="animation-container"
+		        transitionEnterTimeout={500} transitionLeaveTimeout={500}
+		      >
+		      	{React.cloneElement(this.props.children, {
+    	        key: location.pathname
+    	      })}
+      		</ReactCSSTransitionGroup>
       	</div>
       </div>
     );
