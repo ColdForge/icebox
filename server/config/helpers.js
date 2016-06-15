@@ -1,9 +1,9 @@
 var db = require('../db/config.js');
+var foodAPI = require('./apiutils.js');
 
 module.exports = {
 
 	getAllItems: function(req, res){
-
 	  var user = req.body.user;
 
     db.select('*')
@@ -22,8 +22,8 @@ module.exports = {
 
 	postAllItems: function(req, res){
 		var user = req.body.user;
-		//var items = req.body.data;
-    var items = ['milk', 'eggs', 'blueberries', 'steak'];
+		var items = req.body.data;
+    //var items = ['milk', 'eggs', 'blueberries', 'steak'];
 
     items.forEach(function (item){
       db.select('*')
@@ -49,6 +49,52 @@ module.exports = {
     res.send("Icebox items updated");
 	},
 
+  getRecipes: function(req, res){
+    var icebox = req.body.iceboxID;
+    var recipeCollect = [];
+
+    db.select('*')
+    .from('icebox_items')
+    .where('iceboxID', icebox)
+    .innerJoin('foods', 'icebox_items.foodID', 'foods.id')
+    .then(function(resp){
+      resp.forEach(function(food){
+        if(food.daysToExpire <= 2){
+          recipeCollect.push(food.name);
+        }
+      });
+    }).then(function(resp){
+      var result = new Promise(function(resolve){
+        foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
+      }).then(function(resp){
+        console.log('Successfull call to recipe API', API);
+        res.send(resp);
+      });
+    }).catch(function(err){
+      console.log('Error getting items', err);
+      res.send('Icebox items could not be found');
+    });
+
+  },
+
+  postRecipe: function(req, res){
+    var user = req.body.user;
+    var recipe = req.body.data;
+
+    db.insert({iceboxID: user.iceboxID, title: recipe.title, 
+      pic_url: recipe.pic_url, ingredients_used: recipe.ingredients_used, 
+      ingredients_missing: recipe.ingredients_missing})
+      .into('users')
+      .where('users.email', user.email)
+      .then(function(resp){
+        console.log('Recipe has been added to user account', resp);
+        res.send(resp);
+      })
+      .catch(function(err){
+        console.log('Error posting recipe', err);
+      });
+  },
+
 	getItem: function(req, res){
       var user = req.body.user;
       var item = req.params.food_id
@@ -72,7 +118,7 @@ module.exports = {
 	postItem: function(req, res){
 
 	  var user = req.body.user;
-    //var item = req.body.data;
+    var item = req.body.data;
 
     db.select('*')
     .from('foods')

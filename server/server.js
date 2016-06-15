@@ -12,7 +12,7 @@ var router = require('./routes/router');
 var Auth = require('./controllers/authController');
 var schedule = require('node-schedule');
 var app = express();
-var food = require('./config/apiutils');
+var food = require('./config/apiutils.js');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -32,9 +32,11 @@ app.post('/user/signup', Auth.signup);
 
 var rule = new schedule.RecurrenceRule();
 rule.hour = 0;
+rule.minute = 0;
+rule.second = 0;
 
 var j = schedule.scheduleJob(rule, function(){
-  console.log('Cron has executed');
+  console.log('Expiration cron has executed');
   db.select('*')
     .from('icebox_items')
     .then(function(resp){
