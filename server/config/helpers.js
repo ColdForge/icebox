@@ -23,7 +23,7 @@ module.exports = {
 	postAllItems: function(req, res){
 		var user = req.body.user;
 		var items = req.body.data;
-    var items = ['milk', 'eggs', 'blueberries', 'steak'];
+    //var items = ['milk', 'eggs', 'blueberries', 'steak'];
 
     items.forEach(function (item){
       db.select('*')
@@ -50,6 +50,12 @@ module.exports = {
               .into('foods')
               .then(function(resp){
                 console.log('Great success', resp);
+                db.insert({foodID: resp[0], iceboxID: user.iceboxID, daysToExpire: 10})
+                  .into('icebox_items')
+                  .where('iceboxID', user.iceboxID)
+                  .then(function(resp){
+                    console.log('Added to icebox items');
+                  });
               })
               .catch(function(err){
                 console.log('Insert error', err);
