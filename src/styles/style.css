@@ -169,43 +169,49 @@ form .text-field-input div label {
 }
 
 .list-item-container {
+  position: relative;
   font-size: 25px;
-  text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
-  -webkit-background-clip: text;
-     -moz-background-clip: text;
-          background-clip: text;
+  height: 50px;
 }
 
 .food-group-icon {
-  float: left;
+  top: 13px;
+  position: absolute;
+  left: 15px;
+  margin: auto;
 }
 
 .item-name {
+  top: 13px;
+  position: absolute;
   text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  left: 5px;
 }
 
 .expiration-red {
+  top: 13px;
   position: absolute;
   right: 15px;
-  bottom: 15px;
   color: red;
   float: right;
   display: table-cell;
   vertical-align: middle;
 }
 .expiration-orange {
+  top: 13px;
   position: absolute;
   right: 15px;
-  bottom: 15px;
   color: orange;
   float: right;
   display: table-cell;
   vertical-align: middle;
 }
 .expiration-black {
+  top: 13px;
   position: absolute;
   right: 15px;
-  bottom: 15px;
   color: black;
   float: right;
   display: table-cell;
