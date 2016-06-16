@@ -1,5 +1,5 @@
 import { renderComponent , expect } from '../testHelper';
-import IceboxToolbar from '../../src/components/iceboxToolbar';
+import IceboxToolbar from '../../src/containers/iceboxToolbar';
 
 describe('IceboxToolbar' , () => {
   let component;
