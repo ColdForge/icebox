@@ -64,6 +64,11 @@ class IceboxToolbar extends Component {
 		this.props.setSortBy(value)
 	}
 
+  // trying to call this method, which comes from props
+	// renderFoodItemInputComponent(event, value) {
+	// 	this.props
+	// }
+
 	renderClearSearchButton() {
 		if(this.props.iceboxSearch){
 			return (
@@ -116,6 +121,9 @@ class IceboxToolbar extends Component {
 						tooltip="Speech"
 						style={styles.button}
 						className="icebox-toolbar-speech"
+
+						// I have to render the foodItemInput component
+						// onClick={() => this.renderFoodItemInputComponent()}
 
 					>
 						<SvgIcon className="icebox-toolbar-svgicon-speech">
