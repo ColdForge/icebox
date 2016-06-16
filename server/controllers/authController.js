@@ -9,7 +9,7 @@ module.exports = {
 	// Signin function:
 	// req passed in has user attribute set to false if signin info was wrong or user does not exist, or a user object with all its attributes
 	signin: function(req, res, next) {
-		console.log('Inside signin function on Auth Controller', req.body);
+		console.log('Inside signin func on Auth Controller', req.user);
         var grammarList = [];
         knex.select('name')
           .from('foods')
@@ -22,7 +22,7 @@ module.exports = {
   			knex('icebox_items')
   				.join('foods', 'icebox_items.foodID', '=', 'foods.id')
   	  		.select('icebox_items.daysToExpire as expiration', 'foods.category as foodGroup', 'foods.name as name', 'icebox_items.foodID as foodID')
-  	  		.where('icebox_items.iceboxID', 2)
+  	  		.where('icebox_items.iceboxID', req.user.iceboxID)
   	  		.then(function(response){
   	  			console.log('Inside of res being sent', response);
   	  			res.send({
