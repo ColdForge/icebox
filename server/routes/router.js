@@ -8,6 +8,8 @@ module.exports = function (app) {
       .get(helpers.getRecipes)
       .post(helpers.postRecipe);
 
+    app.get('api/icebox.recipe_details');
+
     app.route('api/icebox/:id')
       .get(helpers.getItem)
       .delete(helpers.deleteItem);

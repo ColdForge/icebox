@@ -41,7 +41,7 @@ module.exports = {
   },
 
 
-  getRecipeDetailWithID : function (recipeID) {
+  getRecipeDetailWithID : function (recipeID, cb) {
     var options = {
       url : RECDETAIL_QUERY+recipeID+"/information?includeNutrition=false",
       headers: {
@@ -53,13 +53,15 @@ module.exports = {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
         console.log ("getRecipeDetail Callback: ", info);
+        cb(info);
       }
     }
 
     request (options, callback);
   },
 
-  getFoodType : function (food) {
+  getFoodType : function (food, cb) {
+    console.log('API call is firing');
     var options = {
       url : FOODTYPE,
       headers: {
@@ -73,11 +75,10 @@ module.exports = {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
         console.log ("getFoodType Callback: ", info);
+        cb(info);
       }
     }
-
     request.post (options, callback);
-
   }
 
 

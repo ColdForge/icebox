@@ -57,6 +57,7 @@ knex.schema.hasTable('recipes').then(function(exists){
 	if(!exists){
 		knex.schema.createTable('recipes',function(recipe){
 			recipe.increments('id');
+			recipe.integer('recipeID');
 			recipe.integer('userID', 11).unsigned();
 			recipe.foreign('userID').references('id').inTable('users');
 			recipe.string('title',255);
