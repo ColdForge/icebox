@@ -1,8 +1,8 @@
 # ice_box
 
-## Start-up
+## Getting started:
 
-#### To begin contributing to icebox:
+#### To begin contributing to icebox,
 
 1. Fork the repo
 2. Clone down to your local machine.
@@ -13,7 +13,10 @@
 7. Open your browser and navigate to localhost:8080
 8. Code!
 9. Commit changes and make a pull request
-  -When committing and making pull requests, style them with proper prefix, lowercase and present tense  
+  *When committing and making pull requests, style the with:
+  1. Proper prefix
+  2. Lowercase messages
+  3. Present tense  
 
 
 ## Server routes
