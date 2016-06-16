@@ -12,6 +12,7 @@ export const signinUser = ({ email, password }) => {
 				console.log('response inside signinUser : ',response);
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				dispatch({ type: TYPES.GET_USER_INFO, payload: response.data });
+				dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
 				localStorage.setItem('token', response.data.token);
 				browserHistory.push('/icebox');
 			})
