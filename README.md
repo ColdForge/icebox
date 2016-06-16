@@ -1,5 +1,21 @@
 # ice_box
 
+## Start-up
+
+#### To begin contributing to icebox:
+
+1. Fork the repo
+2. Clone down to your local machine.
+3. cd into the repo and open a terminal window
+4. Run npm install
+5. Open a terminal window and run ```webpack --watch```
+6. Open another terminal window and run ```node server/server.js```
+7. Open your browser and navigate to localhost:8080
+8. Code!
+9. Commit changes and make a pull request
+  -When committing and making pull requests, style them with proper prefix, lowercase and present tense  
+
+
 ## Server routes
 
 #### All requests to server require a user object including iceboxID.
