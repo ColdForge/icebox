@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "compile": "webpack --config webpack.config.js",
-    "lint": "eslint src/components/iceboxListItem.js --fix",
+    "lint": "eslint src/components/landing.js --fix",
     "lint:server": "eslint server",
     "lint:server:fix": "npm run lint:server -- --fix",
     "lint:src": "eslint src",
