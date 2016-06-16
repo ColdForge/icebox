@@ -23,7 +23,7 @@ module.exports = {
 	postAllItems: function(req, res){
 		var user = req.body.user;
 		var items = req.body.data;
-    //var items = ['milk', 'eggs', 'blueberries', 'steak'];
+    var items = ['milk', 'eggs', 'blueberries', 'steak'];
 
     items.forEach(function (item){
       db.select('*')
@@ -31,18 +31,37 @@ module.exports = {
       .where('name', item)
       .then(function(resp){
         console.log('food item found', resp);
-        db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
-        .into('icebox_items')
-        .then(function(resp){
-          console.log('Item added to icebox', resp);
-        })
-        .catch(function(err){
-          console.log('Item insertion error', err);
-        });
+        if(resp.length > 0){
+          db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
+          .into('icebox_items')
+          .then(function(resp){
+            console.log('Item added to icebox', resp);
+          })
+          .catch(function(err){
+            console.log('Item insertion error', err);
+          });
+        } else {
+            console.log('Inside else statement');
+            var result = new Promise(function(resolve){
+              food.getFoodType(item, resolve);
+            }).then(function(resp){
+            console.log('food item results', resp);
+            db.insert({category: resp[0].aisle, name: resp[0].name, freshDuration: 10})
+              .into('foods')
+              .then(function(resp){
+                console.log('Great success', resp);
+              })
+              .catch(function(err){
+                console.log('Insert error', err);
+              });
+          }).catch(function(err){
+            console.log('Error retrieving food type');
+            res.send('Error retrieving item');
+          });
+        }
       })
       .catch(function(err){
         console.log('Could not find item in foods table', err);
-        //lookup items information from API
       });
     });
 
@@ -67,7 +86,7 @@ module.exports = {
       var result = new Promise(function(resolve){
         foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
       }).then(function(resp){
-        console.log('Successfull call to recipe API', API);
+        console.log('Successfull call to recipe API', resp);
         res.send(resp);
       });
     }).catch(function(err){
@@ -81,11 +100,11 @@ module.exports = {
     var user = req.body.user;
     var recipe = req.body.data;
 
-    db.insert({iceboxID: user.iceboxID, title: recipe.title, 
+    db.insert({iceboxID: user.iceboxID, recipeID: recipe.id, title: recipe.title, 
       pic_url: recipe.pic_url, ingredients_used: recipe.ingredients_used, 
       ingredients_missing: recipe.ingredients_missing})
-      .into('users')
-      .where('users.email', user.email)
+      .into('recipes')
+      .where('userID', user.id)
       .then(function(resp){
         console.log('Recipe has been added to user account', resp);
         res.send(resp);
@@ -93,6 +112,21 @@ module.exports = {
       .catch(function(err){
         console.log('Error posting recipe', err);
       });
+  },
+
+  getRecipeDetails: function(req, res){
+    var user = req.body.user;
+    var recipe = req.body.recipe;
+    
+    var result = new Promise(function(resolve){
+      foodAPI.getRecipeDetailWithID(recipe.id, resolve);
+    }).then(function(resp){
+      console.log('Recipe ID call successful', resp);
+      res.send(resp);
+    }).catch(function(err){
+      console.log('Error retrieving recipe details', err);
+      res.send('Error retrieving recipe details');
+    });
   },
 
 	getItem: function(req, res){
@@ -112,33 +146,6 @@ module.exports = {
       	console.log('Food item lookup error', err);
       	res.send('Item could not be added');
       });
-
-	},
-
-	postItem: function(req, res){
-
-	  var user = req.body.user;
-    var item = req.body.data;
-
-    db.select('*')
-    .from('foods')
-    .where('name', item)
-    .then(function(resp){
-      console.log('food item found', resp);
-      db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
-      .into('icebox_items')
-      .then(function(resp){
-        console.log('Item added to icebox', resp);
-        res.send('Item added');
-      })
-      .catch(function(err){
-        console.log('Item insertion error', err);
-      });
-    })
-    .catch(function(err){
-      console.log('Could not find item in foods table', err);
-      //lookup items information from API
-    });
 
 	},
 
