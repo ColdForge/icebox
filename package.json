@@ -4,22 +4,24 @@
   "description": "A food inventory management application",
   "main": "app.js",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "compile": "webpack --config webpack.config.js",
+    "start": "node server/server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/testHelper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "webpack-dev-server": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/natesMI/ice_box.git"
+    "url": "git+https://github.com/ColdForge/icebox.git"
   },
-  "homepage": "https://github.com/natesMI/ice_box#readme",
+  "homepage": "https://github.com/ColdForge/icebox#readme",
   "keywords": [
     "none"
   ],
   "author": "Nathaniel Schwab, Colin Zarnegar, Andrew Yao, Austin Sefton",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/natesMI/ice_box/issues"
+    "url": "https://github.com/ColdForge/icebox/issues"
   },
   "dependencies": {
     "axios": "^0.12.0",
