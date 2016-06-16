@@ -11,6 +11,7 @@ import Landing from './components/landing';
 import Signin from './containers/signin';
 import Signup from './containers/signup';
 import Icebox from './components/icebox';
+import Recipes from './components/recipes';
 
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
@@ -27,6 +28,7 @@ ReactDOM.render(
 					<Route path="signin" component={Signin} />
 					<Route path="signup" component={Signup} />
 					<Route path="icebox" component={Icebox} />
+          <Route path="recipes" component={Recipes} />
 				</Route>
 			</Router>
 		</Provider>
