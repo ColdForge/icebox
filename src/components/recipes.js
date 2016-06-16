@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
-//import RecipeToolbar from '../containers/recipeToolbar';
-//import RecipeList from '../containers/RecipeList';
+import RecipeList from '../containers/RecipeList';
 
 class Recipes extends Component {
  render(){
@@ -13,6 +12,7 @@ class Recipes extends Component {
      	<Tab label="Recipe Suggestions">
      		<div>
 	     		<h1>recipe suggestions go here</h1>
+	     		<RecipeList />
 	     	</div>
 	    </Tab>
 	    <Tab label="Past Recipes">
