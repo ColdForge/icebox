@@ -1,12 +1,12 @@
 import { renderComponent , expect } from '../testHelper';
 import AppHeader from '../../src/components/appHeader';
-import AppDrawer from '../../src/components/appDrawer';
+// import AppDrawer from '../../src/components/appDrawer';
 
 describe('AppDrawer' , () => {
   let component;
 
   beforeEach(() => {
-    component = renderComponent(AppHeader, null, { auth: true });
+    component = renderComponent(AppHeader, null, { auth: {authenticated: true} });
   });
 
   it('is rendered successfully', () => {
