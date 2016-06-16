@@ -1,8 +1,8 @@
 **/.DS-Store
 *.log
-server/config/apikeys.js
+# server/config/apikeys.js
 /node_modules
-/server/db/envConfig.js
+# /server/db/envConfig.js
 
 dist
 coverage
