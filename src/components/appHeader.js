@@ -15,64 +15,82 @@ const styles = {
 	buttonContainer: {
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
 	},
 	button: {
 
 	},
 	title: {
 		color: '#FFFFFF',
-		fontSize: 30
+		fontSize: 30,
 	},
 	label: {
 		color: '#FFFFFF',
-		fontSize: 18
-	}
-}
+		fontSize: 18,
+	},
+};
 
 class AppHeader extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
-			drawerOpen: false
-		}
+			drawerOpen: false,
+		};
 	}
-	handleToggle(){
-		if(this.props.authenticated){
-			this.setState({drawerOpen: !this.state.drawerOpen})			
-		}
-	};
-
-	renderButtons(){
-		if(this.props.authenticated){
-			return (
-				<div style={styles.buttonContainer}>
-					<FlatButton className='help-button' label="Help" labelStyle={styles.label}/>
-					<FlatButton onClick={this.props.signoutUser}className='signout-button' label="Signout" labelStyle={styles.label}/>
-				</div>
-			);
-		} else { 
-			return (
-				<div style={styles.buttonContainer}>
-					<Link to="/signup" key={3}><FlatButton className='signup-button' label="Signup" labelStyle={styles.label}/></Link>
-					<Link to="/signin" key={4}><FlatButton className='signin-button' label="Signin" labelStyle={styles.label}/></Link>
-				</div>
-			);
+	handleToggle() {
+		if (this.props.authenticated) {
+			this.setState({ drawerOpen: !this.state.drawerOpen });
 		}
 	}
 
-	renderDrawer(){
-		if(this.props.authenticated){
-			return (
-				<AppDrawer
-					className="app-drawer-component" 
-					drawerOpen={this.state.drawerOpen}
-					updateDrawer={this.handleToggle.bind(this)}
+	renderButtons() {
+		return this.props.authenticated ? (
+			<div style={styles.buttonContainer}>
+				<FlatButton
+					className="help-button"
+					label="Help"
+					labelStyle={styles.label}
 				/>
-			);
-		}
+				<FlatButton
+					onClick={this.props.signoutUser}
+					className="signout-button"
+					label="Signout"
+					labelStyle={styles.label}
+				/>
+			</div>
+		) : (
+			<div style={styles.buttonContainer}>
+				<Link to="/signup" key={3}>
+					<FlatButton
+						className="signup-button"
+						label="Signup"
+						labelStyle={styles.label}
+					/>
+				</Link>
+				<Link to="/signin" key={4}>
+					<FlatButton
+						className="signin-button"
+						label="Signin"
+						labelStyle={styles.label}
+					/>
+				</Link>
+			</div>
+		);
 	}
-	render(){
+
+	renderDrawer() {
+		return this.props.authenticated ? (
+			<AppDrawer
+				className="app-drawer-component"
+				drawerOpen={this.state.drawerOpen}
+				updateDrawer={() => this.handleToggle}
+			/>
+		) : (
+			<div></div>
+		);
+	}
+
+	render() {
 		return (
 			<div>
 				<AppBar
@@ -80,20 +98,20 @@ class AppHeader extends Component {
 					titleStyle={styles.title}
 					style={styles.bar}
 					iconElementLeft={
-						<IconButton 
+						<IconButton
 							className="appheader-menu-button"
 							children={
 								<SvgIcon>
 									<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
 								</SvgIcon>
 							}
-							onClick={() => this.handleToggle()} 
+							onClick={() => this.handleToggle()}
 						/>
 
 					}
 					onTitleTouchTap={() => browserHistory.push('/')}
 					children={this.renderButtons()}
-					showMenuIconButton={this.props.authenticated ? true : false}
+					showMenuIconButton={this.props.authenticated}
 				/>
 				<div>
 				{this.renderDrawer()}
@@ -103,8 +121,13 @@ class AppHeader extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return { authenticated: state.auth.authenticated };
-}
+AppHeader.propTypes = {
+	authenticated: React.PropTypes.string.isRequired,
+	signoutUser: React.PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+	authenticated: state.auth.authenticated,
+});
 
 export default connect(mapStateToProps, actions)(AppHeader);
