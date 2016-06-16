@@ -5,6 +5,10 @@
   "main": "app.js",
   "scripts": {
     "compile": "webpack --config webpack.config.js",
+    "lint:server": "eslint server",
+    "lint:server:fix": "npm run lint:server -- --fix",
+    "lint:src": "eslint src",
+    "lint:src:fix": "npm run lint:src -- --fix",
     "start": "node server/server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/testHelper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
