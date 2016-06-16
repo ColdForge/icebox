@@ -10,13 +10,14 @@
       "jsx": true
   },
   "env": {
-      "es6": true
+      "es6": true,
+      "node": true
   },
   "rules": {
-    "indent": ["error", "tab"],
+    "indent": [2, "tab"],
     "react/jsx-indent": [2, "tab"],
     "react/jsx-indent-props": [2, "tab"],
-    "semi" : ["error", "always"],
+    "semi" : [2, "always"],
     "max-len": [2, 120, 2]
   }
 }
