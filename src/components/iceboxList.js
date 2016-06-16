@@ -30,26 +30,6 @@ const IceboxList = ({ contents }) => {
   );
 }
 
-export default IceboxList;
-
-// class IceboxList extends Component {
-// 	render(){
-// 		return (
-//       <List subheader="Grocery List Items">
-//         {this.props.contents.map(item => {
-//           return (
-//             <IceboxListItem
-//               name={item.name}
-//               foodGroup={item.foodGroup}
-//               expiration={item.expiration}
-//               iconPath={item.iconPath}
-//               key={item.id}
-//             />
-//           );
-//         })}
-//       </List>
-//     );
-// 	}
-// }
-
-// export default IceboxList;
+IceboxList.propTypes = {
+	contents: React.PropTypes.array.isRequired,
+};
