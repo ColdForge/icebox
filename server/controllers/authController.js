@@ -9,21 +9,33 @@ module.exports = {
 	// Signin function:
 	// req passed in has user attribute set to false if signin info was wrong or user does not exist, or a user object with all its attributes
 	signin: function(req, res, next) {
-
-		knex('icebox_items')
-			.join('foods', 'icebox_items.foodID', '=', 'foods.id')
-  		.select('icebox_items.daysToExpire as expiration', 'foods.category as foodGroup', 'foods.name as name', 'icebox_items.foodID as foodID')
-  		.where('icebox_items.iceboxID',req.user.iceboxID)
-  		.then(function(response){
-  			res.send({
-  				token: tokenForUser(req.user), 
-  				id: req.user.id, 
-  				name: req.user.name, 
-  				email: req.user.email, 
-  				iceboxID: req.user.iceboxID, 
-  				contents: response 
-  			});
-  		})
+		console.log('Inside signin function on Auth Controller', req.body);
+        var grammarList = [];
+        knex.select('name')
+          .from('foods')
+          .map(function(food){
+          	return food.name;
+          })
+          .then(function(resp){
+            grammarList = resp;
+          }).then(function(resp){
+  			knex('icebox_items')
+  				.join('foods', 'icebox_items.foodID', '=', 'foods.id')
+  	  		.select('icebox_items.daysToExpire as expiration', 'foods.category as foodGroup', 'foods.name as name', 'icebox_items.foodID as foodID')
+  	  		.where('icebox_items.iceboxID', 2)
+  	  		.then(function(response){
+  	  			console.log('Inside of res being sent', response);
+  	  			res.send({
+  	  				token: tokenForUser(req.user), 
+  	  				id: req.user.id, 
+  	  				name: req.user.name, 
+  	  				email: req.user.email, 
+  	  				iceboxID: req.user.iceboxID, 
+  	  				contents: response,
+  	  				grammarList: grammarList 
+  	  			});
+  	  		})
+          });
 	},
 
 		// Signup function

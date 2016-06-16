@@ -9,7 +9,7 @@ export const signinUser = ({ email, password }) => {
 	return function(dispatch) {
 		axios.post(`${API_URL}/user/signin`, { email, password })
 			.then(response => {
-				console.log('response inside signinUser : ',response);
+				console.log('response inside signinUser : ', response);
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				dispatch({ type: TYPES.GET_USER_INFO, payload: response.data });
 				dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
