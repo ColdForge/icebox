@@ -149,33 +149,6 @@ module.exports = {
 
 	},
 
-	postItem: function(req, res){
-
-	  var user = req.body.user;
-    var item = req.body.data;
-
-    db.select('*')
-    .from('foods')
-    .where('name', item)
-    .then(function(resp){
-      db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
-      .into('icebox_items')
-      .then(function(resp){
-        console.log('Item added to icebox', resp);
-        res.send('Item added');
-      })
-      .catch(function(err){
-        console.log('Item insertion error', err);
-        res.send('Error adding item');
-      });
-    })
-    .catch(function(err){
-      console.log('Could not find item in foods table', err);
-      //lookup items information from API
-    });
-
-	},
-
 	deleteItem: function(req, res){
 
 	  var user = req.body.user;
