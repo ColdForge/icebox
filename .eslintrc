@@ -1,0 +1,22 @@
+{
+  "parser"  : "babel-eslint",
+  "extends" : [
+    "airbnb"
+  ],
+  "plugins": [
+    "babel"
+  ],
+  "ecmaFeatures": {
+      "jsx": true
+  },
+  "env": {
+      "es6": true
+  },
+  "rules": {
+    "indent": ["error", "tab"],
+    "react/jsx-indent": [2, "tab"],
+    "react/jsx-indent-props": [2, "tab"],
+    "semi" : ["error", "always"],
+    "max-len": [2, 120, 2]
+  }
+}

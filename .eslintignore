@@ -1,0 +1,11 @@
+android/**
+assets/**
+build/**
+ios/**
+node_modules/**
+src/data/**
+src/styles/**
+test/**
+index.android.js
+index.ios.js
+webpack.config.js
