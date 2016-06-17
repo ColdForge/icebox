@@ -36,13 +36,19 @@ class AppHeader extends Component {
 		this.state = {
 			drawerOpen: false,
 		};
+		this.toggle = () => {
+			if (this.props.authenticated) {
+				this.setState({ drawerOpen: !this.state.drawerOpen });
+			}
+		};
+		this.handleToggle = this.toggle.bind(this);
 	}
 
-	handleToggle() {
-		if (this.props.authenticated) {
-			this.setState({ drawerOpen: !this.state.drawerOpen });
-		}
-	}
+	// handleToggle() {
+	// 	if (this.props.authenticated) {
+	// 		this.setState({ drawerOpen: !this.state.drawerOpen });
+	// 	}
+	// }
 
 	renderButtons() {
 		return this.props.authenticated ? (
@@ -92,7 +98,7 @@ class AppHeader extends Component {
 	}
 
 	render() {
-		const boundHandleToggle = this.handleToggle.bind(this);
+		// const boundHandleToggle = this.handleToggle.bind(this);
 		const pushToHome = () => browserHistory.push('/');
 		return (
 			<div>
@@ -108,7 +114,7 @@ class AppHeader extends Component {
 									<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
 								</SvgIcon>
 							}
-							onClick={boundHandleToggle}
+							onClick={this.handleToggle}
 						/>
 
 					}
