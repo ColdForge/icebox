@@ -123,7 +123,7 @@ class IceboxToolbar extends Component {
 						className="icebox-toolbar-speech"
 
 						// I have to render the foodItemInput component
-						// onClick={() => this.renderFoodItemInputComponent()}
+						onClick={() => console.log('SUP DUDE')}
 
 					>
 						<SvgIcon className="icebox-toolbar-svgicon-speech">
