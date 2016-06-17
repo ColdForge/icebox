@@ -9,6 +9,7 @@ import RecipeSuggestionListItem from '../components/recipeSuggestionListItem';
 class RecipeSuggestionList extends Component {
   constructor(props){
     super(props);
+    this.handleRecipeChoice = this.props.chooseRecipe.bind(this);
   }
 
   componentWillMount(){
@@ -16,21 +17,24 @@ class RecipeSuggestionList extends Component {
   }
 
   render() {
-    <div>
-      <List className="icebox-list">
-        {this.props.suggestions.map(suggestion => (
-          <RecipeSuggestionListItem
-            key={suggestion.key}
-            name={suggestion.name}
-          />
-        ))}
-      </List>
-    </div>
+    return (
+      <div>
+        <List className="icebox-list">
+          {this.props.suggestions.map(suggestion => (
+            <RecipeSuggestionListItem
+              key={suggestion.key}
+              name={suggestion.name}
+              chooseRecipe={this.handleRecipeChoice({ user: this.props.user, suggestion: suggestion })}
+            />
+          ))}
+        </List>
+      </div>
+    );
   }
 }
 
 RecipeSuggestionList.propTypes = {
-  recipes: React.PropTypes.array.isRequired,
+  suggestions: React.PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
