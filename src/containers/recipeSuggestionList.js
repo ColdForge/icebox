@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
-import {List, ListItem, MakeSelectable} from 'material-ui/List';
+import { List, ListItem, MakeSelectable } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';
 
@@ -40,26 +39,24 @@ function wrapState(ComposedComponent) {
 
 SelectableList = wrapState(SelectableList);
 
-const  = () => (
-  <MobileTearSheet>
-    <SelectableList defaultValue={3}>
-      <ListItem
-        value={3}
-        primaryText="Kerem Suer"
-        leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-      />
-      <ListItem
-        value={4}
-        primaryText="Eric Hoffman"
-        leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-      />
-      <ListItem
-        value={5}
-        primaryText="Raquel Parrado"
-        leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-      />
-    </SelectableList>
-  </MobileTearSheet>
+const ListExampleSelectable = () => (
+  <SelectableList defaultValue={3}>
+    <ListItem
+      value={3}
+      primaryText="Kerem Suer"
+      leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+    />
+    <ListItem
+      value={4}
+      primaryText="Eric Hoffman"
+      leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+    />
+    <ListItem
+      value={5}
+      primaryText="Raquel Parrado"
+      leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+    />
+  </SelectableList>
 );
 
 export default ListExampleSelectable;
