@@ -81,7 +81,7 @@ class AppHeader extends Component {
 
 	renderDrawer() {
 		const boundHandleToggle = this.handleToggle.bind(this);
-		
+
 		return this.props.authenticated ? (
 			<AppDrawer
 				className="app-drawer-component"
