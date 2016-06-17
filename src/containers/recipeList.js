@@ -21,7 +21,7 @@ IceboxList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-	recipes: state.recipes.past,
+	recipes: state.recipes.pastSuggestions,
 });
 
 export default connect(mapStateToProps)(IceboxList);

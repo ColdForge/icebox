@@ -109,3 +109,7 @@ export const chooseRecipe = ({ user, recipe }) => (
 			));
 	}
 );
+
+export const clearRecipe = () => ({
+	type: TYPES.CLEAR_CHOSEN_RECIPE,
+});
