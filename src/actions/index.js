@@ -77,23 +77,23 @@ export const getRecipes = ({ user }) => (
 			.then(response => {
 				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
 			})
-			.catch(response => {
-				return response;
+			.catch(response => (
+				response
 				// console.log('error in chooseRecipe, response of : ',response);
-			});
+			));
 	}
 );
 
 export const getRecipeSuggestions = ({ user }) => (
 	(dispatch) => {
-		axios.get(`${API_URL}/api/icebox/recipes`, { user, recipe })
+		axios.get(`${API_URL}/api/icebox/recipes`, { user })
 			.then(response => {
 				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
 			})
-			.catch(response => {
-				return response;
+			.catch(response => (
+				response
 				// console.log('error in chooseRecipe, response of : ',response);
-			});
+			));
 	}
 );
 
@@ -103,9 +103,9 @@ export const chooseRecipe = ({ user, recipe }) => (
 			.then(response => {
 				dispatch({ type: TYPES.SET_CHOSEN_RECIPE, payload: response.data });
 			})
-			.catch(response => {
-				return response;
+			.catch(response => (
+				response
 				// console.log('error in chooseRecipe, response of : ',response);
-			});
+			));
 	}
 );
