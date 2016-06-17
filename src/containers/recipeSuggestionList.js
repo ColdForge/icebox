@@ -44,17 +44,14 @@ const ListExampleSelectable = () => (
     <ListItem
       value={3}
       primaryText="Kerem Suer"
-      leftAvatar={<Avatar src="images/kerem-128.jpg" />}
     />
     <ListItem
       value={4}
       primaryText="Eric Hoffman"
-      leftAvatar={<Avatar src="images/kolage-128.jpg" />}
     />
     <ListItem
       value={5}
       primaryText="Raquel Parrado"
-      leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
     />
   </SelectableList>
 );
