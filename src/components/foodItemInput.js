@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 // import { Tabs, Tab } from 'material-ui/Tabs';
 
-const grammar = [
-	'#JSGF V1.0; grammar foods;',
-	' public <food> = milk | eggs |',
-	' bread | tomatoes | potatoes |',
-	' lettuce | kale | bananas | apples |',
-	' oranges | turkey breast ;',
-].join(',');
+// const grammar = [
+// 	'#JSGF V1.0; grammar foods;',
+// 	' public <food> = milk | eggs |',
+// 	' bread | tomatoes | potatoes |',
+// 	' lettuce | kale | bananas | apples |',
+// 	' oranges | turkey breast ;',
+// ].join(',');
 
 class FoodItemInput extends Component {
 	constructor(props) {
@@ -30,21 +30,20 @@ class FoodItemInput extends Component {
 	}
 }
 
-const createGrammarList = () => {
+// const createGrammarList = () => {
+// 	const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+// 	const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+// 	const SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
-	const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-	const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
-	const SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+// 	const recognition = new SpeechRecognition();
+// 	const speechRecognitionList = new SpeechGrammarList();
+// 	speechRecognitionList.addFromString(grammar, 1);
+// 	recognition.interimResults = true;
 
-	const recognition = new SpeechRecognition();
-	const speechRecognitionList = new SpeechGrammarList();
-	speechRecognitionList.addFromString(grammar, 1);
-	recognition.interimResults = true;
+// 	let speechFlag = false;
+// 	let speechResults = [];
 
-	let speechFlag = false;
-	let speechResults = [];
-
-	return;
-};
+// 	return;
+// };
 
 export default FoodItemInput;
