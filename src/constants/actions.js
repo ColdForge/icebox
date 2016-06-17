@@ -16,3 +16,7 @@ export const REMOVE_ITEMS = "REMOVE_ITEMS";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 export const CLEAR_USER_INFO = "CLEAR_USER_INFO";
+// ActionTypes for handling Recipes
+export const GET_RECIPES = "GET_RECIPES";
+export const GET_RECIPE_SUGGESTIONS = "GET_RECIPE_SUGGESTIONS";
+export const SET_CHOSEN_RECIPE = "SET_CHOSEN_RECIPE";

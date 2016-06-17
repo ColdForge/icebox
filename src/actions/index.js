@@ -88,7 +88,7 @@ export const getRecipeSuggestions = ({ user }) => (
 	(dispatch) => {
 		axios.get(`${API_URL}/api/icebox/recipes`, { user })
 			.then(response => {
-				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
+				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data });
 			})
 			.catch(response => (
 				response
