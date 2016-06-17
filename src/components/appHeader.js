@@ -86,14 +86,14 @@ class AppHeader extends Component {
 			<AppDrawer
 				className="app-drawer-component"
 				drawerOpen={this.state.drawerOpen}
-				updateDrawer={() => boundHandleToggle()}
+				updateDrawer={boundHandleToggle}
 			/>
 		) : (<div></div>);
 	}
 
 	render() {
 		const boundHandleToggle = this.handleToggle.bind(this);
-
+		const pushToHome = () => browserHistory.push('/');
 		return (
 			<div>
 				<AppBar
@@ -108,11 +108,11 @@ class AppHeader extends Component {
 									<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
 								</SvgIcon>
 							}
-							onClick={() => boundHandleToggle()}
+							onClick={boundHandleToggle}
 						/>
 
 					}
-					onTitleTouchTap={() => browserHistory.push('/')}
+					onTitleTouchTap={pushToHome}
 					children={this.renderButtons()}
 					showMenuIconButton={this.props.authenticated}
 				/>
