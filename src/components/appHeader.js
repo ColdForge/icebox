@@ -36,12 +36,19 @@ class AppHeader extends Component {
 		this.state = {
 			drawerOpen: false,
 		};
+		this.toggle = () => {
+			if (this.props.authenticated) {
+				this.setState({ drawerOpen: !this.state.drawerOpen });
+			}
+		};
+		this.handleToggle = this.toggle.bind(this);
 	}
-	handleToggle() {
-		if (this.props.authenticated) {
-			this.setState({ drawerOpen: !this.state.drawerOpen });
-		}
-	}
+
+	// handleToggle() {
+	// 	if (this.props.authenticated) {
+	// 		this.setState({ drawerOpen: !this.state.drawerOpen });
+	// 	}
+	// }
 
 	renderButtons() {
 		return this.props.authenticated ? (
@@ -79,18 +86,20 @@ class AppHeader extends Component {
 	}
 
 	renderDrawer() {
+		const boundHandleToggle = this.handleToggle.bind(this);
+
 		return this.props.authenticated ? (
 			<AppDrawer
 				className="app-drawer-component"
 				drawerOpen={this.state.drawerOpen}
-				updateDrawer={() => this.handleToggle}
+				updateDrawer={boundHandleToggle}
 			/>
-		) : (
-			<div></div>
-		);
+		) : (<div></div>);
 	}
 
 	render() {
+		// const boundHandleToggle = this.handleToggle.bind(this);
+		const pushToHome = () => browserHistory.push('/');
 		return (
 			<div>
 				<AppBar
@@ -105,11 +114,11 @@ class AppHeader extends Component {
 									<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
 								</SvgIcon>
 							}
-							onClick={() => this.handleToggle()}
+							onClick={this.handleToggle}
 						/>
 
 					}
-					onTitleTouchTap={() => browserHistory.push('/')}
+					onTitleTouchTap={pushToHome}
 					children={this.renderButtons()}
 					showMenuIconButton={this.props.authenticated}
 				/>
@@ -121,13 +130,13 @@ class AppHeader extends Component {
 	}
 }
 
-AppHeader.propTypes = {
-	authenticated: React.PropTypes.bool.isRequired,
-	signoutUser: React.PropTypes.func.isRequired,
-};
-
 const mapStateToProps = state => ({
 	authenticated: state.auth.authenticated,
 });
+
+AppHeader.propTypes = {
+	authenticated: React.PropTypes.bool,
+	signoutUser: React.PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, actions)(AppHeader);

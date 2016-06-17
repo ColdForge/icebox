@@ -17,7 +17,7 @@ const styles = {
 	},
 };
 
-const App = ({ child }) => (
+const App = ({ children }) => (
 	<div style={styles.container}>
 		<div style={styles.header}>
 			<AppHeader />
@@ -27,7 +27,7 @@ const App = ({ child }) => (
 				component="div" transitionName="example" className="animation-container"
 				transitionEnterTimeout={500} transitionLeaveTimeout={500}
 			>
-				{React.cloneElement(child, {
+				{React.cloneElement(children, {
 					key: location.pathname,
 				})}
 			</ReactCSSTransitionGroup>
@@ -36,7 +36,7 @@ const App = ({ child }) => (
 );
 
 App.propTypes = {
-	child: React.PropTypes.element.isRequired,
+	children: React.PropTypes.element,
 };
 
 export default App;

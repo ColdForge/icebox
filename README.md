@@ -1,5 +1,5 @@
 # icebox
-
+[![Build Status](https://travis-ci.org/ColdForge/icebox.svg?branch=dev)](https://travis-ci.org/ColdForge/icebox)
 ### To begin contributing to icebox,
 
 1. Fork the repo
