@@ -217,3 +217,14 @@ form .text-field-input div label {
   display: table-cell;
   vertical-align: middle;
 }
+
+/*  Recipe Component Styling  */
+.recipes-container {
+  height: 100%;
+  background: #F1F1F1 no-repeat center center;
+  background-size: cover;
+}
+
+.recipes-container h1 {
+  color: black;
+}
