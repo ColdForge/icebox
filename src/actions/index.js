@@ -70,3 +70,42 @@ export const setIceboxSearch = (searchTerm) => ({
 export const clearIceboxSearch = () => ({
 	type: TYPES.CLEAR_ICEBOX_SEARCH,
 });
+
+export const getRecipes = ({ user }) => (
+	(dispatch) => {
+		axios.get(`${API_URL}/api/user/recipes`, { user })
+			.then(response => {
+				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
+			})
+			.catch(response => {
+				return response;
+				// console.log('error in chooseRecipe, response of : ',response);
+			});
+	}
+);
+
+export const getRecipeSuggestions = ({ user }) => (
+	(dispatch) => {
+		axios.get(`${API_URL}/api/icebox/recipes`, { user, recipe })
+			.then(response => {
+				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
+			})
+			.catch(response => {
+				return response;
+				// console.log('error in chooseRecipe, response of : ',response);
+			});
+	}
+);
+
+export const chooseRecipe = ({ user, recipe }) => (
+	(dispatch) => {
+		axios.post(`${API_URL}/api/icebox/recipes`, { user, recipe })
+			.then(response => {
+				dispatch({ type: TYPES.SET_CHOSEN_RECIPE, payload: response.data });
+			})
+			.catch(response => {
+				return response;
+				// console.log('error in chooseRecipe, response of : ',response);
+			});
+	}
+);
