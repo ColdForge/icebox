@@ -51,6 +51,8 @@ const styles = {
 	},
 }
 
+let isOpen = false
+
 class IceboxToolbar extends Component {
 
 	handleSearch(event) {
@@ -66,9 +68,13 @@ class IceboxToolbar extends Component {
 	}
 
   // trying to call this method, which comes from props
-	// renderFoodItemInputComponent(event, value) {
-	// 	this.props
-	// }
+
+
+	renderFoodItemInputComponent() {
+
+		isOpen = !isOpen;
+
+	}
 
 	renderClearSearchButton() {
 		if(this.props.iceboxSearch){
@@ -91,7 +97,9 @@ class IceboxToolbar extends Component {
 		}
 	}
 
+
 	render() {
+
 		return (
 			<Toolbar style={styles.toolbar} noGutter={true}>
 				<ToolbarGroup
@@ -117,9 +125,9 @@ class IceboxToolbar extends Component {
 				</ToolbarGroup>
 				<ToolbarGroup
 					style={styles.toolbarGroup2}
-				>	
+				>
 					  <FoodItemInput/>
-					
+
 				</ToolbarGroup>
 				<ToolbarGroup
 					style={styles.toolbarGroup3}
