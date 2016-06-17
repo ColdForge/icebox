@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import RecipeList from '../containers/recipeList';
+import RecipeSuggestionList from '../containers/recipeSuggestionList';
 
 const Recipes = () => (
 	<div className="recipes-container">
@@ -9,7 +9,7 @@ const Recipes = () => (
 			<Tab label="Recipe Suggestions">
 				<div>
 					<h1>recipe suggestions go here</h1>
-					<RecipeList />
+					<RecipeSuggestionList />
 				</div>
 			</Tab>
 			<Tab label="Past Recipes">
