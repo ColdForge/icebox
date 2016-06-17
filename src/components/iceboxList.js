@@ -5,7 +5,6 @@ import FoodItemInput from './foodItemInput';
 
 const IceboxList = ({ contents }) => (
 	<div>
-		<FoodItemInput contents={contents} />
 		<List className="icebox-list">
 			{contents.map(item => (
 				<IceboxListItem
