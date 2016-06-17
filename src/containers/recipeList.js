@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { List } from 'material-ui/List';
 import RecipeListItem from '../components/recipeListItem';
 
-const IceboxList = ({ recipes }) => (
+const RecipeList = ({ recipes }) => (
 	<div>
 		<List className="icebox-list">
 			{recipes.map(recipe => (
@@ -16,7 +16,7 @@ const IceboxList = ({ recipes }) => (
 	</div>
 );
 
-IceboxList.propTypes = {
+RecipeList.propTypes = {
 	recipes: React.PropTypes.array.isRequired,
 };
 
@@ -24,4 +24,4 @@ const mapStateToProps = state => ({
 	recipes: state.recipes.pastSuggestions,
 });
 
-export default connect(mapStateToProps)(IceboxList);
+export default connect(mapStateToProps)(RecipeList);
