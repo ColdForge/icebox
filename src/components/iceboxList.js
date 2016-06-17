@@ -1,11 +1,9 @@
 import React from 'react';
 import { List } from 'material-ui/List';
 import IceboxListItem from './iceboxListItem';
-import FoodItemInput from './foodItemInput';
 
 const IceboxList = ({ contents }) => (
 	<div>
-		<FoodItemInput contents={contents} />
 		<List className="icebox-list">
 			{contents.map(item => (
 				<IceboxListItem

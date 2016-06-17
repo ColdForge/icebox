@@ -9,6 +9,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import SvgIcon from 'material-ui/SvgIcon';
 import ICONS from '../styles/icons';
+import FoodItemInput from '../components/foodItemInput';
 
 const styles = {
 	button: {
@@ -116,20 +117,9 @@ class IceboxToolbar extends Component {
 				</ToolbarGroup>
 				<ToolbarGroup
 					style={styles.toolbarGroup2}
-				>
-					<IconButton
-						tooltip="Speech"
-						style={styles.button}
-						className="icebox-toolbar-speech"
-
-						// I have to render the foodItemInput component
-						onClick={() => console.log('SUP DUDE')}
-
-					>
-						<SvgIcon className="icebox-toolbar-svgicon-speech">
-							<path d={ICONS.Speech.d} />
-						</SvgIcon>
-					</IconButton>
+				>	
+					  <FoodItemInput/>
+					
 				</ToolbarGroup>
 				<ToolbarGroup
 					style={styles.toolbarGroup3}

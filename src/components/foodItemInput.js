@@ -1,49 +1,67 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { Tabs, Tab } from 'material-ui/Tabs';
-
-// const grammar = [
-// 	'#JSGF V1.0; grammar foods;',
-// 	' public <food> = milk | eggs |',
-// 	' bread | tomatoes | potatoes |',
-// 	' lettuce | kale | bananas | apples |',
-// 	' oranges | turkey breast ;',
-// ].join(',');
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
+import SvgIcon from 'material-ui/SvgIcon';
+import ICONS from '../styles/icons';
 
 class FoodItemInput extends Component {
+
 	constructor(props) {
 		super(props);
-		// console.log('props: ', props);
-		this.state = { term: '' };
+		this.state = {
+			open: false,
+		};
 	}
 
+	handleOpen = () => {
+		this.setState({ open: true });
+	};
+
+	handleClose = () => {
+		this.setState({ open: false });
+	};
+
 	render() {
+		const actions = [
+			<FlatButton
+				label="Cancel"
+				primary
+				onTouchTap={this.handleClose}
+			/>,
+			<FlatButton
+				label="Submit"
+				primary
+				keyboardFocused
+				onTouchTap={this.handleClose}
+			/>,
+		];
+
 		return (
-			<div className="speech-text-input">
-				<input
-					size="100"
-					value={this.state.term}
-					// onChange={event => this.i}
-				/>
+			<div>
+				<IconButton
+					tooltip="Speech"
+					className="icebox-toolbar-speech"
+					label="Dialog"
+					onTouchTap={this.handleOpen}
+				>
+					<SvgIcon className="icebox-toolbar-svgicon-speech">
+						<path d={ICONS.Speech.d} />
+					</SvgIcon>
+				</IconButton>
+				<Dialog
+					title="Dialog With Actions"
+					actions={actions}
+					modal={false}
+					open={this.state.open}
+					onRequestClose={this.handleClose}
+				>
+					The actions in this window were passed in as an array of React objects.
+				</Dialog>
 			</div>
 		);
 	}
+
 }
-
-// const createGrammarList = () => {
-// 	const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-// 	const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
-// 	const SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
-
-// 	const recognition = new SpeechRecognition();
-// 	const speechRecognitionList = new SpeechGrammarList();
-// 	speechRecognitionList.addFromString(grammar, 1);
-// 	recognition.interimResults = true;
-
-// 	let speechFlag = false;
-// 	let speechResults = [];
-
-// 	return;
-// };
 
 export default FoodItemInput;

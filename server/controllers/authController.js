@@ -18,6 +18,7 @@ module.exports = {
           })
           .then(function(resp){
             grammarList = resp;
+            console.log('grammar', resp);
           }).then(function(resp){
   			knex('icebox_items')
   				.join('foods', 'icebox_items.foodID', '=', 'foods.id')
