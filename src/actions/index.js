@@ -14,7 +14,7 @@ export const signinUser = ({ email, password }) => (
 	(dispatch) => {
 		axios.post(`${API_URL}/user/signin`, { email, password })
 			.then(response => {
-				console.log('response inside signinUser : ', response);
+				// console.log('response inside signinUser : ', response);
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				dispatch({ type: TYPES.GET_USER_INFO, payload: response.data });
 				dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
@@ -69,4 +69,47 @@ export const setIceboxSearch = (searchTerm) => ({
 
 export const clearIceboxSearch = () => ({
 	type: TYPES.CLEAR_ICEBOX_SEARCH,
+});
+
+export const getRecipes = ({ user }) => (
+	(dispatch) => {
+		axios.get(`${API_URL}/api/user/recipes`, { user })
+			.then(response => {
+				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
+			})
+			.catch(response => (
+				response
+				// console.log('error in chooseRecipe, response of : ',response);
+			));
+	}
+);
+
+export const getRecipeSuggestions = ({ user }) => (
+	(dispatch) => {
+		axios.get(`${API_URL}/api/icebox/recipes`, { user })
+			.then(response => {
+				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data });
+			})
+			.catch(response => (
+				response
+				// console.log('error in chooseRecipe, response of : ',response);
+			));
+	}
+);
+
+export const chooseRecipe = ({ user, recipe }) => (
+	(dispatch) => {
+		axios.post(`${API_URL}/api/icebox/recipes`, { user, recipe })
+			.then(response => {
+				dispatch({ type: TYPES.SET_CHOSEN_RECIPE, payload: response.data });
+			})
+			.catch(response => (
+				response
+				// console.log('error in chooseRecipe, response of : ',response);
+			));
+	}
+);
+
+export const clearRecipe = () => ({
+	type: TYPES.CLEAR_CHOSEN_RECIPE,
 });

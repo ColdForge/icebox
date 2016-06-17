@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import RecipeSuggestionList from '../containers/recipeSuggestionList';
+import RecipeList from '../containers/recipeList';
 
 const Recipes = () => (
 	<div className="recipes-container">
@@ -15,14 +15,11 @@ const Recipes = () => (
 			<Tab label="Past Recipes">
 				<div>
 					<h1>Past Recipes</h1>
+					<RecipeList />
 				</div>
 			</Tab>
 		</Tabs>
 	</div>
 );
 
-const mapStateToProps = state => ({
-	recipes: state.recipes, user: state.user,
-});
-
-export default connect(mapStateToProps)(Recipes);
+export default Recipes;
