@@ -24,7 +24,7 @@ const RecipeSuggestionListItem = ({ name, chooseRecipe }) => (
 
 RecipeSuggestionListItem.propTypes = {
 	name: React.PropTypes.string,
-	chooseRecipe: React.PropType.func,
+	chooseRecipe: React.PropTypes.func,
 };
 
 export default RecipeSuggestionListItem;
