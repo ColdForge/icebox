@@ -37,6 +37,7 @@ class AppHeader extends Component {
 			drawerOpen: false,
 		};
 	}
+
 	handleToggle() {
 		if (this.props.authenticated) {
 			this.setState({ drawerOpen: !this.state.drawerOpen });
@@ -79,18 +80,20 @@ class AppHeader extends Component {
 	}
 
 	renderDrawer() {
+		const boundHandleToggle = this.handleToggle.bind(this);
+		
 		return this.props.authenticated ? (
 			<AppDrawer
 				className="app-drawer-component"
 				drawerOpen={this.state.drawerOpen}
-				updateDrawer={() => this.handleToggle}
+				updateDrawer={() => boundHandleToggle()}
 			/>
-		) : (
-			<div></div>
-		);
+		) : (<div></div>);
 	}
 
 	render() {
+		const boundHandleToggle = this.handleToggle.bind(this);
+
 		return (
 			<div>
 				<AppBar
@@ -105,7 +108,7 @@ class AppHeader extends Component {
 									<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
 								</SvgIcon>
 							}
-							onClick={() => this.handleToggle()}
+							onClick={() => boundHandleToggle()}
 						/>
 
 					}
@@ -121,13 +124,13 @@ class AppHeader extends Component {
 	}
 }
 
-AppHeader.propTypes = {
-	authenticated: React.PropTypes.bool.isRequired,
-	signoutUser: React.PropTypes.func.isRequired,
-};
-
 const mapStateToProps = state => ({
 	authenticated: state.auth.authenticated,
 });
+
+AppHeader.propTypes = {
+	authenticated: React.PropTypes.bool,
+	signoutUser: React.PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, actions)(AppHeader);
