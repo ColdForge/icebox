@@ -5,8 +5,13 @@ import * as TYPES from '../constants/actions';
 
 const API_URL = 'http://localhost:8080';
 
-export const signinUser = ({ email, password }) => {
-	return function(dispatch) {
+export const authError = (error) => ({
+	type: TYPES.AUTHORIZE_ERROR,
+	payload: error,
+});
+
+export const signinUser = ({ email, password }) => (
+	(dispatch) => {
 		axios.post(`${API_URL}/user/signin`, { email, password })
 			.then(response => {
 				console.log('response inside signinUser : ', response);
@@ -20,10 +25,10 @@ export const signinUser = ({ email, password }) => {
 				dispatch(authError(response));
 			});
 	}
-}
+);
 
-export const signupUser = ({ email, name, password }) => {
-	return function(dispatch) {
+export const signupUser = ({ email, name, password }) => (
+	(dispatch) => {
 		axios.post(`${API_URL}/user/signup`, { email, name, password })
 			.then(response => {
 				dispatch({ type: TYPES.AUTHORIZE_USER });
@@ -32,41 +37,36 @@ export const signupUser = ({ email, name, password }) => {
 				browserHistory.push('/icebox');
 			})
 			.catch(response => {
-				console.log('error in signup user, response of : ',response);
+				// console.log('error in signup user, response of : ',response);
 				dispatch(authError(response.data.error));
 			});
 	}
-}
+);
 
 export const signoutUser = () => {
 	localStorage.removeItem('token');
 	browserHistory.push('/');
-	return function(dispatch) {
+	return dispatch => {
 		dispatch({ type: TYPES.DEAUTHORIZE_USER });
 		dispatch({ type: TYPES.CLEAR_USER_INFO });
-	}
-}
-
-export const authError = (error) => ({
-	type: TYPES.AUTHORIZE_ERROR,
-	payload: error
-})
+	};
+};
 
 export const setSortBy = (sort) => ({
 	type: TYPES.SET_SORT,
-	sort
+	sort,
 });
 
 export const setSortOrder = (order) => ({
 	type: TYPES.SET_SORT_ORDER,
-	order
+	order,
 });
 
 export const setIceboxSearch = (searchTerm) => ({
 	type: TYPES.SET_ICEBOX_SEARCH,
-	searchTerm
+	searchTerm,
 });
 
 export const clearIceboxSearch = () => ({
-	type: TYPES.CLEAR_ICEBOX_SEARCH
+	type: TYPES.CLEAR_ICEBOX_SEARCH,
 });

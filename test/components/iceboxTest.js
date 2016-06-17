@@ -1,5 +1,5 @@
 import { renderComponent , expect } from '../testHelper';
-import Icebox from '../../src/containers/icebox';
+import Icebox from '../../src/components/icebox';
 
 describe('Icebox' , () => {
   let component;

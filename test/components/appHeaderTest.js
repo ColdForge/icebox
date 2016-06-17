@@ -5,7 +5,7 @@ describe('AppHeader' , () => {
   let component;
 
   beforeEach(() => {
-    component = renderComponent(AppHeader);
+    component = renderComponent(AppHeader, null, { auth: {authenticated: true} });
   });
 
   it('is rendered successfully', () => {
@@ -31,6 +31,10 @@ describe('AppHeader' , () => {
   			component = renderComponent(AppHeader, null, { auth: { authenticated: false } });
   		});
 
+      it('should hide the AppHeader Menu Icon', () => {
+        expect(component.find('.appheader-menu-button')).to.not.exist;
+      });
+
   		it('should have a signup button', () => {
   			expect(component.find('.signup-button')).to.exist;
   		});
@@ -44,6 +48,10 @@ describe('AppHeader' , () => {
   		beforeEach(() => {
   			component = renderComponent(AppHeader, null, { auth: { authenticated: true } });
   		});
+
+      it('should show the AppHeader Menu Icon', () => {
+        expect(component.find('.appheader-menu-button')).to.exist;
+      });
 
   		it('should have a help button', () => {
   			expect(component.find('.help-button')).to.exist;

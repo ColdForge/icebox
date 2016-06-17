@@ -8,24 +8,27 @@ import { AUTHORIZE_USER } from '../constants/actions';
 
 import DUMMY_ICEBOX from '../data/dummyFoodList';
 
-const token = localStorage.getItem('token');
-
-const configureStore = () => {
+const configureStore = (testMode,state) => {
 	const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-  const loadedState = loadState();
-  let persistedState = {...loadedState, icebox: DUMMY_ICEBOX };
-  const store = createStoreWithMiddleware(reducers,persistedState, window.devToolsExtension ? window.devToolsExtension() : f => f);
-  if(token) {
-    store.dispatch({ type: AUTHORIZE_USER });
+  let store;
+  if(testMode){
+    store = createStoreWithMiddleware(reducers,state);
+  } else {
+    const token = localStorage.getItem('token');
+    const loadedState = loadState();
+    let persistedState = {...loadedState, icebox: DUMMY_ICEBOX };
+    store = createStoreWithMiddleware(reducers,persistedState, window.devToolsExtension ? window.devToolsExtension() : f => f);
+    if(token) {
+      store.dispatch({ type: AUTHORIZE_USER });
+    }
+
+    store.subscribe(throttle(() => {
+      saveState({
+        icebox: store.getState().icebox,
+        // user: store.getState().user,
+      });
+    }, 1000));
   }
-
-  store.subscribe(throttle(() => {
-    saveState({
-      icebox: store.getState().icebox,
-      // user: store.getState().user,
-    });
-  }, 1000));
-
   return store;
 };
 
