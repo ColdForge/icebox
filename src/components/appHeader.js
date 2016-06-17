@@ -122,7 +122,7 @@ class AppHeader extends Component {
 }
 
 AppHeader.propTypes = {
-	authenticated: React.PropTypes.string.isRequired,
+	authenticated: React.PropTypes.bool.isRequired,
 	signoutUser: React.PropTypes.func.isRequired,
 };
 

@@ -9,7 +9,7 @@ const styles = {
 	},
 };
 
-export const IceboxListItem = ({ name, foodGroup, iconPath, expiration }) => {
+const IceboxListItem = ({ name, foodGroup, iconPath, expiration }) => {
 	if (!name) {
 		return <ListItem primaryText="Loading..." />;
 	}
@@ -50,3 +50,5 @@ IceboxListItem.propTypes = {
 	iconPath: React.PropTypes.string.isRequired,
 	expiration: React.PropTypes.number.isRequired,
 };
+
+export default IceboxListItem;

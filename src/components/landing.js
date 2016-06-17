@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Landing = () => (
+const Landing = () => (
 	<div className="landing-div">
 		<div className="container">
 			<div className="row">
@@ -13,3 +13,5 @@ export const Landing = () => (
 		</div>
 	</div>
 );
+
+export default Landing;
