@@ -6,6 +6,7 @@ import SvgIcon from 'material-ui/SvgIcon';
 import ICONS from '../styles/icons';
 import FoodItemTable from './foodItemTable';
 
+
 class FoodItemInput extends Component {
 
 	constructor(props) {
@@ -13,16 +14,86 @@ class FoodItemInput extends Component {
 		this.state = {
 			open: false,
 			autoScrollBodyContent: true,
+			newItems: []
 		};
+
+		this.handleOpen = this.handleOpen.bind(this);
+		this.handleClose = this.handleClose.bind(this);
 	}
 
-	handleOpen = () => {
-		this.setState({ open: true });
-	};
+	speechRecognitionInit() {
+		console.log('Im running');
 
-	handleClose = () => {
+		/* eslint-disable */
+
+		const SpeechRecognition = webkitSpeechRecognition;
+		const recognition = new SpeechRecognition();
+
+		/* eslint-enable */
+
+		// const SpeechGrammarList = webkitSpeechGrammarList;
+		// const SpeechRecognitionEvent = SpeechRecognitionEvent;
+		// const recognition = new SpeechGrammarList();
+		// const speechRecognitionList = new SpeechGrammarList();
+		// speechRecognitionList.addFromString(grammar, 1);
+		recognition.interimResults = true;
+
+		let speechFlag = false;
+		const speechResults = [];
+
+
+		recognition.onresult = (event) => {
+			for (let i = event.resultIndex; i < event.results.length; ++i) {
+				const identificated = event.results[i][0].transcript;
+				if (event.results[i].isFinal) {
+					console.log('Final sentence is : ', identificated);
+					const tempRes = identificated.split('next');
+					speechResults.push(tempRes);
+					this.setState({ newItems: speechResults });
+					console.log('this is state.newItems: ', this.state.newItems);
+				} else {
+					console.log('I understood : ', identificated);
+				}
+			}
+		};
+			//     console.log(event.results[0][0].transcript);
+
+
+		recognition.onerror = (event) => {
+			console.log('error is : ', event);
+		};
+		recognition.onstart = () => {
+			console.log('recognition started');
+		};
+		recognition.onend = () => {
+			console.log('recognition on end fired');
+		};
+
+		if (!speechFlag) {
+			console.log('speechFlag is false');
+			console.log('start recognition');
+			recognition.start();
+			speechFlag = true;
+		} else {
+			console.log('speechFlag is true');
+			console.log('stop recognition');
+			console.log('speech results array is : ', speechResults);
+			recognition.stop();
+			speechFlag = false;
+		}
+	}
+
+		// make an array out of the Speech user input
+		// map that array to the component state
+
+	handleOpen() {
+		this.speechRecognitionInit();
+		this.setState({ open: true });
+	}
+
+	handleClose() {
 		this.setState({ open: false });
-	};
+	}
 
 	render() {
 		const actions = [
