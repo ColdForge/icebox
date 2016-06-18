@@ -2,7 +2,7 @@ import React from 'react';
 import { GridTile } from 'material-ui/GridList';
 
 const RecipeListItem = ({ name, imageUrl, sourceUrl, recipeID, prepTime }) => (
-	<a href={sourceUrl}>
+	<a href={sourceUrl} target="_blank">
 		<GridTile
 			title={name}
 			subtitle={`Prep Time: ${prepTime}min, Recipe ID: ${recipeID}`}
