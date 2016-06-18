@@ -14,7 +14,7 @@ class FoodItemInput extends Component {
 		this.state = {
 			open: false,
 			autoScrollBodyContent: true,
-			newItems: []
+			newItems: ['Arugula', 'Eggs'],
 		};
 
 		this.handleOpen = this.handleOpen.bind(this);
@@ -87,7 +87,7 @@ class FoodItemInput extends Component {
 		// map that array to the component state
 
 	handleOpen() {
-		this.speechRecognitionInit();
+		// this.speechRecognitionInit();
 		this.setState({ open: true });
 	}
 
@@ -133,9 +133,9 @@ class FoodItemInput extends Component {
 						<path d={ICONS.Speech.d} />
 					</SvgIcon>
 					<div> Read the names of your foods out loud, as you load them into the refrigerator.</div>
-					<div> After each food say "next" like this,</div>
-					<div>"Tomatoes..next..Milk..next..Chicken"</div>
-					<FoodItemTable />
+					<div> After each food say "next" and when you are done say "end" like this:</div>
+					<div>"Tomatoes..next..Milk..next..Chicken...end"</div>
+					<FoodItemTable items={this.state.newItems} />
 				</Dialog>
 			</div>
 		);
