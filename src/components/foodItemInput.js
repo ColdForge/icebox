@@ -152,10 +152,13 @@ class FoodItemInput extends Component {
 		this.setState({ open: true, newItemsAdded: false });
 	}
 
-	handleClose(bool) {
-		bool ? (
-			this.props.submit(confirmedItems), this.setState({ open: false, newItemsAdded: false })
-		) : this.setState({ open: false, newItemsAdded: false });
+	handleClose() {
+		this.setState({ open: false, newItems: [], newItemsAdded: false });
+	}
+
+	handleSubmit() {
+		this.props.submit(confirmedItems);
+		this.setState({ open: false, newItems: [], newItemsAdded: false });
 	}
 
 	renderDialogBody() {
@@ -206,13 +209,13 @@ class FoodItemInput extends Component {
 			<FlatButton
 				label="Cancel"
 				style={styles.actionButtonCancel}
-				onTouchTap={this.handleClose(false)}
+				onTouchTap={this.handleClose}
 			/>,
 			<FlatButton
 				label="Submit"
 				style={styles.actionButtonSubmit}
 				disabled={!this.state.newItemsAdded}
-				onTouchTap={this.handleClose(true)}
+				onTouchTap={this.handleSubmit}
 			/>,
 		];
 
