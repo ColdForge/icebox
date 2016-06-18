@@ -1,29 +1,23 @@
 import React from 'react';
-import { ListItem } from 'material-ui/List';
+import { GridTile } from 'material-ui/GridList';
 
-const styles = {
-	ListItem: {
-		text: {
-			color: '#000000',
-		},
-	},
-};
-
-const RecipeListItem = ({ name }) => (
-	<ListItem
-		className="recipeListItem"
-		style={styles.ListItem.text}
-	>
-		<div className="recipe-list-item-container">
-			<div className="recipe-name">
-			{name}
-			</div>
-		</div>
-	</ListItem>
+const RecipeListItem = ({ name, imageUrl, sourceUrl, recipeID, prepTime }) => (
+	<a href={sourceUrl}>
+		<GridTile
+			title={name}
+			subtitle={`Prep Time: ${prepTime}min, Recipe ID: ${recipeID}`}
+		>
+			<img src={imageUrl} alt="Recipe" />
+		</GridTile>
+	</a>
 );
 
 RecipeListItem.propTypes = {
 	name: React.PropTypes.string.isRequired,
+	imageUrl: React.PropTypes.string.isRequired,
+	sourceUrl: React.PropTypes.string.isRequired,
+	recipeID: React.PropTypes.number.isRequired,
+	prepTime: React.PropTypes.number.isRequired,
 };
 
 export default RecipeListItem;
