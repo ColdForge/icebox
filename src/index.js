@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import { 
+	green500,
+	red500,
+	blue500,
+	green50,
+	green200,
+} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -20,8 +27,20 @@ injectTapEventPlugin();
 import configureStore from './state/configureStore';
 const store = configureStore();
 
+const muiTheme = {
+	fontFamily: 'Roboto, sans-serif',
+	palette: {
+		primary1Color: green500,
+		primary2Color: red500,
+		primary3Color: blue500,
+		accent1Color: green200,
+    accent2Color: green200,
+    accent3Color: green200,
+	},
+};
+
 ReactDOM.render(
-  <MuiThemeProvider muiTheme={getMuiTheme()}>
+  <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
 		<Provider className="container" store={store}>
 			<Router history={browserHistory}>
 				<Route path="/" component={App}>
