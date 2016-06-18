@@ -48,8 +48,12 @@ class FoodItemInput extends Component {
 				if (event.results[i].isFinal) {
 					console.log('Final sentence is : ', identificated);
 					const tempRes = identificated.split('next');
-					speechResults.push(tempRes);
-					this.setState({ newItems: speechResults });
+
+					// function handling edge cases goes here
+
+					const cleanList = this.listErrorHandling(tempRes)
+
+					this.setState({ newItems: cleanList });
 					console.log('this is state.newItems: ', this.state.newItems);
 				} else {
 					console.log('I understood : ', identificated);
@@ -83,11 +87,40 @@ class FoodItemInput extends Component {
 		}
 	}
 
-		// make an array out of the Speech user input
-		// map that array to the component state
+	// make an array out of the Speech user input
+	// map that array to the component state
+
+	listErrorHandling(list) {
+
+	// list1 takes off white space
+
+		var list1 = list.map(item => {
+		var tempItem = item.split(' ');
+
+		if (item[0] === ' ') {
+			tempItem.shift();
+		}
+
+		if (item[item.length - 1] === ' ') {
+			tempItem.pop();
+		}
+
+		for (var i = 0 ; i < tempItem.length; i++) {
+			var arr = tempItem[i].split('');
+			arr[0] = arr[0].toUpperCase();
+			tempItem[i] = arr.join('');
+		}
+
+		return tempItem.join(' ');
+
+		});
+
+		return list1;
+
+	}
 
 	handleOpen() {
-		// this.speechRecognitionInit();
+		this.speechRecognitionInit();
 		this.setState({ open: true });
 	}
 
