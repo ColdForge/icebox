@@ -102,12 +102,30 @@ module.exports = {
 
   },
 
+//working on this section - AY - add ability to get recipe history
+
+
+getPreviousRecipes: function(req, res){
+    var user = req.body.user;
+
+    db.select('*')
+    .from('recipes')
+    .where('userID', id)
+    .then(function(resp){
+      console.log('Previous Recipe request call successful', resp);
+      res.send(resp);
+    }).catch(function(err){
+      console.log('Error getting items', err);
+      res.send('Previous recipes could not be found');
+    });
+
+  },
   postRecipe: function(req, res){
     var user = req.body.user;
     var recipe = req.body.data;
 
-    db.insert({iceboxID: user.iceboxID, recipeID: recipe.id, title: recipe.title, 
-      pic_url: recipe.pic_url, ingredients_used: recipe.ingredients_used, 
+    db.insert({iceboxID: user.iceboxID, recipeID: recipe.id, title: recipe.title,
+      pic_url: recipe.pic_url, ingredients_used: recipe.ingredients_used,
       ingredients_missing: recipe.ingredients_missing})
       .into('recipes')
       .where('userID', user.id)
@@ -123,7 +141,7 @@ module.exports = {
   getRecipeDetails: function(req, res){
     var user = req.body.user;
     var recipe = req.body.recipe;
-    
+
     var result = new Promise(function(resolve){
       foodAPI.getRecipeDetailWithID(recipe.id, resolve);
     }).then(function(resp){

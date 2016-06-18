@@ -17,7 +17,7 @@ const dataList = [
     },
     {
         name: 'Sausage, hot dog, cucumber salad',
-        image: 'https://www.organicfacts.net/wp-content/uploads/2013/06/Cucumber.jpg',
+        image: 'https://www.organicfacths.net/wp-content/uploads/2013/06/Cucumber.jpg',
         readyInMinutes: 45,
         sourceUrl: 'http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342',
         recipeID: 15622992,
