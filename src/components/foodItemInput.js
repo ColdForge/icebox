@@ -14,7 +14,7 @@ class FoodItemInput extends Component {
 		this.state = {
 			open: false,
 			autoScrollBodyContent: true,
-			newItems: ['Arugula', 'Eggs'],
+			newItems: [],
 		};
 
 		this.handleOpen = this.handleOpen.bind(this);
