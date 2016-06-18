@@ -9,11 +9,20 @@ import RecipeSuggestionListItem from '../components/recipeSuggestionListItem';
 class RecipeSuggestionList extends Component {
   constructor(props){
     super(props);
-    this.handleRecipeChoice = this.props.chooseRecipe.bind(this);
+    this.handleRecipeChoice = this.handleRecipeChoice.bind(this);
   }
 
-  componentWillMount(){
-    this.props.getRecipeSuggestions({ user: this.props.user });
+  componentWillMount() {
+    this.props.getRecipeSuggestions();
+  }
+
+  handleRecipeChoice(recipeID) {
+    // if user has not currently set a chosen recipe
+    if(!this.props.chosenRecipe){
+      this.props.chooseRecipe(recipeID);
+    } else {
+      alert('You have already selected a recipe!');
+    }
   }
 
   render() {
@@ -23,8 +32,9 @@ class RecipeSuggestionList extends Component {
           {this.props.suggestions.map(suggestion => (
             <RecipeSuggestionListItem
               key={suggestion.key}
-              name={suggestion.name}
-              chooseRecipe={this.handleRecipeChoice({ user: this.props.user, suggestion: suggestion })}
+              recipe={suggestion}
+              recipeID={suggestion.id}
+              chooseRecipe={this.handleRecipeChoice.bind(this,suggestion.id)}
             />
           ))}
         </List>
@@ -40,6 +50,7 @@ RecipeSuggestionList.propTypes = {
 const mapStateToProps = state => ({
   user: state.user,
   suggestions: state.recipes.suggestions,
+  chosenRecipe: state.recipes.chosenRecipe,
 });
 
 export default connect(mapStateToProps, actions)(RecipeSuggestionList);

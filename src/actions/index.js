@@ -71,9 +71,11 @@ export const clearIceboxSearch = () => ({
 	type: TYPES.CLEAR_ICEBOX_SEARCH,
 });
 
-export const getRecipes = ({ user }) => (
+export const getRecipes = () => (
 	(dispatch) => {
-		axios.get(`${API_URL}/api/user/recipes`, { user })
+		axios.get(`${API_URL}/api/icebox/pastRecipes`, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
 			.then(response => {
 				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
 			})
@@ -84,10 +86,13 @@ export const getRecipes = ({ user }) => (
 	}
 );
 
-export const getRecipeSuggestions = ({ user }) => (
+export const getRecipeSuggestions = () => (
 	(dispatch) => {
-		axios.get(`${API_URL}/api/icebox/recipes`, { user })
+		axios.get(`${API_URL}/api/icebox/recipes`, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
 			.then(response => {
+				// console.log('response from getRecipeSuggestions is : ', response);
 				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data });
 			})
 			.catch(response => (
@@ -97,9 +102,11 @@ export const getRecipeSuggestions = ({ user }) => (
 	}
 );
 
-export const chooseRecipe = ({ user, recipe }) => (
+export const chooseRecipe = ({ recipeID }) => (
 	(dispatch) => {
-		axios.post(`${API_URL}/api/icebox/recipes`, { user, recipe })
+		axios.post(`${API_URL}/api/icebox/recipes`, { recipeID }, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
 			.then(response => {
 				dispatch({ type: TYPES.SET_CHOSEN_RECIPE, payload: response.data });
 			})

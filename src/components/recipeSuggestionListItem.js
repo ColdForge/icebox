@@ -2,10 +2,10 @@ import React from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const RecipeSuggestionListItem = ({ name, chooseRecipe }) => (
+const RecipeSuggestionListItem = ({ recipe, chooseRecipe }) => (
 	<Card>
 		<CardHeader
-			title={name}
+			title={recipe.title}
 			subtitle="Subtitle"
 			actAsExpander
 			showExpandableButton
@@ -23,7 +23,7 @@ const RecipeSuggestionListItem = ({ name, chooseRecipe }) => (
 );
 
 RecipeSuggestionListItem.propTypes = {
-	name: React.PropTypes.string,
+	recipe: React.PropTypes.object.isRequired,
 	chooseRecipe: React.PropTypes.func,
 };
 
