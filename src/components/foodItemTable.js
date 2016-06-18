@@ -1,6 +1,6 @@
 import React from 'react';
-import { Table, TableBody, TableRow, TableRowColumn } from 'material-ui/Table';
-import Toggle from 'material-ui/Toggle';
+import { Table, TableBody } from 'material-ui/Table';
+import FoodItemTableEntry from './foodItemTableEntry';
 
 const tableData = [
 	{
@@ -46,17 +46,14 @@ class FoodItemTable extends React.Component {
 			<Table>
 				<TableBody
 					displayRowCheckbox={this.state.showCheckboxes}
-    >
-			{tableData.map((row, index) => (
-				<TableRow key={index}>
-					<TableRowColumn>{index + 1}</TableRowColumn>
-					<TableRowColumn>{row.name}</TableRowColumn>
-					<Toggle
-						onToggle={this.handleToggle}
-						defaultToggled={this.state.toggled}
-     />
-				</TableRow>
-			))}
+				>
+					{tableData.map((row, index) => (
+						<FoodItemTableEntry
+							name={row.name}
+							i={index}
+							toggle={this.handleToggle}
+						/>
+					))}
 				</TableBody>
 			</Table>
 		);
