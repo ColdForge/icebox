@@ -30,11 +30,12 @@ class FoodItemTable extends React.Component {
 		this.state = {
 			toggled: true,
 			showCheckboxes: false,
-			items: props.items,
 		};
 	}
 
 	handleToggle = (event, toggled) => {
+		// console.log('Toggled element', event.target.name);
+		this.props.discarded(event.target.name);
 		this.setState({ [event.target.name]: toggled });
 	};
 
@@ -48,7 +49,7 @@ class FoodItemTable extends React.Component {
 				<TableBody
 					displayRowCheckbox={this.state.showCheckboxes}
 				>
-					{this.state.items.map((row, index) => (
+					{this.props.items.map((row, index) => (
 						<FoodItemTableEntry
 							name={row}
 							i={index}
@@ -63,6 +64,7 @@ class FoodItemTable extends React.Component {
 }
 
 FoodItemTable.propTypes = {
+	discarded: React.PropTypes.func,
 	items: React.PropTypes.array,
 };
 

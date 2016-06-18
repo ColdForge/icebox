@@ -70,10 +70,8 @@ class IceboxToolbar extends Component {
   // trying to call this method, which comes from props
 
 
-	renderFoodItemInputComponent() {
-
-		isOpen = !isOpen;
-
+	submitFoods(obj) {
+		console.log('Submit foods is firing', obj);
 	}
 
 	renderClearSearchButton() {
@@ -126,7 +124,7 @@ class IceboxToolbar extends Component {
 				<ToolbarGroup
 					style={styles.toolbarGroup2}
 				>
-					  <FoodItemInput/>
+					  <FoodItemInput submit={this.submitFoods}/>
 
 				</ToolbarGroup>
 				<ToolbarGroup

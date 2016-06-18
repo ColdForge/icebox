@@ -7,6 +7,7 @@ const FoodItemTableEntry = ({ name, i, toggle, toggled }) => (
 		<TableRowColumn>{i + 1}</TableRowColumn>
 		<TableRowColumn>{name}</TableRowColumn>
 		<Toggle
+			name={name}
 			onToggle={toggle}
 			defaultToggled={toggled}
 		/>
