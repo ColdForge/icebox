@@ -7,9 +7,9 @@ router.get('/icebox', helpers.fetchIceboxContents)
 // Route when user adds items to icebox
 router.post('/icebox', helpers.changeIceboxContents)
 // Get specific information on one item in a user's icebox
-router.get('/icebox/:id', helpers.getIceboxItem)
+router.get('/icebox/item/:id', helpers.getIceboxItem)
 // Delete a specific item in a user's icebox
-router.delete('/icebox/:id', helpers.deleteIceboxItem)
+router.delete('/icebox/item/:id', helpers.deleteIceboxItem)
 // Route when user gets past recipe choices
 router.get('/icebox/pastRecipes', helpers.getPreviousRecipes)
 // Route when user gets recipe suggestions

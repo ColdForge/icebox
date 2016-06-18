@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, TableBody } from 'material-ui/Table';
 import FoodItemTableEntry from './foodItemTableEntry';
+// import { v4 } from 'node-uuid';
 
 // const tableData = [
 // 	{
@@ -34,7 +35,7 @@ class FoodItemTable extends React.Component {
 	}
 
 	handleToggle = (event, toggled) => {
-		// console.log('Toggled element', event.target.name);
+		console.log('Toggled element', event.target.name);
 		this.props.discarded(event.target.name);
 		this.setState({ [event.target.name]: toggled });
 	};
