@@ -76,7 +76,7 @@ p, div {
   padding-bottom: 50px;*/
   text-align: center;
   color: #f8f8f8;
-  background: url(../../assets/icebox-landing.jpg) no-repeat center center;
+  background: url(../../assets/background.jpeg) no-repeat center center;
   background-size: cover;
 }
 
@@ -142,7 +142,9 @@ form .text-field-input div label {
 /* Landing Page Component Styling */
 
 .landing-title {
+  padding-top: 200px;
   color: black;
+
 }
 .intro-message {
   position: relative;
@@ -153,7 +155,8 @@ form .text-field-input div label {
 .intro-message > h1 {
   margin: 0;
   text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-  font-size: 5em;
+  font-weight: 800;
+  font-size: 80px;
 }
 
 /* Icebox Component Styling */
@@ -228,3 +231,13 @@ form .text-field-input div label {
 .recipes-container h1 {
   color: black;
 }
+
+.recipes-tabs {
+  background-color: white;
+}
+
+.recipes-tab {
+  background-color: white;
+  color: black;
+}
+

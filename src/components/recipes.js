@@ -3,18 +3,31 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import RecipeSuggestionList from '../containers/recipeSuggestionList';
 import RecipeList from '../containers/recipeList';
 
+const styles = {
+	tabs: {
+		backgroundColor: 'rgba(0,0,0,0)',
+	},
+}
+
 const Recipes = () => (
 	<div className="recipes-container">
-		<Tabs>
-			<Tab label="Recipe Suggestions">
+		<Tabs
+			style={styles.tabs}
+			className="recipes-tabs"
+		>
+			<Tab 
+				label="Recipe Suggestions"
+				className="recipes-tab"
+			>
 				<div>
-					<h1>recipe suggestions go here</h1>
 					<RecipeSuggestionList />
 				</div>
 			</Tab>
-			<Tab label="Past Recipes">
+			<Tab
+				label="Past Recipes"
+				className="recipes-tab"
+			>
 				<div>
-					<h1>Past Recipes</h1>
 					<RecipeList />
 				</div>
 			</Tab>
