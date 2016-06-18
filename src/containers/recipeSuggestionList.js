@@ -16,10 +16,10 @@ class RecipeSuggestionList extends Component {
     this.props.getRecipeSuggestions();
   }
 
-  handleRecipeChoice(recipeID) {
+  handleRecipeChoice(recipe) {
     // if user has not currently set a chosen recipe
     if(!this.props.chosenRecipe){
-      this.props.chooseRecipe(recipeID);
+      this.props.chooseRecipe({ recipe });
     } else {
       alert('You have already selected a recipe!');
     }
@@ -33,8 +33,7 @@ class RecipeSuggestionList extends Component {
             <RecipeSuggestionListItem
               key={suggestion.key}
               recipe={suggestion}
-              recipeID={suggestion.id}
-              chooseRecipe={this.handleRecipeChoice.bind(this,suggestion.id)}
+              chooseRecipe={this.handleRecipeChoice.bind(this,suggestion)}
             />
           ))}
         </List>

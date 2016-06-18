@@ -102,9 +102,9 @@ export const getRecipeSuggestions = () => (
 	}
 );
 
-export const chooseRecipe = ({ recipeID }) => (
+export const chooseRecipe = ({ recipe }) => (
 	(dispatch) => {
-		axios.post(`${API_URL}/api/icebox/recipes`, { recipeID }, {
+		axios.post(`${API_URL}/api/icebox/recipes`, { recipe }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
