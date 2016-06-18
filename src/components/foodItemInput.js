@@ -140,9 +140,9 @@ class FoodItemInput extends Component {
 								this.startSpeechRecognition();
 							}
 						};
-					},0);
+					}, 0);
 				}, 650);
-			},500);
+			}, 500);
 		};
 	}
 
