@@ -1,35 +1,51 @@
 const dataList = [
     {
         name: 'Char-Grilled Beef Tenderloin with Three-Herb Chimichurri',
-        image: 'https://spoonacular.com/recipeImages/char-grilled-beef-tenderloin-with-three-herb-chimichurri-156992.jpg',
+        image: 'https://static.pexels.com/photos/5938/food-salad-healthy-lunch-large.jpg',
         readyInMinutes: 45,
         sourceUrl: 'http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342',
         recipeID: 156992,
         key: "4kswGMuPMeV8Z8vZ"
     },
     {
-        name: 'Fried Bananas and sausage with eggplant',
-        image: 'https://lh4.ggpht.com/XbXpwfKONYemd2mxJF2-IgQ9rKjw0hk6dSljSWwy_MI_5QbK0tuU3ocfPowWZ_ED-g=w300',
+        name: 'Hot tuna melt with fries',
+        image: 'https://static.pexels.com/photos/62097/pexels-photo-62097-large.jpeg',
         readyInMinutes: 15,
         sourceUrl: 'http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342',
         recipeID: 15694392,
-        key: "4kswGMuPMafdsaeV8Z8vZ"
+        key: "4kswGMuPMaf09KdsaeV8Z8vZ"
     },
     {
-        name: 'Sausage, hot dog, cucumber salad',
-        image: 'https://www.organicfacths.net/wp-content/uploads/2013/06/Cucumber.jpg',
+        name: 'Vegetables Italian Pizza',
+        image: 'https://static.pexels.com/photos/2232/vegetables-italian-pizza-restaurant-large.jpg',
         readyInMinutes: 45,
         sourceUrl: 'http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342',
         recipeID: 15622992,
-        key: "4kswGMuPMeggggV8Z8vZ"
+        key: "4kswGMuPMe11ggggV8Z8vZ"
     },
     {
-        name: 'Hard boiled eggs and Bananas',
-        image: 'https://spoonacular.com/recipeImages/char-grilled-beef-tenderloin-with-three-herb-chimichurri-156992.jpg',
-        readyInMinutes: 435,
+        name: 'Lemon Tuna with Rice',
+        image: 'https://static.pexels.com/photos/8758/food-dinner-lemon-rice-large.jpg',
+        readyInMinutes: 35,
         sourceUrl: 'http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342',
-        recipeID: 15456992,
-        key: "4kswGMuPMewsfeV8Z8vZ"
+        recipeID: 15456923,
+        key: "4kswGMuPMew321sfeV8Z8vZ"
+    },
+    {
+        name: 'Mushroom Bacon Burger',
+        image: 'https://static.pexels.com/photos/29302/pexels-photo-large.jpg',
+        readyInMinutes: 45,
+        sourceUrl: 'http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342',
+        recipeID: 15296992,
+        key: "4kswGMuPMewsfASeV8Z8vZ"
+    },
+    {
+        name: 'Chicken and Onions and Bell Peppers',
+        image: 'https://static.pexels.com/photos/8544/food-dinner-grilled-shashlik-large.jpg',
+        readyInMinutes: 55,
+        sourceUrl: 'http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342',
+        recipeID: 15086992,
+        key: "4kswGMuPMewsfWEE88eV8Z8vZ"
     },
 ];
 
