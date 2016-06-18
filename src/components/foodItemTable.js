@@ -52,6 +52,7 @@ class FoodItemTable extends React.Component {
 							name={row.name}
 							i={index}
 							toggle={this.handleToggle}
+							toggled={this.state.toggled}
 						/>
 					))}
 				</TableBody>
