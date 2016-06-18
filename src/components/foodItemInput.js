@@ -88,15 +88,14 @@ class FoodItemInput extends Component {
 		}
 	}
 
-		// make an array out of the Speech user input
-		// map that array to the component state
+	// make an array out of the Speech user input
+	// map that array to the component state
 
-  listErrorHandling(list) {
-
-    // must get rid of extra spaces
-    // must get rid of apostrophes
-
-  }
+	listErrorHandling(list) {
+		console.log(list);
+		// must get rid of extra spaces
+		// must get rid of apostrophes
+	}
 
 	handleOpen() {
 		// this.speechRecognitionInit();
