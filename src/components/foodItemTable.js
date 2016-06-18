@@ -2,26 +2,26 @@ import React from 'react';
 import { Table, TableBody } from 'material-ui/Table';
 import FoodItemTableEntry from './foodItemTableEntry';
 
-const tableData = [
-	{
-		name: 'Pizza',
-	},
-	{
-		name: 'Milk',
-	},
-	{
-		name: 'Steak',
-	},
-	{
-		name: 'Chicken',
-	},
-	{
-		name: 'Green Beans',
-	},
-	{
-		name: 'Yogurt',
-	},
-];
+// const tableData = [
+// 	{
+// 		name: 'Pizza',
+// 	},
+// 	{
+// 		name: 'Milk',
+// 	},
+// 	{
+// 		name: 'Steak',
+// 	},
+// 	{
+// 		name: 'Chicken',
+// 	},
+// 	{
+// 		name: 'Green Beans',
+// 	},
+// 	{
+// 		name: 'Yogurt',
+// 	},
+// ];
 
 class FoodItemTable extends React.Component {
 
@@ -30,6 +30,7 @@ class FoodItemTable extends React.Component {
 		this.state = {
 			toggled: true,
 			showCheckboxes: false,
+			items: props.items,
 		};
 	}
 
@@ -47,9 +48,9 @@ class FoodItemTable extends React.Component {
 				<TableBody
 					displayRowCheckbox={this.state.showCheckboxes}
 				>
-					{tableData.map((row, index) => (
+					{this.state.items.map((row, index) => (
 						<FoodItemTableEntry
-							name={row.name}
+							name={row}
 							i={index}
 							toggle={this.handleToggle}
 							toggled={this.state.toggled}
@@ -60,5 +61,9 @@ class FoodItemTable extends React.Component {
 		);
 	}
 }
+
+FoodItemTable.propTypes = {
+	items: React.PropTypes.array,
+};
 
 export default FoodItemTable;
