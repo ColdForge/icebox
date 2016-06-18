@@ -1,11 +1,11 @@
-var db = require('../db/config.js');
+var db = require('../db/config.js').knex;
 var foodAPI = require('./apiutils.js');
 
 module.exports = {
 
-	getAllItems: function(req, res){
+	fetchIceboxContents: function(req, res){
 	  var user = req.body.user;
-
+    console.log('getAllItems called in helpers');
     db.select('*')
     .from('icebox_items')
     .where('iceboxID', user.iceboxID)
@@ -20,7 +20,7 @@ module.exports = {
 
 	},
 
-	postAllItems: function(req, res){
+	changeIceboxContents: function(req, res){
 		var user = req.body.user;
 		var items = req.body.data;
     //var items = ['milk', 'eggs', 'blueberries', 'steak'];
@@ -74,8 +74,9 @@ module.exports = {
     res.send("Icebox items updated");
 	},
 
-  getRecipes: function(req, res){
-    var icebox = req.body.iceboxID;
+  getRecipeSuggestions: function(req, res){
+    console.log('getRecipes fired in helpers, req.user is : ',req.user);
+    var icebox = req.user.iceboxID;
     var recipeCollect = [];
 
     db.select('*')
@@ -83,17 +84,19 @@ module.exports = {
     .where('iceboxID', icebox)
     .innerJoin('foods', 'icebox_items.foodID', 'foods.id')
     .then(function(resp){
+      console.log('resp from innerJoin is : ',resp);
       resp.forEach(function(food){
-        if(food.daysToExpire <= 2){
+        if(food.daysToExpire <= 3){
           recipeCollect.push(food.name);
         }
       });
     }).then(function(resp){
+      console.log('resp from select in getRecipes is : ',resp)
       var result = new Promise(function(resolve){
         foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
       }).then(function(resp){
         console.log('Successfull call to recipe API', resp);
-        res.send(resp);
+        res.send(resp.slice(0,3));
       });
     }).catch(function(err){
       console.log('Error getting items', err);
@@ -102,29 +105,14 @@ module.exports = {
 
   },
 
-//working on this section - AY - add ability to get recipe history
+  chooseRecipeSuggestion: function(req, res){
+    console.log('req.body received in postRecipe is : ',req.body);
+    console.log('req.data received in postRecipe is : ',req.data);
+    console.log('req.user received in postRecipe is : ',req.user);
+    var user = req.user;
+    var recipe = req.body.recipe;
 
-
-getPreviousRecipes: function(req, res){
-    var user = req.body.user;
-
-    db.select('*')
-    .from('recipes')
-    .where('userID', id)
-    .then(function(resp){
-      console.log('Previous Recipe request call successful', resp);
-      res.send(resp);
-    }).catch(function(err){
-      console.log('Error getting items', err);
-      res.send('Previous recipes could not be found');
-    });
-
-  },
-  postRecipe: function(req, res){
-    var user = req.body.user;
-    var recipe = req.body.data;
-
-    db.insert({iceboxID: user.iceboxID, recipeID: recipe.id, title: recipe.title,
+    db.insert({ iceboxID: user.iceboxID, recipeID: recipe.id, title: recipe.title,
       pic_url: recipe.pic_url, ingredients_used: recipe.ingredients_used,
       ingredients_missing: recipe.ingredients_missing})
       .into('recipes')
@@ -137,6 +125,24 @@ getPreviousRecipes: function(req, res){
         console.log('Error posting recipe', err);
       });
   },
+
+//working on this section - AY - add ability to get recipe history
+
+
+	getPreviousRecipes: function(req, res){
+		var user = req.body.user;
+
+		db.select('*')
+			.from('recipes')
+			.where('userID', id)
+			.then(function(resp){
+				console.log('Previous Recipe request call successful', resp);
+				res.send(resp);
+			}).catch(function(err){
+				console.log('Error getting items', err);
+				res.send('Previous recipes could not be found');
+			});
+	},
 
   getRecipeDetails: function(req, res){
     var user = req.body.user;
@@ -153,7 +159,7 @@ getPreviousRecipes: function(req, res){
     });
   },
 
-	getItem: function(req, res){
+	getIceboxItem: function(req, res){
       var user = req.body.user;
       var item = req.params.food_id
 
@@ -173,8 +179,7 @@ getPreviousRecipes: function(req, res){
 
 	},
 
-	deleteItem: function(req, res){
-
+	deleteIceboxItem: function(req, res){
 	  var user = req.body.user;
     var item = req.params.food_id
 
@@ -190,7 +195,6 @@ getPreviousRecipes: function(req, res){
       console.log('Item could not be deleted', err);
       res.send('Food item could not be deleted');
     });
-
 	}
 
 };
