@@ -8,7 +8,6 @@ var passport = require('passport');
 var userController = require('./controllers/userController');
 var requireAuth = passport.authenticate('jwt', {session: false});
 var requireSignin = passport.authenticate('local', {session: false});
-var router = require('./routes/router');
 var Auth = require('./controllers/authController');
 var schedule = require('node-schedule');
 var app = express();
@@ -17,8 +16,14 @@ var food = require('./config/apiutils.js');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../'));
-app.use('/api/users', router);
-app.use('/api/icebox', router);
+
+// var router = require('./routes/router');
+// app.use('/api/users', router);
+// app.use('/api/icebox', router);
+
+app.use('/api', requireAuth, require('./routes/router'))
+// app.use('/api/icebox',require('./routes/router'))
+
 
 app.get('/', function(req,res) {
   res.sendFile(__dirname + '/../index.html');
@@ -29,6 +34,8 @@ app.post('/user/signin', requireSignin, Auth.signin);
 
 // route when new user signs up
 app.post('/user/signup', Auth.signup);
+
+// router(app);
 
 var rule = new schedule.RecurrenceRule();
 rule.hour = 0;
