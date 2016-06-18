@@ -48,7 +48,12 @@ class FoodItemInput extends Component {
 				if (event.results[i].isFinal) {
 					console.log('Final sentence is : ', identificated);
 					const tempRes = identificated.split('next');
+
+
+					// function handling edge cases goes here
+
 					speechResults.push(tempRes);
+
 					this.setState({ newItems: speechResults });
 					console.log('this is state.newItems: ', this.state.newItems);
 				} else {
@@ -85,6 +90,13 @@ class FoodItemInput extends Component {
 
 		// make an array out of the Speech user input
 		// map that array to the component state
+
+  listErrorHandling(list) {
+
+    // must get rid of extra spaces
+    // must get rid of apostrophes
+
+  }
 
 	handleOpen() {
 		// this.speechRecognitionInit();
