@@ -17,7 +17,7 @@ const configureStore = (testMode,state) => {
   } else {
     const token = localStorage.getItem('token');
     const loadedState = loadState();
-    let persistedState = {...loadedState, icebox: DUMMY_ICEBOX, recipes: { pastSuggestions: DUMMY_PAST_SUGGESTIONS, suggestions: [] } };
+    let persistedState = {...loadedState, icebox: DUMMY_ICEBOX, recipes: { pastSuggestions: DUMMY_PAST_SUGGESTIONS, suggestions: [], chosenRecipe: null } };
     store = createStoreWithMiddleware(reducers,persistedState, window.devToolsExtension ? window.devToolsExtension() : f => f);
     if(token) {
       store.dispatch({ type: AUTHORIZE_USER });
@@ -26,7 +26,8 @@ const configureStore = (testMode,state) => {
     store.subscribe(throttle(() => {
       saveState({
         icebox: store.getState().icebox,
-        // user: store.getState().user,
+        user: store.getState().user,
+        recipes: store.getState().recipes,
       });
     }, 1000));
   }
