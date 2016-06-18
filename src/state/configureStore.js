@@ -7,6 +7,7 @@ import { loadState, saveState } from './localStorage';
 import { AUTHORIZE_USER } from '../constants/actions';
 
 import DUMMY_ICEBOX from '../data/dummyFoodList';
+import DUMMY_PAST_SUGGESTIONS from '../data/dummyRecipeList';
 
 const configureStore = (testMode,state) => {
 	const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -16,7 +17,7 @@ const configureStore = (testMode,state) => {
   } else {
     const token = localStorage.getItem('token');
     const loadedState = loadState();
-    let persistedState = {...loadedState, icebox: DUMMY_ICEBOX };
+    let persistedState = {...loadedState, icebox: DUMMY_ICEBOX, recipes: { pastSuggestions: DUMMY_PAST_SUGGESTIONS, suggestions: [] } };
     store = createStoreWithMiddleware(reducers,persistedState, window.devToolsExtension ? window.devToolsExtension() : f => f);
     if(token) {
       store.dispatch({ type: AUTHORIZE_USER });

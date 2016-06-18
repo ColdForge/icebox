@@ -10,7 +10,7 @@ import * as actions from '../actions/index';
 
 const styles = {
 	bar: {
-		backgroundColor: '#556270',
+		backgroundColor: 'rgba(85, 98, 112, 0.5)',
 	},
 	buttonContainer: {
 		display: 'flex',
