@@ -22,8 +22,6 @@ class FoodItemInput extends Component {
 	}
 
 	speechRecognitionInit() {
-		console.log('Im running');
-
 		/* eslint-disable */
 
 		const SpeechRecognition = webkitSpeechRecognition;
@@ -51,7 +49,7 @@ class FoodItemInput extends Component {
 
 					// function handling edge cases goes here
 
-					const cleanList = this.listErrorHandling(tempRes)
+					const cleanList = this.listErrorHandling(tempRes);
 
 					this.setState({ newItems: cleanList });
 					console.log('this is state.newItems: ', this.state.newItems);
@@ -91,32 +89,23 @@ class FoodItemInput extends Component {
 	// map that array to the component state
 
 	listErrorHandling(list) {
-
 	// list1 takes off white space
-
-		var list1 = list.map(item => {
-		var tempItem = item.split(' ');
-
-		if (item[0] === ' ') {
-			tempItem.shift();
-		}
-
-		if (item[item.length - 1] === ' ') {
-			tempItem.pop();
-		}
-
-		for (var i = 0 ; i < tempItem.length; i++) {
-			var arr = tempItem[i].split('');
-			arr[0] = arr[0].toUpperCase();
-			tempItem[i] = arr.join('');
-		}
-
-		return tempItem.join(' ');
-
+		const list1 = list.map(item => {
+			const tempItem = item.split(' ');
+			if (item[0] === ' ') {
+				tempItem.shift();
+			}
+			if (item[item.length - 1] === ' ') {
+				tempItem.pop();
+			}
+			for (let i = 0; i < tempItem.length; i++) {
+				const arr = tempItem[i].split('');
+				arr[0] = arr[0].toUpperCase();
+				tempItem[i] = arr.join('');
+			}
+			return tempItem.join(' ');
 		});
-
 		return list1;
-
 	}
 
 	handleOpen() {
