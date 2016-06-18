@@ -7,7 +7,7 @@ const styles = {
 	tabs: {
 		backgroundColor: 'rgba(0,0,0,0)',
 	},
-}
+};
 
 const Recipes = () => (
 	<div className="recipes-container">
@@ -15,7 +15,7 @@ const Recipes = () => (
 			style={styles.tabs}
 			className="recipes-tabs"
 		>
-			<Tab 
+			<Tab
 				label="Recipe Suggestions"
 				className="recipes-tab"
 			>
