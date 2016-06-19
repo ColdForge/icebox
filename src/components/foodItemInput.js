@@ -78,6 +78,7 @@ class FoodItemInput extends Component {
 		/* eslint-disable */
 		const SpeechRecognition = webkitSpeechRecognition;
 		this.recognition = new SpeechRecognition();
+		this.Kate = window.speechSynthesis;
 		/* eslint-enable */
 
 		// const SpeechGrammarList = webkitSpeechGrammarList;
@@ -85,7 +86,7 @@ class FoodItemInput extends Component {
 		// const recognition = new SpeechGrammarList();
 		// const speechRecognitionList = new SpeechGrammarList();
 		// speechRecognitionList.addFromString(grammar, 1);
-		this.recognition.interimResults = true;
+		this.recognition.interimResults = false;
 
 		// let speechFlag = false;
 		// const speechResults = [];
@@ -99,7 +100,6 @@ class FoodItemInput extends Component {
 					const tempRes = identificated.split('next');
 
 					// function handling edge cases goes here
-
 					const cleanList = this.listErrorHandling(tempRes);
 					cleanList.forEach(item => { confirmedItems[item] = true; });
 					const itemsToAdd = [...this.state.newItems, ...cleanList];
@@ -111,14 +111,38 @@ class FoodItemInput extends Component {
 			}
 		};
 
-		this.recognition.onerror = (event) => {
-			console.log('error is : ', event);
-		};
 		this.recognition.onstart = () => {
 			console.log('this.recognition.onstart fired');
 		};
 		this.recognition.onend = () => {
 			console.log('this.recognition.onend fired');
+			this.recognition.stop();
+			const voices = window.speechSynthesis.getVoices();
+			const areYouFinished = new SpeechSynthesisUtterance('Are you finished?');
+			areYouFinished.voice = voices[20];
+			areYouFinished.rate = 0.8;
+			areYouFinished.pitch = 0.8;
+
+			const finishedRecognition = new SpeechRecognition();
+
+			this.Kate.speak(areYouFinished);
+
+			setTimeout(() => {
+				finishedRecognition.start();
+			}, 650);
+
+			finishedRecognition.onresult = (evt) => {
+				console.log('event is : ', evt);
+				console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
+				const result = evt.results[0][0].transcript.toLowerCase();
+				if (result === 'yes' || result === 'yeah' || result === 'yup') {
+					finishedRecognition.stop();
+					this.endSpeechRecognition();
+				} else {
+					finishedRecognition.stop();
+					this.startSpeechRecognition();
+				}
+			};
 		};
 	}
 
