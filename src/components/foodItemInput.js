@@ -120,29 +120,30 @@ class FoodItemInput extends Component {
 			const voices = window.speechSynthesis.getVoices();
 			const areYouFinished = new SpeechSynthesisUtterance('Are you finished?');
 			areYouFinished.voice = voices[20];
-			areYouFinished.rate = 0.8;
+			areYouFinished.rate = 0.9;
 			areYouFinished.pitch = 0.8;
 
 			const finishedRecognition = new SpeechRecognition();
-
-			this.Kate.speak(areYouFinished);
-
 			setTimeout(() => {
-				finishedRecognition.start();
-			}, 650);
-
-			finishedRecognition.onresult = (evt) => {
-				console.log('event is : ', evt);
-				console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
-				const result = evt.results[0][0].transcript.toLowerCase();
-				if (result === 'yes' || result === 'yeah' || result === 'yup') {
-					finishedRecognition.stop();
-					this.endSpeechRecognition();
-				} else {
-					finishedRecognition.stop();
-					this.startSpeechRecognition();
-				}
-			};
+				this.Kate.speak(areYouFinished);
+				setTimeout(() => {
+					finishedRecognition.start();
+					setTimeout(() => {
+						finishedRecognition.onresult = (evt) => {
+							console.log('event is : ', evt);
+							console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
+							const result = evt.results[0][0].transcript.toLowerCase();
+							if (result === 'yes' || result === 'yeah' || result === 'yup') {
+								finishedRecognition.stop();
+								this.endSpeechRecognition();
+							} else {
+								finishedRecognition.stop();
+								this.startSpeechRecognition();
+							}
+						};
+					},0);
+				}, 650);
+			},500);
 		};
 	}
 
