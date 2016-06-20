@@ -98,7 +98,6 @@ class FoodItemInput extends Component {
 				if (event.results[i].isFinal) {
 					console.log('Final sentence is : ', identificated);
 					const tempRes = identificated.split('next');
-
 					// function handling edge cases goes here
 					const cleanList = this.listErrorHandling(tempRes);
 					cleanList.forEach(item => { confirmedItems[item] = true; });
@@ -141,34 +140,40 @@ class FoodItemInput extends Component {
 								this.startSpeechRecognition();
 							}
 						};
-					},0);
+					}, 0);
 				}, 650);
-			},500);
+			}, 500);
 		};
 	}
 
 	// make an array out of the Speech user input
 	// map that array to the component state
 	listErrorHandling(list) {
-		// list1 takes off white space
+	// list1 takes off white space
 		const list1 = list.map(item => {
 			const tempItem = item.split(' ');
-
 			if (item[0] === ' ') {
 				tempItem.shift();
 			}
-
 			if (item[item.length - 1] === ' ') {
 				tempItem.pop();
 			}
-
 			for (let i = 0; i < tempItem.length; i++) {
 				const arr = tempItem[i].split('');
-				arr[0] = arr[0].toUpperCase();
-				tempItem[i] = arr.join('');
+				if (arr[0] !== undefined) {
+					arr[0] = arr[0].toUpperCase();
+					tempItem[i] = arr.join('');
+				}
 			}
 			return tempItem.join(' ');
 		});
+		for (let i = 0; i < list1.length; i++) {
+			const curr = list1[i];
+			if (curr === '' || curr === undefined) {
+				list1.splice(i, 1);
+				i--;
+			}
+		}
 		return list1;
 	}
 
