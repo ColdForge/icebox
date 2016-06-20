@@ -164,7 +164,7 @@ class FoodItemInput extends Component {
 				if (arr[0] !== undefined) {
 					arr[0] = arr[0].toUpperCase();
 					tempItem[i] = arr.join('');
-			  }
+				}
 			}
 			return tempItem.join(' ');
 		});
