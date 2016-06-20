@@ -58,7 +58,8 @@
     "redux": "^3.5.2",
     "redux-form": "^5.2.5",
     "redux-thunk": "^2.1.0",
-    "request": "^2.72.0"
+    "request": "^2.72.0",
+    "request-promise": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.2.1",
