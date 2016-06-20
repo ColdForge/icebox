@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
-import throttle from 'lodash.throttle';
+import throttle from 'lodash/throttle';
 import reducers from '../reducers';
 import { loadState, saveState } from './localStorage';
 import { AUTHORIZE_USER } from '../constants/actions';
