@@ -73,7 +73,7 @@ export const clearIceboxSearch = () => ({
 
 export const addIceboxItems = ({ foodItems }) => (
 	(dispatch) => {
-		axios.post(`${API_URL}/api/icebox`, { foodItems },{
+		axios.post(`${API_URL}/api/icebox`, { foodItems }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
