@@ -167,6 +167,13 @@ class FoodItemInput extends Component {
 			}
 			return tempItem.join(' ');
 		});
+		for (let i = 0; i < firstList.length; i++) {
+		  let curr = firstList[i];
+		  if (curr === '' || curr === undefined) {
+		  	firstList.splice(i, 1);
+		  	i--;
+		  }
+		}
 		return list1;
 	}
 
