@@ -1,5 +1,6 @@
 var db = require('../db/config.js').knex;
 var foodAPI = require('./apiutils.js');
+var _each = require('lodash/forEach');
 
 module.exports = {
 
@@ -21,59 +22,94 @@ module.exports = {
 	},
 
 	changeIceboxContents: function(req, res){
-		var user = req.body.user;
-		var items = req.body.data;
-    console.log('user in changeIceboxContents is : ',user)
-    console.log('items in changeIceboxContents is : ',items)
+		var user = req.user;
+		var foodItems = req.body.foodItems;
+    console.log('user in changeIceboxContents is : ',user);
+    console.log('items in changeIceboxContents is : ',foodItems);
+    
+    var recognizedItems = [];
+    var unrecognizedItems = [];
+
+    var counter = 0;
+    for (var key in foodItems) {
+      if(key !== "length" && foodItems[key]){
+        recognizedItems.push(key);
+      }
+      counter++;
+      if(counter === foodItems.length){
+        console.log('counter is equal to foodItems.length');
+        addItems(recognizedItems);
+      }
+    }
+
+    console.log('recognizedItems after for var in key are : ',recognizedItems);
     //var items = ['milk', 'eggs', 'blueberries', 'steak'];
 
-    // items.forEach(function (item){
-    //   db.select('*')
-    //   .from('foods')
-    //   .where('name', item)
-    //   .then(function(resp){
-    //     console.log('food item found', resp);
-    //     if(resp.length > 0){
-    //       db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
-    //       .into('icebox_items')
-    //       .then(function(resp){
-    //         console.log('Item added to icebox', resp);
-    //       })
-    //       .catch(function(err){
-    //         console.log('Item insertion error', err);
-    //       });
-    //     } else {
-    //         console.log('Inside else statement');
-    //         var result = new Promise(function(resolve){
-    //           food.getFoodType(item, resolve);
-    //         }).then(function(resp){
-    //         console.log('food item results', resp);
-    //         db.insert({category: resp[0].aisle, name: resp[0].name, freshDuration: 10})
-    //           .into('foods')
-    //           .then(function(resp){
-    //             console.log('Great success', resp);
-    //             db.insert({foodID: resp[0], iceboxID: user.iceboxID, daysToExpire: 10})
-    //               .into('icebox_items')
-    //               .where('iceboxID', user.iceboxID)
-    //               .then(function(resp){
-    //                 console.log('Added to icebox items');
-    //               });
-    //           })
-    //           .catch(function(err){
-    //             console.log('Insert error', err);
-    //           });
-    //       }).catch(function(err){
-    //         console.log('Error retrieving food type');
-    //         res.send('Error retrieving item');
-    //       });
-    //     }
-    //   })
-    //   .catch(function(err){
-    //     console.log('Could not find item in foods table', err);
-    //   });
-    // });
-
-    res.send("Icebox items updated");
+    function addItems(itemsArray) {
+      var addedItems = [];
+      itemsArray.forEach(function(item, index, array){
+        db.select('*')
+        .from('foods')
+        .where('name', item)
+        .then(function(resp){
+          console.log('food item found', resp);
+          addedItems.push(resp);
+          if(resp.length > 0){
+            db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
+            .into('icebox_items')
+            .then(function(resp){
+              console.log('Item added to icebox', resp);
+            })
+            .catch(function(err){
+              console.log('Item insertion error', err);
+            });
+          } else {
+            console.log('Inside else statement');
+            var result = new Promise(function(resolve){
+              foodAPI.getFoodType(item, resolve);
+            })
+            .then(function(resp){
+              console.log('food item results', resp);
+              addedItems.push(resp);
+              db.insert({category: resp[0].aisle, name: resp[0].name, freshDuration: 10})
+                .into('foods')
+                .then(function(resp){
+                  console.log('Great success', resp);
+                  db.insert({foodID: resp[0], iceboxID: user.iceboxID, daysToExpire: 10})
+                    .into('icebox_items')
+                    .where('iceboxID', user.iceboxID)
+                    .then(function(resp){
+                      console.log('Added to icebox items');
+                    });
+                })
+                .catch(function(err){
+                  console.log('Insert error', err);
+                });
+            })
+            .catch(function(err){
+              console.log('Error retrieving food type');
+              res.send('Error retrieving item');
+            });
+          }
+        })
+        .catch(function(err){
+          console.log('Could not find item in foods table', err);
+        });
+        if(index === array.length - 1){
+          setTimeout(function(){
+            console.log('end of addItems itemsArray.forEach method');
+            console.log('addedItems is : ',addedItems);
+          },0);
+          setTimeout(function(){
+            res.send("Icebox items updated");
+          },50);
+        }
+      });
+    }
+    
+    // setTimeout(function(){
+    //   res.send("setTimeout fired at end of helpers.changeIceboxContents")
+    // },2000);
 	},
 
   getRecipeSuggestions: function(req, res){

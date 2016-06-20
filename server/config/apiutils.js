@@ -57,7 +57,7 @@ module.exports = {
       }
     }
 
-    request (options, callback);
+    request(options, callback);
   },
 
   getFoodType : function (food, cb) {
@@ -76,9 +76,11 @@ module.exports = {
         var info = JSON.parse(body);
         console.log ("getFoodType Callback: ", info);
         cb(info);
+      } else {
+        console.log('getFoodType error of : ',error)
       }
     }
-    request.post (options, callback);
+    request(options, callback);
   }
 
 
