@@ -57,6 +57,7 @@ class FoodItemInput extends Component {
 		this.endSpeechRecognition = this.endSpeechRecognition.bind(this);
 	}
 
+
 	discardItems(item) {
 		confirmedItems[item] = !confirmedItems[item];
 		console.log('Discarded Items', confirmedItems);
