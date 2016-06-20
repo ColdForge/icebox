@@ -57,7 +57,6 @@ class FoodItemInput extends Component {
 		this.endSpeechRecognition = this.endSpeechRecognition.bind(this);
 	}
 
-<<<<<<< 1a36d7b422dc1aa17877ab1319adc0129ce6cb30
 	discardItems(item) {
 		confirmedItems[item] = !confirmedItems[item];
 		console.log('Discarded Items', confirmedItems);
@@ -68,10 +67,6 @@ class FoodItemInput extends Component {
 			recognitionStarted: true,
 		}, this.recognition.start());
 	}
-=======
-	speechRecognitionInit() {
-		/* eslint-disable */
->>>>>>> [refactor] updates listErrorHandling function syntax to match style guide best practices
 
 	endSpeechRecognition() {
 		this.setState({
