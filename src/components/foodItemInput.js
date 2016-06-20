@@ -51,6 +51,7 @@ class FoodItemInput extends Component {
 			newItems: [],
 		};
 		this.handleOpen = this.handleOpen.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.speechRecognitionInit = this.speechRecognitionInit.bind(this);
 		this.startSpeechRecognition = this.startSpeechRecognition.bind(this);
@@ -187,7 +188,8 @@ class FoodItemInput extends Component {
 	}
 
 	handleSubmit() {
-		this.props.submit(confirmedItems);
+		confirmedItems.length = this.state.newItems.length;
+		this.props.submitFoods(confirmedItems);
 		this.setState({ open: false, newItems: [], newItemsAdded: false });
 	}
 
@@ -281,7 +283,7 @@ class FoodItemInput extends Component {
 }
 
 FoodItemInput.propTypes = {
-	submit: React.PropTypes.func,
+	submitFoods: React.PropTypes.func,
 };
 
 export default FoodItemInput;

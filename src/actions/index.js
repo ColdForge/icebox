@@ -71,6 +71,23 @@ export const clearIceboxSearch = () => ({
 	type: TYPES.CLEAR_ICEBOX_SEARCH,
 });
 
+export const addIceboxItems = ({ foodItems }) => (
+	(dispatch) => {
+		console.log('foodItems in addIceboxItems is : ', foodItems);
+		axios.post(`${API_URL}/api/icebox`, { foodItems }, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+			.then(response => {
+				console.log('good response from addIceboxItems is : ', response);
+				dispatch({ type: TYPES.ADD_ITEMS, payload: response.data });
+			})
+			.catch(response => {
+				console.log('bad response from addIceboxItems is : ', response);
+				dispatch({ type: TYPES.ICEBOX_ERROR, payload: response.data });
+			});
+	}
+);
+
 export const getRecipes = () => (
 	(dispatch) => {
 		axios.get(`${API_URL}/api/icebox/pastRecipes`, {

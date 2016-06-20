@@ -54,6 +54,11 @@ const styles = {
 let isOpen = false
 
 class IceboxToolbar extends Component {
+	constructor(props){
+		super(props);
+
+		this.submitFoods = this.submitFoods.bind(this);
+	}
 
 	handleSearch(event) {
 		this.props.setIceboxSearch(event.target.value);
@@ -70,8 +75,9 @@ class IceboxToolbar extends Component {
   // trying to call this method, which comes from props
 
 
-	submitFoods(obj) {
-		console.log('Submit foods is firing', obj);
+	submitFoods(foodItems) {
+		this.props.addIceboxItems({ foodItems });
+		console.log('Submit foods is firing', foodItems);
 	}
 
 	renderClearSearchButton() {
@@ -124,7 +130,7 @@ class IceboxToolbar extends Component {
 				<ToolbarGroup
 					style={styles.toolbarGroup2}
 				>
-					  <FoodItemInput submit={this.submitFoods}/>
+					  <FoodItemInput submitFoods={this.submitFoods}/>
 
 				</ToolbarGroup>
 				<ToolbarGroup
