@@ -188,6 +188,7 @@ class FoodItemInput extends Component {
 	}
 
 	handleSubmit() {
+		confirmedItems.length = this.state.newItems.length;
 		this.props.submitFoods(confirmedItems);
 		this.setState({ open: false, newItems: [], newItemsAdded: false });
 	}
