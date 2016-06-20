@@ -54,6 +54,11 @@ const styles = {
 let isOpen = false
 
 class IceboxToolbar extends Component {
+	constructor(props){
+		super(props);
+
+		this.submitFoods = this.submitFoods.bind(this);
+	}
 
 	handleSearch(event) {
 		this.props.setIceboxSearch(event.target.value);
@@ -71,6 +76,7 @@ class IceboxToolbar extends Component {
 
 
 	submitFoods(obj) {
+		this.props.addFoodItems(obj);
 		console.log('Submit foods is firing', obj);
 	}
 
