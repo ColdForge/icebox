@@ -48,15 +48,6 @@ module.exports = {
       },
       json: true
     }
-
-    // function callback(error, response, body) {
-    //   if (!error && response.statusCode == 200) {
-    //     var info = JSON.parse(body);
-    //         console.log('This is API response', info);
-    //         cb(info);
-    //       }
-    // }
-
     request(options)
       .then(function(response){
         console.log('response from getRecipeFromIngredients is : ',response);
