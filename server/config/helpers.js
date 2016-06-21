@@ -24,6 +24,7 @@ module.exports = {
 		var foodItems = req.body.foodItems;
     var itemsToAdd = [];
     var recognizedItems = [];
+    var noExpirationItems = [];
     var unrecognizedItems = [];
     var counter = 0;
     // console.log('user in changeIceboxContents is : ',user);
@@ -40,7 +41,7 @@ module.exports = {
       }
     }
 
-    var addItems = function(itemsArray) {
+    function addItems(itemsArray) {
       var promiseArray = [];
 
       function promiseItemChecker(item) {
@@ -49,14 +50,14 @@ module.exports = {
           .from('foods')
           .where('name', item)
           .then(function(resp){
-            // console.log('food item found', resp);
             if(resp.length > 0) {
-              recognizedItems.push({ name: item });
+              console.log('food item found', resp);
+              recognizedItems.push({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
               db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
                 .into('icebox_items')
                 .then(function(resp){
                   console.log('Item added to icebox', resp);
-                  resolve({ name: item });
+                  resolve({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
                 })
                 .catch(function(err){
                   console.log('Item insertion error', err);
@@ -68,11 +69,11 @@ module.exports = {
               });
               result.then(function(promiseFoodAPIResponse){
                 console.log('food item results', promiseFoodAPIResponse);
-                if(promiseFoodAPIResponse.category === "error"){
+                if(promiseFoodAPIResponse.error){
                   unrecognizedItems.push(promiseFoodAPIResponse)
                   resolve({ name: promiseFoodAPIResponse.name, error: true });
                 } else {
-                  recognizedItems.push(promiseFoodAPIResponse);
+                  noExpirationItems.push(promiseFoodAPIResponse);
                   db.insert({category: promiseFoodAPIResponse.category, name: promiseFoodAPIResponse.name, freshDuration: 10})
                     .into('foods')
                     .then(function(insertFoodsResponse){
@@ -109,7 +110,11 @@ module.exports = {
       Promise.all(promiseArray)
       .then(function(values){
         console.log('values from Promise.all are : ',values);
-        res.status(200).json({ recognizedItems: recognizedItems, unrecognizedItems: unrecognizedItems })
+        res.status(200).json({
+          recognizedItems: recognizedItems,
+          noExpirationItems: noExpirationItems,
+          unrecognizedItems: unrecognizedItems
+        })
       });
     }
 	},
