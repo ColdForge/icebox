@@ -53,7 +53,8 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, actions)(RecipeSuggestionList);
-// let SelectableList = MakeSelectable(List);
+
+//let SelectableList = MakeSelectable(List);
 
 // function wrapState(ComposedComponent) {
 //   return class SelectableList extends Component {
