@@ -320,6 +320,3 @@ FoodItemInput.propTypes = {
 };
 
 export default FoodItemInput;
-
-// title={this.renderActions()}
-// titleStyle={styles.dialogTitle}

@@ -1,4 +1,9 @@
-import { POPULATE_ICEBOX, ADD_ITEMS, REMOVE_ITEMS } from '../constants/actions';
+import {
+	POPULATE_ICEBOX,
+	ADD_ITEMS,
+	REMOVE_ITEMS,
+	CLARIFY_ITEMS,
+	} from '../constants/actions';
 import { v4 } from 'node-uuid';
 
 const applyFoodGroupIcon = (item) => {
@@ -44,15 +49,27 @@ const applyFoodGroupIcon = (item) => {
 	}
 };
 
-export default function (state = [], action) {
+const INITIAL_STATE = {
+	contents: [],
+	noExpirationItems: [],
+	noFoodGroupItems: [],
+};
+
+export default function (state = INITIAL_STATE, action) {
 	let newItems;
 	switch (action.type) {
 	case POPULATE_ICEBOX:
 		newItems = action.payload.map(item => ({ ...applyFoodGroupIcon(item), key: v4() }));
-		return [...state, ...newItems];
+		return { ...state, contents: [...state.contents, ...newItems] };
 	case ADD_ITEMS:
 		newItems = action.payload.map(item => ({ ...applyFoodGroupIcon(item), key: v4() }));
-		return [...state, ...newItems];
+		return { ...state, contents: [...state.contents, ...newItems] };
+	case CLARIFY_ITEMS:
+		return {
+			...state,
+			noExpirationItems: [...state.noExpirationItems, action.noExpirationItems],
+			noFoodGroupItems: [...state.noFoodGroupItems, action.noFoodGroupItems],
+		};
 	case REMOVE_ITEMS:
 		return state;
 	default:

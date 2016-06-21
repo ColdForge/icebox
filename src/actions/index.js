@@ -80,7 +80,11 @@ export const addIceboxItems = ({ foodItems }) => (
 			.then(response => {
 				console.log('good response from addIceboxItems is : ', response);
 				dispatch({ type: TYPES.ADD_ITEMS, payload: response.data.recognizedItems });
-				// dispatch({ type: TYPES.CLARIFY_ITEMS, payload: response.data.unrecognizedItems });
+				dispatch({
+					type: TYPES.CLARIFY_ITEMS,
+					noExpirationItems: response.data.noExpirationItems,
+					unrecognizedItems: response.data.unrecognizedItems,
+				});
 			})
 			.catch(response => {
 				console.log('bad response from addIceboxItems is : ', response);

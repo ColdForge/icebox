@@ -11,6 +11,7 @@ export const CLEAR_ICEBOX_SEARCH = "CLEAR_ICEBOX_SEARCH";
 // ActionTypes for handling icebox contents
 export const POPULATE_ICEBOX = "POPULATE_ICEBOX";
 export const ADD_ITEMS = "ADD_ITEMS";
+export const CLARIFY_ITEMS = "CLARIFY_ITEMS";
 export const REMOVE_ITEMS = "REMOVE_ITEMS";
 export const ICEBOX_ERROR = "ICEBOX_ERROR";
 // ActionTypes for handling user

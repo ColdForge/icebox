@@ -140,7 +140,7 @@ module.exports = {
         foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
       }).then(function(resp){
         console.log('Successfull call to recipe API', resp);
-        res.send(resp.slice(0,3));
+        res.send(resp);
       });
     }).catch(function(err){
       console.log('Error getting items', err);
