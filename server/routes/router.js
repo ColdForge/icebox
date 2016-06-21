@@ -20,6 +20,8 @@ router.post('/icebox/recipes', helpers.chooseRecipeSuggestion)
 router.get('/icebox/recipe_details', helpers.getRecipeDetails)
 // Get user profile information
 router.get('/profile', helpers.getUserProfile)
+// Add a new user to your icebox
+router.post('/profile', helpers.addUserToIcebox)
 
 module.exports = router;
 

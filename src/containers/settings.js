@@ -36,6 +36,8 @@ class Settings extends Component {
 
 	constructor(props){
     super(props);
+
+    this.addUser = this.addUser.bind(this);
   }
 
 	componentWillMount() {
@@ -43,7 +45,7 @@ class Settings extends Component {
 	}
 
 	addUser(email) {
-    //this.props.addUserToIcebox({email: email});
+    this.props.addUserToIcebox({ email });
     console.log({email: email, status: 'Success'});
 	}
 
@@ -58,17 +60,20 @@ class Settings extends Component {
 						<ListItem>
 							Username: {this.props.email}
 						</ListItem>
-						<ListItem>Name: {this.props.name}</ListItem>
+						<ListItem>Name: {this.props.name} </ListItem>
 					</List>
 				</div>
 				<div style={styles.house} className="settings-divs">
 					<List>
 						<Subheader>Household Users</Subheader>
-						<ListItem
-						primaryText="Colin Zarnegar"
-						leftAvatar={<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />}
-						>
-						</ListItem>
+						{this.props.household.map(person => (
+            	<ListItem
+            	key={person.name}
+							primaryText={person.name}
+							leftAvatar={<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />}
+							>
+							</ListItem>
+            ))}
 						<SettingsEntry addUser={this.addUser}/>
 					</List>
 				</div>
@@ -80,11 +85,13 @@ class Settings extends Component {
 Settings.propTypes = {
 	name: React.PropTypes.string,
 	email: React.PropTypes.string,
+	household: React.PropTypes.array,
 };
 
 const mapStateToProps = state => ({
 	name: state.profile.name,
 	email: state.profile.email,
+	household: state.profile.household,
 });
 
 export default connect(mapStateToProps, actions)(Settings);

@@ -237,10 +237,21 @@ module.exports = {
     });
 	},
 
-  getUserProfile: function(req, res){
-    console.log('Hitting db helper for profile info');
-    res.send({name: 'Mad Max', email: 'madmofo@gmail.com'});
-    //db.select('*').from('users').where('id', )
-  }
+	getUserProfile: function(req, res){
+		console.log('Hitting db helper for profile info', req.user);
+		db.select('*')
+			.from('users')
+			.where('iceboxID', req.user.iceboxID)
+			.then(function(resp){
+				console.log('Found it', resp);
+				res.send({profile: req.user, household: resp});
+			})
+		//res.send({name: 'Mad Max', email: 'madmofo@gmail.com'});
+		//db.select('*').from('users').where('id', )
+	},
+
+	addUserToIcebox: function(req, res){
+		console.log('Hitting addUser db helper with', req.body);
+	}
 
 };
