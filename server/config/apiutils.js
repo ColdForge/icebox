@@ -16,7 +16,7 @@ var RECDETAIL_QUERY = "https://spoonacular-recipe-food-nutrition-" +
 var FOODTYPE = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/"+
   "recipes/parseIngredients";
 
-const SPOONACULAR = {
+var SPOONACULAR = {
   BASE: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/",
   CLASSIFY: "food/products/classify",
   CLASSIFY_BATCH: "food/products/classifyBatch",
@@ -26,7 +26,7 @@ const SPOONACULAR = {
   RECIPE_INFORMATION_TAIL: "/information?includeNutrition=false"
 };
 
-const USDA = {
+var USDA = {
   BASE: "http://api.nal.usda.gov/ndb/reports/"
 };
 
@@ -99,7 +99,7 @@ module.exports = {
         if(!response.usdaCode){
           cb({ name: response.cleanTitle, category: "error" });
         } else {
-          let usdaCode = response.usdaCode.toString();
+          var usdaCode = response.usdaCode.toString();
           if(usdaCode.length < 5){
             usdaCode = ("0"+usdaCode).toString();
           }
