@@ -320,3 +320,4 @@ FoodItemInput.propTypes = {
 };
 
 export default FoodItemInput;
+

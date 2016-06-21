@@ -232,6 +232,12 @@ module.exports = {
       console.log('Item could not be deleted', err);
       res.send('Food item could not be deleted');
     });
-	}
+	},
+
+  getUserProfile: function(req, res){
+    console.log('Hitting db helper for profile info');
+    res.send({name: 'Mad Max', email: 'madmofo@gmail.com'});
+    //db.select('*').from('users').where('id', )
+  }
 
 };

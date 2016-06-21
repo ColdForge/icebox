@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import {List, ListItem} from 'material-ui/List';
@@ -6,6 +6,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
 import FlatButton from 'material-ui/FlatButton';
+import SvgIcon from 'material-ui/SvgIcon';
+import ICONS from '../styles/icons';
+import IconButton from 'material-ui/IconButton';
 
 const styles = {
 	profile: {
@@ -30,6 +33,14 @@ const styles = {
 
 class Settings extends Component {
 
+	constructor(props){
+    super(props);
+  }
+
+	componentWillMount() {
+	  this.props.getUserProfile();
+	}
+
 	render() {
 		return (
 			<div>
@@ -38,8 +49,10 @@ class Settings extends Component {
 						<Subheader>Profile</Subheader>
 						<img style={styles.photo} src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
 						<RaisedButton label="Change/Add Pic" primary={true} style={styles.button} />
-						<ListItem>Username: colin@gmail.com</ListItem>
-						<ListItem>Name: Colin Zarnergar</ListItem>
+						<ListItem>
+							Username: {this.props.email}
+						</ListItem>
+						<ListItem>Name: {this.props.name}</ListItem>
 					</List>
 				</div>
 				<div style={styles.house} className="settings-divs">
@@ -59,11 +72,13 @@ class Settings extends Component {
 }
 
 Settings.propTypes = {
-	profileInfo: React.PropTypes.object.isRequired,
+	name: React.PropTypes.string,
+	email: React.PropTypes.string,
 };
 
 const mapStateToProps = state => ({
-	profileInfo: state.profileInfo,
+	name: state.profile.name,
+	email: state.profile.email,
 });
 
-export default connect(mapStateToProps)(Settings);
+export default connect(mapStateToProps, actions)(Settings);
