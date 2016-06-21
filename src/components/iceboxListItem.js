@@ -32,7 +32,7 @@ const IceboxListItem = ({ name, foodGroup, iconPath, expiration }) => {
 			style={styles.ListItem.text}
 		>
 			<div className="list-item-container" data-food-group={foodGroup}>
-				<img className="food-group-icon" alt="Food Group" src={iconPath} />
+				<img className="food-group-icon" height="24" width="24" alt="Food Group" src={iconPath} />
 				<div className="item-name">
 				{name}
 				</div>

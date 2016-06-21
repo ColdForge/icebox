@@ -38,7 +38,7 @@ const itemSorter = (array, sortBy, sortOrder, searchTerm) => {
 
 
 function mapStateToProps(state) {
-	return { contents: orderIceboxItems(state.icebox, state.sortBy, state.sortOrder, state.iceboxSearch) };
+	return { contents: orderIceboxItems(state.icebox.contents, state.sortBy, state.sortOrder, state.iceboxSearch) };
 }
 
 const VisibleIceboxList = connect(mapStateToProps)(IceboxList);
