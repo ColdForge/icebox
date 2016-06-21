@@ -35,7 +35,6 @@ class FoodItemTable extends React.Component {
 	}
 
 	handleToggle = (event, toggled) => {
-		console.log('Toggled element', event.target.name);
 		this.props.discarded(event.target.name);
 		this.setState({ [event.target.name]: toggled });
 	};

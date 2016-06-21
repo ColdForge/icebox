@@ -20,6 +20,7 @@ import Signup from './containers/signup';
 import Icebox from './components/icebox';
 import Recipes from './components/recipes';
 import FoodItemInput from './components/foodItemInput';
+import Settings from './containers/settings';
 
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
@@ -49,6 +50,7 @@ ReactDOM.render(
 					<Route path="signup" component={Signup} />
 					<Route path="icebox" component={Icebox} />
           <Route path="recipes" component={Recipes} />
+          <Route path="settings" component={Settings} />
           <Route path="foodItemInput" component={FoodItemInput} />
 				</Route>
 			</Router>
