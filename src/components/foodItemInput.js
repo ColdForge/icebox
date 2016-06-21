@@ -149,9 +149,12 @@ class FoodItemInput extends Component {
 
 	// make an array out of the Speech user input
 	// map that array to the component state
-	listErrorHandling(list) {
-	// list1 takes off white space
-		const list1 = list.map(item => {
+listErrorHandling(list) {
+// list1 takes off white space
+	const list1 = list.map(item => {
+		if (item === '' || item === undefined) {
+			return;
+		} else {
 			const tempItem = item.split(' ');
 			if (item[0] === ' ') {
 				tempItem.shift();
@@ -167,16 +170,17 @@ class FoodItemInput extends Component {
 				}
 			}
 			return tempItem.join(' ');
-		});
-		for (let i = 0; i < list1.length; i++) {
-			const curr = list1[i];
-			if (curr === '' || curr === undefined) {
-				list1.splice(i, 1);
-				i--;
-			}
 		}
-		return list1;
+	});
+	for (let i = 0; i < list1.length; i++) {
+		const curr = list1[i];
+		if (curr === '' || curr === undefined) {
+			list1.splice(i, 1);
+			i--;
+		}
 	}
+	return list1;
+}
 
 	handleOpen() {
 		this.speechRecognitionInit();
