@@ -9,7 +9,9 @@ describe('VisibleIceboxList' , () => {
 
   beforeEach(() => {
     const state = {
-      icebox: DummyItems,
+      icebox: {
+        contents: DummyItems,
+      },
       sortBy: "SORT_EXPIRATION",
       sortOrder: "ASCENDING",
       iceboxSearch: "",
@@ -34,7 +36,9 @@ describe('VisibleIceboxList' , () => {
 
     it('should be able to be sorted in descending order', () => {
       let state = {
-        icebox: DummyItems,
+        icebox: {
+          contents: DummyItems,
+        },
         sortBy: "SORT_EXPIRATION",
         sortOrder: "DESCENDING",
         iceboxSearch: "",
@@ -47,7 +51,9 @@ describe('VisibleIceboxList' , () => {
 
     it('should be able to be sorted by food name', () => {
       let state = {
-        icebox: DummyItems,
+        icebox: {
+          contents: DummyItems,
+        },
         sortBy: "SORT_FOODNAME",
         sortOrder: "ASCENDING",
         iceboxSearch: "",
@@ -60,7 +66,9 @@ describe('VisibleIceboxList' , () => {
 
     it('should be able to be sorted by food group', () => {
       let state = {
-        icebox: DummyItems,
+        icebox: {
+          contents: DummyItems,
+        },
         sortBy: "SORT_FOODGROUP",
         sortOrder: "ASCENDING",
         iceboxSearch: "",
@@ -73,7 +81,9 @@ describe('VisibleIceboxList' , () => {
 
     it('should be able to be searched', () => {
       let state = {
-        icebox: DummyItems,
+        icebox: {
+          contents: DummyItems,
+        },
         sortBy: "SORT_FOODNAME",
         sortOrder: "ASCENDING",
         iceboxSearch: "lettuce",
