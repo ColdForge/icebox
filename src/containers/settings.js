@@ -9,6 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 import SvgIcon from 'material-ui/SvgIcon';
 import ICONS from '../styles/icons';
 import IconButton from 'material-ui/IconButton';
+import SettingsEntry from '../components/settingsEntry';
 
 const styles = {
 	profile: {
@@ -41,6 +42,11 @@ class Settings extends Component {
 	  this.props.getUserProfile();
 	}
 
+	addUser(email) {
+    //this.props.addUserToIcebox({email: email});
+    console.log({email: email, status: 'Success'});
+	}
+
 	render() {
 		return (
 			<div>
@@ -63,7 +69,7 @@ class Settings extends Component {
 						leftAvatar={<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />}
 						>
 						</ListItem>
-						<FlatButton label="Add User" primary={true} />
+						<SettingsEntry addUser={this.addUser}/>
 					</List>
 				</div>
 			</div>
