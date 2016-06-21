@@ -52,6 +52,22 @@ export const signoutUser = () => {
 	};
 };
 
+export const getUserProfile = () => (
+	(dispatch) => {
+		axios.get(`${API_URL}/api/profile`, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+			.then(response => {
+				console.log('Successful', response);
+				dispatch({ type: TYPES.GET_USER_PROFILE, payload: response.data });
+			})
+			.catch(response => (
+				response
+				// console.log('error in getUserProfile, response of : ', response);
+			));
+	}
+);
+
 export const setSortBy = (sort) => ({
 	type: TYPES.SET_SORT,
 	sort,

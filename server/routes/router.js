@@ -18,6 +18,8 @@ router.get('/icebox/recipes', helpers.getRecipeSuggestions)
 router.post('/icebox/recipes', helpers.chooseRecipeSuggestion)
 // Get recipe details for specific recipe
 router.get('/icebox/recipe_details', helpers.getRecipeDetails)
+// Get user profile information
+router.get('/profile', helpers.getUserProfile)
 
 module.exports = router;
 
