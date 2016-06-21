@@ -37,7 +37,7 @@ const styles = {
 	},
 };
 
-const confirmedItems = {};
+// let confirmedItems = {};
 
 class FoodItemInput extends Component {
 
@@ -49,7 +49,9 @@ class FoodItemInput extends Component {
 			recognitionStarted: false,
 			newItemsAdded: false,
 			newItems: [],
+			confirmedItems: {},
 		};
+		this.discardItems = this.discardItems.bind(this);
 		this.handleOpen = this.handleOpen.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleClose = this.handleClose.bind(this);
@@ -59,8 +61,20 @@ class FoodItemInput extends Component {
 	}
 
 	discardItems(item) {
-		confirmedItems[item] = !confirmedItems[item];
-		console.log('Discarded Items', confirmedItems);
+		console.log('item passed into discardItems is : ', item);
+		const bool = this.state.confirmedItems[item];
+		console.log('bool is : ', bool);
+		this.setState({
+			confirmedItems: {
+				...this.state.confirmedItems,
+				[item]: !bool,
+			},
+		}, () => {
+			console.log('result of this.setState in discardItems is : ', this.state);
+		});
+		// confirmedItems[item] = !confirmedItems[item];
+		// console.log('Discarded Items', confirmedItems);
+		console.log('Discarded items are : ', this.state.confirmedItems);
 	}
 
 	startSpeechRecognition() {
@@ -101,7 +115,16 @@ class FoodItemInput extends Component {
 					const tempRes = identificated.split('next');
 					// function handling edge cases goes here
 					const cleanList = this.listErrorHandling(tempRes);
-					cleanList.forEach(item => { confirmedItems[item] = true; });
+					const itemsObject = {};
+					cleanList.forEach(item => {
+						// confirmedItems[item] = true;
+						itemsObject[item] = true;
+					});
+					this.setState({
+						confirmedItems: { ...this.state.confirmedItems, ...itemsObject },
+					}, () => {
+						console.log('result of this.setState in recognition on result is : ', this.state.confirmedItems);
+					});
 					const itemsToAdd = [...this.state.newItems, ...cleanList];
 					this.setState({ newItems: itemsToAdd, newItemsAdded: true });
 					console.log('this is state.newItems: ', this.state.newItems);
@@ -189,13 +212,18 @@ class FoodItemInput extends Component {
 	}
 
 	handleClose() {
+		this.setState({ open: false, newItemsAdded: false });
+	}
+
+	handleCancel() {
 		this.setState({ open: false, newItems: [], newItemsAdded: false });
 	}
 
 	handleSubmit() {
-		confirmedItems.length = this.state.newItems.length;
-		this.props.submitFoods(confirmedItems);
-		this.setState({ open: false, newItems: [], newItemsAdded: false });
+		const submitObject = { ...this.state.confirmedItems, length: this.state.newItems.length };
+		// confirmedItems.length = this.state.newItems.length;
+		this.props.submitFoods(submitObject);
+		this.setState({ open: false, newItems: [], newItemsAdded: false, confirmedItems: {} });
 	}
 
 	renderDialogBody() {
@@ -246,7 +274,7 @@ class FoodItemInput extends Component {
 			<FlatButton
 				label="Cancel"
 				style={styles.actionButtonCancel}
-				onTouchTap={this.handleClose}
+				onTouchTap={this.handleCancel}
 			/>,
 			<FlatButton
 				label="Submit"
