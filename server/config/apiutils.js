@@ -92,7 +92,7 @@ module.exports = {
     };
 
     var matchFoodGroup = this.matchFoodGroup;
-    
+
     request(options)
       .then(function(response){
         // console.log('response in getFoodType request of : ',response);
@@ -127,10 +127,10 @@ module.exports = {
             })
             .catch(function(errUSDA){
               console.log('err in getFoodType USDA request of : ',errUSDA.message);
-              cb({ 
-                name: response.cleanTitle, 
-                foodGroup: "N/A", 
-                expiration: undefined, 
+              cb({
+                name: response.cleanTitle,
+                foodGroup: "N/A",
+                expiration: undefined,
                 error: "Unable to find food in USDA database"
               });
             })
