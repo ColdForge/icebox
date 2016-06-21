@@ -68,6 +68,22 @@ export const getUserProfile = () => (
 	}
 );
 
+export const addUserToIcebox = ({ email }) => (
+	(dispatch) => {
+		console.log('Inside of addUser in actions', email);
+		axios.post(`${API_URL}/api/profile`, { email }, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+		.then(response => {
+			console.log('Successfully added user', response);
+			dispatch({ type: TYPES.ADD_USER_ICEBOX, payload: response.data });
+		})
+		.catch(response => (
+			response
+		));
+	}
+);
+
 export const setSortBy = (sort) => ({
 	type: TYPES.SET_SORT,
 	sort,

@@ -245,6 +245,10 @@ module.exports = {
 			})
 		//res.send({name: 'Mad Max', email: 'madmofo@gmail.com'});
 		//db.select('*').from('users').where('id', )
+	},
+
+	addUserToIcebox: function(req, res){
+		console.log('Hitting addUser db helper with', req.body);
 	}
 
 };
