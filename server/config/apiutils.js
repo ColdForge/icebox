@@ -129,7 +129,7 @@ module.exports = {
               console.log('err in getFoodType USDA request of : ',errUSDA.message);
               cb({ 
                 name: response.cleanTitle, 
-                foodGroup: undefined, 
+                foodGroup: "N/A", 
                 expiration: undefined, 
                 error: "Unable to find food in USDA database"
               });
@@ -140,7 +140,7 @@ module.exports = {
         console.log('err in getFoodType request of : ',err.message);
         cb({
           name: response.cleanTitle,
-          foodGroup: undefined,
+          foodGroup: "N/A",
           expiration: undefined,
           error: "Unable to find food in Spoonacular database"
         });
