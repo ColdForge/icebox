@@ -89,6 +89,9 @@ class FoodItemInput extends Component {
 		// speechRecognitionList.addFromString(grammar, 1);
 		this.recognition.interimResults = false;
 
+		// let speechFlag = false;
+		// const speechResults = [];
+
 
 		this.recognition.onresult = (event) => {
 			for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -266,6 +269,12 @@ class FoodItemInput extends Component {
 					open={this.state.open}
 					onRequestClose={this.handleClose}
 				>
+					<div style={styles.dialogTitle}>
+						{this.renderActions()}
+					</div>
+					<br />
+					{this.renderDialogBody()}
+					<br />
 					<FoodItemTable items={this.state.newItems} discarded={this.discardItems} />
 				</Dialog>
 			</div>
