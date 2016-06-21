@@ -50,11 +50,11 @@ module.exports = {
     }
     request(options)
       .then(function(response){
-        console.log('response from getRecipeFromIngredients is : ',response);
+        console.log('API UTILS 53: response from getRecipeFromIngredients is : ',response);
         cb(response);
       })
       .catch(function(error){
-        console.log('error from getRecipeFromIngredients is : ',error);
+        console.log('API UTILS 57: error from getRecipeFromIngredients is : ',error);
       })
   },
   getRecipeDetailWithID : function (recipeID, cb) {
@@ -68,7 +68,7 @@ module.exports = {
     function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
-        console.log ("getRecipeDetail Callback: ", info);
+        console.log ("API UTILS 71: getRecipeDetail Callback: ", info);
         cb(info);
       }
     }
@@ -76,7 +76,7 @@ module.exports = {
     request(options, callback);
   },
   getFoodType : function (food, cb) {
-    console.log('API call is firing');
+    console.log('API UTILS 79: call is firing');
     var options = {
       method: 'POST',
       headers: {
@@ -116,9 +116,9 @@ module.exports = {
           };
           request(optionsUSDA)
             .then(function(responseUSDA){
-              console.log('responseUSDA in getFoodType request of : ',responseUSDA);
+              console.log('API UTILS 119: responseUSDA in getFoodType request of : ',responseUSDA);
               var foodGroup = matchFoodGroup(responseUSDA.report.food.fg);
-              console.log('foodGroup in responseUSDA is : ',foodGroup);
+              console.log('API UTILS 121: foodGroup in responseUSDA is : ',foodGroup);
               cb({
                 name: response.cleanTitle,
                 foodGroup: foodGroup,
@@ -126,7 +126,7 @@ module.exports = {
               });
             })
             .catch(function(errUSDA){
-              console.log('err in getFoodType USDA request of : ',errUSDA.message);
+              console.log('API UTILS 129: err in getFoodType USDA request of : ',errUSDA.message);
               cb({
                 name: response.cleanTitle,
                 foodGroup: "N/A",

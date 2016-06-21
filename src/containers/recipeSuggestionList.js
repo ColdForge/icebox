@@ -14,6 +14,7 @@ class RecipeSuggestionList extends Component {
 
   componentWillMount() {
     this.props.getRecipeSuggestions();
+    console.log("RSL: suggestion will mount fired")
   }
 
   handleRecipeChoice(recipe) {
