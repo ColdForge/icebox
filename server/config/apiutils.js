@@ -48,7 +48,7 @@ module.exports = {
             cb(info);
           }
     }
-    
+
     request(options, callback);
   },
   getRecipeDetailWithID : function (recipeID, cb) {
@@ -113,17 +113,31 @@ module.exports = {
               console.log('responseUSDA in getFoodType request of : ',responseUSDA);
               var foodGroup = matchFoodGroup(responseUSDA.report.food.fg);
               console.log('foodGroup in responseUSDA is : ',foodGroup);
-              cb({ name: response.cleanTitle, category: foodGroup });
+              cb({
+                name: response.cleanTitle,
+                foodGroup: foodGroup,
+                expiration: undefined
+              });
             })
             .catch(function(errUSDA){
               console.log('err in getFoodType USDA request of : ',errUSDA.message);
-              cb({ name: response.cleanTitle, category: "error" });
+              cb({ 
+                name: response.cleanTitle, 
+                foodGroup: undefined, 
+                expiration: undefined, 
+                error: "Unable to find food in USDA database"
+              });
             })
         }
       })
       .catch(function(err){
         console.log('err in getFoodType request of : ',err.message);
-        cb({ name: response.cleanTitle, category: "error" });
+        cb({
+          name: response.cleanTitle,
+          foodGroup: undefined,
+          expiration: undefined,
+          error: "Unable to find food in Spoonacular database"
+        });
       })
   },
   matchFoodGroup: function(input) {
