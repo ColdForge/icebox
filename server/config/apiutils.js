@@ -20,7 +20,7 @@ const SPOONACULAR = {
   BASE: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/",
   CLASSIFY: "food/products/classify",
   CLASSIFY_BATCH: "food/products/classifyBatch",
-  FIND_BY_INGREDIENTS: "recipes/findByIngredients?fillIngredients=true&ingredients=",
+  FIND_BY_INGREDIENTS: "recipes/findByIngredients",
   FIND_BY_INGREDIENTS_TAIL: "&limitLicense=false&number=3&ranking=1",
   RECIPE_INFORMATION: "recipes/",
   RECIPE_INFORMATION_TAIL: "/information?includeNutrition=false"
@@ -32,24 +32,39 @@ const USDA = {
 
 module.exports = {
   getRecipeFromIngredients : function (fooditems, cb) {
-    var ingredQueryString = fooditems.join('%2C');
+    var foodItemsParam = fooditems.join(',');
     var options = {
-      url : RECQUERY+ingredQueryString+RECQUERY_TAIL,
+      url : SPOONACULAR.BASE+SPOONACULAR.FIND_BY_INGREDIENTS,
       headers: {
         "X-Mashape-Key" : API_KEY.SPOONACULAR,
         "Accept" : "application/json"
-      }
+      },
+      qs: {
+        fillIngredients: "true",
+        ingredients: foodItemsParam,
+        limitLicense: "false",
+        number: "3",
+        ranking: "1"
+      },
+      json: true
     }
 
-    function callback(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        var info = JSON.parse(body);
-            console.log('This is API response', info);
-            cb(info);
-          }
-    }
+    // function callback(error, response, body) {
+    //   if (!error && response.statusCode == 200) {
+    //     var info = JSON.parse(body);
+    //         console.log('This is API response', info);
+    //         cb(info);
+    //       }
+    // }
 
-    request(options, callback);
+    request(options)
+      .then(function(response){
+        console.log('response from getRecipeFromIngredients is : ',response);
+        cb(response);
+      })
+      .catch(function(error){
+        console.log('error from getRecipeFromIngredients is : ',error);
+      })
   },
   getRecipeDetailWithID : function (recipeID, cb) {
     var options = {
