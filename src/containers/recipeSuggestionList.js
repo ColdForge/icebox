@@ -14,6 +14,7 @@ class RecipeSuggestionList extends Component {
 
   componentWillMount() {
     this.props.getRecipeSuggestions();
+    console.log("RSL: suggestion will mount fired")
   }
 
   handleRecipeChoice(recipe) {
@@ -53,7 +54,8 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, actions)(RecipeSuggestionList);
-// let SelectableList = MakeSelectable(List);
+
+//let SelectableList = MakeSelectable(List);
 
 // function wrapState(ComposedComponent) {
 //   return class SelectableList extends Component {

@@ -29,7 +29,7 @@ module.exports = {
     var counter = 0;
     // console.log('user in changeIceboxContents is : ',user);
     // console.log('items in changeIceboxContents is : ',foodItems);
-    
+
     for (var key in foodItems) {
       if(key !== "length" && foodItems[key]){
         itemsToAdd.push(key);
@@ -89,7 +89,7 @@ module.exports = {
                     .catch(function(err){
                       console.log('Insert error', err);
                     });
-                }  
+                }
               })
               .catch(function(err){
                 console.log('Error retrieving food type');
@@ -102,7 +102,7 @@ module.exports = {
           });
         });
       }
-      
+
       itemsArray.forEach(function(item, index, array){
         promiseArray.push(promiseItemChecker(item));
       });
@@ -119,7 +119,7 @@ module.exports = {
     }
 	},
   getRecipeSuggestions: function(req, res){
-    console.log('getRecipes fired in helpers, req.user is : ',req.user);
+    console.log('HELPERS 122: getRecipesSugg fired in helpers, req.user is : ',req.user);
     var icebox = req.user.iceboxID;
     var recipeCollect = [];
 
@@ -134,16 +134,19 @@ module.exports = {
           recipeCollect.push(food.name);
         }
       });
+
+        console.log('HELPERS 138: foods that are expiring ', recipeCollect)
+
     }).then(function(resp){
-      console.log('resp from select in getRecipes is : ',resp)
+      console.log('HELPERS 141: resp from select in getRecipes is : ',resp)
       var result = new Promise(function(resolve){
         foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
       }).then(function(resp){
-        console.log('Successfull call to recipe API', resp);
+        console.log('HELPERS 145: Successfull call to recipe API', resp);
         res.send(resp);
       });
     }).catch(function(err){
-      console.log('Error getting items', err);
+      console.log('HELPERS 149: Error getting items', err);
       res.send('Icebox items could not be found');
     });
 
