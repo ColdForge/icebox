@@ -208,11 +208,11 @@ class FoodItemInput extends Component {
 
 	handleOpen() {
 		this.speechRecognitionInit();
-		this.setState({ open: true, newItemsAdded: false });
+		this.setState({ open: true });
 	}
 
 	handleClose() {
-		this.setState({ open: false, newItemsAdded: false });
+		this.setState({ open: false });
 	}
 
 	handleCancel() {

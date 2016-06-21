@@ -73,8 +73,6 @@ class IceboxToolbar extends Component {
 	}
 
   // trying to call this method, which comes from props
-
-
 	submitFoods(foodItems) {
 		this.props.addIceboxItems({ foodItems });
 		console.log('Submit foods is firing', foodItems);
@@ -103,7 +101,6 @@ class IceboxToolbar extends Component {
 
 
 	render() {
-
 		return (
 			<Toolbar style={styles.toolbar} noGutter={true}>
 				<ToolbarGroup
