@@ -3,7 +3,6 @@ var foodAPI = require('./apiutils.js');
 var _each = require('lodash/forEach');
 
 module.exports = {
-
 	fetchIceboxContents: function(req, res){
 	  var user = req.body.user;
     console.log('getAllItems called in helpers');
@@ -20,98 +19,100 @@ module.exports = {
     });
 
 	},
-
-	changeIceboxContents: function(req, res){
+	changeIceboxContents: function(req, res) {
 		var user = req.user;
 		var foodItems = req.body.foodItems;
-    console.log('user in changeIceboxContents is : ',user);
-    console.log('items in changeIceboxContents is : ',foodItems);
-    
+    var itemsToAdd = [];
     var recognizedItems = [];
     var unrecognizedItems = [];
-
     var counter = 0;
+    // console.log('user in changeIceboxContents is : ',user);
+    // console.log('items in changeIceboxContents is : ',foodItems);
+    
     for (var key in foodItems) {
       if(key !== "length" && foodItems[key]){
-        recognizedItems.push(key);
+        itemsToAdd.push(key);
       }
       counter++;
       if(counter === foodItems.length){
         console.log('counter is equal to foodItems.length');
-        addItems(recognizedItems);
+        addItems(itemsToAdd);
       }
     }
 
-    console.log('recognizedItems after for var in key are : ',recognizedItems);
-    //var items = ['milk', 'eggs', 'blueberries', 'steak'];
+    var addItems = function(itemsArray) {
+      var promiseArray = [];
 
-    function addItems(itemsArray) {
-      var addedItems = [];
-      itemsArray.forEach(function(item, index, array){
-        db.select('*')
-        .from('foods')
-        .where('name', item)
-        .then(function(resp){
-          console.log('food item found', resp);
-          addedItems.push(resp);
-          if(resp.length > 0){
-            db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
-            .into('icebox_items')
-            .then(function(resp){
-              console.log('Item added to icebox', resp);
-            })
-            .catch(function(err){
-              console.log('Item insertion error', err);
-            });
-          } else {
-            console.log('Inside else statement');
-            var result = new Promise(function(resolve){
-              foodAPI.getFoodType(item, resolve);
-            })
-            .then(function(resp){
-              console.log('food item results', resp);
-              addedItems.push(resp);
-              db.insert({category: resp[0].aisle, name: resp[0].name, freshDuration: 10})
-                .into('foods')
+      function promiseItemChecker(item) {
+        return new Promise(function(resolve,reject){
+          db.select('*')
+          .from('foods')
+          .where('name', item)
+          .then(function(resp){
+            // console.log('food item found', resp);
+            if(resp.length > 0) {
+              recognizedItems.push({ name: item });
+              db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
+                .into('icebox_items')
                 .then(function(resp){
-                  console.log('Great success', resp);
-                  db.insert({foodID: resp[0], iceboxID: user.iceboxID, daysToExpire: 10})
-                    .into('icebox_items')
-                    .where('iceboxID', user.iceboxID)
-                    .then(function(resp){
-                      console.log('Added to icebox items');
-                    });
+                  console.log('Item added to icebox', resp);
+                  resolve({ name: item });
                 })
                 .catch(function(err){
-                  console.log('Insert error', err);
+                  console.log('Item insertion error', err);
+                  reject({ name: item });
                 });
-            })
-            .catch(function(err){
-              console.log('Error retrieving food type');
-              res.send('Error retrieving item');
-            });
-          }
-        })
-        .catch(function(err){
-          console.log('Could not find item in foods table', err);
+            } else {
+              var result = new Promise(function(resolver){
+                foodAPI.getFoodType(item, resolver);
+              });
+              result.then(function(promiseFoodAPIResponse){
+                console.log('food item results', promiseFoodAPIResponse);
+                if(promiseFoodAPIResponse.category === "error"){
+                  unrecognizedItems.push(promiseFoodAPIResponse)
+                  resolve({ name: promiseFoodAPIResponse.name, error: true });
+                } else {
+                  recognizedItems.push(promiseFoodAPIResponse);
+                  db.insert({category: promiseFoodAPIResponse.category, name: promiseFoodAPIResponse.name, freshDuration: 10})
+                    .into('foods')
+                    .then(function(insertFoodsResponse){
+                      console.log('Great success', insertFoodsResponse);
+                      db.insert({foodID: insertFoodsResponse[0], iceboxID: user.iceboxID, daysToExpire: 10})
+                        .into('icebox_items')
+                        .where('iceboxID', user.iceboxID)
+                        .then(function(insertIceboxItemsResponse){
+                          console.log('Added to icebox items, response: ',insertIceboxItemsResponse);
+                          resolve({ name: promiseFoodAPIResponse.name });
+                        });
+                    })
+                    .catch(function(err){
+                      console.log('Insert error', err);
+                    });
+                }  
+              })
+              .catch(function(err){
+                console.log('Error retrieving food type');
+                res.send('Error retrieving item');
+              });
+            }
+          })
+          .catch(function(err){
+            console.log('Could not find item in foods table', err);
+          });
         });
-        if(index === array.length - 1){
-          setTimeout(function(){
-            console.log('end of addItems itemsArray.forEach method');
-            console.log('addedItems is : ',addedItems);
-          },0);
-          setTimeout(function(){
-            res.send("Icebox items updated");
-          },50);
-        }
+      }
+      
+      itemsArray.forEach(function(item, index, array){
+        promiseArray.push(promiseItemChecker(item));
+      });
+
+      Promise.all(promiseArray)
+      .then(function(values){
+        console.log('values from Promise.all are : ',values);
+        res.status(200).json({ recognizedItems: recognizedItems, unrecognizedItems: unrecognizedItems })
       });
     }
-    
-    // setTimeout(function(){
-    //   res.send("setTimeout fired at end of helpers.changeIceboxContents")
-    // },2000);
 	},
-
   getRecipeSuggestions: function(req, res){
     console.log('getRecipes fired in helpers, req.user is : ',req.user);
     var icebox = req.user.iceboxID;
@@ -142,7 +143,6 @@ module.exports = {
     });
 
   },
-
   chooseRecipeSuggestion: function(req, res){
     console.log('req.body received in postRecipe is : ',req.body);
     console.log('req.data received in postRecipe is : ',req.data);
@@ -163,10 +163,7 @@ module.exports = {
         console.log('Error posting recipe', err);
       });
   },
-
-//working on this section - AY - add ability to get recipe history
-
-
+  //working on this section - AY - add ability to get recipe history
 	getPreviousRecipes: function(req, res){
 		var user = req.body.user;
 
@@ -181,7 +178,6 @@ module.exports = {
 				res.send('Previous recipes could not be found');
 			});
 	},
-
   getRecipeDetails: function(req, res){
     var user = req.body.user;
     var recipe = req.body.recipe;
@@ -196,7 +192,6 @@ module.exports = {
       res.send('Error retrieving recipe details');
     });
   },
-
 	getIceboxItem: function(req, res){
       var user = req.body.user;
       var item = req.params.food_id
@@ -216,7 +211,6 @@ module.exports = {
       });
 
 	},
-
 	deleteIceboxItem: function(req, res){
 	  var user = req.body.user;
     var item = req.params.food_id
