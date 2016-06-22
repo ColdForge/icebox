@@ -239,15 +239,24 @@ module.exports = {
 
 	getUserProfile: function(req, res){
 		console.log('Hitting db helper for profile info', req.user);
-		db.select('*')
-			.from('users')
-			.where('iceboxID', req.user.iceboxID)
-			.then(function(resp){
-				console.log('Found it', resp);
-				res.send({profile: req.user, household: resp});
-			})
-		//res.send({name: 'Mad Max', email: 'madmofo@gmail.com'});
-		//db.select('*').from('users').where('id', )
+  
+    db.select('*')
+      .from('staples')
+      .then(function(staples){
+        console.log('Staples join lookup', staples);
+        db.select('*')
+          .from('users')
+          .where('iceboxID', req.user.iceboxID)
+          .then(function(users){
+            console.log('Found it', users);
+            res.send({ profile: req.user, household: users, staples: staples });
+          })
+        })
+      .catch(function(err){
+        console.log('Error getting staples', err);
+        res.send('Staples could not be found');
+    });
+
 	},
 
 	addUserToIcebox: function(req, res){

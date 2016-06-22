@@ -10,16 +10,26 @@ import SvgIcon from 'material-ui/SvgIcon';
 import ICONS from '../styles/icons';
 import IconButton from 'material-ui/IconButton';
 import SettingsEntry from '../components/settingsEntry';
+import Remove from 'material-ui/svg-icons/content/clear';
+import Fridge from 'material-ui/svg-icons/places/kitchen';
+import Toggle from 'material-ui/Toggle';
+
 
 const styles = {
 	profile: {
 		width: 300,
-		margin: 20,
 		display: 'inline-block',
+		margin: 10,
 	},
 	house: {
 		width: 300,
 		display: 'inline-block',
+		margin: 10,
+	},
+	staples: {
+		width: 300,
+		display: 'inline-block',
+		margin: 10,
 	},
 	photo: {
 		height: 250,
@@ -71,10 +81,25 @@ class Settings extends Component {
             	key={person.name}
 							primaryText={person.name}
 							leftAvatar={<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />}
+							rightIcon={<Remove />}
 							>
 							</ListItem>
             ))}
 						<SettingsEntry addUser={this.addUser}/>
+					</List>
+				</div>
+				<div style={styles.staples} className="settings-divs">
+					<List>
+						<Subheader>Staples</Subheader>
+							{this.props.staples.map(staple => (
+	            	<ListItem
+	            	key={staple.name}
+								primaryText={staple.name}
+								leftAvatar={<Avatar src={"http://images.pier1.com/dis/dw/image/v2/AAID_PRD/on/demandware.static/-/Sites-pier1_master/default/dw3d2c7ea2/images/2824388/2824388_1.jpg?sw=1600&sh=1600"} />}
+								rightToggle={<Toggle defaultToggled={false} />}
+								>	
+								</ListItem>
+	            ))}
 					</List>
 				</div>
 			</div>
@@ -86,12 +111,14 @@ Settings.propTypes = {
 	name: React.PropTypes.string,
 	email: React.PropTypes.string,
 	household: React.PropTypes.array,
+	staples: React.PropTypes.array,
 };
 
 const mapStateToProps = state => ({
 	name: state.profile.name,
 	email: state.profile.email,
 	household: state.profile.household,
+	staples: state.profile.staples,
 });
 
 export default connect(mapStateToProps, actions)(Settings);
