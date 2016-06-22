@@ -12,10 +12,12 @@ var Auth = require('./controllers/authController');
 var schedule = require('node-schedule');
 var app = express();
 var food = require('./config/apiutils.js');
+var cors = require('cors');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../'));
+app.use(cors());
 
 // var router = require('./routes/router');
 // app.use('/api/users', router);
