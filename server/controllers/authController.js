@@ -49,35 +49,64 @@ module.exports = {
 		var user = { email: email, name: name, password: password };
 
 		if(!email || !password) {
-		  return res.status(422).send({ error: 'You must provide email and password' });
+			return res.status(422).send({ error: 'You must provide email and password' });
 		}
 
 		knex('users')
-		  .select('*')
-		  .where('email',email)
-		  .then(function(response){
-		    if(response.length > 0){
-		      return res.status(422).send({ error: 'Email is in use' });
-		    }
-		    else {
-		        knex.insert({user_email: user.email})
-		          .into('iceboxes')
-		          .then(function(resp){
-		            user['iceboxID'] = resp[0];
-		            userController.hashPassword(user).then(function(hash) {
-		              knex('users')
-		                .insert({
-		                  email: user.email,
-		                  name: user.name,
-		                  password: hash,
-		                  iceboxID: user.iceboxID
-		                }).then(function(response){
-		                  var userObj = Object.assign({ id: response[0] }, user );
-		                  res.json({ token: tokenForUser(userObj), id: response[0], name: user.name, email: user.email, iceboxID: user.iceboxID });
-		                });
-		            })
-		        });
-		    }
+			.select('*')
+			.where('email',email)
+			.then(function(response){
+				if(response.length > 0){
+					return res.status(422).send({ error: 'Email is in use' });
+				}
+				else {
+					knex('auth_users')
+						.join('iceboxes', 'auth_users.iceboxID', '=', 'iceboxes.id')
+						.select('auth_users.id', 'auth_users.iceboxID', 'iceboxes.user_email')
+						.where('auth_users.user_email', user.email)
+						.then(function(resp){
+							console.log('Auth success', resp);
+							if(resp.length > 0){
+								//[ { id: 8, iceboxID: 18, user_email: 'nate@makersquare.com' } ]
+								user['iceboxID'] = resp[0].iceboxID;
+								userController.hashPassword(user)
+									.then(function(hash){
+										knex('users')
+											.insert({
+												email: user.email,
+												name: user.name,
+												password: hash,
+												iceboxID: user.iceboxID
+											})
+											.then(function(response){
+												var userObj = Object.assign({ id: response[0]}, user);
+												res.json({ token: tokenForUser(userObj), id: response[0], name: user.name, email: user.email, iceboxID: user.iceboxID });
+											});
+								});
+							} else {
+								//all other logic
+								knex.insert({user_email: user.email})//, icebox_name: user.name + "'s Icebox"})
+				  				.into('iceboxes')
+				  				.then(function(resp){
+				    				user['iceboxID'] = resp[0];
+				    				userController.hashPassword(user)
+				    					.then(function(hash) {
+				      					knex('users')
+				        					.insert({
+				          					email: user.email,
+				          					name: user.name,
+				          					password: hash,
+				          					iceboxID: user.iceboxID
+				        					})
+				        				.then(function(response){
+				          				var userObj = Object.assign({ id: response[0] }, user );
+				          				res.json({ token: tokenForUser(userObj), id: response[0], name: user.name, email: user.email, iceboxID: user.iceboxID });
+				        				});
+				    					})
+										});
+									}
+								});
+							}
 		});
 	}
 
