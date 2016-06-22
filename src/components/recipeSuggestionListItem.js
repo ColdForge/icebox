@@ -6,7 +6,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe }) => (
 	<Card>
 		<CardHeader
 			title={recipe.title}
-			subtitle={`Used Ingredients: ${recipe.usedIngredientCount}`}
+			subtitle={`Missing Ingredients: ${recipe.missedIngredientCount}  Used Ingredients: ${recipe.usedIngredientCount}`}
 			avatar={recipe.image}
 			actAsExpander
 			showExpandableButton
