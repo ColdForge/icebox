@@ -15,7 +15,8 @@ knex.schema.hasTable('iceboxes').then(function(exists){
 	if(!exists){
 		knex.schema.createTable('iceboxes',function(icebox){
 			icebox.increments('id').primary();
-			icebox.varchar('user_email', 255);
+			icebox.varchar('owner_email', 255);
+			icebox.string('icebox_name', 255);
 			icebox.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
 		}).then(function (table) {
       console.log('Created iceboxes Table', table);
@@ -49,6 +50,20 @@ knex.schema.hasTable('users').then(function(exists){
 			user.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
 		}).then(function (table) {
       console.log('Created users Table', table);
+    });
+	}
+});
+
+knex.schema.hasTable('auth_users').then(function(exists){
+	if(!exists){
+		knex.schema.createTable('auth_users',function(auth){
+			auth.increments('id');
+			auth.varchar('user_email', 255);
+			auth.integer('iceboxID', 11).unsigned();
+			auth.foreign('iceboxID').references('id').inTable('iceboxes');  //post.integer('user_id').unsigned().references('users.id')
+			auth.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
+		}).then(function (table) {
+      console.log('Created auth_users Table', table);
     });
 	}
 });

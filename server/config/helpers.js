@@ -251,7 +251,17 @@ module.exports = {
 	},
 
 	addUserToIcebox: function(req, res){
-		console.log('Hitting addUser db helper with', req.body);
+		console.log('Hitting addUser db helper with', req.body, req.user);
+		db.insert({user_email: req.body.email, iceboxID: req.user.iceboxID})
+			.into('auth_users')
+			.then(function(resp){
+				console.log('Inserted auth_user', resp);
+				res.send(resp);
+			})
+			.catch(function(err){
+				console.log('Error adding user');
+				res.send(err);
+			})
 	}
 
 };
