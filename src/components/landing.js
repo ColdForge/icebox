@@ -1,104 +1,116 @@
 import React from 'react';
-// import { GridList, GridTile } from 'material-ui/GridList';
+import { Link } from 'react-router';
+import { StickyContainer /* Sticky */ } from 'react-sticky';
+import FlatButton from 'material-ui/FlatButton';
 
-// const styles = {
-// 	root: {
-// 		position: 'relative',
-// 		display: 'flex',
-// 		flexWrap: 'wrap',
-// 		justifyContent: 'space-around',
-// 		top: 50,
-// 	},
-// 	gridList: {
-// 		width: '60%',
-// 		height: 800,
-// 		overflowY: 'auto',
-// 		marginBottom: 24,
-// 		background: 'white',
-// 		'border-radius': 10,
-// 	},
-// };
-
-// const tilesData = [
-// 	{
-// 		img: 'images/grid-list/00-52-29-429_640.jpg',
-// 		title: 'Let\'s Get Started',
-// 		author: 'jill111',
-// 		featured: true,
-// 	},
-// 	{
-// 		img: 'images/grid-list/burger-827309_640.jpg',
-// 		title: '',
-// 		author: 'pashminu',
-// 	},
-// 	{
-// 		img: 'images/grid-list/camera-813814_640.jpg',
-// 		title: '',
-// 		author: 'Danson67',
-// 	},
-// 	{
-// 		img: 'images/grid-list/hats-829509_640.jpg',
-// 		title: 'Colin Zarnegar',
-// 		author: 'Hans',
-// 	},
-// 	{
-// 		img: 'images/grid-list/honey-823614_640.jpg',
-// 		title: 'Austin Sefton',
-// 		author: 'fancycravel',
-// 	},
-// 	{
-// 		img: 'images/grid-list/vegetables-790022_640.jpg',
-// 		title: 'Nathan Schwab',
-// 		author: 'jill111',
-// 	},
-// 	{
-// 		img: 'images/grid-list/water-plant-821293_640.jpg',
-// 		title: 'Andrew Yao',
-// 		author: 'BkrmadtyaKarki',
-// 	},
-// 	{
-// 		img: 'images/grid-list/morning-8343453_640.jpg',
-// 		title: 'Technologies Used',
-// 		author: 'fancycrave1',
-// 		featured: true,
-// 	},
-// ];
+const styles = {
+	// bar: {
+	// 	background:
+	// },
+	profileTile: {
+		flex: 2,
+	},
+	button: {
+		color: '#556270',
+		fontSize: '2em',
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		height: 100,
+		width: 400,
+	},
+};
 
 const Landing = () => (
-	<div>Landing Page</div>
-// 	<div style={styles.root}>
-// 		<GridList
-// 			cols={2}
-// 			cellHeight={200}
-// 			padding={1}
-// 			style={styles.gridList}
-// 		>
-// 		{tilesData.map((tile) => (
-// 			<GridTile
-// 				key={tile.img}
-// 				title={tile.title}
-// 				titlePosition="top"
-// 				titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.2) 70%,rgba(0,0,0,0) 100%)"
-// 				cols={tile.featured ? 2 : 1}
-// 				rows={tile.featured ? 2 : 1}
-// 			>
-// 				<img src={tile.img} role="presentation" />
-// 			</GridTile>
-// 		))}
-// 		</GridList>
-// 	</div>
+	<div>
+		<div className="landing-backdrop">
+			<div className="hero-unit bar" id="bar-top">
+				<div className="bar-top-text">
+				</div>
+			</div>
+
+			<StickyContainer topOffset={0}>
+				<div className="sticky-nav">
+					<h1 className="bar-top-title">Icebox</h1>
+					<Link to="/signup" style={styles.tile1}>
+						<FlatButton
+							className="dev-button"
+							style={styles.button}
+						>
+						Signup
+						</FlatButton>
+					</Link>
+				</div>
+			</StickyContainer>
+
+			<div className="hero-unit bar" id="bar-second">
+				<h1 className="bar-second-title"></h1>
+			</div>
+
+			<StickyContainer>
+				<div className="hero-unit bar" id="bar-third">
+					<h1 className="bar-third-title">Team ColdForge</h1>
+					<div className="profile-container">
+						<div className="profile" id="colin">
+							<h3 className="profile-name">Colin Zarnegar</h3>
+							<img
+								className="profile-img"
+								src={'../../assets/landing/profiles/colin.png'}
+								role="presentation"
+								height={100}
+							/>
+							<div className="profile-text">Product Manager</div>
+						</div>
+						<div className="profile" id="austin">
+							<h3 className="profile-name">Austin Sefton</h3>
+							<img
+								className="profile-img"
+								src={'../../assets/landing/profiles/austin.jpeg'}
+								role="presentation"
+								height={100}
+							/>
+							<div className="profile-text">Product Manager</div>
+						</div>
+						<div className="profile" id="nate">
+							<h3 className="profile-name">Nathaniel Schwab</h3>
+							<img
+								className="profile-img"
+								src={'../../assets/landing/profiles/nate.jpeg'}
+								role="presentation"
+								height={100}
+							/>
+							<div className="profile-text">Scrum Master</div>
+						</div>
+						<div className="profile" id="and">
+							<h3 className="profile-name">Andrew J Yao</h3>
+							<img
+								className="profile-img"
+								src={'../../assets/landing/profiles/andy.jpeg'}
+								role="presentation"
+								height={100}
+							/>
+							<div className="profile-text">Product Manager</div>
+						</div>
+					</div>
+				</div>
+			</StickyContainer>
+
+			<div className="hero-unit bar" id="bar-fourth">
+				<h1 className="bar-third-title">Technologies</h1>
+				<div className="container tech-container">
+					<img className="tech" id="react" src={"../../assets/landing/technologies/react.png"} role="presentation" />
+					<img className="tech" id="redux" src={"../../assets/landing/technologies/redux.png"} role="presentation" />
+					<img className="tech" id="node" src={"../../assets/landing/technologies/node.png"} role="presentation" />
+					<img className="tech" id="mysql" src={"../../assets/landing/technologies/mysql.png"} role="presentation" />
+					<img className="tech" id="html5" src={"../../assets/landing/technologies/html5.png"} role="presentation" />
+					<img className="tech" id="css3" src={"../../assets/landing/technologies/css3.png"} role="presentation" />
+				</div>
+			</div>
+
+			<div className="hero-unit bar" id="bar-last">
+			</div>
+
+		</div>
+	</div>
 );
 
 export default Landing;
-
-// <div className="landing-div">
-// 		<div className="container">
-// 			<div className="row">
-// 				<div className="col-lg-12">
-// 					<div className="landing-message">
-// 						<h1 className="landing-title">Landing Page</h1>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	</div>
