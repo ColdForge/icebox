@@ -187,11 +187,11 @@ module.exports = {
 			});
 	},
   getRecipeDetails: function(req, res){
-    var user = req.body.user;
-    var recipe = req.body.recipe;
-
+    var user = req.user;
+    var recipe = req.headers.getid;
+    console.log("Helpers, req.headers: ", req.headers)
     var result = new Promise(function(resolve){
-      foodAPI.getRecipeDetailWithID(recipe.id, resolve);
+      foodAPI.getRecipeDetailWithID(recipe, resolve);
     }).then(function(resp){
       console.log('Recipe ID call successful', resp);
       res.send(resp);
@@ -239,7 +239,7 @@ module.exports = {
 
 	getUserProfile: function(req, res){
 		console.log('Hitting db helper for profile info', req.user);
-  
+
     db.select('*')
       .from('staple_items')
       .innerJoin('staples', 'staple_items.stapleID', 'staples.id')

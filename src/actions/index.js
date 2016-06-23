@@ -187,6 +187,23 @@ export const chooseRecipe = ({ recipe }) => (
 	}
 );
 
+export const showRecipeDetails = (recipeId) => (
+
+	(dispatch) => {
+		console.log('actions, showRecDetail params: ', recipeId);
+		axios.get(`${API_URL}/api/icebox/recipe_details`, {
+			headers: { authorization: localStorage.getItem('token'), getId: recipeId },
+		})
+			.then(response => {
+				console.log('Actions, showRecipeDetails resp', response);
+				dispatch({ type: TYPES.GET_RECIPE_DETAIL, payload: response.data });
+			})
+				.catch(response => (
+					response
+				));
+	}
+);
+
 export const clearRecipe = () => ({
 	type: TYPES.CLEAR_CHOSEN_RECIPE,
 });

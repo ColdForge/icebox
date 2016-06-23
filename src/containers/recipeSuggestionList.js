@@ -26,6 +26,12 @@ class RecipeSuggestionList extends Component {
     }
   }
 
+  handleRecipeDetails(recipe) {
+    console.log("handleDetails fired with :", recipe);
+    this.props.showRecipeDetails(recipe);
+
+  }
+
   render() {
     return (
       <div>
@@ -35,6 +41,7 @@ class RecipeSuggestionList extends Component {
               key={suggestion.key}
               recipe={suggestion}
               chooseRecipe={this.handleRecipeChoice.bind(this,suggestion)}
+              getRecipeDetails={this.handleRecipeDetails.bind(this, suggestion.id)}
             />
           ))}
         </List>
