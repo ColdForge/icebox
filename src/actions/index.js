@@ -84,6 +84,22 @@ export const addUserToIcebox = ({ email }) => (
 	}
 );
 
+export const updateUserStaples = (staples) => (
+	(dispatch) => {
+		console.log('Inside of updateUserStaples in actions', staples);
+		axios.post(`${API_URL}/api/profile/staples`, staples, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+		.then(response => {
+			console.log('Successfully added user', response);
+			dispatch({ type: TYPES.UPDATE_USER_STAPLES, payload: response.data });
+		})
+		.catch(response => (
+			response
+		));
+	}
+);
+
 export const setSortBy = (sort) => ({
 	type: TYPES.SET_SORT,
 	sort,

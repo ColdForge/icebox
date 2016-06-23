@@ -123,6 +123,7 @@ knex.schema.hasTable('staple_items').then(function(exists){
 			item.foreign('stapleID').references('id').inTable('staples');
 			item.integer('iceboxID', 11).unsigned();
 			item.foreign('iceboxID').references('id').inTable('iceboxes');
+			item.boolean('status');
 			item.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
 		}).then(function (table) {
       console.log('Created staple_items Table', table);

@@ -61,17 +61,6 @@ var j = schedule.scheduleJob(rule, function(){
     });
 });
 
-db.select('*')
-.from('staple_items')
-.where('iceboxID', 18)
-.innerJoin('staples', 'staple_items.stapleID', 'staples.id')
-.then(function(resp){
-  console.log('Staples join lookup', resp);
-  
-}).catch(function(err){
-  console.log('Error getting staples', err);
-  //res.send('Staples could not be found');
-});
 
 var port = process.env.PORT || 8080;
 var server = require('http').createServer(app);

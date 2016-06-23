@@ -26,3 +26,4 @@ export const CLEAR_CHOSEN_RECIPE = "CLEAR_CHOSEN_RECIPE";
 // ActionTypes for handling Settings
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const ADD_USER_ICEBOX = "ADD_USER_ICEBOX";
+export const UPDATE_USER_STAPLES = "UPDATE_USER_STAPLES";

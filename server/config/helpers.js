@@ -241,7 +241,9 @@ module.exports = {
 		console.log('Hitting db helper for profile info', req.user);
   
     db.select('*')
-      .from('staples')
+      .from('staple_items')
+      .innerJoin('staples', 'staple_items.stapleID', 'staples.id')
+      .where('staple_items.iceboxID', req.user.iceboxID)
       .then(function(staples){
         console.log('Staples join lookup', staples);
         db.select('*')
@@ -271,6 +273,39 @@ module.exports = {
 				console.log('Error adding user');
 				res.send(err);
 			})
-	}
+	},
+
+  updateUserStaples: function(req, res){
+    console.log('Hitting updateUsersStaples on db:', req.body);
+    var staplesObj = req.body;
+
+    db.select('*')
+      .from('staple_items')
+      .where('iceboxID', req.user.iceboxID)
+      .then(function(resp){
+        if(resp.length > 0){
+          for(var key in staplesObj){
+            db('staple_items')
+            .where('iceboxID', req.user.iceboxID)
+            .andWhere('stapleID', key)
+            .update({
+              status: staplesObj[key],
+            }).then(function(resp){console.log('updated', resp);})
+          }
+          res.send('Staples updated successfully');
+        } else {
+          for(var prop in staplesObj){
+            db.insert({stapleID: prop, iceboxID: req.user.iceboxID, status: staplesObj[prop]})
+              .into('staple_items')
+              .where('iceboxID', req.user.iceboxID)
+              .then(function(resp){console.log('added', resp);})
+          }
+          res.send('Staples added successfully');
+        }
+      })
+      .catch(function(err){
+        console.log('Error adding staples', err);
+      })
+  }
 
 };
