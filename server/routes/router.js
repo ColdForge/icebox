@@ -18,6 +18,8 @@ router.get('/icebox/recipes', helpers.getRecipeSuggestions)
 router.post('/icebox/recipes', helpers.chooseRecipeSuggestion)
 // Get recipe details for specific recipe
 router.get('/icebox/recipe_details', helpers.getRecipeDetails)
+//Post to a user's staple_items
+router.post('/profile/staples', helpers.updateUserStaples)
 // Get user profile information
 router.get('/profile', helpers.getUserProfile)
 // Add a new user to your icebox
