@@ -158,9 +158,9 @@ module.exports = {
     var user = req.user;
     var recipe = req.body.recipe;
 
-    db.insert({ iceboxID: user.iceboxID, recipeID: recipe.id, title: recipe.title,
-      pic_url: recipe.pic_url, ingredients_used: recipe.ingredients_used,
-      ingredients_missing: recipe.ingredients_missing})
+    db.insert({ userID: user.id, title: recipe.title,
+      pic_url: recipe.image, ingredients_used: recipe.usedIngredientCount,
+      ingredients_missing: recipe.missedIngredientCount, recipeID: recipe.id})
       .into('recipes')
       .where('userID', user.id)
       .then(function(resp){
