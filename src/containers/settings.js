@@ -83,11 +83,12 @@ class Settings extends Component {
 		if(!this.state.confirmedStaples){
   		const stapleObj = {};
   		this.props.staples.forEach(staple => {
-      	stapleObj[staple.stapleID] = false;
+      	stapleObj[staple.stapleID] = !!staple.status;
       });
   		this.setState({
   			confirmedStaples: { ...this.state.confirmedStaples, ...stapleObj },
   		});
+  		console.log('staples on render', this.state.confirmedStaples);
 		}
 	}
 
