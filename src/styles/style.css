@@ -245,3 +245,177 @@ form .text-field-input div label {
   background-color: white;
 }
 
+/* Landing Page Styling */
+
+.bar {
+  width: 80%;
+  height: 175px;
+  padding: 10px;
+  margin: auto;
+  background: #273561;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.dev-button {
+  float: right;
+}
+
+#bar-top {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  top: -35px;
+  margin: auto;
+  background-color: #060F2F;
+  background-size: unset;
+  background-repeat: no-repeat;
+  background-position: right;
+  z-index: 10;
+}
+
+.bar-top-text {
+  width: auto;
+  margin-left: 5%;
+  margin-top: 50px;
+}
+
+.sticky-nav {
+  position: fixed;
+  background-color: #060F2F;
+  top: 0px;
+  width: 100%;
+  height: 100px;
+  z-index: 10;
+}
+
+.bar-top-title {
+  color: white;
+  position: fixed;
+  margin-left: 35px;
+  float: left;
+  font-size: 75px;
+  z-index: 100;
+}
+
+.bar-top-body {
+  position: absolute;
+  float: left;
+  /*background-color: green;*/
+}
+
+#bar-second {
+  height: 750px;
+  background: transparent;
+  width: 100%;
+  margin: 0px;
+  -moz-box-shadow: 0 0 0px black;
+  -webkit-box-shadow: 0 0 0px black;
+  box-shadow: 0 0 0px black;
+}
+
+.bar-second-title {
+  float: left;
+  font-size: 75px;
+  margin-left: 5%;
+}
+
+.bar-second-title {
+  margin-left: 25px;
+}
+
+#bar-third {
+  height: 600px;
+  width: 100%;
+  margin-top: 35px;
+}
+
+.profile-container {
+  width: auto;
+  position: relative;
+}
+
+.profile {
+  color: #060F2F;
+  display: inline-block;
+  margin: 36px;
+  background: #8B94AF;
+  height: 200px;
+  width: 200px;
+  border-radius: 3px;
+}
+
+.profile-name {
+
+}
+
+#colin {
+
+}
+
+#austin {
+
+}
+
+#nate {
+
+}
+
+#andy {
+
+}
+
+#bar-fourth {
+  background: #060F2F;
+  height: 550px;
+  width: 100%;
+  margin-top: 35px;
+}
+
+#bar-last {
+  background: transparent;
+  height: 100px;
+}
+
+.ice-img {
+  position: relative;
+  top: 0px;
+  z-index: -10;
+}
+
+/* technologies used */
+
+.tech-container {
+  width: 100%;
+  border: white;
+}
+
+#react {
+  height: 250px;
+  margin: -20px;
+}
+
+#node {
+  height: 100px;
+}
+
+#mysql {
+  height: 100px;
+}
+
+.tech {
+  height: 150px;
+  margin: 30px;
+}
+
+.landing-backdrop {
+  background: #E6E8EE;
+  /*background: url('../../assets/landing/ice-01.jpg');
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-position:center;*/
+  width: 100%;
+  height: auto;
+}
+
