@@ -27,4 +27,5 @@ export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
 // ActionTypes for handling Settings
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const ADD_USER_ICEBOX = "ADD_USER_ICEBOX";
+export const REMOVE_USER_ICEBOX = "REMOVE_USER_ICEBOX";
 export const UPDATE_USER_STAPLES = "UPDATE_USER_STAPLES";

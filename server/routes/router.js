@@ -23,7 +23,10 @@ router.post('/profile/staples', helpers.updateUserStaples)
 // Get user profile information
 router.get('/profile', helpers.getUserProfile)
 // Add a new user to your icebox
-router.post('/profile', helpers.addUserToIcebox)
+router.post('/profile/add', helpers.addUserToIcebox)
+// Remove user from your icebox
+router.post('/profile/remove', helpers.removeUserFromIcebox)
+
 
 module.exports = router;
 
