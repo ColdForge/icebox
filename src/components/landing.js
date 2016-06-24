@@ -6,12 +6,12 @@ import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
 	tile1: {
-		backgroundColor: 'white',
+		float: 'right',
 		zIndex: 1000,
 	},
 	textWhite: {
 		fontSize: 65,
-		color: '#1A3C1C',
+		color: 'white',
 	},
 	barTop: {
 		background: 'transparent',
@@ -30,56 +30,55 @@ const styles = {
 		flex: 2,
 	},
 	button: {
-		color: '#556270',
+		float: 'right',
+		background: '#293C2A',
+		top: 0,
+		color: 'white',
 		fontSize: '2em',
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		height: 100,
+		height: 90,
 		width: 400,
+		zIndex: 1000
 	},
 	landingBackdrop: {
-		'background-image': '../../assets/background.jpeg',
+		'backgroundImage': "url('../../assets/background.jpeg')",
 	},
 };
 
 const Landing = () => (
-	<div>
-		<Link to="/signup" style={styles.tile1}>
-			<FlatButton
-				className="dev-button"
-				style={styles.button}
-				onTouchTap={() => { console.log('signup button pressed'); }}
-			>
-			Signup
-			</FlatButton>
-		</Link>
-		<Link to="/signin" style={styles.tile1}>
-			<FlatButton
-				className="dev-button"
-				style={styles.button}
-			>
-			Signin
-			</FlatButton>
-		</Link>
-		<div className="background-image"></div>
-		<div className="landing-backdrop">
+
+	<div className="in-the-way">
+	<Link to="/signup" style={styles.tile1}>
+		<FlatButton
+			className="dev-button"
+			style={styles.button}
+			onTouchTap={() => { console.log('signup button pressed'); }}
+		>
+		Signup
+		</FlatButton>
+	</Link>
+	<Link to="/signin" style={styles.tile1}>
+		<FlatButton
+			className="dev-button"
+			style={styles.button}
+		>
+		Signin
+		</FlatButton>
+	</Link>
+		<div className="landing-backdrop" style={styles.landingBackdrop}>
 			<div className="hero-unit bar" id="bar-top" style={styles.barTop}>
 				<div className="bar-top-text">
 				</div>
 			</div>
-
-			<StickyContainer topOffset={0}>
 				<div className="sticky-nav navbar navbar-default navbar-fixed-top affix-top" style={styles.navbar}>
 					<h1 className="bar-top-title">Icebox</h1>
-
 				</div>
-			</StickyContainer>
 
 			<div className="hero-unit bar" id="bar-second">
 				<h1 className="bar-second-title"></h1>
 			</div>
 
-			<StickyContainer>
 				<div className="hero-unit bar" id="bar-third" style={styles.barProfile}>
 					<h1 className="bar-third-title" style={styles.textWhite}>Team ColdForge</h1>
 					<div className="profile-container">
@@ -125,7 +124,6 @@ const Landing = () => (
 						</div>
 					</div>
 				</div>
-			</StickyContainer>
 
 			<div className="hero-unit bar" id="bar-fourth" style={styles.barTech}>
 				<h1 className="bar-third-title">Technologies</h1>

@@ -322,9 +322,6 @@ form .text-field-input div label {
   background: transparent;
   width: 100%;
   margin: 0px;
-  -moz-box-shadow: 0 0 0px black;
-  -webkit-box-shadow: 0 0 0px black;
-  box-shadow: 0 0 0px black;
 }
 
 .bar-second-title {
