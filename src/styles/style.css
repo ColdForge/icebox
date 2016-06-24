@@ -283,7 +283,7 @@ form .text-field-input div label {
 
 .sticky-nav {
   position: fixed;
-  background-color: #060F2F;
+  background: #060F2F;
   top: 0px;
   width: 100%;
   height: 100px;
@@ -326,7 +326,7 @@ form .text-field-input div label {
 }
 
 #bar-third {
-  height: 600px;
+  height: 700px;
   width: 100%;
   margin-top: 35px;
 }
@@ -337,10 +337,10 @@ form .text-field-input div label {
 }
 
 .profile {
-  color: #060F2F;
+  color: white;
   display: inline-block;
   margin: 36px;
-  background: #8B94AF;
+  background: #927F6F;
   height: 200px;
   width: 200px;
   border-radius: 3px;
@@ -368,7 +368,7 @@ form .text-field-input div label {
 
 #bar-fourth {
   background: #060F2F;
-  height: 550px;
+  height: 650px;
   width: 100%;
   margin-top: 35px;
 }
@@ -410,12 +410,29 @@ form .text-field-input div label {
 }
 
 .landing-backdrop {
-  background: #E6E8EE;
-  /*background: url('../../assets/landing/ice-01.jpg');
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;*/
+  position: relative;
+  background: transparent;
+  /*background-repeat: repeat;*/
+/*  background-size: contain;
+  background-position: center;*/
+  /*-webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);*/
   width: 100%;
-  height: auto;
+  height: 100%;
+  z-index: -5;
+}
+
+.background-image {
+  position: relative;
+  background: url('../../assets/background.jpeg');
+  background-repeat: repeat;
+  background-size:contain;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
 }
 
