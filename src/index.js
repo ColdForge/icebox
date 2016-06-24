@@ -13,6 +13,7 @@ import {
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import Main from './components/main';
 import App from './components/app';
 import Landing from './components/landing';
 import Signin from './containers/signin';
@@ -44,14 +45,16 @@ ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
 		<Provider className="container" store={store}>
 			<Router history={browserHistory}>
-				<Route path="/" component={App}>
+				<Route path="/" component={Main}>
 					<IndexRoute component={Landing} />
-					<Route path="signin" component={Signin} />
-					<Route path="signup" component={Signup} />
-					<Route path="icebox" component={Icebox} />
-          <Route path="recipes" component={Recipes} />
-          <Route path="settings" component={Settings} />
-          <Route path="foodItemInput" component={FoodItemInput} />
+					<Route component={App}>
+						<Route path="signin" component={Signin} />
+						<Route path="signup" component={Signup} />
+						<Route path="icebox" component={Icebox} />
+	          <Route path="recipes" component={Recipes} />
+	          <Route path="settings" component={Settings} />
+	          <Route path="foodItemInput" component={FoodItemInput} />
+					</Route>
 				</Route>
 			</Router>
 		</Provider>
