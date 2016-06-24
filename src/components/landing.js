@@ -5,6 +5,10 @@ import FlatButton from 'material-ui/FlatButton';
 // import { Parallax, Background } from 'react-parallax';
 
 const styles = {
+	tile1: {
+    backgroundColor: 'white',
+    zIndex: 1000,
+	},
 	textWhite: {
 		fontSize: 65,
 		color: '#1A3C1C',

@@ -266,6 +266,7 @@ form .text-field-input div label {
   color: white;
   border-radius: 4px;
   text-align: center;
+  z-index: 100;
 }
 
 .dev-button {
@@ -425,24 +426,25 @@ form .text-field-input div label {
   /*background-repeat: repeat;*/
 /*  background-size: contain;
   background-position: center;*/
-  /*-webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);*/
   width: 100%;
   height: 100%;
   z-index: -5;
 }
 
 .background-image {
-  position: relative;
+  /*position: fixed;*/
+  top;
   background: url('../../assets/background.jpeg');
   background-repeat: repeat;
-  background-size:contain;
   background-position: center;
+  background-repeat: repeat;
+/*  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);*/
   width: 100%;
   height: 100%;
-  z-index: 500;
+  z-index: -500;
 }
 
