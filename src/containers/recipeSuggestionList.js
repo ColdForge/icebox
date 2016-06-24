@@ -17,11 +17,11 @@ class RecipeSuggestionList extends Component {
     console.log("RSL: suggestion will mount fired")
   }
 
-  componentDidUpdate() {
-  //  if(!this.props.recipeDetail){
-    //  console.log(this.props.recipeDetail)
+  componentWillReceiveProps() {
+    if(this.props.recipeDetail){
+      console.log(this.props.recipeDetail)
       //window.open(this.props.recipeDetail)
-    //}
+    }
   }
 
   handleRecipeChoice(recipe) {
@@ -35,7 +35,7 @@ class RecipeSuggestionList extends Component {
 
   handleRecipeDetails(recipe) {
     console.log("handleDetails fired with :", recipe);
-    this.props.showRecipeDetails(recipe);
+    this.props.showRecipeDetails(recipe.id);
 
   }
 
@@ -48,7 +48,7 @@ class RecipeSuggestionList extends Component {
               key={suggestion.key}
               recipe={suggestion}
               chooseRecipe={this.handleRecipeChoice.bind(this,suggestion)}
-              getRecipeDetails={this.handleRecipeDetails.bind(this, suggestion.id)}
+              getRecipeDetails={this.handleRecipeDetails.bind(this, suggestion)}
               recipeLocation={this.props.recipeDetail}
             />
           ))}
