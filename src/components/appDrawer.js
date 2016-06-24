@@ -14,25 +14,34 @@ const styles = {
 		alignItems: 'stretch',
 	},
 	profileTile: {
+		backgroundColor: '#A1B38E',
 		flex: 2,
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	profileImg: {
+		height: 300,
+		width: 300,
+		borderRadius: 20,
 	},
 	tile1: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#C7EDE8',
+		backgroundColor: '#EEB87C',
 	},
 	tile2: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#A7DBD8',
+		backgroundColor: '#A53934',
 	},
 	tile3: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#69D2E7',
+		backgroundColor: '#A1B38E',
 	},
 	button: {
-		color: '#556270',
+		color: 'white',
 		fontSize: '2em',
 		height: '100%',
 		width: '100%',
@@ -49,11 +58,13 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 		onRequestChange={() => updateDrawer()}
 	>
 		<div style={styles.container}>
-			<img
-				style={styles.profileTile}
-				alt="Profile"
-				src={'https://avatars2.githubusercontent.com/u/16884524?v=3&s=460'}
-			/>
+			<div style={styles.profileTile}>
+				<img
+					style={styles.profileImg}
+					alt="Profile"
+					src={'https://avatars2.githubusercontent.com/u/16884524?v=3&s=460'}
+				/>
+			</div>
 			<Link to="/icebox" style={styles.tile1}>
 				<FlatButton
 					style={styles.button}
