@@ -6,8 +6,8 @@ import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
 	tile1: {
-    backgroundColor: 'white',
-    zIndex: 1000,
+		backgroundColor: 'white',
+		zIndex: 1000,
 	},
 	textWhite: {
 		fontSize: 65,
@@ -48,6 +48,7 @@ const Landing = () => (
 			<FlatButton
 				className="dev-button"
 				style={styles.button}
+				onTouchTap={() => { console.log('signup button pressed'); }}
 			>
 			Signup
 			</FlatButton>
