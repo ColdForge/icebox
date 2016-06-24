@@ -1,13 +1,12 @@
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
-
 import throttle from 'lodash/throttle';
 import reducers from '../reducers';
 import { loadState, saveState } from './localStorage';
 import { AUTHORIZE_USER } from '../constants/actions';
-
 import DUMMY_ICEBOX from '../data/dummyFoodList';
 import DUMMY_PAST_SUGGESTIONS from '../data/dummyRecipeList';
+import { browserHistory } from 'react-router';
 
 const configureStore = (testMode,state) => {
 	const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -25,6 +24,7 @@ const configureStore = (testMode,state) => {
     store = createStoreWithMiddleware(reducers,persistedState, window.devToolsExtension ? window.devToolsExtension() : f => f);
     if(token) {
       store.dispatch({ type: AUTHORIZE_USER });
+      browserHistory.push('/icebox');
     }
 
     store.subscribe(throttle(() => {
