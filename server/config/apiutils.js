@@ -97,7 +97,7 @@ module.exports = {
       .then(function(response){
         // console.log('response in getFoodType request of : ',response);
         if(!response.usdaCode){
-          cb({ name: response.cleanTitle, category: "error" });
+          cb({ name: response.cleanTitle, category: "N/A", error: true });
         } else {
           var usdaCode = response.usdaCode.toString();
           if(usdaCode.length < 5){
