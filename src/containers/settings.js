@@ -18,15 +18,16 @@ import ChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import Message from 'material-ui/svg-icons/communication/message';
 import Dinner from 'material-ui/svg-icons/maps/local-dining';
 import SettingsConfirm from '../components/settingsConfirm';
+import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 
 const styles = {
 	profile: {
-		width: 300,
+		width: 350,
 		display: 'inline-block',
 		margin: 5,
 	},
 	house: {
-		width: 400,
+		width: 350,
 		display: 'inline-block',
 		margin: 5,
 	},
@@ -75,7 +76,6 @@ class Settings extends Component {
 	addUser(email) {
     this.props.addUserToIcebox({ email });
     console.log({email: email, status: 'Success'});
-    this.setState({ confirm: "Successfully invited user", alertOpen: true });
 	}
 
 	removeUser(user, i) {
@@ -125,60 +125,78 @@ class Settings extends Component {
 
 		return (
 			<div>
+
 				<div style={styles.profile} className="settings-divs">
 					<List>
 						<Subheader>Profile</Subheader>
-						<img style={styles.photo} src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
-						<FlatButton label="Change/Add Pic" primary={true} style={styles.button} />
+							<img style={styles.photo} src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
+							<FlatButton label="Change/Add Pic" primary={true} style={styles.button} />
 						<ListItem>
-							Username: {this.props.email}
+							<h4>Username: {this.props.email}</h4>
 						</ListItem>
-						<ListItem>Name: {this.props.name} </ListItem>
 						<ListItem>
-              <div>
-                <Dialog
-                  actions={<FlatButton label="OK" primary={true} onTouchTap={this.messageToggle} />}
-                  modal={false}
-                  open={this.state.alertOpen}
-                  onRequestClose={this.messageToggle}
-                >
-                <Message />
-                <h3>{this.state.confirm}</h3>
-                </Dialog>
-              </div>
+							<h4>Name: {this.props.name} </h4>
+						</ListItem>
+						<ListItem>
+							<div>
+								<Dialog
+									actions={<FlatButton label="OK" primary={true} onTouchTap={this.messageToggle} />}
+									modal={false}
+									open={this.state.alertOpen}
+									onRequestClose={this.messageToggle}
+								>
+									<Message />
+									<h3>{this.state.confirm}</h3>
+								</Dialog>
+							</div>
 						</ListItem>
 					</List>
 				</div>
+
 				<div style={styles.house} className="settings-divs">
 					<List>
 						<Subheader>Household Users</Subheader>
-						{this.props.household.map((person, i) => (
-            	<ListItem
-            	key={i}
-							leftAvatar={<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />}
-							>
-							<h4>{person.name}</h4>
-							<SettingsConfirm className="houseItem" user={person} index={i} confirmSubmit={this.removeUser} />
-							</ListItem>
-            ))}
+						<Table>
+							<TableBody displayRowCheckbox={false} >
+								{this.props.household.map((person, i) => (
+									<TableRow key={i} >
+										<TableRowColumn>
+											<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />
+										</TableRowColumn>
+										<TableRowColumn>
+											<h4>{person.name}</h4>
+										</TableRowColumn>
+										<TableRowColumn>
+											<SettingsConfirm className="houseItem" user={person} index={i} confirmSubmit={this.removeUser} />
+										</TableRowColumn>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
 						<SettingsEntry addUser={this.addUser}/>
 					</List>
 				</div>
+
 				<div style={styles.staples} className="settings-divs">
 					<List>
 						<Subheader>Staples</Subheader>
-							{this.props.staples.map(staple => (
-	            	<ListItem
-	            	key={staple.id}
-								primaryText={staple.name}
-								leftIcon={<Dinner />}
-								rightToggle={<Toggle defaultToggled={!!staple.status} onToggle={this.handleToggle} name={staple.id} />}
-								>	
-								</ListItem>
-	            ))}
-	            <FlatButton label="Update" primary={true} style={styles.button} onClick={this.updateStaples} />
+						<Table>
+							<TableBody displayRowCheckbox={false} >
+								{this.props.staples.map(staple => (
+									<TableRow key={staple.id} >
+									<TableRowColumn><Dinner /></TableRowColumn>
+									<TableRowColumn>{staple.name}</TableRowColumn>
+									<TableRowColumn>
+										<Toggle defaultToggled={!!staple.status} onToggle={this.handleToggle} name={staple.id} />
+									</TableRowColumn>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+						<FlatButton label="Update" primary={true} style={styles.button} onClick={this.updateStaples} />
 					</List>
 				</div>
+
 			</div>
 		);
 	}

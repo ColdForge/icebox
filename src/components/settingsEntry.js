@@ -55,7 +55,7 @@ class SettingsEntry extends Component {
 
 		return (
 			<div>
-				<FlatButton label="Add User" primary onTouchTap={this.handleOpen} />
+				<FlatButton label="Invite User" primary onTouchTap={this.handleOpen} />
 				<Dialog
 					title="Add a Household User"
 					actions={actions}
