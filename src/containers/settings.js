@@ -17,6 +17,7 @@ import Dialog from 'material-ui/Dialog';
 import ChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import Message from 'material-ui/svg-icons/communication/message';
 import Dinner from 'material-ui/svg-icons/maps/local-dining';
+import SettingsConfirm from '../components/settingsConfirm';
 
 const styles = {
 	profile: {
@@ -25,7 +26,7 @@ const styles = {
 		margin: 5,
 	},
 	house: {
-		width: 300,
+		width: 400,
 		display: 'inline-block',
 		margin: 5,
 	},
@@ -43,6 +44,9 @@ const styles = {
 	},
 	alert: {
 		width: 300
+	},
+	houseItem: {
+		display: 'inline-block',
 	},
   
 };
@@ -75,12 +79,12 @@ class Settings extends Component {
 	}
 
 	removeUser(user, i) {
+		console.log('remove firing', user, i);
 		if(user.name === this.props.name){
       this.setState({ confirm: "Can't remove yourself!!!", alertOpen: true });
 		} else {
 	    console.log('User being removed', user, i);
 			this.props.removeUserFromIcebox({ user });
-	    this.setState({ confirm: "Successfully removed user", alertOpen: true });
 		}
 	}
 
@@ -132,7 +136,6 @@ class Settings extends Component {
 						<ListItem>Name: {this.props.name} </ListItem>
 						<ListItem>
               <div>
-                <IconButton onTouchTap={this.messageToggle} ><ChatBubble/></IconButton>
                 <Dialog
                   actions={<FlatButton label="OK" primary={true} onTouchTap={this.messageToggle} />}
                   modal={false}
@@ -140,7 +143,7 @@ class Settings extends Component {
                   onRequestClose={this.messageToggle}
                 >
                 <Message />
-                <div>{this.state.confirm}</div>
+                <h3>{this.state.confirm}</h3>
                 </Dialog>
               </div>
 						</ListItem>
@@ -152,10 +155,10 @@ class Settings extends Component {
 						{this.props.household.map((person, i) => (
             	<ListItem
             	key={i}
-							primaryText={person.name}
 							leftAvatar={<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />}
-							rightIcon={<Remove onTouchTap={this.removeUser.bind(this, person, i)}/>}
 							>
+							<h4>{person.name}</h4>
+							<SettingsConfirm className="houseItem" user={person} index={i} confirmSubmit={this.removeUser} />
 							</ListItem>
             ))}
 						<SettingsEntry addUser={this.addUser}/>

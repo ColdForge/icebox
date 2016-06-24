@@ -4,6 +4,7 @@ import AppHeader from './appHeader';
 
 const styles = {
 	container: {
+		flex: 1,
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
