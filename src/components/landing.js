@@ -5,6 +5,10 @@ import FlatButton from 'material-ui/FlatButton';
 // import { Parallax, Background } from 'react-parallax';
 
 const styles = {
+	tile1: {
+		backgroundColor: 'white',
+		zIndex: 1000,
+	},
 	textWhite: {
 		fontSize: 65,
 		color: '#1A3C1C',
@@ -40,6 +44,15 @@ const styles = {
 
 const Landing = () => (
 	<div>
+		<Link to="/signup" style={styles.tile1}>
+			<FlatButton
+				className="dev-button"
+				style={styles.button}
+				onTouchTap={() => { console.log('signup button pressed'); }}
+			>
+			Signup
+			</FlatButton>
+		</Link>
 		<div className="background-image"></div>
 		<div className="landing-backdrop">
 			<div className="hero-unit bar" id="bar-top" style={styles.barTop}>
@@ -50,14 +63,7 @@ const Landing = () => (
 			<StickyContainer topOffset={0}>
 				<div className="sticky-nav navbar navbar-default navbar-fixed-top affix-top" style={styles.navbar}>
 					<h1 className="bar-top-title">Icebox</h1>
-					<Link to="/signup" style={styles.tile1}>
-						<FlatButton
-							className="dev-button"
-							style={styles.button}
-						>
-						Signup
-						</FlatButton>
-					</Link>
+
 				</div>
 			</StickyContainer>
 
