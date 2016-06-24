@@ -167,7 +167,7 @@ class Settings extends Component {
 											<h4>{person.name}</h4>
 										</TableRowColumn>
 										<TableRowColumn>
-											<SettingsConfirm className="houseItem" user={person} index={i} confirmSubmit={this.removeUser} />
+											<SettingsConfirm className="houseItem" confirmSubmit={this.removeUser.bind(this, person, i)} />
 										</TableRowColumn>
 									</TableRow>
 								))}

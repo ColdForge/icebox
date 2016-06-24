@@ -23,7 +23,7 @@ class SettingsConfirm extends React.Component {
 	};
 
 	handleSubmit = () => {
-		this.props.confirmSubmit(this.props.user, this.props.index);
+		this.props.confirmSubmit();
 		this.setState({ open: false });
 	};
 
@@ -43,7 +43,7 @@ class SettingsConfirm extends React.Component {
 
 		return (
 			<div>
-				<FlatButton onTouchTap={this.handleOpen}>
+				<FlatButton onTouchTap={this.handleOpen} >
 					<Remove />
 				</FlatButton>
 				<Dialog
