@@ -118,6 +118,193 @@ module.exports = {
       });
     }
 	},
+  checkIceboxContentsNative: function(req, res) {
+    console.log('req.user in changeIceboxContentsNative is : ',req.user);
+    console.log('req.body in changeIceboxContentsNative is : ',req.body);
+    var itemsToAdd = req.body.itemString.split(' ');
+    var user = req.user;
+    var recognizedItems = [];
+    var noExpirationItems = [];
+    var unrecognizedItems = [];
+    var counter = 0;
+    console.log('user in changeIceboxContents is : ',user);
+    console.log('items in changeIceboxContents is : ',itemsToAdd);
+
+    addItems(itemsToAdd);
+
+    function addItems(itemsArray) {
+      var promiseArray = [];
+
+      function promiseItemChecker(item) {
+        return new Promise(function(resolve,reject){
+          db.select('*')
+          .from('foods')
+          .where('name', item)
+          .then(function(resp){
+            if(resp.length > 0) {
+              console.log('food item found', resp);
+              recognizedItems.push({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
+              resolve({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
+              // db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
+              //   .into('icebox_items')
+              //   .then(function(resp){
+              //     console.log('Item added to icebox', resp);
+              //     resolve({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
+              //   })
+              //   .catch(function(err){
+              //     console.log('Item insertion error', err);
+              //     reject({ name: item });
+              //   });
+            } else {
+              var result = new Promise(function(resolver){
+                foodAPI.getFoodType(item, resolver);
+              });
+              result.then(function(promiseFoodAPIResponse){
+                console.log('food item results', promiseFoodAPIResponse);
+                if(promiseFoodAPIResponse.error){
+                  unrecognizedItems.push(promiseFoodAPIResponse)
+                  resolve({ name: promiseFoodAPIResponse.name, error: true });
+                } else {
+                  noExpirationItems.push(promiseFoodAPIResponse);
+                  resolve({ name: promiseFoodAPIResponse.name });
+                  // db.insert({category: promiseFoodAPIResponse.category, name: promiseFoodAPIResponse.name, freshDuration: 10})
+                  //   .into('foods')
+                  //   .then(function(insertFoodsResponse){
+                  //     console.log('Great success', insertFoodsResponse);
+                  //     db.insert({foodID: insertFoodsResponse[0], iceboxID: user.iceboxID, daysToExpire: 10})
+                  //       .into('icebox_items')
+                  //       .where('iceboxID', user.iceboxID)
+                  //       .then(function(insertIceboxItemsResponse){
+                  //         console.log('Added to icebox items, response: ',insertIceboxItemsResponse);
+                  //         resolve({ name: promiseFoodAPIResponse.name });
+                  //       });
+                  //   })
+                  //   .catch(function(err){
+                  //     console.log('Insert error', err);
+                  //   });
+                }  
+              })
+              .catch(function(err){
+                console.log('Error retrieving food type');
+                unrecognizedItems.push({ name: item });
+                resolve({ name: item });
+                // res.send('Error retrieving item');
+              });
+            }
+          })
+          .catch(function(err){
+            console.log('Could not find item in foods table', err);
+          });
+        });
+      }
+      
+      itemsArray.forEach(function(item, index, array){
+        promiseArray.push(promiseItemChecker(item));
+      });
+
+      Promise.all(promiseArray)
+      .then(function(values){
+        console.log('values from Promise.all are : ',values);
+        res.status(200).json({
+          recognizedItems: recognizedItems,
+          noExpirationItems: noExpirationItems,
+          unrecognizedItems: unrecognizedItems
+        })
+      });
+    }
+  },
+  changeIceboxContentsNative: function(req, res) {
+    console.log('req.user in changeIceboxContentsNative is : ',req.user);
+    console.log('req.body in changeIceboxContentsNative is : ',req.body);
+    var itemsToAdd = req.body.itemString.split(' ');
+    var user = req.user;
+    var recognizedItems = [];
+    var noExpirationItems = [];
+    var unrecognizedItems = [];
+    var counter = 0;
+    console.log('user in changeIceboxContents is : ',user);
+    console.log('items in changeIceboxContents is : ',itemsToAdd);
+
+    addItems(itemsToAdd);
+
+    function addItems(itemsArray) {
+      var promiseArray = [];
+
+      function promiseItemChecker(item) {
+        return new Promise(function(resolve,reject){
+          db.select('*')
+          .from('foods')
+          .where('name', item)
+          .then(function(resp){
+            if(resp.length > 0) {
+              console.log('food item found', resp);
+              recognizedItems.push({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
+              // db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
+              //   .into('icebox_items')
+              //   .then(function(resp){
+              //     console.log('Item added to icebox', resp);
+              //     resolve({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
+              //   })
+              //   .catch(function(err){
+              //     console.log('Item insertion error', err);
+              //     reject({ name: item });
+              //   });
+            } else {
+              var result = new Promise(function(resolver){
+                foodAPI.getFoodType(item, resolver);
+              });
+              result.then(function(promiseFoodAPIResponse){
+                console.log('food item results', promiseFoodAPIResponse);
+                if(promiseFoodAPIResponse.error){
+                  unrecognizedItems.push(promiseFoodAPIResponse)
+                  resolve({ name: promiseFoodAPIResponse.name, error: true });
+                } else {
+                  noExpirationItems.push(promiseFoodAPIResponse);
+                  resolve({ name: promiseFoodAPIResponse.name });
+                  // db.insert({category: promiseFoodAPIResponse.category, name: promiseFoodAPIResponse.name, freshDuration: 10})
+                  //   .into('foods')
+                  //   .then(function(insertFoodsResponse){
+                  //     console.log('Great success', insertFoodsResponse);
+                  //     db.insert({foodID: insertFoodsResponse[0], iceboxID: user.iceboxID, daysToExpire: 10})
+                  //       .into('icebox_items')
+                  //       .where('iceboxID', user.iceboxID)
+                  //       .then(function(insertIceboxItemsResponse){
+                  //         console.log('Added to icebox items, response: ',insertIceboxItemsResponse);
+                  //         resolve({ name: promiseFoodAPIResponse.name });
+                  //       });
+                  //   })
+                  //   .catch(function(err){
+                  //     console.log('Insert error', err);
+                  //   });
+                }  
+              })
+              .catch(function(err){
+                console.log('Error retrieving food type');
+                res.send('Error retrieving item');
+              });
+            }
+          })
+          .catch(function(err){
+            console.log('Could not find item in foods table', err);
+          });
+        });
+      }
+      
+      itemsArray.forEach(function(item, index, array){
+        promiseArray.push(promiseItemChecker(item));
+      });
+
+      Promise.all(promiseArray)
+      .then(function(values){
+        console.log('values from Promise.all are : ',values);
+        res.status(200).json({
+          recognizedItems: recognizedItems,
+          noExpirationItems: noExpirationItems,
+          unrecognizedItems: unrecognizedItems
+        })
+      });
+    }
+  },
   getRecipeSuggestions: function(req, res){
     console.log('HELPERS 122: getRecipesSugg fired in helpers, req.user is : ',req.user);
     var icebox = req.user.iceboxID;

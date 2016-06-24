@@ -6,6 +6,10 @@ var express = require('express'),
 router.get('/icebox', helpers.fetchIceboxContents)
 // Route when user adds items to icebox
 router.post('/icebox', helpers.changeIceboxContents)
+// Route when user adds items to icebox
+router.post('/icebox/native-check', helpers.checkIceboxContentsNative)
+// Route when user adds items to icebox
+router.post('/icebox/native-submit', helpers.changeIceboxContentsNative)
 // Get specific information on one item in a user's icebox
 router.get('/icebox/item/:id', helpers.getIceboxItem)
 // Delete a specific item in a user's icebox
