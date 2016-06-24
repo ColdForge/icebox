@@ -2,11 +2,26 @@ import React from 'react';
 import { Link } from 'react-router';
 import { StickyContainer /* Sticky */ } from 'react-sticky';
 import FlatButton from 'material-ui/FlatButton';
+// import { Parallax, Background } from 'react-parallax';
 
 const styles = {
-	// bar: {
-	// 	background:
-	// },
+	textWhite: {
+		fontSize: 65,
+		color: '#1A3C1C',
+	},
+	barTop: {
+		background: 'transparent',
+	},
+	navbar: {
+		background: '#293C2A',
+	},
+	barProfile: {
+		background: '#7CAA7F',
+		color: '#293C2A',
+	},
+	barTech: {
+		background: '#7CAA7F',
+	},
 	profileTile: {
 		flex: 2,
 	},
@@ -18,18 +33,22 @@ const styles = {
 		height: 100,
 		width: 400,
 	},
+	landingBackdrop: {
+		'background-image': '../../assets/background.jpeg',
+	},
 };
 
 const Landing = () => (
 	<div>
+		<div className="background-image"></div>
 		<div className="landing-backdrop">
-			<div className="hero-unit bar" id="bar-top">
+			<div className="hero-unit bar" id="bar-top" style={styles.barTop}>
 				<div className="bar-top-text">
 				</div>
 			</div>
 
 			<StickyContainer topOffset={0}>
-				<div className="sticky-nav">
+				<div className="sticky-nav navbar navbar-default navbar-fixed-top affix-top" style={styles.navbar}>
 					<h1 className="bar-top-title">Icebox</h1>
 					<Link to="/signup" style={styles.tile1}>
 						<FlatButton
@@ -47,8 +66,8 @@ const Landing = () => (
 			</div>
 
 			<StickyContainer>
-				<div className="hero-unit bar" id="bar-third">
-					<h1 className="bar-third-title">Team ColdForge</h1>
+				<div className="hero-unit bar" id="bar-third" style={styles.barProfile}>
+					<h1 className="bar-third-title" style={styles.textWhite}>Team ColdForge</h1>
 					<div className="profile-container">
 						<div className="profile" id="colin">
 							<h3 className="profile-name">Colin Zarnegar</h3>
@@ -68,7 +87,7 @@ const Landing = () => (
 								role="presentation"
 								height={100}
 							/>
-							<div className="profile-text">Product Manager</div>
+							<div className="profile-text">Front End</div>
 						</div>
 						<div className="profile" id="nate">
 							<h3 className="profile-name">Nathaniel Schwab</h3>
@@ -88,13 +107,13 @@ const Landing = () => (
 								role="presentation"
 								height={100}
 							/>
-							<div className="profile-text">Product Manager</div>
+							<div className="profile-text">Full Stack</div>
 						</div>
 					</div>
 				</div>
 			</StickyContainer>
 
-			<div className="hero-unit bar" id="bar-fourth">
+			<div className="hero-unit bar" id="bar-fourth" style={styles.barTech}>
 				<h1 className="bar-third-title">Technologies</h1>
 				<div className="container tech-container">
 					<img className="tech" id="react" src={"../../assets/landing/technologies/react.png"} role="presentation" />
