@@ -6,8 +6,8 @@ import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
 	tile1: {
-    backgroundColor: 'white',
-    zIndex: 1000,
+		backgroundColor: 'white',
+		zIndex: 1000,
 	},
 	textWhite: {
 		fontSize: 65,
@@ -44,15 +44,15 @@ const styles = {
 
 const Landing = () => (
 	<div>
-	<Link to="/signup" style={styles.tile1}>
-		<FlatButton
-			className="dev-button"
-			style={styles.button}
-			onTouchTap={()=>{console.log('signup button pressed')}}
-		>
-		Signup
-		</FlatButton>
-	</Link>
+		<Link to="/signup" style={styles.tile1}>
+			<FlatButton
+				className="dev-button"
+				style={styles.button}
+				onTouchTap={() => { console.log('signup button pressed'); }}
+			>
+			Signup
+			</FlatButton>
+		</Link>
 		<div className="background-image"></div>
 		<div className="landing-backdrop">
 			<div className="hero-unit bar" id="bar-top" style={styles.barTop}>
