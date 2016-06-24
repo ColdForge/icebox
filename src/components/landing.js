@@ -40,6 +40,22 @@ const styles = {
 
 const Landing = () => (
 	<div>
+		<Link to="/signup" style={styles.tile1}>
+			<FlatButton
+				className="dev-button"
+				style={styles.button}
+			>
+			Signup
+			</FlatButton>
+		</Link>
+		<Link to="/signin" style={styles.tile1}>
+			<FlatButton
+				className="dev-button"
+				style={styles.button}
+			>
+			Signin
+			</FlatButton>
+		</Link>
 		<div className="background-image"></div>
 		<div className="landing-backdrop">
 			<div className="hero-unit bar" id="bar-top" style={styles.barTop}>
@@ -50,14 +66,7 @@ const Landing = () => (
 			<StickyContainer topOffset={0}>
 				<div className="sticky-nav navbar navbar-default navbar-fixed-top affix-top" style={styles.navbar}>
 					<h1 className="bar-top-title">Icebox</h1>
-					<Link to="/signup" style={styles.tile1}>
-						<FlatButton
-							className="dev-button"
-							style={styles.button}
-						>
-						Signup
-						</FlatButton>
-					</Link>
+
 				</div>
 			</StickyContainer>
 
