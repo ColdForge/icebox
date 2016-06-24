@@ -52,6 +52,7 @@
     "react-addons-css-transition-group": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-native": "^0.27.2",
+    "react-parallax": "^0.4.3",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
     "react-router-redux": "^4.0.5",
