@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const RecipeSuggestionListItem = ({ recipe, chooseRecipe, getRecipeDetails, recipeDetail }) => (
+const RecipeSuggestionListItem = ({ recipe, chooseRecipe, getRecipeDetails }) => (
 	<Card>
 		<CardHeader
 			title={recipe.title}
