@@ -10,10 +10,13 @@ import SvgIcon from 'material-ui/SvgIcon';
 import ICONS from '../styles/icons';
 import IconButton from 'material-ui/IconButton';
 import SettingsEntry from '../components/settingsEntry';
-import Remove from 'material-ui/svg-icons/content/clear';
+import Remove from 'material-ui/svg-icons/content/backspace';
 import Fridge from 'material-ui/svg-icons/places/kitchen';
 import Toggle from 'material-ui/Toggle';
-
+import Dialog from 'material-ui/Dialog';
+import ChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import Message from 'material-ui/svg-icons/communication/message';
+import Dinner from 'material-ui/svg-icons/maps/local-dining';
 
 const styles = {
 	profile: {
@@ -38,6 +41,9 @@ const styles = {
 	button: {
 		margin: 12,
 	},
+	alert: {
+		width: 300
+	},
   
 };
 
@@ -47,11 +53,15 @@ class Settings extends Component {
     super(props);
     this.state = {
     	confirmedStaples: false,
+    	alertOpen: false,
+    	confirm: null,
     };
 
     this.addUser = this.addUser.bind(this);
+    this.removeUser = this.removeUser.bind(this);
     this.updateStaples = this.updateStaples.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.messageToggle = this.messageToggle.bind(this);
   }
 
 	componentWillMount() {
@@ -61,6 +71,17 @@ class Settings extends Component {
 	addUser(email) {
     this.props.addUserToIcebox({ email });
     console.log({email: email, status: 'Success'});
+    this.setState({ confirm: "Successfully invited user", alertOpen: true });
+	}
+
+	removeUser(user, i) {
+		if(user.name === this.props.name){
+      this.setState({ confirm: "Can't remove yourself!!!", alertOpen: true });
+		} else {
+	    console.log('User being removed', user, i);
+			this.props.removeUserFromIcebox({ user });
+	    this.setState({ confirm: "Successfully removed user", alertOpen: true });
+		}
 	}
 
 	handleToggle(event, toggled) {
@@ -74,9 +95,14 @@ class Settings extends Component {
 		console.log('toggled', this.state.confirmedStaples);
 	}
 
+	messageToggle() {
+		this.setState({ alertOpen: !this.state.alertOpen });
+	}
+
 	updateStaples() {
     console.log('updateStaples is firing', this.state.confirmedStaples);
     this.props.updateUserStaples(this.state.confirmedStaples);
+    this.setState({ confirm: "Successfully updated staples", alertOpen: true });
 	}
 
 	componentDidUpdate() {
@@ -88,7 +114,6 @@ class Settings extends Component {
   		this.setState({
   			confirmedStaples: { ...this.state.confirmedStaples, ...stapleObj },
   		});
-  		console.log('staples on render', this.state.confirmedStaples);
 		}
 	}
 
@@ -105,17 +130,31 @@ class Settings extends Component {
 							Username: {this.props.email}
 						</ListItem>
 						<ListItem>Name: {this.props.name} </ListItem>
+						<ListItem>
+              <div>
+                <IconButton onTouchTap={this.messageToggle} ><ChatBubble/></IconButton>
+                <Dialog
+                  actions={<FlatButton label="OK" primary={true} onTouchTap={this.messageToggle} />}
+                  modal={false}
+                  open={this.state.alertOpen}
+                  onRequestClose={this.messageToggle}
+                >
+                <Message />
+                <div>{this.state.confirm}</div>
+                </Dialog>
+              </div>
+						</ListItem>
 					</List>
 				</div>
 				<div style={styles.house} className="settings-divs">
 					<List>
 						<Subheader>Household Users</Subheader>
-						{this.props.household.map(person => (
+						{this.props.household.map((person, i) => (
             	<ListItem
-            	key={person.name}
+            	key={i}
 							primaryText={person.name}
 							leftAvatar={<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />}
-							rightIcon={<Remove />}
+							rightIcon={<Remove onTouchTap={this.removeUser.bind(this, person, i)}/>}
 							>
 							</ListItem>
             ))}
@@ -129,7 +168,7 @@ class Settings extends Component {
 	            	<ListItem
 	            	key={staple.id}
 								primaryText={staple.name}
-								leftAvatar={<Avatar src={"http://images.pier1.com/dis/dw/image/v2/AAID_PRD/on/demandware.static/-/Sites-pier1_master/default/dw3d2c7ea2/images/2824388/2824388_1.jpg?sw=1600&sh=1600"} />}
+								leftIcon={<Dinner />}
 								rightToggle={<Toggle defaultToggled={!!staple.status} onToggle={this.handleToggle} name={staple.id} />}
 								>	
 								</ListItem>
@@ -147,6 +186,7 @@ Settings.propTypes = {
 	email: React.PropTypes.string,
 	household: React.PropTypes.array,
 	staples: React.PropTypes.array,
+	confirmations: React.PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -154,6 +194,7 @@ const mapStateToProps = state => ({
 	email: state.profile.email,
 	household: state.profile.household,
 	staples: state.profile.staples,
+	confirmations: state.profile.confirmations,
 });
 
 export default connect(mapStateToProps, actions)(Settings);

@@ -267,13 +267,47 @@ module.exports = {
 			.into('auth_users')
 			.then(function(resp){
 				console.log('Inserted auth_user', resp);
-				res.send(resp);
+				res.send('Successfully invited user');
 			})
 			.catch(function(err){
 				console.log('Error adding user');
 				res.send(err);
 			})
 	},
+
+  removeUserFromIcebox: function(req, res){
+    console.log('Hitting removeUser db helper with', req.body, req.user);
+    var removedUser = req.body.user;
+    var user = req.user;
+
+    if(user.id === removedUser.id){
+      return res.send("Can't remove yourself");
+    }
+
+    db.insert({ user_email: removedUser.email})
+      .into('iceboxes')
+      .then(function(resp){
+        console.log('New icebox created', resp);
+        db('users')
+          .where('id', removedUser.id)
+          .update({
+            iceboxID: resp[0],
+          })
+          .then(function(resp){
+            console.log('Updated iceboxID of removed user', resp);
+            db.select('*')
+              .from('users')
+              .where('iceboxID', user.iceboxID)
+              .then(function(users){
+                console.log('Found it', users);
+                res.send({ profile: user, household: users });
+              })
+          })
+      })
+      .catch(function(err){
+        console.log('Error removing users', err);
+      });
+  },
 
   updateUserStaples: function(req, res){
     console.log('Hitting updateUsersStaples on db:', req.body);

@@ -72,7 +72,7 @@ class SettingsEntry extends Component {
 							onChange={this.handleEmailChange}
 						/>
 					</div>
-					Please enter an email address to add a user to your icebox
+					Please enter an email address to authorize a user to your icebox
 				</Dialog>
 			</div>
 		);

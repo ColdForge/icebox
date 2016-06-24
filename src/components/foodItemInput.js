@@ -45,7 +45,6 @@ class FoodItemInput extends Component {
 		super(props);
 		this.state = {
 			open: false,
-			autoScrollBodyContent: true,
 			recognitionStarted: false,
 			newItemsAdded: false,
 			newItems: [],
@@ -301,6 +300,7 @@ class FoodItemInput extends Component {
 					modal={false}
 					open={this.state.open}
 					onRequestClose={this.handleClose}
+					autoScrollBodyContent
 				>
 					<div style={styles.dialogTitle}>
 						{this.renderActions()}
