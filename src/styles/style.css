@@ -70,6 +70,10 @@ p, div {
 
 /* Main App Component Styling */
 
+.main {
+  height: 100%;
+}
+
 .app-body {
   height: 100%;
 /*  padding-top: 50px;
@@ -239,6 +243,12 @@ form .text-field-input div label {
 .recipes-tab {
   background-color: white;
   color: black;
+}
+
+.settings-container {
+  height: 100%;
+  background: #F1F1F1 no-repeat center center;
+  background-size: cover;
 }
 
 .settings-divs {
