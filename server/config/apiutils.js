@@ -32,6 +32,7 @@ var USDA = {
 
 module.exports = {
   getRecipeFromIngredients : function (fooditems, cb) {
+    console.log('API UTILS 35: food items =', fooditems);
     var foodItemsParam = fooditems.join(',');
     var options = {
       url : SPOONACULAR.BASE+SPOONACULAR.FIND_BY_INGREDIENTS,

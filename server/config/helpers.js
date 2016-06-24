@@ -316,26 +316,37 @@ module.exports = {
     .innerJoin('foods', 'icebox_items.foodID', 'foods.id')
     .then(function(resp){
       console.log('resp from innerJoin is : ',resp);
+
       resp.forEach(function(food){
         if(food.daysToExpire <= 3){
           recipeCollect.push(food.name);
         }
       });
 
-        console.log('HELPERS 138: foods that are expiring ', recipeCollect)
+      db.select('*')
+        .from('staple_items')
+        .innerJoin('staples', 'staple_items.stapleID', 'staples.id')
+        .where('iceboxID', icebox)
+        .then(function(resp){
+          console.log('Staples', resp);
+          resp.forEach(function(staple){
+            recipeCollect.push(staple.name);
+            console.log('Recipe collection', recipeCollect);
+          });
+        }).then(function(resp){
+          console.log('HELPERS 141: resp from select in getRecipes is : ',resp)
+          var result = new Promise(function(resolve){
+            foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
+          }).then(function(resp){
+            console.log('HELPERS 145: Successfull call to recipe API', resp);
+            res.send(resp);
+          });
+        });
 
-    }).then(function(resp){
-      console.log('HELPERS 141: resp from select in getRecipes is : ',resp)
-      var result = new Promise(function(resolve){
-        foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
-      }).then(function(resp){
-        console.log('HELPERS 145: Successfull call to recipe API', resp);
-        res.send(resp);
+      }).catch(function(err){
+        console.log('HELPERS 149: Error getting items', err);
+        res.send('Icebox items could not be found');
       });
-    }).catch(function(err){
-      console.log('HELPERS 149: Error getting items', err);
-      res.send('Icebox items could not be found');
-    });
 
   },
   chooseRecipeSuggestion: function(req, res){
