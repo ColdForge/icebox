@@ -17,6 +17,13 @@ class RecipeSuggestionList extends Component {
     console.log("RSL: suggestion will mount fired")
   }
 
+  componentDidUpdate() {
+  //  if(!this.props.recipeDetail){
+    //  console.log(this.props.recipeDetail)
+      //window.open(this.props.recipeDetail)
+    //}
+  }
+
   handleRecipeChoice(recipe) {
     // if user has not currently set a chosen recipe
     if(!this.props.chosenRecipe){
@@ -42,6 +49,7 @@ class RecipeSuggestionList extends Component {
               recipe={suggestion}
               chooseRecipe={this.handleRecipeChoice.bind(this,suggestion)}
               getRecipeDetails={this.handleRecipeDetails.bind(this, suggestion.id)}
+              recipeLocation={this.props.recipeDetail}
             />
           ))}
         </List>
@@ -58,6 +66,7 @@ const mapStateToProps = state => ({
   user: state.user,
   suggestions: state.recipes.suggestions,
   chosenRecipe: state.recipes.chosenRecipe,
+  recipeDetail : state.recipes.recipeDetail,
 });
 
 export default connect(mapStateToProps, actions)(RecipeSuggestionList);
