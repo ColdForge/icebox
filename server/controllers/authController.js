@@ -101,6 +101,14 @@ module.exports = {
 				        				.then(function(response){
 				          				var userObj = Object.assign({ id: response[0] }, user );
 				          				res.json({ token: tokenForUser(userObj), id: response[0], name: user.name, email: user.email, iceboxID: user.iceboxID });
+				          				knex.select('id').from('staples').then(function(resp){
+				          					console.log(resp);
+				          					resp.forEach(function(id){
+				          						knex.insert({stapleID: id.id, iceboxID: user.iceboxID, status: false})
+				          						.into('staple_items').then(function(resp){console.log('Staples success', resp);})
+				          						.catch(function(err){console.log('Staples error', err);});
+				          					});
+				          				});
 				        				});
 				    					})
 										});
