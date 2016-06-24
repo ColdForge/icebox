@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const RecipeSuggestionListItem = ({ recipe, chooseRecipe }) => (
+const RecipeSuggestionListItem = ({ recipe, chooseRecipe, getRecipeDetails }) => (
 	<Card>
 		<CardHeader
 			title={recipe.title}
@@ -19,6 +19,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe }) => (
 		</CardText>
 		<CardActions expandable>
 			<FlatButton label="Choose this recipe!" onTouchTap={chooseRecipe} />
+			<FlatButton label="Show recipe details" onTouchTap={getRecipeDetails} />
 		</CardActions>
 	</Card>
 );
@@ -26,6 +27,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe }) => (
 RecipeSuggestionListItem.propTypes = {
 	recipe: React.PropTypes.object.isRequired,
 	chooseRecipe: React.PropTypes.func,
+	getRecipeDetails: React.PropTypes.func,
 };
 
 export default RecipeSuggestionListItem;
