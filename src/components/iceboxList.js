@@ -1,10 +1,16 @@
 import React from 'react';
-import { List } from 'material-ui/List';
+// import { List } from 'material-ui/List';
+import { GridList } from 'material-ui/GridList';
 import IceboxListItem from './iceboxListItem';
 
 const IceboxList = ({ contents }) => (
 	<div>
-		<List className="icebox-list">
+		<GridList
+			className="icebox-list"
+			cellHeight={400}
+			cols={3}
+			padding={10}
+		>
 			{contents.map(item => (
 				<IceboxListItem
 					key={item.key}
@@ -12,10 +18,9 @@ const IceboxList = ({ contents }) => (
 					name={item.name}
 					foodGroup={item.foodGroup}
 					expiration={item.expiration}
-					iconPath={item.iconPath}
 				/>
 			))}
-		</List>
+		</GridList>
 	</div>
 );
 
