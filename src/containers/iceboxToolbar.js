@@ -31,7 +31,8 @@ const styles = {
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'stretch',
-
+		height: 60,
+		backgroundColor: 'rgba(156, 223, 158, 0.5)',
 	},
 	toolbarGroup1: {
 		marginLeft: '10px',
@@ -45,10 +46,15 @@ const styles = {
 		justifyContent: 'center',
 	},
 	toolbarGroup3: {
+		marginRight: '10px',
 		width: '33%',
 		display: 'flex',
 		justifyContent: 'flex-end',
 	},
+	svgicon: {
+		width: 50,
+		height: 50,
+	}
 }
 
 let isOpen = false
@@ -109,7 +115,8 @@ class IceboxToolbar extends Component {
 				>
 					<IconButton
 						tooltip="Search"
-						style={styles.button}
+						iconStyle={{width: '48px', height: '48px'}}
+						style={{width: '60px', height: '60px', padding: 0}}
 						className="icebox-toolbar-search"
 					>
 						<SvgIcon className="icebox-toolbar-svgicon-search">
@@ -135,23 +142,31 @@ class IceboxToolbar extends Component {
 				>
 					<IconButton
 						tooltip="Asc/Desc"
-						style={styles.button}
+						iconStyle={{width: '48px', height: '48px'}}
+						style={{width: '60px', height: '60px', padding: 0}}
 						className="icebox-toolbar-sort-arrows"
 						onClick={() => this.changeSortDirection()}
 					>
-						<SvgIcon className="icebox-toolbar-svgicon-sort-arrows">
+						<SvgIcon
+							className="icebox-toolbar-svgicon-sort-arrows"
+						>
 							<path d={ICONS.SortArrows.d} />
 						</SvgIcon>
 					</IconButton>
-					<ToolbarSeparator />
+					<ToolbarSeparator style={{marginLeft: '12px', marginRight: '12px'}}/>
 					<IconMenu
 						iconButtonElement={
 							<IconButton
 								tooltip="Sort"
-								style={styles.button}
+								iconStyle={{width: '48px', height: '48px'}}
+								style={{width: '60px', height: '60px', padding: 0}}
 								className="icebox-toolbar-sort"
 							>
-								<SvgIcon className="icebox-toolbar-svgicon-sort">
+								<SvgIcon
+									className="icebox-toolbar-svgicon-sort"
+									style={styles.svgicon}
+
+								>
 									<path d={ICONS.Sort.d} />
 								</SvgIcon>
 							</IconButton>
