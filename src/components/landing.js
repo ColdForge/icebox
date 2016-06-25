@@ -131,10 +131,30 @@ const Landing = () => (
 
 		<Section>
 			<Team>
-				<TeamMember className="profile" name="Colin Zarnegar" title="Product Manager" imageUrl="../../assets/landing/profiles/colin.png" />
-				<TeamMember className="profile" name="Austin Sefton" title="Front End" imageUrl="../../assets/landing/profiles/austin.jpeg" />
-				<TeamMember className="profile" name="Nathaniel Schwab" title="Scrum Master" imageUrl="../../assets/landing/profiles/nate.jpeg" />
-				<TeamMember className="profile" name="Andrew J Yao" title="Full Stack" imageUrl="../../assets/landing/profiles/andy.jpeg" />
+				<TeamMember
+					className="profile"
+					name="Colin Zarnegar"
+					title="Product Manager"
+					imageUrl="../../assets/landing/profiles/colin.png"
+    />
+				<TeamMember
+					className="profile"
+					name="Austin Sefton"
+					title="Front End"
+					imageUrl="../../assets/landing/profiles/austin.jpeg"
+    />
+				<TeamMember
+					className="profile"
+					name="Nathaniel Schwab"
+					title="Scrum Master"
+					imageUrl="../../assets/landing/profiles/nate.jpeg"
+    />
+				<TeamMember
+					className="profile"
+					name="Andrew J Yao"
+					title="Full Stack"
+					imageUrl="../../assets/landing/profiles/andy.jpeg"
+    />
 			</Team>
 		</Section>
 
