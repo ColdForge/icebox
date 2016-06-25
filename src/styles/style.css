@@ -257,7 +257,52 @@ form .text-field-input div label {
 
 /* Landing Page Styling */
 
-.bar {
+.nav-link {
+  margin: 5px;
+}
+
+.nav-brand {
+  position: absolute;
+  left: 21%;
+}
+
+.banner-display {
+  color: white;
+  height: 750px;
+}
+
+.banner-text {
+  position: absolute;
+  width: 100%;
+  top: 350px;
+}
+
+.banner-title {
+  font-size: 100px;
+}
+
+.bar-description {
+  height: 1000px;
+  display: table-cell;
+}
+
+.spacer {
+  height: 200px;
+}
+
+.bar1-text {
+  width: 80%;
+}
+
+.bar2 {
+  position: relative;
+  background: #B4B4B4;
+  height: 650px;
+  color: white;
+  width: 100%;
+}
+
+/*.bar {
   width: 80%;
   height: 175px;
   padding: 10px;
@@ -266,9 +311,11 @@ form .text-field-input div label {
   color: white;
   border-radius: 4px;
   text-align: center;
+  z-index: 100;
 }
 
 .dev-button {
+  position: fixed;
   float: right;
 }
 
@@ -313,16 +360,13 @@ form .text-field-input div label {
   position: absolute;
   float: left;
   /*background-color: green;*/
-}
+/*}*/
 
-#bar-second {
+/*#bar-second {
   height: 750px;
   background: transparent;
   width: 100%;
   margin: 0px;
-  -moz-box-shadow: 0 0 0px black;
-  -webkit-box-shadow: 0 0 0px black;
-  box-shadow: 0 0 0px black;
 }
 
 .bar-second-title {
@@ -354,7 +398,7 @@ form .text-field-input div label {
   height: 200px;
   width: 200px;
   border-radius: 3px;
-}
+}*/
 
 .profile-name {
 
@@ -376,7 +420,7 @@ form .text-field-input div label {
 
 }
 
-#bar-fourth {
+/*#bar-fourth {
   background: #060F2F;
   height: 650px;
   width: 100%;
@@ -393,7 +437,7 @@ form .text-field-input div label {
   top: 0px;
   z-index: -10;
 }
-
+*/
 /* technologies used */
 
 .tech-container {
@@ -402,47 +446,60 @@ form .text-field-input div label {
 }
 
 #react {
-  height: 250px;
+  height: 150px;
   margin: -20px;
 }
 
-#node {
+#redux {
   height: 100px;
 }
 
+#node {
+  height: 90px;
+}
+
 #mysql {
-  height: 100px;
+  height: 60px;
+}
+
+#html5 {
+  height: 60px;
+}
+
+#css3 {
+  height: 65px;
 }
 
 .tech {
   height: 150px;
-  margin: 30px;
+  margin: 40px;
 }
 
 .landing-backdrop {
   position: relative;
   background: transparent;
-  /*background-repeat: repeat;*/
+  /*background-repeat: repeat;
 /*  background-size: contain;
   background-position: center;*/
-  /*-webkit-filter: blur(5px);
+/*  width: 100%;
+  height: 100%;
+  z-index: -5;
+}*/
+
+/*.background-image {*/
+  /*position: fixed;*/
+/*  top;
+  background: url('../../assets/background.jpeg');
+  background-repeat: repeat;
+  background-position: center;
+  background-repeat: repeat;*/
+/*  -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
   filter: blur(5px);*/
-  width: 100%;
+/*  width: 100%;
   height: 100%;
-  z-index: -5;
-}
-
-.background-image {
-  position: relative;
-  background: url('../../assets/background.jpeg');
-  background-repeat: repeat;
-  background-size:contain;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-  z-index: 500;
-}
+  z-index: -500;
+}*/
 

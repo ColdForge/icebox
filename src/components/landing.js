@@ -1,144 +1,145 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { StickyContainer /* Sticky */ } from 'react-sticky';
-import FlatButton from 'material-ui/FlatButton';
-// import { Parallax, Background } from 'react-parallax';
+// import FlatButton from 'material-ui/FlatButton';
+import {
+  // Code,
+  CustomerQuote, CustomerQuotes,
+  // DropdownMenu, DropdownToggle,
+  Footer,
+  // FooterAddress,
+  Hero,
+  HorizontalSplit,
+  ImageList,
+  // ImageListItem,
+  Navbar,
+  // NavItem,
+  Page,
+  // PricingPlan,
+  // PricingTable,
+  Section,
+  // SignupInline, SignupModal,
+  // Stripe,
+  Team,
+  TeamMember,
+} from 'neal-react';
 
-const styles = {
-	textWhite: {
-		fontSize: 65,
-		color: '#1A3C1C',
-	},
-	barTop: {
-		background: 'transparent',
-	},
-	navbar: {
-		background: '#293C2A',
-	},
-	barProfile: {
-		background: '#7CAA7F',
-		color: '#293C2A',
-	},
-	barTech: {
-		background: '#7CAA7F',
-	},
-	profileTile: {
-		flex: 2,
-	},
-	button: {
-		color: '#556270',
-		fontSize: '2em',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		height: 100,
-		width: 400,
-	},
-	landingBackdrop: {
-		'background-image': '../../assets/background.jpeg',
-	},
-};
+const brandName = 'ColdForge';
+
+const businessAddress = (
+	<address>
+		<strong>{brandName}</strong><br />
+		1337 Market Street, Suite 1337<br />
+		San Francisco, CA 94103<br />
+		+1 (123) 456-7890
+	</address>
+);
 
 const Landing = () => (
-	<div>
-		<Link to="/signup" style={styles.tile1}>
-			<FlatButton
-				className="dev-button"
-				style={styles.button}
-			>
-			Signup
-			</FlatButton>
-		</Link>
-		<Link to="/signin" style={styles.tile1}>
-			<FlatButton
-				className="dev-button"
-				style={styles.button}
-			>
-			Signin
-			</FlatButton>
-		</Link>
-		<div className="background-image"></div>
-		<div className="landing-backdrop">
-			<div className="hero-unit bar" id="bar-top" style={styles.barTop}>
-				<div className="bar-top-text">
-				</div>
+	<Page>
+		<Navbar>
+			<Link to="/" className="nav-brand">Home</Link>
+			<Link to="signup" className="nav-link">Sign Up</Link>
+			<Link to="signin" className="nav-link">Sign In</Link>
+		</Navbar>
+
+		<Hero
+			backgroundImage="../../assets/background.jpeg"
+			className="text-xs-center banner-display"
+		>
+			<div className="banner-text">
+				<div className="display-4 banner-title"> Icebox </div>
+				<p className="lead"> The complete refrigerator companion that helps you minimize waste
+				by putting you in control </p>
 			</div>
+		</Hero>
 
-			<StickyContainer topOffset={0}>
-				<div className="sticky-nav navbar navbar-default navbar-fixed-top affix-top" style={styles.navbar}>
-					<h1 className="bar-top-title">Icebox</h1>
+		<div className="spacer"></div>
 
+		<Section>
+			<HorizontalSplit padding="md">
+				<div className="bar1-text">
+					<p className="lead">Input Items by Voice</p>
+					<p> Neal is based on <a href="http://v4-alpha.getbootstrap.com/" target="_blank">
+					Bootstrap 4</a> and ships with navbar, hero, footer, sections, horizontal split,
+					pricing tables, customer quotes and other components you need for a landing page.
+					No more repetitive coding! Oh, and it's easy to extend.
+					</p>
 				</div>
-			</StickyContainer>
-
-			<div className="hero-unit bar" id="bar-second">
-				<h1 className="bar-second-title"></h1>
-			</div>
-
-			<StickyContainer>
-				<div className="hero-unit bar" id="bar-third" style={styles.barProfile}>
-					<h1 className="bar-third-title" style={styles.textWhite}>Team ColdForge</h1>
-					<div className="profile-container">
-						<div className="profile" id="colin">
-							<h3 className="profile-name">Colin Zarnegar</h3>
-							<img
-								className="profile-img"
-								src={'../../assets/landing/profiles/colin.png'}
-								role="presentation"
-								height={100}
-							/>
-							<div className="profile-text">Product Manager</div>
-						</div>
-						<div className="profile" id="austin">
-							<h3 className="profile-name">Austin Sefton</h3>
-							<img
-								className="profile-img"
-								src={'../../assets/landing/profiles/austin.jpeg'}
-								role="presentation"
-								height={100}
-							/>
-							<div className="profile-text">Front End</div>
-						</div>
-						<div className="profile" id="nate">
-							<h3 className="profile-name">Nathaniel Schwab</h3>
-							<img
-								className="profile-img"
-								src={'../../assets/landing/profiles/nate.jpeg'}
-								role="presentation"
-								height={100}
-							/>
-							<div className="profile-text">Scrum Master</div>
-						</div>
-						<div className="profile" id="and">
-							<h3 className="profile-name">Andrew J Yao</h3>
-							<img
-								className="profile-img"
-								src={'../../assets/landing/profiles/andy.jpeg'}
-								role="presentation"
-								height={100}
-							/>
-							<div className="profile-text">Full Stack</div>
-						</div>
-					</div>
+				<div className="bar1-text">
+					<p className="lead">Keeps Track of Expiration Dates</p>
+					<p>External integrations like &nbsp;
+						<a href="http://www.google.com/analytics/">Google Analytics</a>,&nbsp;
+						<a href="https://segment.com/">Segment</a>,&nbsp;
+						<a href="https://stripe.com/">Stripe</a> and&nbsp;
+						<a href="http://typeform.com">Typeform</a> are included.
+						No more copying & pasting integration code, all you need is your API keys.
+						We automatically track events when visitors navigate to different parts of your page.
+					</p>
 				</div>
-			</StickyContainer>
-
-			<div className="hero-unit bar" id="bar-fourth" style={styles.barTech}>
-				<h1 className="bar-third-title">Technologies</h1>
-				<div className="container tech-container">
-					<img className="tech" id="react" src={"../../assets/landing/technologies/react.png"} role="presentation" />
-					<img className="tech" id="redux" src={"../../assets/landing/technologies/redux.png"} role="presentation" />
-					<img className="tech" id="node" src={"../../assets/landing/technologies/node.png"} role="presentation" />
-					<img className="tech" id="mysql" src={"../../assets/landing/technologies/mysql.png"} role="presentation" />
-					<img className="tech" id="html5" src={"../../assets/landing/technologies/html5.png"} role="presentation" />
-					<img className="tech" id="css3" src={"../../assets/landing/technologies/css3.png"} role="presentation" />
+				<div className="bar1-text">
+					<p className="lead">Sends you Smart Recipies</p>
+					<p>Because you are relying on react.js and third-party integration you don't
+					need a server to host your landing page. Simply upload it to an Amazon S3 bucket,
+					enable website hosting, and it's ready to go!</p>
 				</div>
-			</div>
+			</HorizontalSplit>
+		</Section>
+		<div className="spacer"></div>
+		<hero className="hero2">
+			<div className="bar2"></div>
+		</hero>
+		<div className="spacer"></div>
 
-			<div className="hero-unit bar" id="bar-last">
-			</div>
+		<Section>
+			<CustomerQuotes>
+				<CustomerQuote name="Paul Graham" title="YC">
+					<p>What I tell founders is not to sweat the business model too much at first.
+					The most important task at first is to build something people want.
+					If you don't do that, it won't matter how clever your business model is.
+					</p>
+				</CustomerQuote>
+				<CustomerQuote name="Elon Musk">
+					<p>I came to the conclusion that we should aspire to increase the scope and
+					scale of human consciousness in order to better understand what questions to ask.
+					Really, the only thing that makes sense is to strive for greater collective enlightenment.
+					</p>
+				</CustomerQuote>
+				<CustomerQuote name="Reid Hoffman" title="Linkedin">
+					<p>
+					If you are not embarrassed by the first version of your product, you've launched too late.
+					</p>
+				</CustomerQuote>
+			</CustomerQuotes>
+		</Section>
 
-		</div>
-	</div>
+		<Section className="subhero">
+			<ImageList centered>
+				<img className="tech" id="react" src={"../../assets/landing/technologies/react.png"} role="presentation" />
+				<img className="tech" id="redux" src={"../../assets/landing/technologies/redux.png"} role="presentation" />
+				<img className="tech" id="node" src={"../../assets/landing/technologies/node.png"} role="presentation" />
+				<img className="tech" id="mysql" src={"../../assets/landing/technologies/mysql.png"} role="presentation" />
+				<img className="tech" id="html5" src={"../../assets/landing/technologies/html5.png"} role="presentation" />
+				<img className="tech" id="css3" src={"../../assets/landing/technologies/css3.png"} role="presentation" />
+			</ImageList>
+		</Section>
+
+		<Section>
+			<Team>
+				<TeamMember name="Colin Zarnegar" title="Product Manager" imageUrl="../../assets/landing/profiles/colin.png" />
+				<TeamMember name="Austin Sefton" title="Front End" imageUrl="../../assets/landing/profiles/austin.jpeg" />
+				<TeamMember name="Nathaniel Schwab" title="Scrum Master" imageUrl="../../assets/landing/profiles/nate.jpeg" />
+				<TeamMember name="Andrew J Yao" title="Full Stack" imageUrl="../../assets/landing/profiles/andy.jpeg" />
+			</Team>
+		</Section>
+
+		<Footer
+			brandName={brandName}
+			facebookUrl="http://www.facebook.com"
+			twitterUrl="http://www.twitter.com/dennybritz"
+			githubUrl="https://github.com/dennybritz/neal-react"
+			address={businessAddress}
+		/>
+	</Page>
 );
 
 export default Landing;
