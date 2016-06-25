@@ -15,6 +15,9 @@ import {
 } from 'material-ui/styles/colors';
 
 const styles = {
+	foodItemInput: {
+		height: '100px',
+	},
 	dialogTitle: {
 		width: '100%',
 	},
@@ -285,10 +288,13 @@ class FoodItemInput extends Component {
 		];
 
 		return (
-			<div>
+			<div style={styles.foodItemInput}>
 				<IconButton
 					tooltip="Speech"
+					tooltipPosition="bottom-center"
 					className="icebox-toolbar-speech"
+					iconStyle={{width: '48px', height: '48px'}}
+					style={{width: '60px', height: '60px', padding: 0}}
 					label="Dialog"
 					onTouchTap={this.handleOpen}
 				>
