@@ -253,6 +253,7 @@ class FoodItemInput extends Component {
 		return (!this.state.recognitionStarted) ? (
 			<RaisedButton
 				label="Start Input"
+				className={classNames('animated pulse start-speech-input')}
 				onTouchTap={this.startSpeechRecognition}
 				backgroundColor={green500}
 				style={styles.speechButton}
@@ -265,6 +266,7 @@ class FoodItemInput extends Component {
 		) : (
 			<RaisedButton
 				label="End Input"
+				className={classNames('animated pulse end-speech-input')}
 				onTouchTap={this.endSpeechRecognition}
 				backgroundColor={red500}
 				style={styles.speechButton}
