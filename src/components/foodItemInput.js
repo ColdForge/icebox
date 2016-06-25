@@ -13,10 +13,14 @@ import {
 	red500,
 	red100,
 } from 'material-ui/styles/colors';
+import classNames from 'classnames';
 
 const styles = {
 	foodItemInput: {
-		height: '100px',
+		height: '60px',
+		width: '60px',
+		borderRadius: 30,
+		backgroundColor: '#FFFFFF',
 	},
 	dialogTitle: {
 		width: '100%',
@@ -289,7 +293,7 @@ class FoodItemInput extends Component {
 		];
 
 		return (
-			<div style={styles.foodItemInput}>
+			<div style={styles.foodItemInput} className={classNames('animated', 'infinite', 'pulse')}>
 				<IconButton
 					tooltip="Speech"
 					tooltipPosition="bottom-center"
