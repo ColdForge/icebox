@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-
 import {
 	green500,
 	red500,
@@ -35,7 +34,7 @@ const muiTheme = {
 		primary1Color: green500,
 		primary2Color: red500,
 		primary3Color: blue500,
-		accent1Color: green200,
+		accent1Color: green500,
     accent2Color: green200,
     accent3Color: green200,
 	},
