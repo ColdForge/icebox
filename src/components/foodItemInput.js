@@ -56,6 +56,7 @@ class FoodItemInput extends Component {
 		this.discardItems = this.discardItems.bind(this);
 		this.handleOpen = this.handleOpen.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.speechRecognitionInit = this.speechRecognitionInit.bind(this);
@@ -293,8 +294,8 @@ class FoodItemInput extends Component {
 					tooltip="Speech"
 					tooltipPosition="bottom-center"
 					className="icebox-toolbar-speech"
-					iconStyle={{width: '48px', height: '48px'}}
-					style={{width: '60px', height: '60px', padding: 0}}
+					iconStyle={{ width: '48px', height: '48px' }}
+					style={{ width: '60px', height: '60px', padding: 0 }}
 					label="Dialog"
 					onTouchTap={this.handleOpen}
 				>
