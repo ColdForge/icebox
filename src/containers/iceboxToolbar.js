@@ -30,8 +30,8 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'center',
-		alignItems: 'stretch',
-		height: 60,
+		alignItems: 'center',
+		height: 72,
 		backgroundColor: 'rgba(156, 223, 158, 0.5)',
 	},
 	toolbarGroup1: {
