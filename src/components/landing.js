@@ -86,7 +86,13 @@ const Landing = () => (
 		</Section>
 		<div className="spacer"></div>
 		<hero className="hero2">
-			<div className="bar2"></div>
+			<div className="bar2">
+				<div className="large-text-wrapper">
+					<div className="large-text-1">Because you are relying on react.js and third-party integration</div>
+					<div className="large-text-2"></div>
+					<div className="large-text-3">The most important task at first is to build something people want</div>
+				</div>
+			</div>
 		</hero>
 		<div className="spacer"></div>
 
@@ -125,10 +131,10 @@ const Landing = () => (
 
 		<Section>
 			<Team>
-				<TeamMember name="Colin Zarnegar" title="Product Manager" imageUrl="../../assets/landing/profiles/colin.png" />
-				<TeamMember name="Austin Sefton" title="Front End" imageUrl="../../assets/landing/profiles/austin.jpeg" />
-				<TeamMember name="Nathaniel Schwab" title="Scrum Master" imageUrl="../../assets/landing/profiles/nate.jpeg" />
-				<TeamMember name="Andrew J Yao" title="Full Stack" imageUrl="../../assets/landing/profiles/andy.jpeg" />
+				<TeamMember className="profile" name="Colin Zarnegar" title="Product Manager" imageUrl="../../assets/landing/profiles/colin.png" />
+				<TeamMember className="profile" name="Austin Sefton" title="Front End" imageUrl="../../assets/landing/profiles/austin.jpeg" />
+				<TeamMember className="profile" name="Nathaniel Schwab" title="Scrum Master" imageUrl="../../assets/landing/profiles/nate.jpeg" />
+				<TeamMember className="profile" name="Andrew J Yao" title="Full Stack" imageUrl="../../assets/landing/profiles/andy.jpeg" />
 			</Team>
 		</Section>
 

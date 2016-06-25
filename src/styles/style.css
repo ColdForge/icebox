@@ -287,157 +287,57 @@ form .text-field-input div label {
 }
 
 .spacer {
-  height: 200px;
+  height: 220px;
 }
+
+/* First white bar */
 
 .bar1-text {
   width: 80%;
 }
 
+/* second grey bar */
+
 .bar2 {
   position: relative;
-  background: #B4B4B4;
-  height: 650px;
-  color: white;
-  width: 100%;
-}
-
-/*.bar {
-  width: 80%;
-  height: 175px;
-  padding: 10px;
-  margin: auto;
-  background: #273561;
-  color: white;
-  border-radius: 4px;
-  text-align: center;
-  z-index: 100;
-}
-
-.dev-button {
-  position: fixed;
-  float: right;
-}
-
-#bar-top {
-  position: relative;
-  width: 100%;
-  height: 450px;
-  top: -35px;
-  margin: auto;
-  background-color: #060F2F;
-  background-size: unset;
-  background-repeat: no-repeat;
-  background-position: right;
-  z-index: 10;
-}
-
-.bar-top-text {
-  width: auto;
-  margin-left: 5%;
-  margin-top: 50px;
-}
-
-.sticky-nav {
-  position: fixed;
-  background: #060F2F;
-  top: 0px;
-  width: 100%;
-  height: 100px;
-  z-index: 10;
-}
-
-.bar-top-title {
-  color: white;
-  position: fixed;
-  margin-left: 35px;
-  float: left;
-  font-size: 75px;
-  z-index: 100;
-}
-
-.bar-top-body {
-  position: absolute;
-  float: left;
-  /*background-color: green;*/
-/*}*/
-
-/*#bar-second {
-  height: 750px;
-  background: transparent;
-  width: 100%;
-  margin: 0px;
-}
-
-.bar-second-title {
-  float: left;
-  font-size: 75px;
-  margin-left: 5%;
-}
-
-.bar-second-title {
-  margin-left: 25px;
-}
-
-#bar-third {
+  padding: 15px;
+  background: url('http://www.insymbio.com/images/itemImages/Other%20Residues_Generic%20Organic%20Waste.jpg');
   height: 700px;
-  width: 100%;
-  margin-top: 35px;
-}
-
-.profile-container {
-  width: auto;
-  position: relative;
-}
-
-.profile {
   color: white;
-  display: inline-block;
-  margin: 36px;
-  background: #927F6F;
-  height: 200px;
-  width: 200px;
-  border-radius: 3px;
-}*/
-
-.profile-name {
-
-}
-
-#colin {
-
-}
-
-#austin {
-
-}
-
-#nate {
-
-}
-
-#andy {
-
-}
-
-/*#bar-fourth {
-  background: #060F2F;
-  height: 650px;
   width: 100%;
-  margin-top: 35px;
 }
 
-#bar-last {
-  background: transparent;
-  height: 100px;
+.large-text-wrapper {
+  vertical-align: middle;
+  text-align: center;
+  height: auto;
+  width: auto;
 }
 
-.ice-img {
-  position: relative;
-  top: 0px;
-  z-index: -10;
+.large-text-1 {
+  position: absolute;
+  font-size: 40px;
 }
-*/
+
+.large-text-2 {
+  position: absolute;
+  display: inline-block;
+  width: auto;
+  margin: auto;
+  float: left;
+  left: 15%;
+  font-size: 100px;
+  top: 185px;
+}
+
+.large-text-3 {
+  position: absolute;
+  font-size: 40px;
+  margin-top: 50px;
+  float: right;
+  bottom: 15px;
+}
+
 /* technologies used */
 
 .tech-container {
@@ -447,7 +347,8 @@ form .text-field-input div label {
 
 #react {
   height: 150px;
-  margin: -20px;
+  margin-right: -20px;
+  margin-left: 15px;
 }
 
 #redux {
@@ -478,28 +379,5 @@ form .text-field-input div label {
 .landing-backdrop {
   position: relative;
   background: transparent;
-  /*background-repeat: repeat;
-/*  background-size: contain;
-  background-position: center;*/
-/*  width: 100%;
-  height: 100%;
-  z-index: -5;
-}*/
-
-/*.background-image {*/
-  /*position: fixed;*/
-/*  top;
-  background: url('../../assets/background.jpeg');
-  background-repeat: repeat;
-  background-position: center;
-  background-repeat: repeat;*/
-/*  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);*/
-/*  width: 100%;
-  height: 100%;
-  z-index: -500;
-}*/
+}
 
