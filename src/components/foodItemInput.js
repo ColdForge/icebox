@@ -54,6 +54,7 @@ class FoodItemInput extends Component {
 		this.handleOpen = this.handleOpen.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleClose = this.handleClose.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
 		this.speechRecognitionInit = this.speechRecognitionInit.bind(this);
 		this.startSpeechRecognition = this.startSpeechRecognition.bind(this);
 		this.endSpeechRecognition = this.endSpeechRecognition.bind(this);

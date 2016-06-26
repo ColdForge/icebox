@@ -507,6 +507,10 @@ module.exports = {
       });
   },
 
+  acceptIceboxInvite: function(req, res){
+    console.log('Hitting acceptInvite helper in db', req.body);
+  },
+
   updateUserStaples: function(req, res){
     console.log('Hitting updateUsersStaples on db:', req.body);
     var staplesObj = req.body;
