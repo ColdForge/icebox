@@ -8,6 +8,7 @@ import iceboxSearchReducer from './iceboxSearchReducer';
 import userReducer from './userReducer';
 import recipesReducer from './recipesReducer';
 import profileReducer from './profileReducer';
+import loadingReducer from './loadingReducer';
 
 const rootReducer = combineReducers({
 	form,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
 	user: userReducer,
 	recipes: recipesReducer,
 	profile: profileReducer,
+	loading: loadingReducer,
 });
 
 export default rootReducer;
