@@ -29,3 +29,6 @@ export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const ADD_USER_ICEBOX = "ADD_USER_ICEBOX";
 export const REMOVE_USER_ICEBOX = "REMOVE_USER_ICEBOX";
 export const UPDATE_USER_STAPLES = "UPDATE_USER_STAPLES";
+// ActionTypes for handling loading from AJAX calls
+export const START_LOADING = "START_LOADING";
+export const END_LOADING = "END_LOADING";
