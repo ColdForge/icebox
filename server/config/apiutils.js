@@ -51,7 +51,7 @@ module.exports = {
     }
     request(options)
       .then(function(response){
-        console.log('API UTILS 53: response from getRecipeFromIngredients is : ',response);
+        console.log('API UTILS 53: response from getRecipeFromIngredients is : ');
         cb(response);
       })
       .catch(function(error){
@@ -69,7 +69,7 @@ module.exports = {
     function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
-        console.log ("API UTILS 71: getRecipeDetail Callback: ", info);
+        console.log ("API UTILS 71: getRecipeDetail Callback: ");
         cb(info);
       }
     }

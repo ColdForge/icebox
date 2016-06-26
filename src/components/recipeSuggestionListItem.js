@@ -2,6 +2,16 @@ import React from 'react';
 import { Card, CardActions, CardHeader, CardText, CardMedia } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+const styles = {
+	image: {
+		display: 'block',
+		maxWidth: '200px',
+		maxHeight: '200px',
+		width: 'auto',
+		height: 'auto',
+	},
+};
+
 const RecipeSuggestionListItem = ({ recipe, chooseRecipe, getRecipeDetails, recipeLocation }) => (
 	<Card onExpandChange={getRecipeDetails}>
 		<CardHeader
@@ -12,7 +22,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, getRecipeDetails, reci
 			showExpandableButton
 		/>
 		<CardText expandable>
-			<CardMedia>
+			<CardMedia style={styles.image}>
 				<img src={recipe.image} role="presentation" />
 			</CardMedia>
 		</CardText>
@@ -29,7 +39,7 @@ RecipeSuggestionListItem.propTypes = {
 	recipe: React.PropTypes.object.isRequired,
 	chooseRecipe: React.PropTypes.func,
 	getRecipeDetails: React.PropTypes.func,
-	recipeLocation: React.PropTypes.object.isRequired,
+	recipeLocation: React.PropTypes.string,
 };
 
 export default RecipeSuggestionListItem;

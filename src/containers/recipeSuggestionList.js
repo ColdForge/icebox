@@ -20,6 +20,7 @@ class RecipeSuggestionList extends Component {
   handleRecipeChoice(recipe) {
     // if user has not currently set a chosen recipe
     if(!this.props.chosenRecipe){
+      console.log("Choose Recipe fired")
       this.props.chooseRecipe({ recipe });
     } else {
       alert('You have already selected a recipe!');
@@ -28,10 +29,9 @@ class RecipeSuggestionList extends Component {
 
   handleRecipeDetails(recipe) {
     if(!this.props.recipeDetail){
-      console.log("handleDetails fired with :", recipe);
+      console.log("Recipe Details - handleDetails fired with :", recipe);
       this.props.showRecipeDetails(recipe.id);
     }
-
   }
 
   render() {
