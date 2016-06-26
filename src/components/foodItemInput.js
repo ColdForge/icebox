@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import SvgIcon from 'material-ui/SvgIcon';
 import LinearProgress from 'material-ui/LinearProgress';
+import CircularProgress from 'material-ui/CircularProgress';
 import ICONS from '../styles/icons';
 import FoodItemTable from './foodItemTable';
 import {
@@ -14,6 +15,9 @@ import {
 	red100,
 } from 'material-ui/styles/colors';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
 
 const styles = {
 	foodItemInput: {
@@ -42,6 +46,9 @@ const styles = {
 		backgroundColor: '#FFFFFF',
 		width: '100%',
 	},
+	CircularProgress: {
+		alignSelf: 'center',
+	},
 };
 
 // let confirmedItems = {};
@@ -54,12 +61,14 @@ class FoodItemInput extends Component {
 			open: false,
 			recognitionStarted: false,
 			newItemsAdded: false,
+			itemsPosted: false,
 			newItems: [],
 			confirmedItems: {},
 		};
 		this.discardItems = this.discardItems.bind(this);
 		this.handleOpen = this.handleOpen.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleFinalSubmit = this.handleFinalSubmit.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
@@ -231,7 +240,14 @@ class FoodItemInput extends Component {
 		const submitObject = { ...this.state.confirmedItems, length: this.state.newItems.length };
 		// confirmedItems.length = this.state.newItems.length;
 		this.props.submitFoods(submitObject);
-		this.setState({ open: false, newItems: [], newItemsAdded: false, confirmedItems: {} });
+
+		// handleSubmit should not close modal immediately, as user needs to verify results
+		this.setState({ newItems: [], newItemsAdded: false, itemsPosted: true, confirmedItems: {} });
+		// this.setState({ open: false, newItems: [], newItemsAdded: false, confirmedItems: {} });
+	}
+
+	handleFinalSubmit() {
+		console.log('handleFinalSubmit called in foodItemInput');
 	}
 
 	renderDialogBody() {
@@ -279,8 +295,25 @@ class FoodItemInput extends Component {
 		);
 	}
 
+	renderModalBody() {
+		console.log('renderModalBody, this.props.isLoading is : ', this.props.isLoading);
+		return (!this.props.isLoading) ? (
+			<div>
+				<div style={styles.dialogTitle}>
+					{this.renderActions()}
+				</div>
+				<br />
+				{this.renderDialogBody()}
+				<br />
+				<FoodItemTable items={this.state.newItems} discarded={this.discardItems} />
+			</div>
+		) : (
+			<CircularProgress style={styles.CircularProgress} size={4} />
+		);
+	}
+
 	render() {
-		const actions = [
+		const preSubmit = [
 			<FlatButton
 				label="Cancel"
 				style={styles.actionButtonCancel}
@@ -291,6 +324,14 @@ class FoodItemInput extends Component {
 				style={styles.actionButtonSubmit}
 				disabled={!this.state.newItemsAdded}
 				onTouchTap={this.handleSubmit}
+			/>,
+		];
+
+		const postSubmit = [
+			<FlatButton
+				label="Submit"
+				style={styles.actionButtonSubmit}
+				onTouchTap={this.handleFinalSubmit}
 			/>,
 		];
 
@@ -310,28 +351,36 @@ class FoodItemInput extends Component {
 					</SvgIcon>
 				</IconButton>
 				<Dialog
-					actions={actions}
+					actions={!this.state.itemsPosted ? preSubmit : postSubmit}
 					modal={false}
 					open={this.state.open}
 					onRequestClose={this.handleClose}
 					autoScrollBodyContent
 				>
-					<div style={styles.dialogTitle}>
-						{this.renderActions()}
-					</div>
-					<br />
-					{this.renderDialogBody()}
-					<br />
-					<FoodItemTable items={this.state.newItems} discarded={this.discardItems} />
+					{this.renderModalBody()}
 				</Dialog>
 			</div>
 		);
 	}
 }
+/*
+<div style={styles.dialogTitle}>
+	{this.renderActions()}
+</div>
+<br />
+{this.renderDialogBody()}
+<br />
+<FoodItemTable items={this.state.newItems} discarded={this.discardItems} />
+*/
 
 FoodItemInput.propTypes = {
 	submitFoods: React.PropTypes.func,
+	isLoading: React.PropTypes.bool,
 };
 
-export default FoodItemInput;
+const mapStateToProps = (state) => ({
+	isLoading: state.loading,
+});
+
+export default connect(mapStateToProps, actions)(FoodItemInput);
 
