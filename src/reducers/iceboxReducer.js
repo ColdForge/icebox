@@ -1,10 +1,14 @@
 import {
 	POPULATE_ICEBOX,
 	ADD_ITEMS,
+	ADD_TO_TRASH,
+	REMOVE_FROM_TRASH,
 	REMOVE_ITEMS,
 	CLARIFY_ITEMS,
-	} from '../constants/actions';
+	CLEAR_ICEBOX,
+} from '../constants/actions';
 import { v4 } from 'node-uuid';
+import _remove from 'lodash/remove';
 
 const applyFoodGroupIcon = (item) => {
 	switch (item.foodGroup.toLowerCase()) {
@@ -53,6 +57,7 @@ const INITIAL_STATE = {
 	contents: [],
 	noExpirationItems: [],
 	noFoodGroupItems: [],
+	trashContents: [],
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -70,8 +75,28 @@ export default function (state = INITIAL_STATE, action) {
 			noExpirationItems: [...state.noExpirationItems, action.noExpirationItems],
 			noFoodGroupItems: [...state.noFoodGroupItems, action.noFoodGroupItems],
 		};
+	case ADD_TO_TRASH: {
+		const contentsAfterAdd = state.contents.slice();
+		const trashAfterAdd = _remove(contentsAfterAdd, item => (item.itemID === action.payload));
+		console.log('inside ADD_TO_TRASH in iceboxReducer, action.payload is : ', action.payload);
+		console.log('trashAfterAdd is : ', trashAfterAdd);
+		return {
+			...state,
+			trashContents: [...state.trashContents, ...trashAfterAdd],
+		}; }
+	case REMOVE_FROM_TRASH: {
+		const trashAfterRemove = state.trashContents.slice();
+		_remove(trashAfterRemove, item => (item.itemID === action.payload));
+		console.log('inside REMOVE_FROM_TRASH in iceboxReducer, action.payload is : ', action.payload);
+		console.log('trashAfterRemove is : ', trashAfterRemove);
+		return {
+			...state,
+			trashContents: trashAfterRemove,
+		}; }
 	case REMOVE_ITEMS:
 		return state;
+	case CLEAR_ICEBOX:
+		return { contents: [], noExpirationItems: [], noFoodGroupItems: [], trashContents: [] };
 	default:
 		return state;
 	}

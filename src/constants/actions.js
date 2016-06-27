@@ -12,8 +12,11 @@ export const CLEAR_ICEBOX_SEARCH = "CLEAR_ICEBOX_SEARCH";
 export const POPULATE_ICEBOX = "POPULATE_ICEBOX";
 export const ADD_ITEMS = "ADD_ITEMS";
 export const CLARIFY_ITEMS = "CLARIFY_ITEMS";
+export const ADD_TO_TRASH = "ADD_TO_TRASH";
+export const REMOVE_FROM_TRASH = "REMOVE_FROM_TRASH";
 export const REMOVE_ITEMS = "REMOVE_ITEMS";
 export const ICEBOX_ERROR = "ICEBOX_ERROR";
+export const CLEAR_ICEBOX = "CLEAR_ICEBOX";
 // ActionTypes for handling user
 export const GET_USER_INFO = "GET_USER_INFO";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
