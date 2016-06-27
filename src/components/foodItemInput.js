@@ -8,6 +8,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 import CircularProgress from 'material-ui/CircularProgress';
 import ICONS from '../styles/icons';
 import FoodItemTable from './foodItemTable';
+import ResolveItemTable from './resolveItemTable';
 import {
 	green500,
 	green100,
@@ -75,6 +76,7 @@ class FoodItemInput extends Component {
 		this.speechRecognitionInit = this.speechRecognitionInit.bind(this);
 		this.startSpeechRecognition = this.startSpeechRecognition.bind(this);
 		this.endSpeechRecognition = this.endSpeechRecognition.bind(this);
+		this.renderTable = this.renderTable.bind(this);
 	}
 
 	discardItems(item) {
@@ -295,6 +297,17 @@ class FoodItemInput extends Component {
 		);
 	}
 
+	renderTable() {
+		const clarifyingItems = [...this.props.noExpirationItems, ...this.props.noFoodGroupItems];
+
+		if (this.state.newItems.length > 0) {
+			return <FoodItemTable items={this.state.newItems} discarded={this.discardItems} />;
+		} else if (this.props.noExpirationItems.length > 0 || this.props.noFoodGroupItems.length > 0) {
+			return <ResolveItemTable items={clarifyingItems} discarded={this.discardItems} />;
+		}
+		return <div />;
+	}
+
 	renderModalBody() {
 		console.log('renderModalBody, this.props.isLoading is : ', this.props.isLoading);
 		return (!this.props.isLoading) ? (
@@ -305,7 +318,7 @@ class FoodItemInput extends Component {
 				<br />
 				{this.renderDialogBody()}
 				<br />
-				<FoodItemTable items={this.state.newItems} discarded={this.discardItems} />
+				{this.renderTable()}
 			</div>
 		) : (
 			<CircularProgress style={styles.CircularProgress} size={4} />
@@ -376,10 +389,14 @@ class FoodItemInput extends Component {
 FoodItemInput.propTypes = {
 	submitFoods: React.PropTypes.func,
 	isLoading: React.PropTypes.bool,
+	noExpirationItems: React.PropTypes.array,
+	noFoodGroupItems: React.PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
 	isLoading: state.loading,
+	noExpirationItems: state.icebox.noExpirationItems,
+	noFoodGroupItems: state.icebox.noFoodGroupItems,
 });
 
 export default connect(mapStateToProps, actions)(FoodItemInput);
