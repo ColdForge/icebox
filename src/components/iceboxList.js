@@ -3,7 +3,7 @@ import React from 'react';
 import { GridList } from 'material-ui/GridList';
 import IceboxListItem from './iceboxListItem';
 
-const IceboxList = ({ contents }) => (
+const IceboxList = ({ contents, addToTrash, removeFromTrash }) => (
 	<div>
 		<GridList
 			className="icebox-list"
@@ -16,8 +16,11 @@ const IceboxList = ({ contents }) => (
 					key={item.key}
 					item={item}
 					name={item.name}
+					itemID={item.itemID}
 					foodGroup={item.foodGroup}
 					expiration={item.expiration}
+					addToTrash={addToTrash}
+					removeFromTrash={removeFromTrash}
 				/>
 			))}
 		</GridList>
@@ -26,6 +29,8 @@ const IceboxList = ({ contents }) => (
 
 IceboxList.propTypes = {
 	contents: React.PropTypes.array.isRequired,
+	addToTrash: React.PropTypes.func,
+	removeFromTrash: React.PropTypes.func,
 };
 
 
