@@ -126,6 +126,7 @@ export const acceptInvite = (details) => (
 		.then(response => {
 			console.log('Successfully accepted invite', response);
 			dispatch({ type: TYPES.UPDATE_USER_INFO, payload: response.data });
+			dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
 		})
 		.catch(response => (
 			response

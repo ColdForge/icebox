@@ -66,8 +66,14 @@ module.exports = {
 						.then(function(resp){
 							console.log('Auth success', resp);
 								//[ { id: 8, iceboxID: 18, user_email: 'nate@makersquare.com' } ]
-								user['invite'] = resp[0].user_email || null;
-								user['inviteID'] = resp[0].iceboxID || null; 
+								if(resp.length > 0){
+									user['invite'] = resp[0].user_email;
+								  user['inviteID'] = resp[0].iceboxID;
+								} else {
+									user['invite'] = null;
+								  user['inviteID'] = null;
+								}
+								 
 		
 								knex.insert({user_email: user.email})//, icebox_name: user.name + "'s Icebox"})
 				  				.into('iceboxes')

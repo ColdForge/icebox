@@ -51,12 +51,6 @@ class AppHeader extends Component {
 		this.submitChoice = this.submitChoice.bind(this);
 	}
 
-	// handleToggle() {
-	// 	if (this.props.authenticated) {
-	// 		this.setState({ drawerOpen: !this.state.drawerOpen });
-	// 	}
-	// }
-
 	toggleMessage() {
 		this.setState({ message: !this.state.message });
 		console.log('Bell firing', this.props.user);
@@ -65,7 +59,8 @@ class AppHeader extends Component {
 	submitChoice() {
 		console.log('submitChoice is firing');
 		if (this.props.user.invite) {
-			this.props.acceptInvite({ userID: this.props.user.id, newIcebox: this.props.user.inviteID });
+			this.props.acceptInvite({ user: this.props.user });
+			this.setState({ message: false });
 		}
 	}
 
