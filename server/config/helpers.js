@@ -55,8 +55,8 @@ module.exports = {
               recognizedItems.push({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
               db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
                 .into('icebox_items')
-                .then(function(resp){
-                  console.log('Item added to icebox', resp);
+                .then(function(result){
+                  console.log('Item added to icebox', result);
                   resolve({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
                 })
                 .catch(function(err){
@@ -69,12 +69,15 @@ module.exports = {
               });
               result.then(function(promiseFoodAPIResponse){
                 console.log('food item results', promiseFoodAPIResponse);
-                if(promiseFoodAPIResponse.error){
-                  unrecognizedItems.push(promiseFoodAPIResponse)
-                  resolve({ name: promiseFoodAPIResponse.name, category: promiseFoodAPIResponse.category, error: true });
+                var responseItem = { name: promiseFoodAPIResponse.name, foodGroup: promiseFoodAPIResponse.foodGroup, expiration: promiseFoodAPIResponse.expiration };
+                if(promiseFoodAPIResponse.foodGroup === "N/A"){
+                  // unrecognizedItems.push(promiseFoodAPIResponse)
+                  unrecognizedItems.push(responseItem)
+                  resolve({ name: promiseFoodAPIResponse.name, foodGroup: promiseFoodAPIResponse.foodGroup, expiration: promiseFoodAPIResponse.expiration });
                 } else {
-                  noExpirationItems.push(promiseFoodAPIResponse);
-                  resolve({ name: promiseFoodAPIResponse.name, category: promiseFoodAPIResponse.category });
+                  // noExpirationItems.push(promiseFoodAPIResponse);
+                  noExpirationItems.push(responseItem);
+                  resolve({ name: promiseFoodAPIResponse.name, foodGroup: promiseFoodAPIResponse.foodGroup, expiration: promiseFoodAPIResponse.expiration });
                   // db.insert({category: promiseFoodAPIResponse.category, name: promiseFoodAPIResponse.name, freshDuration: 10})
                   //   .into('foods')
                   //   .then(function(insertFoodsResponse){
