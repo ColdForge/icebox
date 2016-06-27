@@ -123,6 +123,22 @@ module.exports = {
       });
     }
 	},
+  removeIceboxItems: function(req, res) {
+    console.log('req.user in removeIceboxItems is : ',req.user);
+    console.log('req.body in removeIceboxItems is : ',req.body);
+    var itemIDs = req.body.items.map(function(item){
+      return item.itemID;
+    })
+    db('icebox_items').del('*').whereIn('id',itemIDs)
+    .then(function(result){
+      console.log('result from icebox_items del command is : ',result);
+      res.send('iceboxItems removed');
+    })
+    .catch(function(error){
+      console.log('error from icebox_items del command is : ',error);
+      res.send('iceboxItems removed');
+    })
+  },
   checkIceboxContentsNative: function(req, res) {
     console.log('req.user in changeIceboxContentsNative is : ',req.user);
     console.log('req.body in changeIceboxContentsNative is : ',req.body);
