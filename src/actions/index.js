@@ -193,6 +193,28 @@ export const removeFromTrash = ({ id }) => ({
 	payload: id,
 });
 
+export const removeIceboxItems = ({ items }) => (
+	dispatch => {
+		dispatch({ type: TYPES.START_LOADING });
+		console.log('items passed in are : ', items);
+		const itemIDs = {};
+		items.forEach(item => {
+			itemIDs[item.itemID] = true;
+		});
+		axios.post(`${API_URL}/api/icebox/remove`, { items }, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+			.then(() => {
+				dispatch({ type: TYPES.END_LOADING });
+				dispatch({ type: TYPES.REMOVE_ITEMS, payload: itemIDs });
+			})
+			.catch(response => {
+				dispatch({ type: TYPES.END_LOADING });
+				console.log('error in removeIceboxItems, response of : ', response);
+			});
+	}
+);
+
 export const getRecipes = () => (
 	(dispatch) => {
 		dispatch({ type: TYPES.START_LOADING });
