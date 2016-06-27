@@ -34,7 +34,7 @@ const muiTheme = {
 		primary1Color: green500,
 		primary2Color: red500,
 		primary3Color: blue500,
-		accent1Color: green500,
+		accent1Color: red500,
     accent2Color: green200,
     accent3Color: green200,
 	},
