@@ -507,6 +507,63 @@ module.exports = {
       });
   },
 
+	acceptIceboxInvite: function(req, res){
+		console.log('Hitting acceptInvite helper in db', req.body);
+		var invitedUser = req.body.user
+		db('users')
+			.where('id', invitedUser.id)
+			.update({
+				iceboxID: invitedUser.inviteID,
+			})
+			.then(function(resp){
+				console.log('Successfully updated icebox', resp);
+
+				db('icebox_items')
+					.join('foods', 'icebox_items.foodID', '=', 'foods.id')
+					.select('icebox_items.daysToExpire as expiration', 'foods.category as foodGroup', 
+						'foods.name as name', 'icebox_items.foodID as foodID')
+					.where('icebox_items.iceboxID', invitedUser.inviteID)
+					.then(function(response){
+						console.log('Inside of res being sent', response);
+						res.send({
+							id: invitedUser.id, 
+							name: invitedUser.name, 
+							email: invitedUser.email, 
+							iceboxID: invitedUser.inviteID, 
+							contents: response,
+						});
+
+						db.select('*')
+							.from('auth_users')
+							.where('iceboxID', invitedUser.iceboxID)
+							.del()
+							.then(function(resp){
+								console.log('Auth users deleted', resp);
+								db.select('*')
+									.from('staple_items')
+									.where('iceboxID', invitedUser.iceboxID)
+									.del()
+									.then(function(resp){
+									console.log('Staple items deleted', resp);
+									db.select('*')
+									  .from('iceboxes')
+										.where('id', invitedUser.iceboxID)
+										.del()
+										.then(function(resp){
+											console.log('Final icebox deleted', resp);
+										});
+								});
+							}).catch(function(err){
+								console.log('Error trashing old icebox');
+							});
+					});
+			})
+			.catch(function(err){
+				console.log('Error updating icebox', err);
+				res.send('Error updating icebox', err);
+			});
+	},
+
   updateUserStaples: function(req, res){
     console.log('Hitting updateUsersStaples on db:', req.body);
     var staplesObj = req.body;

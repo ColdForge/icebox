@@ -14,7 +14,7 @@ export const signinUser = ({ email, password }) => (
 	(dispatch) => {
 		axios.post(`${API_URL}/user/signin`, { email, password })
 			.then(response => {
-				// console.log('response inside signinUser : ', response);
+				console.log('response inside signinUser : ', response);
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				dispatch({ type: TYPES.GET_USER_INFO, payload: response.data });
 				dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
@@ -31,6 +31,7 @@ export const signupUser = ({ email, name, password }) => (
 	(dispatch) => {
 		axios.post(`${API_URL}/user/signup`, { email, name, password })
 			.then(response => {
+				console.log('Response from signup', response);
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				dispatch({ type: TYPES.GET_USER_INFO, payload: response.data });
 				localStorage.setItem('token', response.data.token);
@@ -109,6 +110,23 @@ export const updateUserStaples = (staples) => (
 		.then(response => {
 			console.log('Successfully added user', response);
 			dispatch({ type: TYPES.UPDATE_USER_STAPLES, payload: response.data });
+		})
+		.catch(response => (
+			response
+		));
+	}
+);
+
+export const acceptInvite = (details) => (
+	(dispatch) => {
+		console.log('Inside of acceptInvitation in actions', details);
+		axios.post(`${API_URL}/api/profile/accept`, details, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+		.then(response => {
+			console.log('Successfully accepted invite', response);
+			dispatch({ type: TYPES.UPDATE_USER_INFO, payload: response.data });
+			dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
 		})
 		.catch(response => (
 			response

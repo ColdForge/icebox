@@ -7,6 +7,10 @@ import SvgIcon from 'material-ui/SvgIcon';
 import AppDrawer from './appDrawer';
 import FlatButton from 'material-ui/FlatButton';
 import * as actions from '../actions/index';
+import Message from 'material-ui/svg-icons/social/notifications';
+import { green50 } from 'material-ui/styles/colors';
+import Dialog from 'material-ui/Dialog';
+
 
 const styles = {
 	bar: {
@@ -35,6 +39,8 @@ class AppHeader extends Component {
 		super(props);
 		this.state = {
 			drawerOpen: false,
+			message: false,
+			inviteConfirmed: false,
 		};
 		this.toggle = () => {
 			if (this.props.authenticated) {
@@ -42,17 +48,65 @@ class AppHeader extends Component {
 			}
 		};
 		this.handleToggle = this.toggle.bind(this);
+		this.toggleMessage = this.toggleMessage.bind(this);
+		this.acceptInvite = this.acceptInvite.bind(this);
+		this.denyInvite = this.denyInvite.bind(this);
 	}
 
-	// handleToggle() {
-	// 	if (this.props.authenticated) {
-	// 		this.setState({ drawerOpen: !this.state.drawerOpen });
-	// 	}
-	// }
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.user.invite && !this.state.inviteConfirmed) {
+			this.setState({ message: true });
+		}
+		console.log('Popup is firing with: ', nextProps.user.invite);
+	}
+
+	toggleMessage() {
+		this.setState({ message: !this.state.message });
+	}
+
+	denyInvite() {
+		this.setState({ message: false, inviteConfirmed: true });
+	}
+
+	acceptInvite() {
+		if (this.props.user.invite) {
+			this.props.acceptInvite({ user: this.props.user });
+			this.setState({ message: false, inviteConfirmed: true });
+		}
+	}
 
 	renderButtons() {
+		const notifyActions = [
+			<FlatButton
+				label="No Thanks"
+				primary
+				onTouchTap={this.denyInvite}
+			/>,
+			<FlatButton
+				label="Accept Invite"
+				primary
+				keyboardFocused
+				onTouchTap={this.acceptInvite}
+			/>,
+		];
+
 		return this.props.authenticated ? (
 			<div style={styles.buttonContainer}>
+				<div>
+					<IconButton className="help-button" onTouchTap={this.toggleMessage}>
+						<Message color={green50} />
+					</IconButton>
+					<Dialog
+						title="Icebox Invite"
+						actions={notifyActions}
+						modal={false}
+						open={this.state.message}
+						onRequestClose={this.toggleMessage}
+					>
+						A user has invited you to your icebox {this.props.user.invite}
+					</Dialog>
+				</div>
+
 				<FlatButton
 					className="help-button"
 					label="Help"
@@ -132,11 +186,14 @@ class AppHeader extends Component {
 
 const mapStateToProps = state => ({
 	authenticated: state.auth.authenticated,
+	user: state.user,
 });
 
 AppHeader.propTypes = {
 	authenticated: React.PropTypes.bool,
 	signoutUser: React.PropTypes.func.isRequired,
+	user: React.PropTypes.object,
+	acceptInvite: React.PropTypes.func,
 };
 
 export default connect(mapStateToProps, actions)(AppHeader);

@@ -9,6 +9,8 @@ export default function (state = {}, action) {
 			name: action.payload.name,
 			email: action.payload.email,
 			iceboxID: action.payload.iceboxID,
+			inviteID: action.payload.inviteID,
+			invite: action.payload.invite,
 		};
 	case UPDATE_USER_INFO:
 		return {

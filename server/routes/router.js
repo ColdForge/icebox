@@ -24,12 +24,15 @@ router.post('/icebox/recipes', helpers.chooseRecipeSuggestion)
 router.get('/icebox/recipe_details', helpers.getRecipeDetails)
 //Post to a user's staple_items
 router.post('/profile/staples', helpers.updateUserStaples)
-// Get user profile information
-router.get('/profile', helpers.getUserProfile)
 // Add a new user to your icebox
 router.post('/profile/add', helpers.addUserToIcebox)
 // Remove user from your icebox
 router.post('/profile/remove', helpers.removeUserFromIcebox)
+// Accept invitation to icebox
+router.post('/profile/accept', helpers.acceptIceboxInvite)
+// Get user profile information
+router.get('/profile', helpers.getUserProfile)
+
 
 
 module.exports = router;
