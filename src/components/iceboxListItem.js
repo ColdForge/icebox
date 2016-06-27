@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-// import { ListItem } from 'material-ui/List';
 import { GridTile } from 'material-ui/GridList';
 import Paper from 'material-ui/Paper';
-// import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-// import Checkbox from 'material-ui/Checkbox';
+import Checkbox from 'material-ui/Checkbox';
 // import MinusCheckbox from 'material-ui/svg-icons/toggle/indeterminate-check-box';
 // import DeleteAction from 'material-ui/svg-icons/action/delete';
 
@@ -86,26 +84,29 @@ const styles = {
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		Image: {
-			flex: 1,
-		},
 		Title: {
 			marginLeft: 10,
+			paddingLeft: 10,
+			marginRight: 10,
 			width: '100%',
-			backgroundColor: 'rgba(255,255,255,0.4)',
 			flex: 1,
 			fontFamily: '"Helvetica Neue", Helvetica',
-			fontSize: '3em',
+			fontSize: '2em',
 			color: 'white',
 			display: 'flex',
 			flexDirection: 'row',
 			Group: {
-				flex: 3,
+				flex: 2,
+				textAlign: 'left',
 			},
 			CheckboxContainer: {
 				flex: 1,
+				textAlign: 'right',
+				paddingRight: 10,
 			},
 			Checkbox: {
+				marginLeft: 0,
+				paddingLeft: 0,
 				color: 'white',
 			},
 		},
@@ -140,7 +141,6 @@ class IceboxListItem extends Component {
 			checked: false,
 			textColor: 'black',
 		};
-		console.log('props passed into iceboxListItem : ', props);
 		this.handleChange = this.handleChange.bind(this);
 		this.addToTrash = props.addToTrash;
 		this.removeFromTrash = props.removeFromTrash;
@@ -169,13 +169,11 @@ class IceboxListItem extends Component {
 		if (this.state.checked) {
 			this.setState({
 				checked: false,
-			});
-			this.removeFromTrash({ id: this.props.itemID });
+			},() => this.removeFromTrash({ id: this.props.itemID }));
 		} else {
 			this.setState({
 				checked: true,
-			});
-			this.addToTrash({ id: this.props.itemID });
+			},() => this.addToTrash({ id: this.props.itemID }));
 		}
 	}
 
@@ -193,10 +191,14 @@ class IceboxListItem extends Component {
 							<div style={styles.cardHeader.Title}>
 								<span style={styles.cardHeader.Title.Group}>{this.props.foodGroup}</span>
 								<span style={styles.cardHeader.Title.CheckboxContainer}>
-									<input
-										type="checkbox"
-										value={this.state.checked}
-										onChange={this.handleChange}
+									<Checkbox
+										iconStyle={{marginLeft: 0,height:40,width:40,stroke:'white',fill:'red',paddingRight:10}}
+									  label="Remove"
+									  labelStyle={{color:'red',fontSize: 12, margin:0,padding:0}}
+									  labelPosition="left"
+									  checked={this.state.checked}
+									  onCheck={this.handleChange}
+									  style={styles.cardHeader.Title.Checkbox}
 									/>
 								</span>
 							</div>
