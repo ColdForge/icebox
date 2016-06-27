@@ -16,7 +16,7 @@ export default function (state = INITIAL_STATE, action) {
 			name: action.payload.profile.name,
 			email: action.payload.profile.email,
 			household: [...state.household, ...action.payload.household],
-			staples: [...state.household, ...action.payload.staples],
+			staples: [...state.staples, ...action.payload.staples],
 		};
 	case ADD_USER_ICEBOX:
 		return {
