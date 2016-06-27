@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-// import FlatButton from 'material-ui/FlatButton';
+import FlatButton from 'material-ui/FlatButton';
 import {
   // Code,
   CustomerQuote, CustomerQuotes,
@@ -11,7 +11,7 @@ import {
   HorizontalSplit,
   ImageList,
   // ImageListItem,
-  Navbar,
+  // Navbar,
   // NavItem,
   Page,
   // PricingPlan,
@@ -25,33 +25,46 @@ import {
 
 const brandName = 'ColdForge';
 
-const businessAddress = (
-	<address>
-		<strong>{brandName}</strong><br />
-		1337 Market Street, Suite 1337<br />
-		San Francisco, CA 94103<br />
-		+1 (123) 456-7890
-	</address>
-);
+const colin = <h2 className="name"> Colin Zarnegar </h2>;
+const austin = <h2 className="name"> Austin Sefton </h2>;
+const nathan = <h2 className="name"> Nathaniel Schwab </h2>;
+const andy = <h2 className="name"> Andrew J Yao </h2>;
+
+const pm = <h3 className="title"> Product Manager </h3>;
+const fe = <h3 className="title"> Front End </h3>;
+const fs = <h3 className="title"> Full Stack </h3>;
+const sm = <h3 className="title"> Scrum Master </h3>;
 
 const Landing = () => (
-	<Page>
-		<Navbar>
-			<Link to="/" className="nav-brand">Home</Link>
-			<Link to="signup" className="nav-link">Sign Up</Link>
-			<Link to="signin" className="nav-link">Sign In</Link>
-		</Navbar>
 
+	<Page>
+		<Link to="signup" className="nav-link">
+			<FlatButton
+				primary
+				className="pull-right"
+				backgroundColor="white"
+   >
+				Sign Up
+			</FlatButton>
+		</Link>
+		<Link to="signin" className="nav-link">
+			<FlatButton
+				primary
+				className="pull-right"
+				backgroundColor="white"
+   >
+				Sign In
+			</FlatButton>
+		</Link>
+		<div className="banner-text">
+			<div className="display-4 banner-title"> Icebox </div>
+			<p className="lead"> The complete refrigerator companion that helps you minimize waste
+			by putting you in control </p>
+		</div>
 		<Hero
 			backgroundImage="../../assets/background.jpeg"
 			className="text-xs-center banner-display"
-		>
-			<div className="banner-text">
-				<div className="display-4 banner-title"> Icebox </div>
-				<p className="lead"> The complete refrigerator companion that helps you minimize waste
-				by putting you in control </p>
-			</div>
-		</Hero>
+		/>
 
 		<div className="spacer"></div>
 
@@ -86,7 +99,13 @@ const Landing = () => (
 		</Section>
 		<div className="spacer"></div>
 		<hero className="hero2">
-			<div className="bar2"></div>
+			<div className="bar2">
+				<div className="large-text-wrapper">
+					<div className="large-text-1">Because you are relying on react.js and third-party integration</div>
+					<div className="large-text-2"></div>
+					<div className="large-text-3">The most important task at first is to build something people want</div>
+				</div>
+			</div>
 		</hero>
 		<div className="spacer"></div>
 
@@ -122,22 +141,44 @@ const Landing = () => (
 				<img className="tech" id="css3" src={"../../assets/landing/technologies/css3.png"} role="presentation" />
 			</ImageList>
 		</Section>
-
 		<Section>
-			<Team>
-				<TeamMember name="Colin Zarnegar" title="Product Manager" imageUrl="../../assets/landing/profiles/colin.png" />
-				<TeamMember name="Austin Sefton" title="Front End" imageUrl="../../assets/landing/profiles/austin.jpeg" />
-				<TeamMember name="Nathaniel Schwab" title="Scrum Master" imageUrl="../../assets/landing/profiles/nate.jpeg" />
-				<TeamMember name="Andrew J Yao" title="Full Stack" imageUrl="../../assets/landing/profiles/andy.jpeg" />
+			<Team className="profile-wrapper">
+				<div className="profile">
+					<TeamMember
+						className="profile"
+						imageUrl="../../assets/landing/profiles/colin.png"
+					> {colin}{pm}
+					</TeamMember>
+				</div>
+				<div className="profile">
+					<TeamMember
+						className="profile"
+						imageUrl="../../assets/landing/profiles/austin.jpeg"
+					> {austin}{fe}
+					</TeamMember>
+				</div>
+				<div className="profile">
+					<TeamMember
+						className="profile"
+						imageUrl="../../assets/landing/profiles/nate.jpeg"
+					> {nathan}{sm}
+					</TeamMember>
+				</div>
+				<div className="profile">
+					<TeamMember
+						className="profile"
+						imageUrl="../../assets/landing/profiles/andy.jpeg"
+					> {andy}{fs}
+					</TeamMember>
+				</div>
 			</Team>
 		</Section>
-
+		<div className="spacer"></div>
 		<Footer
 			brandName={brandName}
 			facebookUrl="http://www.facebook.com"
 			twitterUrl="http://www.twitter.com/dennybritz"
 			githubUrl="https://github.com/dennybritz/neal-react"
-			address={businessAddress}
 		/>
 	</Page>
 );
