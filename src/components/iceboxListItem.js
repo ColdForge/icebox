@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import { ListItem } from 'material-ui/List';
 import { GridTile } from 'material-ui/GridList';
 import Paper from 'material-ui/Paper';
 // import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+// import Checkbox from 'material-ui/Checkbox';
+// import MinusCheckbox from 'material-ui/svg-icons/toggle/indeterminate-check-box';
+// import DeleteAction from 'material-ui/svg-icons/action/delete';
 
 const styles = {
 	gridTile: {
@@ -88,10 +91,23 @@ const styles = {
 		},
 		Title: {
 			marginLeft: 10,
-			flex: 2,
+			width: '100%',
+			backgroundColor: 'rgba(255,255,255,0.4)',
+			flex: 1,
 			fontFamily: '"Helvetica Neue", Helvetica',
 			fontSize: '3em',
 			color: 'white',
+			display: 'flex',
+			flexDirection: 'row',
+			Group: {
+				flex: 3,
+			},
+			CheckboxContainer: {
+				flex: 1,
+			},
+			Checkbox: {
+				color: 'white',
+			},
 		},
 	},
 	cardBody: {
@@ -116,41 +132,144 @@ const styles = {
 	},
 };
 
-const IceboxListItem = ({ name, foodGroup, expiration }) => {
-	if (!name) {
-		return <GridTile primaryText="Loading..." />;
+class IceboxListItem extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			checked: false,
+			textColor: 'black',
+		};
+		console.log('props passed into iceboxListItem : ', props);
+		this.handleChange = this.handleChange.bind(this);
+		this.addToTrash = props.addToTrash;
+		this.removeFromTrash = props.removeFromTrash;
 	}
 
-	let textColor = 'black';
+	componentWillMount() {
+		if (this.props.expiration <= 3) {
+			this.setState({
+				textColor: 'red',
+			});
+		}
+		if (this.props.expiration > 3 && this.props.expiration <= 6) {
+			this.setState({
+				textColor: 'orange',
+			});
+		}
+		if (this.props.expiration >= 7) {
+			this.setState({
+				textColor: '#7FFF00',
+			});
+		}
+	}
 
-	if (expiration <= 3) {
-		textColor = 'red';
+	handleChange() {
+		console.log('handleChange in iceboxListItem fired, this.state.checked is : ', this.state.checked);
+		if (this.state.checked) {
+			this.setState({
+				checked: false,
+			});
+			this.removeFromTrash({ id: this.props.itemID });
+		} else {
+			this.setState({
+				checked: true,
+			});
+			this.addToTrash({ id: this.props.itemID });
+		}
 	}
-	if (expiration > 3 && expiration <= 6) {
-		textColor = 'orange';
+
+	render() {
+		return (
+			<GridTile
+				className="iceboxListItem"
+				style={{ ...styles.gridTile }}
+				children={
+					<Paper
+						style={{ ...styles.paper, ...styles[this.props.foodGroup], border: `1px solid ${this.state.textColor}` }}
+						zDepth={5}
+					>
+						<div style={styles.cardBody}>
+							<div style={styles.cardHeader.Title}>
+								<span style={styles.cardHeader.Title.Group}>{this.props.foodGroup}</span>
+								<span style={styles.cardHeader.Title.CheckboxContainer}>
+									<input
+										type="checkbox"
+										value={this.state.checked}
+										onChange={this.handleChange}
+									/>
+								</span>
+							</div>
+							<span style={styles.cardBody.Title}>{this.props.name}</span>
+							<span style={styles.cardBody.Subtitle}>
+								Expires in <span style={{ color: this.state.textColor }}>{this.props.expiration} days</span>
+							</span>
+						</div>
+					</Paper>
+				}
+			/>
+		);
 	}
-	if (expiration >= 7) {
-		textColor = 'green';
-	}
-	// console.log('foodGroup passed into IceboxListItem is : ', foodGroup);
-	return (
-		<GridTile
-			className="iceboxListItem"
-			style={{ ...styles.gridTile }}
-			children={
-				<Paper style={{ ...styles.paper, ...styles[foodGroup], border: `1px solid ${textColor}` }} zDepth={5}>
-					<div style={styles.cardBody}>
-						<span style={styles.cardHeader.Title}>{foodGroup}</span>
-						<span style={styles.cardBody.Title}>{name}</span>
-						<span style={styles.cardBody.Subtitle}>
-							Expires in <span style={{ color: textColor }}>{expiration} days</span>
-						</span>
-					</div>
-				</Paper>
-			}
-		/>
-	);
-};
+
+}
+
+// const IceboxListItem = ({ name, foodGroup, expiration, itemID, addToTrash, removeFromTrash }) => {
+// 	if (!name) {
+// 		return <GridTile primaryText="Loading..." />;
+// 	}
+
+// 	let textColor = 'black';
+
+// 	if (expiration <= 3) {
+// 		textColor = 'red';
+// 	}
+// 	if (expiration > 3 && expiration <= 6) {
+// 		textColor = 'orange';
+// 	}
+// 	if (expiration >= 7) {
+// 		textColor = '#7FFF00';
+// 	}
+// 	const handleChange = (event) => {
+// 		console.log('handleClick fired on checkbox with e.target of : ',event.target,' and itemID of : ',itemID);
+// 		// console.log('value is : ',event.target.value);
+// 		// let bool = event.target.value;
+// 		if(event.target.value == false) {
+// 			event.target.value = true;
+// 			console.log('event.target.value is false')
+// 		}
+// 		if(event.target.value == true) {
+// 			event.target.value = false;
+// 			console.log('event.target.value is true')
+// 		}
+// 	}
+// 	// console.log('foodGroup passed into IceboxListItem is : ', foodGroup);
+// 	return (
+// 		<GridTile
+// 			className="iceboxListItem"
+// 			style={{ ...styles.gridTile }}
+// 			children={
+// 				<Paper style={{ ...styles.paper, ...styles[foodGroup], border: `1px solid ${textColor}` }} zDepth={5}>
+// 					<div style={styles.cardBody}>
+// 						<div style={styles.cardHeader.Title}>
+// 							<span style={styles.cardHeader.Title.Group}>{foodGroup}</span>
+// 							<span style={styles.cardHeader.Title.CheckboxContainer}>
+// 								<input
+// 									type="checkbox"
+// 									value={}
+// 									onChange={handleChange}
+// 								/>
+// 							</span>
+// 						</div>
+// 						<span style={styles.cardBody.Title}>{name}</span>
+// 						<span style={styles.cardBody.Subtitle}>
+// 							Expires in <span style={{ color: textColor }}>{expiration} days</span>
+// 						</span>
+// 					</div>
+// 				</Paper>
+// 			}
+// 		/>
+// 	);
+// };
 /*
 <div className="list-item-container" data-food-group={foodGroup}>
 	<img className="food-group-icon" height="24" width="24" alt="Food Group" src={iconPath} />
@@ -165,8 +284,11 @@ const IceboxListItem = ({ name, foodGroup, expiration }) => {
 IceboxListItem.propTypes = {
 	name: React.PropTypes.string.isRequired,
 	foodGroup: React.PropTypes.string.isRequired,
-	iconPath: React.PropTypes.string.isRequired,
+	itemID: React.PropTypes.number,
+	// iconPath: React.PropTypes.string.isRequired,
 	expiration: React.PropTypes.number.isRequired,
+	addToTrash: React.PropTypes.func,
+	removeFromTrash: React.PropTypes.func,
 };
 
 export default IceboxListItem;
