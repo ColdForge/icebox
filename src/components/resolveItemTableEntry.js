@@ -5,8 +5,8 @@ import Toggle from 'material-ui/Toggle';
 const ResolveItemTableEntry = ({ name, foodGroup, expiration, toggle, toggled }) => (
 	<TableRow>
 		<TableRowColumn>{name}</TableRowColumn>
-		<TableRowColumn>{foodGroup || "N/A"}</TableRowColumn>
-		<TableRowColumn>{expiration || "N/A"}</TableRowColumn>
+		<TableRowColumn>{foodGroup || 'N/A'}</TableRowColumn>
+		<TableRowColumn>{expiration || 'N/A'}</TableRowColumn>
 		<Toggle
 			name={name}
 			onToggle={toggle}
