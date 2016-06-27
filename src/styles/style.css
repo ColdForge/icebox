@@ -257,8 +257,10 @@ form .text-field-input div label {
 
 /* Landing Page Styling */
 
-.nav-link {
-  margin: 5px;
+.top-button {
+  position: relative;
+  margin: 10px;
+  background: white;
 }
 
 .nav-brand {
@@ -273,8 +275,10 @@ form .text-field-input div label {
 
 .banner-text {
   position: absolute;
+  color: white;
   width: 100%;
-  top: 350px;
+  top: 250px;
+  left: 15px;
 }
 
 .banner-title {
@@ -382,7 +386,7 @@ form .text-field-input div label {
 }
 
 .profile {
-  margin: 20px;
+  margin: 40px 0px 40px 0px;
 }
 
 .name {
