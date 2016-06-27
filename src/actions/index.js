@@ -159,7 +159,32 @@ export const addIceboxItems = ({ foodItems }) => (
 	(dispatch) => {
 		dispatch({ type: TYPES.START_LOADING });
 		console.log('foodItems in addIceboxItems is : ', foodItems);
-		axios.post(`${API_URL}/api/icebox`, { foodItems }, {
+		axios.post(`${API_URL}/api/icebox/add`, { foodItems }, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+			.then(response => {
+				console.log('good response from addIceboxItems is : ', response);
+				dispatch({ type: TYPES.ADD_ITEMS, payload: response.data.recognizedItems });
+				dispatch({
+					type: TYPES.CLARIFY_ITEMS,
+					noExpirationItems: response.data.noExpirationItems,
+					unrecognizedItems: response.data.unrecognizedItems,
+				});
+				dispatch({ type: TYPES.END_LOADING });
+			})
+			.catch(response => {
+				console.log('bad response from addIceboxItems is : ', response);
+				dispatch({ type: TYPES.END_LOADING });
+				// dispatch({ type: TYPES.ICEBOX_ERROR, payload: response.data });
+			});
+	}
+);
+
+export const resolveIceboxItems = ({ foodItems }) => (
+	(dispatch) => {
+		dispatch({ type: TYPES.START_LOADING });
+		console.log('foodItems in addIceboxItems is : ', foodItems);
+		axios.post(`${API_URL}/api/icebox/resolve`, { foodItems }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
@@ -179,19 +204,6 @@ export const addIceboxItems = ({ foodItems }) => (
 			});
 	}
 );
-
-export const addToTrash = ({ id }) => {
-	console.log('addToTrash called, with id of : ', id);
-	return {
-		type: TYPES.ADD_TO_TRASH,
-		payload: id,
-	};
-};
-
-export const removeFromTrash = ({ id }) => ({
-	type: TYPES.REMOVE_FROM_TRASH,
-	payload: id,
-});
 
 export const removeIceboxItems = ({ items }) => (
 	dispatch => {
@@ -214,6 +226,19 @@ export const removeIceboxItems = ({ items }) => (
 			});
 	}
 );
+
+export const addToTrash = ({ id }) => {
+	console.log('addToTrash called, with id of : ', id);
+	return {
+		type: TYPES.ADD_TO_TRASH,
+		payload: id,
+	};
+};
+
+export const removeFromTrash = ({ id }) => ({
+	type: TYPES.REMOVE_FROM_TRASH,
+	payload: id,
+});
 
 export const getRecipes = () => (
 	(dispatch) => {
