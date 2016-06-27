@@ -140,7 +140,7 @@ module.exports = {
       .catch(function(err){
         console.log('err in getFoodType request of : ',err.message);
         cb({
-          name: response.cleanTitle,
+          name: food,
           foodGroup: "N/A",
           expiration: undefined,
           error: "Unable to find food in Spoonacular database"
