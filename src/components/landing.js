@@ -25,6 +25,16 @@ import {
 
 const brandName = 'ColdForge';
 
+const colin = <h2 className="name">Colin Zarnegar</h2>;
+const austin = <h2 className="name">Austin Sefton</h2>;
+const nathan = <h2 className="name">Nathaniel Schwab</h2>;
+const andy = <h2 className="name">Andrew J Yao</h2>;
+
+const pm = <h3 className="title">Product Manager</h3>;
+const fe = <h3 className="title">Front End</h3>;
+const fs = <h3 className="title">Full Stack</h3>;
+const sm = <h3 className="title">Scrum Master</h3>;
+
 const businessAddress = (
 	<address>
 		<strong>{brandName}</strong><br />
@@ -35,6 +45,7 @@ const businessAddress = (
 );
 
 const Landing = () => (
+
 	<Page>
 		<Navbar>
 			<Link to="/" className="nav-brand">Home</Link>
@@ -130,31 +141,27 @@ const Landing = () => (
 		</Section>
 
 		<Section>
-			<Team>
+			<Team className="profile-wrapper">
 				<TeamMember
 					className="profile"
-					name="Colin Zarnegar"
-					title="Product Manager"
 					imageUrl="../../assets/landing/profiles/colin.png"
-    />
+				> {colin}{pm}
+				</TeamMember>
 				<TeamMember
 					className="profile"
-					name="Austin Sefton"
-					title="Front End"
 					imageUrl="../../assets/landing/profiles/austin.jpeg"
-    />
+				> {austin}{fe}
+				</TeamMember>
 				<TeamMember
 					className="profile"
-					name="Nathaniel Schwab"
-					title="Scrum Master"
 					imageUrl="../../assets/landing/profiles/nate.jpeg"
-    />
+				> {nathan}{sm}
+				</TeamMember>
 				<TeamMember
 					className="profile"
-					name="Andrew J Yao"
-					title="Full Stack"
 					imageUrl="../../assets/landing/profiles/andy.jpeg"
-    />
+				> {andy}{fs}
+				</TeamMember>
 			</Team>
 		</Section>
 

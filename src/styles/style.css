@@ -376,6 +376,25 @@ form .text-field-input div label {
   margin: 40px;
 }
 
+/* profiles */
+.profile-wrapper {
+  padding: 15px;
+}
+
+.profile {
+  margin: 20px;
+}
+
+.name {
+  position: absolute;
+  top: 85%;
+}
+
+.title {
+  position: absolute;
+  top: 92%;
+}
+
 .landing-backdrop {
   position: relative;
   background: transparent;
