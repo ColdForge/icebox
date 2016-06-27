@@ -40,6 +40,7 @@ class AppHeader extends Component {
 		this.state = {
 			drawerOpen: false,
 			message: false,
+			inviteConfirmed: false,
 		};
 		this.toggle = () => {
 			if (this.props.authenticated) {
@@ -48,19 +49,29 @@ class AppHeader extends Component {
 		};
 		this.handleToggle = this.toggle.bind(this);
 		this.toggleMessage = this.toggleMessage.bind(this);
-		this.submitChoice = this.submitChoice.bind(this);
+		this.acceptInvite = this.acceptInvite.bind(this);
+		this.denyInvite = this.denyInvite.bind(this);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.user.invite && !this.state.inviteConfirmed) {
+			this.setState({ message: true });
+		}
+		console.log('Popup is firing with: ', nextProps.user.invite);
 	}
 
 	toggleMessage() {
 		this.setState({ message: !this.state.message });
-		console.log('Bell firing', this.props.user);
 	}
 
-	submitChoice() {
-		console.log('submitChoice is firing');
+	denyInvite() {
+		this.setState({ message: false, inviteConfirmed: true });
+	}
+
+	acceptInvite() {
 		if (this.props.user.invite) {
 			this.props.acceptInvite({ user: this.props.user });
-			this.setState({ message: false });
+			this.setState({ message: false, inviteConfirmed: true });
 		}
 	}
 
@@ -69,13 +80,13 @@ class AppHeader extends Component {
 			<FlatButton
 				label="No Thanks"
 				primary
-				onTouchTap={this.toggleMessage}
+				onTouchTap={this.denyInvite}
 			/>,
 			<FlatButton
 				label="Accept Invite"
 				primary
 				keyboardFocused
-				onTouchTap={this.submitChoice}
+				onTouchTap={this.acceptInvite}
 			/>,
 		];
 
