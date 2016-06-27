@@ -11,7 +11,7 @@ import {
   HorizontalSplit,
   ImageList,
   // ImageListItem,
-  Navbar,
+  // Navbar,
   // NavItem,
   Page,
   // PricingPlan,
@@ -40,17 +40,19 @@ const Landing = () => (
 	<Page>
 		<Link to="signup" className="nav-link">
 			<FlatButton
-				primary={true}
+				primary
 				className="pull-right"
-				backgroundColor="white">
+				backgroundColor="white"
+   >
 				Sign Up
 			</FlatButton>
 		</Link>
 		<Link to="signin" className="nav-link">
 			<FlatButton
-				primary={true}
+				primary
 				className="pull-right"
-				backgroundColor="white">
+				backgroundColor="white"
+   >
 				Sign In
 			</FlatButton>
 		</Link>
@@ -62,8 +64,7 @@ const Landing = () => (
 		<Hero
 			backgroundImage="../../assets/background.jpeg"
 			className="text-xs-center banner-display"
-		>
-		</Hero>
+		/>
 
 		<div className="spacer"></div>
 
@@ -140,38 +141,37 @@ const Landing = () => (
 				<img className="tech" id="css3" src={"../../assets/landing/technologies/css3.png"} role="presentation" />
 			</ImageList>
 		</Section>
-
 		<Section>
-		<Team className="profile-wrapper">
-			<div className="profile">
-				<TeamMember
-					className="profile"
-					imageUrl="../../assets/landing/profiles/colin.png"
-				> {colin}{pm}
-				</TeamMember>
-			</div>
-			<div className="profile">
-				<TeamMember
-					className="profile"
-					imageUrl="../../assets/landing/profiles/austin.jpeg"
-				> {austin}{fe}
-				</TeamMember>
-			</div>
-			<div className="profile">
-				<TeamMember
-					className="profile"
-					imageUrl="../../assets/landing/profiles/nate.jpeg"
-				> {nathan}{sm}
-				</TeamMember>
-			</div>
-			<div className="profile">
-				<TeamMember
-					className="profile"
-					imageUrl="../../assets/landing/profiles/andy.jpeg"
-				> {andy}{fs}
-				</TeamMember>
-			</div>
-		</Team>
+			<Team className="profile-wrapper">
+				<div className="profile">
+					<TeamMember
+						className="profile"
+						imageUrl="../../assets/landing/profiles/colin.png"
+					> {colin}{pm}
+					</TeamMember>
+				</div>
+				<div className="profile">
+					<TeamMember
+						className="profile"
+						imageUrl="../../assets/landing/profiles/austin.jpeg"
+					> {austin}{fe}
+					</TeamMember>
+				</div>
+				<div className="profile">
+					<TeamMember
+						className="profile"
+						imageUrl="../../assets/landing/profiles/nate.jpeg"
+					> {nathan}{sm}
+					</TeamMember>
+				</div>
+				<div className="profile">
+					<TeamMember
+						className="profile"
+						imageUrl="../../assets/landing/profiles/andy.jpeg"
+					> {andy}{fs}
+					</TeamMember>
+				</div>
+			</Team>
 		</Section>
 		<div className="spacer"></div>
 		<Footer
