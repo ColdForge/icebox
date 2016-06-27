@@ -8,11 +8,23 @@ class ResolveItemTable extends Component {
 		this.state = {
 			toggled: true,
 			showCheckboxes: false,
+			items: props.items,
 		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleExpirationChange = this.handleExpirationChange.bind(this);
+		this.handleFoodGroupChange = this.handleFoodGroupChange.bind(this);
+	}
+
+	handleExpirationChange() {
+		console.log('handleExpirationChange called');
+	}
+
+	handleFoodGroupChange() {
+		console.log('handleFoodGroupChange called');
 	}
 
 	handleToggle = (event, toggled) => {
-		this.props.discarded(event.target.name);
+		// this.props.discarded(event.target.name);
 		this.setState({ [event.target.name]: toggled });
 	};
 
@@ -21,7 +33,7 @@ class ResolveItemTable extends Component {
 	};
 
 	render() {
-		console.log('this.props.items passed into ResolveItemTable are : ',this.props.items);
+		console.log('this.props.items passed into ResolveItemTable are : ', this.props.items);
 		return (
 			<Table>
 				<TableHeader>
@@ -40,7 +52,9 @@ class ResolveItemTable extends Component {
 							key={index}
 							name={row.name}
 							foodGroup={row.foodGroup}
+							handleFoodGroupChange={this.handleFoodGroupChange}
 							expiration={row.expiration}
+							handleExpirationChange={this.handleExpirationChange}
 							i={index}
 							toggle={this.handleToggle}
 							toggled={this.state.toggled}
