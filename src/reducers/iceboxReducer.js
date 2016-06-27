@@ -93,8 +93,16 @@ export default function (state = INITIAL_STATE, action) {
 			...state,
 			trashContents: trashAfterRemove,
 		}; }
-	case REMOVE_ITEMS:
-		return state;
+	case REMOVE_ITEMS: {
+		const contentsAfterRemoval = state.contents.slice();
+		console.log('state.contents.length is : ', state.contents.length);
+		_remove(contentsAfterRemoval, item => (action.payload[item.itemID] === true));
+		console.log('contentsAfterRemoval.length is : ', contentsAfterRemoval.length);
+		return {
+			...state,
+			contents: contentsAfterRemoval,
+			trashContents: [],
+		}; }
 	case CLEAR_ICEBOX:
 		return { contents: [], noExpirationItems: [], noFoodGroupItems: [], trashContents: [] };
 	default:
