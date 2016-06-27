@@ -19,7 +19,7 @@ module.exports = {
     });
 
 	},
-	changeIceboxContents: function(req, res) {
+	addIceboxItems: function(req, res) {
 		var user = req.user;
 		var foodItems = req.body.foodItems;
     var itemsToAdd = [];
@@ -27,8 +27,8 @@ module.exports = {
     var noExpirationItems = [];
     var unrecognizedItems = [];
     var counter = 0;
-    console.log('user in changeIceboxContents is : ',user);
-    console.log('items in changeIceboxContents is : ',foodItems);
+    console.log('user in addIceboxItems is : ',user);
+    console.log('items in addIceboxItems is : ',foodItems);
 
     for (var key in foodItems) {
       if(key !== "length" && foodItems[key]){
@@ -123,6 +123,11 @@ module.exports = {
       });
     }
 	},
+  clarifyIceboxItems: function(req,res) {
+    console.log('req.user in clarifyIceboxItems is : ',req.user);
+    console.log('req.body in clarifyIceboxItems is : ',req.body);
+    res.send('clarifyIceboxItems called');
+  },
   removeIceboxItems: function(req, res) {
     console.log('req.user in removeIceboxItems is : ',req.user);
     console.log('req.body in removeIceboxItems is : ',req.body);
