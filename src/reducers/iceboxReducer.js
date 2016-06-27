@@ -72,8 +72,8 @@ export default function (state = INITIAL_STATE, action) {
 	case CLARIFY_ITEMS:
 		return {
 			...state,
-			noExpirationItems: [...state.noExpirationItems, action.noExpirationItems],
-			noFoodGroupItems: [...state.noFoodGroupItems, action.noFoodGroupItems],
+			noExpirationItems: [...state.noExpirationItems, ...action.noExpirationItems],
+			noFoodGroupItems: [...state.noFoodGroupItems, ...action.unrecognizedItems],
 		};
 	case ADD_TO_TRASH: {
 		const contentsAfterAdd = state.contents.slice();
