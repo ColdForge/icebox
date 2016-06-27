@@ -46,10 +46,12 @@ export const signupUser = ({ email, name, password }) => (
 
 export const signoutUser = () => {
 	localStorage.removeItem('token');
+	localStorage.removeItem('state');
 	browserHistory.push('/');
 	return dispatch => {
 		dispatch({ type: TYPES.DEAUTHORIZE_USER });
-		dispatch({ type: TYPES.CLEAR_USER_INFO });
+		// dispatch({ type: TYPES.CLEAR_USER_INFO });
+		// dispatch({ type: TYPES.CLEAR_ICEBOX });
 	};
 };
 
@@ -177,6 +179,19 @@ export const addIceboxItems = ({ foodItems }) => (
 			});
 	}
 );
+
+export const addToTrash = ({ id }) => {
+	console.log('addToTrash called, with id of : ', id);
+	return {
+		type: TYPES.ADD_TO_TRASH,
+		payload: id,
+	};
+};
+
+export const removeFromTrash = ({ id }) => ({
+	type: TYPES.REMOVE_FROM_TRASH,
+	payload: id,
+});
 
 export const getRecipes = () => (
 	(dispatch) => {
