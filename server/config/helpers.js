@@ -182,7 +182,7 @@ module.exports = {
                   //   .catch(function(err){
                   //     console.log('Insert error', err);
                   //   });
-                }  
+                }
               })
               .catch(function(err){
                 console.log('Error retrieving food type');
@@ -197,7 +197,7 @@ module.exports = {
           });
         });
       }
-      
+
       itemsArray.forEach(function(item, index, array){
         promiseArray.push(promiseItemChecker(item));
       });
@@ -276,7 +276,7 @@ module.exports = {
                   //   .catch(function(err){
                   //     console.log('Insert error', err);
                   //   });
-                }  
+                }
               })
               .catch(function(err){
                 console.log('Error retrieving food type');
@@ -289,7 +289,7 @@ module.exports = {
           });
         });
       }
-      
+
       itemsArray.forEach(function(item, index, array){
         promiseArray.push(promiseItemChecker(item));
       });
@@ -315,7 +315,7 @@ module.exports = {
     .where('iceboxID', icebox)
     .innerJoin('foods', 'icebox_items.foodID', 'foods.id')
     .then(function(resp){
-      console.log('resp from innerJoin is : ',resp);
+      console.log('resp from innerJoin is : ');
 
       resp.forEach(function(food){
         if(food.daysToExpire <= 3){
@@ -334,11 +334,11 @@ module.exports = {
             console.log('Recipe collection', recipeCollect);
           });
         }).then(function(resp){
-          console.log('HELPERS 141: resp from select in getRecipes is : ',resp)
+          console.log('HELPERS 141: resp from select in getRecipes is : ')
           var result = new Promise(function(resolve){
             foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
           }).then(function(resp){
-            console.log('HELPERS 145: Successfull call to recipe API', resp);
+            console.log('HELPERS 145: Successfull call to recipe API');
             res.send(resp);
           });
         });
@@ -391,7 +391,7 @@ module.exports = {
     var result = new Promise(function(resolve){
       foodAPI.getRecipeDetailWithID(recipe, resolve);
     }).then(function(resp){
-      console.log('Recipe ID call successful', resp);
+      console.log('Recipe ID call successful');
       res.send(resp);
     }).catch(function(err){
       console.log('Error retrieving recipe details', err);

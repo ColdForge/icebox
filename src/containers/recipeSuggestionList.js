@@ -17,16 +17,10 @@ class RecipeSuggestionList extends Component {
     console.log("RSL: suggestion will mount fired")
   }
 
-  componentWillReceiveProps() {
-    if(this.props.recipeDetail){
-      console.log(this.props.recipeDetail)
-      //window.open(this.props.recipeDetail)
-    }
-  }
-
   handleRecipeChoice(recipe) {
     // if user has not currently set a chosen recipe
     if(!this.props.chosenRecipe){
+      console.log("Choose Recipe fired")
       this.props.chooseRecipe({ recipe });
     } else {
       alert('You have already selected a recipe!');
@@ -34,9 +28,10 @@ class RecipeSuggestionList extends Component {
   }
 
   handleRecipeDetails(recipe) {
-    console.log("handleDetails fired with :", recipe);
-    this.props.showRecipeDetails(recipe.id);
-
+    if(!this.props.recipeDetail){
+      console.log("Recipe Details - handleDetails fired with :", recipe);
+      this.props.showRecipeDetails(recipe.id);
+    }
   }
 
   render() {

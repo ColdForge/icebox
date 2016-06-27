@@ -25,15 +25,15 @@ module.exports = {
   	  		.select('icebox_items.daysToExpire as expiration', 'foods.category as foodGroup', 'foods.name as name', 'icebox_items.foodID as foodID')
   	  		.where('icebox_items.iceboxID', req.user.iceboxID)
   	  		.then(function(response){
-  	  			console.log('Inside of res being sent', response);
+  	  			console.log('Inside of res being sent');
   	  			res.send({
-  	  				token: tokenForUser(req.user), 
-  	  				id: req.user.id, 
-  	  				name: req.user.name, 
-  	  				email: req.user.email, 
-  	  				iceboxID: req.user.iceboxID, 
+  	  				token: tokenForUser(req.user),
+  	  				id: req.user.id,
+  	  				name: req.user.name,
+  	  				email: req.user.email,
+  	  				iceboxID: req.user.iceboxID,
   	  				contents: response,
-  	  				grammarList: grammarList 
+  	  				grammarList: grammarList
   	  			});
   	  		})
           });
