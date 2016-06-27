@@ -18,7 +18,7 @@ const configureStore = (testMode,state) => {
     const loadedState = loadState();
     let persistedState = {
       ...loadedState,
-      icebox: { contents: DUMMY_ICEBOX, noExpirationItems: [], noFoodGroupItems: [] },
+      // icebox: { contents: DUMMY_ICEBOX, noExpirationItems: [], noFoodGroupItems: [] },
       recipes: { pastSuggestions: DUMMY_PAST_SUGGESTIONS, suggestions: [], chosenRecipe: null }
     };
     store = createStoreWithMiddleware(reducers,persistedState, window.devToolsExtension ? window.devToolsExtension() : f => f);
