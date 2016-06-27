@@ -169,11 +169,11 @@ class IceboxListItem extends Component {
 		if (this.state.checked) {
 			this.setState({
 				checked: false,
-			},() => this.removeFromTrash({ id: this.props.itemID }));
+			}, () => this.removeFromTrash({ id: this.props.itemID }));
 		} else {
 			this.setState({
 				checked: true,
-			},() => this.addToTrash({ id: this.props.itemID }));
+			}, () => this.addToTrash({ id: this.props.itemID }));
 		}
 	}
 
@@ -192,13 +192,13 @@ class IceboxListItem extends Component {
 								<span style={styles.cardHeader.Title.Group}>{this.props.foodGroup}</span>
 								<span style={styles.cardHeader.Title.CheckboxContainer}>
 									<Checkbox
-										iconStyle={{marginLeft: 0,height:40,width:40,stroke:'white',fill:'red',paddingRight:10}}
-									  label="Remove"
-									  labelStyle={{color:'red',fontSize: 12, margin:0,padding:0}}
-									  labelPosition="left"
-									  checked={this.state.checked}
-									  onCheck={this.handleChange}
-									  style={styles.cardHeader.Title.Checkbox}
+										iconStyle={{ marginLeft: 0, height: 40, width: 40, stroke: 'white', fill: 'red', paddingRight: 10 }}
+										label="Remove"
+										labelStyle={{ color: 'red', fontSize: 12, margin: 0, padding: 0 }}
+										labelPosition="left"
+										checked={this.state.checked}
+										onCheck={this.handleChange}
+										style={styles.cardHeader.Title.Checkbox}
 									/>
 								</span>
 							</div>
