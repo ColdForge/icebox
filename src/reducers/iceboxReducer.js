@@ -107,6 +107,8 @@ export default function (state = INITIAL_STATE, action) {
 		}; }
 	case CLEAR_ICEBOX:
 		return { contents: [], noExpirationItems: [], noFoodGroupItems: [], trashContents: [] };
+	case CLEAR_CLARIFYING_ITEMS: 
+		return { ...state, noExpirationItems: [], noFoodGroupItems: [] };
 	default:
 		return state;
 	}

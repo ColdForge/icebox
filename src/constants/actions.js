@@ -17,6 +17,7 @@ export const REMOVE_FROM_TRASH = "REMOVE_FROM_TRASH";
 export const REMOVE_ITEMS = "REMOVE_ITEMS";
 export const ICEBOX_ERROR = "ICEBOX_ERROR";
 export const CLEAR_ICEBOX = "CLEAR_ICEBOX";
+export const CLEAR_CLARIFYING_ITEMS = "CLEAR_CLARIFYING_ITEMS";
 // ActionTypes for handling user
 export const GET_USER_INFO = "GET_USER_INFO";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
