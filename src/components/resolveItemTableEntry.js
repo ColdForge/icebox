@@ -27,7 +27,7 @@ class ResolveItemTableEntry extends Component {
 		this.setState({
 			foodGroup: value,
 		});
-		this.props.handleFoodGroupChange();
+		this.props.handleFoodGroupChange(this.props.id, value);
 	}
 
 	handleDatePick(event, date) {
@@ -36,7 +36,7 @@ class ResolveItemTableEntry extends Component {
 		});
 		const days = (Date.parse(date) - Date.parse(this.state.minDate)) / (1000 * 60 * 60 * 24);
 		console.log('days is : ', days);
-		this.props.handleExpirationChange();
+		this.props.handleExpirationChange(this.props.id, days);
 	}
 
 	render() {
@@ -44,7 +44,7 @@ class ResolveItemTableEntry extends Component {
 			<TableRow>
 				<TableRowColumn>{this.props.name}</TableRowColumn>
 				<TableRowColumn>
-					{this.props.foodGroup ||
+					{(this.props.foodGroup !== 'N/A') ? this.props.foodGroup :
 						<SelectField
 							hintText="Please enter the food group"
 							onChange={this.handleSelect}
@@ -82,6 +82,7 @@ class ResolveItemTableEntry extends Component {
 				</TableRowColumn>
 				<Toggle
 					name={this.props.name}
+					id={this.props.id}
 					onToggle={this.props.toggle}
 					defaultToggled={this.props.toggled}
 				/>
@@ -90,36 +91,8 @@ class ResolveItemTableEntry extends Component {
 	}
 }
 
-/* eslint-disable */
-// const ResolveItemTableEntry = ({ name, foodGroup, expiration, toggle, toggled, handleFoodGroupChange, handleExpirationChange }) => (
-/* eslint-enable */
-// 	<TableRow>
-// 		<TableRowColumn>{name}</TableRowColumn>
-// 		<TableRowColumn>
-// 			{foodGroup ||
-// 				<SelectField
-// 					hintText="Please enter the food group"
-// 					onChange={handleFoodGroupChange}
-// 				/>
-// 			}
-// 		</TableRowColumn>
-// 		<TableRowColumn>
-// 			{expiration ||
-// 				<TextField
-// 					hintText="Please enter the expiration date"
-// 					onChange={handleExpirationChange}
-// 				/>
-// 			}
-// 		</TableRowColumn>
-// 		<Toggle
-// 			name={name}
-// 			onToggle={toggle}
-// 			defaultToggled={toggled}
-// 		/>
-// 	</TableRow>
-// );
-
 ResolveItemTableEntry.propTypes = {
+	id: React.PropTypes.string.isRequired,
 	name: React.PropTypes.string.isRequired,
 	foodGroup: React.PropTypes.string,
 	expiration: React.PropTypes.number,

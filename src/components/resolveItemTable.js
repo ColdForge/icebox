@@ -24,15 +24,40 @@ class ResolveItemTable extends Component {
 			}
 			return item;
 		});
+		this.setState({
+			editedItems,
+		});
 		console.log('editedItems is : ', editedItems);
 	}
 
-	handleFoodGroupChange() {
+	handleFoodGroupChange(id, foodGroup) {
 		console.log('handleFoodGroupChange called');
+		const editedItems = this.state.editedItems.slice().map(item => {
+			if (id === item.key) {
+				return { ...item, foodGroup };
+			}
+			return item;
+		});
+		this.setState({
+			editedItems,
+		});
+		console.log('editedItems is : ', editedItems);
 	}
 
 	handleToggle = (event, toggled) => {
 		// this.props.discarded(event.target.name);
+		console.log('handleToggle called with event.target.name of : ', event.target.name);
+		console.log('handleToggle called with event.target.id of : ', event.target.id);
+		console.log('handleToggle called with toggled of : ', toggled);
+		const editedItems = this.state.editedItems.slice().map(item => {
+			if (event.target.id === item.key) {
+				return { ...item, add: toggled };
+			}
+			return item;
+		});
+		this.setState({
+			editedItems,
+		}, () => { console.log('line 60 : ', this.state.editedItems); });
 		this.setState({ [event.target.name]: toggled });
 	};
 
