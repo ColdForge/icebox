@@ -266,7 +266,7 @@ class FoodItemInput extends Component {
 		if (flag) {
 			console.log('no errors in handleFinalSubmit');
 			this.props.resolveIceboxItems({ foodItems });
-			setTimeout(()=>{
+			setTimeout(() => {
 				this.setState({
 					newItems: [],
 					newItemsAdded: false,
@@ -274,7 +274,7 @@ class FoodItemInput extends Component {
 					editedItems: [],
 					open: false,
 				});
-			},1000);	
+			}, 1000);
 		}
 	}
 
