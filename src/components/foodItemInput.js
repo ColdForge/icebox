@@ -125,7 +125,6 @@ class FoodItemInput extends Component {
 		// let speechFlag = false;
 		// const speechResults = [];
 
-
 		this.recognition.onresult = (event) => {
 			for (let i = event.resultIndex; i < event.results.length; ++i) {
 				const identificated = event.results[i][0].transcript;
@@ -270,6 +269,7 @@ class FoodItemInput extends Component {
 				this.setState({
 					newItems: [],
 					newItemsAdded: false,
+					itemsPosted: false,
 					clarifyingItems: [],
 					editedItems: [],
 					open: false,
