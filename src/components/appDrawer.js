@@ -48,7 +48,7 @@ const styles = {
 		fontSize: '2em',
 		height: '50%',
 		width: '60%',
-		boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+		boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
 	},
 };
 
