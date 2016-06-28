@@ -63,6 +63,7 @@ class FoodItemInput extends Component {
 			newItems: [],
 			confirmedItems: {},
 			clarifyingItems: [],
+			editedItems: [],
 		};
 		this.discardItems = this.discardItems.bind(this);
 		this.handleOpen = this.handleOpen.bind(this);
@@ -75,6 +76,7 @@ class FoodItemInput extends Component {
 		this.startSpeechRecognition = this.startSpeechRecognition.bind(this);
 		this.endSpeechRecognition = this.endSpeechRecognition.bind(this);
 		this.renderTable = this.renderTable.bind(this);
+		this.handleEditing = this.handleEditing.bind(this);
 	}
 
 	discardItems(item) {
@@ -246,6 +248,15 @@ class FoodItemInput extends Component {
 		// this.setState({ open: false, newItems: [], newItemsAdded: false, confirmedItems: {} });
 	}
 
+	handleEditing(editedItems){
+		this.setState({
+			editedItems
+		}, () => {
+			console.log('editedItems passed into handleEditing are : ',editedItems);
+			console.log('this.state.editedItems: ',this.state.editedItems);
+		})
+	}
+
 	handleFinalSubmit() {
 		console.log('handleFinalSubmit called in foodItemInput');
 	}
@@ -317,7 +328,13 @@ class FoodItemInput extends Component {
 			// this.setState({
 			// 	clarifyingItems,
 			// });
-			return <ResolveItemTable items={clarifyingItems} discarded={this.discardItems} />;
+			return (
+				<ResolveItemTable 
+					items={clarifyingItems} 
+					discarded={this.discardItems} 
+					handleEditing={this.handleEditing}
+				/>
+			);
 		}
 		return <div />;
 	}
