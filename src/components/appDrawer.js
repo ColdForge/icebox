@@ -28,23 +28,26 @@ const styles = {
 	tile1: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#EEB87C',
+		backgroundColor: '#F1F1F1',
 	},
 	tile2: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#A53934',
+		backgroundColor: '#F1F1F1',
 	},
 	tile3: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#A1B38E',
+		backgroundColor: '#F1F1F1',
 	},
 	button: {
-		color: 'white',
+		position: 'relative',
+		top: 30,
+		color: '#556270',
+		backgroundColor: 'rgb(156, 203, 158)',
 		fontSize: '2em',
-		height: '100%',
-		width: '100%',
+		height: '50%',
+		width: '60%',
 	},
 };
 
