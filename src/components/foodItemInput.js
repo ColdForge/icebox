@@ -4,9 +4,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import SvgIcon from 'material-ui/SvgIcon';
+import ICONS from '../styles/icons';
 import LinearProgress from 'material-ui/LinearProgress';
 import CircularProgress from 'material-ui/CircularProgress';
-import ICONS from '../styles/icons';
 import FoodItemTable from './foodItemTable';
 import ResolveItemTable from './resolveItemTable';
 import {
