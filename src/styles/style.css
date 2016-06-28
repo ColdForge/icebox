@@ -343,13 +343,35 @@ form .text-field-input div label {
 }
 
 .settings-container {
-  height: 100%;
-  background: #F1F1F1 no-repeat center center;
-  background-size: cover;
+  width: 90%;
+}
+
+.settings-grid {
+  background-color: white;
+  border-radius: 3px;
 }
 
 .settings-divs {
+  width: 350px;
+  margin: 0 auto;
   background-color: white;
+  height: 350px;
+  overflow: scroll;
+}
+
+.settings-header {
+  background-color: #4CAF50;
+  padding: 10px;
+  font-weight: bold;
+  width: 350px;
+  margin: 40px auto 0px auto;
+}
+.setting-footer {
+  background-color: white;
+  width: 350px;
+  margin: 0 auto;
+  height: 60px;
+  padding-bottom: 10px;
 }
 
 /* Landing Page Styling */

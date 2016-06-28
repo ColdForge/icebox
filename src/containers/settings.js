@@ -21,24 +21,9 @@ import SettingsConfirm from '../components/settingsConfirm';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 
 const styles = {
-	profile: {
-		width: 350,
-		display: 'inline-block',
-		margin: 5,
-	},
-	house: {
-		width: 350,
-		display: 'inline-block',
-		margin: 5,
-	},
-	staples: {
-		width: 300,
-		display: 'inline-block',
-		margin: 5,
-	},
 	photo: {
-		height: 250,
-		width: 250,
+		height: 150,
+		width: 150,
 	},
 	button: {
 		margin: 12,
@@ -124,13 +109,18 @@ class Settings extends Component {
 	render() {
 
 		return (
-			<div>
-
-				<div style={styles.profile} className="settings-divs">
+			<div className="settings-container" className="container">
+			<div className="row">
+				<div className="settings-grid" className="col-sm-4">
+				<div className="settings-header">
+				Profile
+				</div>
+				<div className="settings-divs">
+				
 					<List>
-						<Subheader>Profile</Subheader>
-							<img style={styles.photo} src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
-							<FlatButton label="Change/Add Pic" primary={true} style={styles.button} />
+						<ListItem>
+							<img style={styles.photo} className="img-rounded" src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
+						</ListItem>
 						<ListItem>
 							<h4>Username: {this.props.email}</h4>
 						</ListItem>
@@ -151,11 +141,18 @@ class Settings extends Component {
 							</div>
 						</ListItem>
 					</List>
+					</div>
+					<div className="setting-footer">
+							<FlatButton label="Change/Add Pic" primary={true} style={styles.button} />
+					</div>
 				</div>
 
-				<div style={styles.house} className="settings-divs">
+				<div className="settings-grid" className="col-sm-4">
+				<div className="settings-header">
+				Household Users
+				</div>
+				<div className="settings-divs">
 					<List>
-						<Subheader>Household Users</Subheader>
 						<Table>
 							<TableBody displayRowCheckbox={false} >
 								{this.props.household.map((person, i) => (
@@ -173,13 +170,19 @@ class Settings extends Component {
 								))}
 							</TableBody>
 						</Table>
-						<SettingsEntry addUser={this.addUser}/>
 					</List>
+					</div>
+						<div className="setting-footer">
+						<SettingsEntry addUser={this.addUser}/>
+					</div>
 				</div>
 
-				<div style={styles.staples} className="settings-divs">
+				<div className="settings-grid" className="col-sm-4">
+				<div className="settings-header">
+				Staples
+				</div>
+				<div className="settings-divs">
 					<List>
-						<Subheader>Staples</Subheader>
 						<Table>
 							<TableBody displayRowCheckbox={false} >
 								{this.props.staples.map(staple => (
@@ -193,10 +196,13 @@ class Settings extends Component {
 								))}
 							</TableBody>
 						</Table>
-						<FlatButton label="Update" primary={true} style={styles.button} onClick={this.updateStaples} />
 					</List>
 				</div>
-
+				<div className="setting-footer">
+					<FlatButton label="Update" primary={true} style={styles.button} onClick={this.updateStaples} />
+				</div>
+				</div>
+				</div>
 			</div>
 		);
 	}
