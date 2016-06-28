@@ -35,7 +35,7 @@ class ResolveItemTableEntry extends Component {
 			expiration: date,
 		});
 		const days = (Date.parse(date) - Date.parse(this.state.minDate)) / (1000 * 60 * 60 * 24);
-		console.log('days is : ', days);
+		// console.log('days is : ', days);
 		this.props.handleExpirationChange(this.props.id, days);
 	}
 
@@ -47,7 +47,7 @@ class ResolveItemTableEntry extends Component {
 					{(this.props.foodGroup !== 'N/A') ? this.props.foodGroup :
 						<SelectField
 							hintText="Please enter the food group"
-							errorText={!this.state.foodGroup && "Please choose the food group!"}
+							errorText={!this.state.foodGroup && 'Please choose the food group!'}
 							onChange={this.handleSelect}
 							value={this.state.foodGroup}
 						>
@@ -73,7 +73,7 @@ class ResolveItemTableEntry extends Component {
 					{this.props.expiration ||
 						<DatePicker
 							hintText="Please pick the expiration date"
-							errorText={!this.state.expiration && "Please pick a date!"}
+							errorText={!this.state.expiration && 'Please pick a date!'}
 							value={this.state.expiration}
 							onChange={this.handleDatePick}
 							minDate={this.state.minDate}

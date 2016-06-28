@@ -248,13 +248,13 @@ class FoodItemInput extends Component {
 		// this.setState({ open: false, newItems: [], newItemsAdded: false, confirmedItems: {} });
 	}
 
-	handleEditing(editedItems){
+	handleEditing(editedItems) {
 		this.setState({
-			editedItems
+			editedItems,
 		}, () => {
-			console.log('editedItems passed into handleEditing are : ',editedItems);
-			console.log('this.state.editedItems: ',this.state.editedItems);
-		})
+			console.log('editedItems passed into handleEditing are : ', editedItems);
+			console.log('this.state.editedItems: ', this.state.editedItems);
+		});
 	}
 
 	handleFinalSubmit() {
@@ -329,9 +329,9 @@ class FoodItemInput extends Component {
 			// 	clarifyingItems,
 			// });
 			return (
-				<ResolveItemTable 
-					items={clarifyingItems} 
-					discarded={this.discardItems} 
+				<ResolveItemTable
+					items={clarifyingItems}
+					discarded={this.discardItems}
 					handleEditing={this.handleEditing}
 				/>
 			);

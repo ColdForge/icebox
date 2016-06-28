@@ -17,7 +17,7 @@ class ResolveItemTable extends Component {
 	}
 
 	handleExpirationChange(id, expiration) {
-		console.log('handleExpirationChange called');
+		// console.log('handleExpirationChange called');
 		const editedItems = this.state.editedItems.slice().map(item => {
 			if (id === item.key) {
 				return { ...item, expiration };
@@ -26,12 +26,11 @@ class ResolveItemTable extends Component {
 		});
 		this.setState({
 			editedItems,
-		});
-		console.log('editedItems is : ', editedItems);
+		}, () => this.props.handleEditing(editedItems));
 	}
 
 	handleFoodGroupChange(id, foodGroup) {
-		console.log('handleFoodGroupChange called');
+		// console.log('handleFoodGroupChange called');
 		const editedItems = this.state.editedItems.slice().map(item => {
 			if (id === item.key) {
 				return { ...item, foodGroup };
@@ -40,15 +39,14 @@ class ResolveItemTable extends Component {
 		});
 		this.setState({
 			editedItems,
-		});
-		console.log('editedItems is : ', editedItems);
+		}, () => this.props.handleEditing(editedItems));
 	}
 
 	handleToggle = (event, toggled) => {
 		// this.props.discarded(event.target.name);
-		console.log('handleToggle called with event.target.name of : ', event.target.name);
-		console.log('handleToggle called with event.target.id of : ', event.target.id);
-		console.log('handleToggle called with toggled of : ', toggled);
+		// console.log('handleToggle called with event.target.name of : ', event.target.name);
+		// console.log('handleToggle called with event.target.id of : ', event.target.id);
+		// console.log('handleToggle called with toggled of : ', toggled);
 		const editedItems = this.state.editedItems.slice().map(item => {
 			if (event.target.id === item.key) {
 				return { ...item, add: toggled };
@@ -57,7 +55,7 @@ class ResolveItemTable extends Component {
 		});
 		this.setState({
 			editedItems,
-		}, () => { console.log('line 60 : ', this.state.editedItems); });
+		}, () => this.props.handleEditing(editedItems));
 		this.setState({ [event.target.name]: toggled });
 	};
 
@@ -66,7 +64,7 @@ class ResolveItemTable extends Component {
 	};
 
 	render() {
-		console.log('this.props.items passed into ResolveItemTable are : ', this.props.items);
+		// console.log('this.props.items passed into ResolveItemTable are : ', this.props.items);
 		return (
 			<Table>
 				<TableHeader>
@@ -102,6 +100,7 @@ class ResolveItemTable extends Component {
 
 ResolveItemTable.propTypes = {
 	discarded: React.PropTypes.func,
+	handleEditing: React.PropTypes.func,
 	items: React.PropTypes.array,
 };
 
