@@ -69,12 +69,14 @@ export default function (state = INITIAL_STATE, action) {
 	case ADD_ITEMS:
 		newItems = action.payload.map(item => ({ ...applyFoodGroupIcon(item), key: v4() }));
 		return { ...state, contents: [...state.contents, ...newItems] };
-	case CLARIFY_ITEMS:
+	case CLARIFY_ITEMS: {
+		const noExpirationItems = action.noExpirationItems.map(item => ({ ...item, key: v4() }));
+		const unrecognizedItems = action.unrecognizedItems.map(item => ({ ...item, key: v4() }));
 		return {
 			...state,
-			noExpirationItems: [...state.noExpirationItems, ...action.noExpirationItems],
-			noFoodGroupItems: [...state.noFoodGroupItems, ...action.unrecognizedItems],
-		};
+			noExpirationItems: [...state.noExpirationItems, ...noExpirationItems],
+			noFoodGroupItems: [...state.noFoodGroupItems, ...unrecognizedItems],
+		}; }
 	case ADD_TO_TRASH: {
 		const contentsAfterAdd = state.contents.slice();
 		const trashAfterAdd = _remove(contentsAfterAdd, item => (item.itemID === action.payload));
