@@ -275,7 +275,7 @@ class FoodItemInput extends Component {
 	}
 
 	renderActions() {
-		if(this.props.noExpirationItems.length === 0 && this.props.noFoodGroupItems.length === 0){
+		if (this.props.noExpirationItems.length === 0 && this.props.noFoodGroupItems.length === 0) {
 			return (!this.state.recognitionStarted) ? (
 				<RaisedButton
 					label="Start Input"
@@ -305,7 +305,6 @@ class FoodItemInput extends Component {
 			);
 		}
 		return <div />;
-
 	}
 
 	renderTable() {
@@ -369,10 +368,10 @@ class FoodItemInput extends Component {
 		];
 
 		const renderDialogActions = () => (
-			(!this.state.itemsPosted 
-				&& this.props.noExpirationItems.length === 0 
+			(!this.state.itemsPosted
+				&& this.props.noExpirationItems.length === 0
 				&& this.props.noFoodGroupItems.length === 0) ? preSubmit : postSubmit
-		)
+		);
 
 		return (
 			<div style={styles.foodItemInput} className={classNames('animated', 'infinite', 'pulse')}>
