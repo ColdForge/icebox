@@ -127,9 +127,60 @@ module.exports = {
     }
 	},
   clarifyIceboxItems: function(req,res) {
+    var user = req.user;
     console.log('req.user in clarifyIceboxItems is : ',req.user);
     console.log('req.body in clarifyIceboxItems is : ',req.body);
-    res.send('clarifyIceboxItems called');
+
+    addItems(req.body.foodItems);
+
+    function addItems(itemsArray) {
+      var promiseArray = [];
+
+      function promiseItemChecker(item) {
+        return new Promise(function(resolve,reject){
+          db('foods')
+          .insert({ name: item.name, category: item.foodGroup, freshDuration: item.expiration })
+          .then(function(result){
+            console.log('result of insert into foods is : ',result);
+            db('icebox_items')
+            .insert({ foodID: result[0], iceboxID: user.iceboxID, daysToExpire: item.expiration })
+            .then(function(resp){
+              console.log('item inserted into foods then icebox_items, foodID: ',result[0],' iceboxID: ',user.iceboxID)
+              resolve({ 
+                name: item.name,
+                iceboxID: user.iceboxID,
+                foodID: result[0],
+                itemID: resp,
+                foodGroup: item.foodGroup, 
+                expiration: item.expiration
+              });
+            })
+            .catch(function(error){
+              console.log('Could not insert item into icebox_items table');
+              resolve({ name: item.name, error: true });
+            })
+          })
+          .catch(function(error){
+            console.log('Could not insert item into foods table');
+            resolve({ name: item.name, error: true });
+          });
+        });
+      }
+
+      itemsArray.forEach(function(item, index, array){
+        if(item.add){
+          promiseArray.push(promiseItemChecker(item));
+        }
+      });
+
+      Promise.all(promiseArray)
+      .then(function(values){
+        console.log('values from Promise.all are : ',values);
+        res.status(200).json({
+          addedItems: values
+        })
+      });
+    }
   },
   removeIceboxItems: function(req, res) {
     console.log('req.user in removeIceboxItems is : ',req.user);
