@@ -44,10 +44,11 @@ const styles = {
 		position: 'relative',
 		top: 30,
 		color: '#556270',
-		backgroundColor: 'rgb(156, 203, 158)',
+		backgroundColor: '#FFFFFF',
 		fontSize: '2em',
 		height: '50%',
 		width: '60%',
+		boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
 	},
 };
 
