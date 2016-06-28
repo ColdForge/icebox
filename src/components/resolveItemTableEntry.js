@@ -10,10 +10,15 @@ class ResolveItemTableEntry extends Component {
 	constructor(props) {
 		super(props);
 
+		const minDate = new Date();
+		minDate.setHours(0, 0, 0, 0);
+
 		this.state = {
 			foodGroup: null,
 			expiration: null,
+			minDate,
 		};
+
 		this.handleSelect = this.handleSelect.bind(this);
 		this.handleDatePick = this.handleDatePick.bind(this);
 	}
@@ -29,6 +34,8 @@ class ResolveItemTableEntry extends Component {
 		this.setState({
 			expiration: date,
 		});
+		const days = (Date.parse(date) - Date.parse(this.state.minDate)) / (1000 * 60 * 60 * 24);
+		console.log('days is : ', days);
 		this.props.handleExpirationChange();
 	}
 
@@ -67,6 +74,9 @@ class ResolveItemTableEntry extends Component {
 							hintText="Please pick the expiration date"
 							value={this.state.expiration}
 							onChange={this.handleDatePick}
+							minDate={this.state.minDate}
+							autoOk
+							mode={'landscape'}
 						/>
 					}
 				</TableRowColumn>
