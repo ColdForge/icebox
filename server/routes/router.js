@@ -5,7 +5,11 @@ var express = require('express'),
 // Route when user gets all items in icebox
 router.get('/icebox', helpers.fetchIceboxContents)
 // Route when user adds items to icebox
-router.post('/icebox', helpers.changeIceboxContents)
+router.post('/icebox/add', helpers.addIceboxItems)
+// Route when user adds items to icebox which were unidentified
+router.post('/icebox/resolve', helpers.clarifyIceboxItems)
+// Route when user removes items from icebox
+router.post('/icebox/remove', helpers.removeIceboxItems)
 // Route when user adds items to icebox
 router.post('/icebox/native-check', helpers.checkIceboxContentsNative)
 // Route when user adds items to icebox

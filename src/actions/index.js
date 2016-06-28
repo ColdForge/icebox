@@ -46,10 +46,12 @@ export const signupUser = ({ email, name, password }) => (
 
 export const signoutUser = () => {
 	localStorage.removeItem('token');
+	localStorage.removeItem('state');
 	browserHistory.push('/');
 	return dispatch => {
 		dispatch({ type: TYPES.DEAUTHORIZE_USER });
-		dispatch({ type: TYPES.CLEAR_USER_INFO });
+		// dispatch({ type: TYPES.CLEAR_USER_INFO });
+		// dispatch({ type: TYPES.CLEAR_ICEBOX });
 	};
 };
 
@@ -155,8 +157,9 @@ export const clearIceboxSearch = () => ({
 
 export const addIceboxItems = ({ foodItems }) => (
 	(dispatch) => {
+		dispatch({ type: TYPES.START_LOADING });
 		console.log('foodItems in addIceboxItems is : ', foodItems);
-		axios.post(`${API_URL}/api/icebox`, { foodItems }, {
+		axios.post(`${API_URL}/api/icebox/add`, { foodItems }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
@@ -167,42 +170,104 @@ export const addIceboxItems = ({ foodItems }) => (
 					noExpirationItems: response.data.noExpirationItems,
 					unrecognizedItems: response.data.unrecognizedItems,
 				});
+				dispatch({ type: TYPES.END_LOADING });
 			})
 			.catch(response => {
 				console.log('bad response from addIceboxItems is : ', response);
+				dispatch({ type: TYPES.END_LOADING });
 				// dispatch({ type: TYPES.ICEBOX_ERROR, payload: response.data });
 			});
 	}
 );
 
+export const resolveIceboxItems = ({ foodItems }) => (
+	(dispatch) => {
+		dispatch({ type: TYPES.START_LOADING });
+		console.log('foodItems in resolveIceboxItems is : ', foodItems);
+		axios.post(`${API_URL}/api/icebox/resolve`, { foodItems }, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+			.then(response => {
+				console.log('good response from resolveIceboxItems is : ', response);
+				dispatch({ type: TYPES.END_LOADING });
+				dispatch({ type: TYPES.ADD_ITEMS, payload: response.data.addedItems });
+				dispatch({ type: TYPES.CLEAR_CLARIFYING_ITEMS });
+			})
+			.catch(response => {
+				console.log('bad response from resolveIceboxItems is : ', response);
+				dispatch({ type: TYPES.END_LOADING });
+				// dispatch({ type: TYPES.ICEBOX_ERROR, payload: response.data });
+			});
+	}
+);
+
+export const removeIceboxItems = ({ items }) => (
+	dispatch => {
+		dispatch({ type: TYPES.START_LOADING });
+		console.log('items passed in are : ', items);
+		const itemIDs = {};
+		items.forEach(item => {
+			itemIDs[item.itemID] = true;
+		});
+		axios.post(`${API_URL}/api/icebox/remove`, { items }, {
+			headers: { authorization: localStorage.getItem('token') },
+		})
+			.then(() => {
+				dispatch({ type: TYPES.END_LOADING });
+				dispatch({ type: TYPES.REMOVE_ITEMS, payload: itemIDs });
+			})
+			.catch(response => {
+				dispatch({ type: TYPES.END_LOADING });
+				console.log('error in removeIceboxItems, response of : ', response);
+			});
+	}
+);
+
+export const addToTrash = ({ id }) => {
+	console.log('addToTrash called, with id of : ', id);
+	return {
+		type: TYPES.ADD_TO_TRASH,
+		payload: id,
+	};
+};
+
+export const removeFromTrash = ({ id }) => ({
+	type: TYPES.REMOVE_FROM_TRASH,
+	payload: id,
+});
+
 export const getRecipes = () => (
 	(dispatch) => {
+		dispatch({ type: TYPES.START_LOADING });
 		axios.get(`${API_URL}/api/icebox/pastRecipes`, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
+				dispatch({ type: TYPES.END_LOADING });
 				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
 			})
-			.catch(response => (
-				response
-				// console.log('error in chooseRecipe, response of : ',response);
-			));
+			.catch(response => {
+				dispatch({ type: TYPES.END_LOADING });
+				console.log('error in getRecipes, response of : ', response);
+			});
 	}
 );
 
 export const getRecipeSuggestions = () => (
 	(dispatch) => {
+		dispatch({ type: TYPES.START_LOADING });
 		axios.get(`${API_URL}/api/icebox/recipes`, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
 				// console.log('response from getRecipeSuggestions is : ', response);
+				dispatch({ type: TYPES.END_LOADING });
 				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data });
 			})
-			.catch(response => (
-				response
-				// console.log('error in chooseRecipe, response of : ',response);
-			));
+			.catch(response => {
+				dispatch({ type: TYPES.END_LOADING });
+				console.log('error in getRecipeSuggestions, response of : ', response);
+			});
 	}
 );
 

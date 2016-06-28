@@ -22,7 +22,7 @@ module.exports = {
           }).then(function(resp){
   			knex('icebox_items')
   				.join('foods', 'icebox_items.foodID', '=', 'foods.id')
-  	  		.select('icebox_items.daysToExpire as expiration', 'foods.category as foodGroup', 'foods.name as name', 'icebox_items.foodID as foodID')
+  	  		.select('icebox_items.daysToExpire as expiration', 'foods.category as foodGroup', 'foods.name as name', 'icebox_items.foodID as foodID', 'icebox_items.id as itemID')
   	  		.where('icebox_items.iceboxID', req.user.iceboxID)
   	  		.then(function(response){
   	  			console.log('Inside of res being sent');

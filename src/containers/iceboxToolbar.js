@@ -4,6 +4,7 @@ import * as actions from '../actions';
 import { SORT_EXPIRATION, SORT_FOODGROUP, SORT_FOODNAME, ASCENDING, DESCENDING } from '../constants/sorts';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -14,6 +15,10 @@ import FoodItemInput from '../components/foodItemInput';
 const styles = {
 	button: {
 		zIndex: 100
+	},
+	removeButton: {
+		height: 48,
+		zIndex: 100,
 	},
 	buttonPlaceholder: {
 		width: 48,
@@ -30,8 +35,9 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'center',
-		alignItems: 'stretch',
-
+		alignItems: 'center',
+		height: 72,
+		backgroundColor: 'rgba(156, 223, 158, 0.5)',
 	},
 	toolbarGroup1: {
 		marginLeft: '10px',
@@ -45,10 +51,15 @@ const styles = {
 		justifyContent: 'center',
 	},
 	toolbarGroup3: {
+		marginRight: '10px',
 		width: '33%',
 		display: 'flex',
 		justifyContent: 'flex-end',
 	},
+	svgicon: {
+		width: 50,
+		height: 50,
+	}
 }
 
 let isOpen = false
@@ -58,6 +69,7 @@ class IceboxToolbar extends Component {
 		super(props);
 
 		this.submitFoods = this.submitFoods.bind(this);
+		this.renderDeleteButton = this.renderDeleteButton.bind(this);
 	}
 
 	handleSearch(event) {
@@ -99,6 +111,19 @@ class IceboxToolbar extends Component {
 		}
 	}
 
+	renderDeleteButton(){
+		return (this.props.trashContents.length > 0) ? (
+			<RaisedButton
+				label="Remove Items?"
+				secondary={true}
+				style={styles.removeButton}
+				onTouchTap={() => this.props.removeIceboxItems({ items: this.props.trashContents })}
+			/>
+		) : (
+			<div />
+		);
+	}
+
 
 	render() {
 		return (
@@ -109,7 +134,8 @@ class IceboxToolbar extends Component {
 				>
 					<IconButton
 						tooltip="Search"
-						style={styles.button}
+						iconStyle={{width: '48px', height: '48px'}}
+						style={{width: '60px', height: '60px', padding: 0}}
 						className="icebox-toolbar-search"
 					>
 						<SvgIcon className="icebox-toolbar-svgicon-search">
@@ -133,25 +159,34 @@ class IceboxToolbar extends Component {
 				<ToolbarGroup
 					style={styles.toolbarGroup3}
 				>
+					{this.renderDeleteButton()}
 					<IconButton
 						tooltip="Asc/Desc"
-						style={styles.button}
+						iconStyle={{width: '48px', height: '48px'}}
+						style={{width: '60px', height: '60px', padding: 0}}
 						className="icebox-toolbar-sort-arrows"
 						onClick={() => this.changeSortDirection()}
 					>
-						<SvgIcon className="icebox-toolbar-svgicon-sort-arrows">
+						<SvgIcon
+							className="icebox-toolbar-svgicon-sort-arrows"
+						>
 							<path d={ICONS.SortArrows.d} />
 						</SvgIcon>
 					</IconButton>
-					<ToolbarSeparator />
+					<ToolbarSeparator style={{marginLeft: '12px', marginRight: '12px'}}/>
 					<IconMenu
 						iconButtonElement={
 							<IconButton
 								tooltip="Sort"
-								style={styles.button}
+								iconStyle={{width: '48px', height: '48px'}}
+								style={{width: '60px', height: '60px', padding: 0}}
 								className="icebox-toolbar-sort"
 							>
-								<SvgIcon className="icebox-toolbar-svgicon-sort">
+								<SvgIcon
+									className="icebox-toolbar-svgicon-sort"
+									style={styles.svgicon}
+
+								>
 									<path d={ICONS.Sort.d} />
 								</SvgIcon>
 							</IconButton>
@@ -177,8 +212,11 @@ class IceboxToolbar extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return { sortBy: state.sortBy, sortOrder: state.sortOrder, iceboxSearch: state.iceboxSearch };
-}
+const mapStateToProps = state => ({
+	sortBy: state.sortBy,
+	sortOrder: state.sortOrder,
+	iceboxSearch: state.iceboxSearch,
+	trashContents: state.icebox.trashContents,
+})
 
 export default connect(mapStateToProps, actions)(IceboxToolbar);

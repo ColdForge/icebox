@@ -19,7 +19,7 @@ module.exports = {
     });
 
 	},
-	changeIceboxContents: function(req, res) {
+	addIceboxItems: function(req, res) {
 		var user = req.user;
 		var foodItems = req.body.foodItems;
     var itemsToAdd = [];
@@ -27,8 +27,8 @@ module.exports = {
     var noExpirationItems = [];
     var unrecognizedItems = [];
     var counter = 0;
-    // console.log('user in changeIceboxContents is : ',user);
-    // console.log('items in changeIceboxContents is : ',foodItems);
+    console.log('user in addIceboxItems is : ',user);
+    console.log('items in addIceboxItems is : ',foodItems);
 
     for (var key in foodItems) {
       if(key !== "length" && foodItems[key]){
@@ -55,8 +55,8 @@ module.exports = {
               recognizedItems.push({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
               db.insert({foodID: resp[0].id, iceboxID: user.iceboxID, daysToExpire: resp[0].freshDuration})
                 .into('icebox_items')
-                .then(function(resp){
-                  console.log('Item added to icebox', resp);
+                .then(function(result){
+                  console.log('Item added to icebox', result);
                   resolve({ name: item, foodGroup: resp[0].category, expiration: resp[0].freshDuration });
                 })
                 .catch(function(err){
@@ -69,26 +69,30 @@ module.exports = {
               });
               result.then(function(promiseFoodAPIResponse){
                 console.log('food item results', promiseFoodAPIResponse);
-                if(promiseFoodAPIResponse.error){
-                  unrecognizedItems.push(promiseFoodAPIResponse)
-                  resolve({ name: promiseFoodAPIResponse.name, error: true });
+                var responseItem = { name: promiseFoodAPIResponse.name, foodGroup: promiseFoodAPIResponse.foodGroup, expiration: promiseFoodAPIResponse.expiration };
+                if(promiseFoodAPIResponse.foodGroup === "N/A"){
+                  // unrecognizedItems.push(promiseFoodAPIResponse)
+                  unrecognizedItems.push(responseItem)
+                  resolve({ name: promiseFoodAPIResponse.name, foodGroup: promiseFoodAPIResponse.foodGroup, expiration: promiseFoodAPIResponse.expiration });
                 } else {
-                  noExpirationItems.push(promiseFoodAPIResponse);
-                  db.insert({category: promiseFoodAPIResponse.category, name: promiseFoodAPIResponse.name, freshDuration: 10})
-                    .into('foods')
-                    .then(function(insertFoodsResponse){
-                      console.log('Great success', insertFoodsResponse);
-                      db.insert({foodID: insertFoodsResponse[0], iceboxID: user.iceboxID, daysToExpire: 10})
-                        .into('icebox_items')
-                        .where('iceboxID', user.iceboxID)
-                        .then(function(insertIceboxItemsResponse){
-                          console.log('Added to icebox items, response: ',insertIceboxItemsResponse);
-                          resolve({ name: promiseFoodAPIResponse.name });
-                        });
-                    })
-                    .catch(function(err){
-                      console.log('Insert error', err);
-                    });
+                  // noExpirationItems.push(promiseFoodAPIResponse);
+                  noExpirationItems.push(responseItem);
+                  resolve({ name: promiseFoodAPIResponse.name, foodGroup: promiseFoodAPIResponse.foodGroup, expiration: promiseFoodAPIResponse.expiration });
+                  // db.insert({category: promiseFoodAPIResponse.category, name: promiseFoodAPIResponse.name, freshDuration: 10})
+                  //   .into('foods')
+                  //   .then(function(insertFoodsResponse){
+                  //     console.log('Great success', insertFoodsResponse);
+                  //     db.insert({foodID: insertFoodsResponse[0], iceboxID: user.iceboxID, daysToExpire: 10})
+                  //       .into('icebox_items')
+                  //       .where('iceboxID', user.iceboxID)
+                  //       .then(function(insertIceboxItemsResponse){
+                  //         console.log('Added to icebox items, response: ',insertIceboxItemsResponse);
+                  //         resolve({ name: promiseFoodAPIResponse.name });
+                  //       });
+                  //   })
+                  //   .catch(function(err){
+                  //     console.log('Insert error', err);
+                  //   });
                 }
               })
               .catch(function(err){
@@ -110,14 +114,90 @@ module.exports = {
       Promise.all(promiseArray)
       .then(function(values){
         console.log('values from Promise.all are : ',values);
+        console.log('recognizedItems are : ',recognizedItems);
+        console.log('noExpirationItems are : ',noExpirationItems);
+        console.log('unrecognizedItems are : ',unrecognizedItems);
         res.status(200).json({
           recognizedItems: recognizedItems,
           noExpirationItems: noExpirationItems,
-          unrecognizedItems: unrecognizedItems
+          unrecognizedItems: unrecognizedItems,
+          promisedValues: values,
         })
       });
     }
 	},
+  clarifyIceboxItems: function(req,res) {
+    var user = req.user;
+    console.log('req.user in clarifyIceboxItems is : ',req.user);
+    console.log('req.body in clarifyIceboxItems is : ',req.body);
+
+    addItems(req.body.foodItems);
+
+    function addItems(itemsArray) {
+      var promiseArray = [];
+
+      function promiseItemChecker(item) {
+        return new Promise(function(resolve,reject){
+          db('foods')
+          .insert({ name: item.name, category: item.foodGroup, freshDuration: item.expiration })
+          .then(function(result){
+            console.log('result of insert into foods is : ',result);
+            db('icebox_items')
+            .insert({ foodID: result[0], iceboxID: user.iceboxID, daysToExpire: item.expiration })
+            .then(function(resp){
+              console.log('item inserted into foods then icebox_items, foodID: ',result[0],' iceboxID: ',user.iceboxID)
+              resolve({ 
+                name: item.name,
+                iceboxID: user.iceboxID,
+                foodID: result[0],
+                itemID: resp,
+                foodGroup: item.foodGroup, 
+                expiration: item.expiration
+              });
+            })
+            .catch(function(error){
+              console.log('Could not insert item into icebox_items table');
+              resolve({ name: item.name, error: true });
+            })
+          })
+          .catch(function(error){
+            console.log('Could not insert item into foods table');
+            resolve({ name: item.name, error: true });
+          });
+        });
+      }
+
+      itemsArray.forEach(function(item, index, array){
+        if(item.add){
+          promiseArray.push(promiseItemChecker(item));
+        }
+      });
+
+      Promise.all(promiseArray)
+      .then(function(values){
+        console.log('values from Promise.all are : ',values);
+        res.status(200).json({
+          addedItems: values
+        })
+      });
+    }
+  },
+  removeIceboxItems: function(req, res) {
+    console.log('req.user in removeIceboxItems is : ',req.user);
+    console.log('req.body in removeIceboxItems is : ',req.body);
+    var itemIDs = req.body.items.map(function(item){
+      return item.itemID;
+    })
+    db('icebox_items').del('*').whereIn('id',itemIDs)
+    .then(function(result){
+      console.log('result from icebox_items del command is : ',result);
+      res.send('iceboxItems removed');
+    })
+    .catch(function(error){
+      console.log('error from icebox_items del command is : ',error);
+      res.send('iceboxItems removed');
+    })
+  },
   checkIceboxContentsNative: function(req, res) {
     console.log('req.user in changeIceboxContentsNative is : ',req.user);
     console.log('req.body in changeIceboxContentsNative is : ',req.body);

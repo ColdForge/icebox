@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Table, TableBody } from 'material-ui/Table';
 import FoodItemTableEntry from './foodItemTableEntry';
 // import { v4 } from 'node-uuid';
@@ -24,8 +24,7 @@ import FoodItemTableEntry from './foodItemTableEntry';
 // 	},
 // ];
 
-class FoodItemTable extends React.Component {
-
+class FoodItemTable extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {

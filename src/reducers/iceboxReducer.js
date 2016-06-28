@@ -1,10 +1,15 @@
 import {
 	POPULATE_ICEBOX,
 	ADD_ITEMS,
+	ADD_TO_TRASH,
+	REMOVE_FROM_TRASH,
 	REMOVE_ITEMS,
 	CLARIFY_ITEMS,
-	} from '../constants/actions';
+	CLEAR_ICEBOX,
+	CLEAR_CLARIFYING_ITEMS,
+} from '../constants/actions';
 import { v4 } from 'node-uuid';
+import _remove from 'lodash/remove';
 
 const applyFoodGroupIcon = (item) => {
 	switch (item.foodGroup.toLowerCase()) {
@@ -53,6 +58,7 @@ const INITIAL_STATE = {
 	contents: [],
 	noExpirationItems: [],
 	noFoodGroupItems: [],
+	trashContents: [],
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -64,14 +70,46 @@ export default function (state = INITIAL_STATE, action) {
 	case ADD_ITEMS:
 		newItems = action.payload.map(item => ({ ...applyFoodGroupIcon(item), key: v4() }));
 		return { ...state, contents: [...state.contents, ...newItems] };
-	case CLARIFY_ITEMS:
+	case CLARIFY_ITEMS: {
+		const noExpirationItems = action.noExpirationItems.map(item => ({ ...item, key: v4(), add: true }));
+		const unrecognizedItems = action.unrecognizedItems.map(item => ({ ...item, key: v4(), add: true }));
 		return {
 			...state,
-			noExpirationItems: [...state.noExpirationItems, action.noExpirationItems],
-			noFoodGroupItems: [...state.noFoodGroupItems, action.noFoodGroupItems],
-		};
-	case REMOVE_ITEMS:
-		return state;
+			noExpirationItems: [...state.noExpirationItems, ...noExpirationItems],
+			noFoodGroupItems: [...state.noFoodGroupItems, ...unrecognizedItems],
+		}; }
+	case ADD_TO_TRASH: {
+		const contentsAfterAdd = state.contents.slice();
+		const trashAfterAdd = _remove(contentsAfterAdd, item => (item.itemID === action.payload));
+		console.log('inside ADD_TO_TRASH in iceboxReducer, action.payload is : ', action.payload);
+		console.log('trashAfterAdd is : ', trashAfterAdd);
+		return {
+			...state,
+			trashContents: [...state.trashContents, ...trashAfterAdd],
+		}; }
+	case REMOVE_FROM_TRASH: {
+		const trashAfterRemove = state.trashContents.slice();
+		_remove(trashAfterRemove, item => (item.itemID === action.payload));
+		console.log('inside REMOVE_FROM_TRASH in iceboxReducer, action.payload is : ', action.payload);
+		console.log('trashAfterRemove is : ', trashAfterRemove);
+		return {
+			...state,
+			trashContents: trashAfterRemove,
+		}; }
+	case REMOVE_ITEMS: {
+		const contentsAfterRemoval = state.contents.slice();
+		console.log('state.contents.length is : ', state.contents.length);
+		_remove(contentsAfterRemoval, item => (action.payload[item.itemID] === true));
+		console.log('contentsAfterRemoval.length is : ', contentsAfterRemoval.length);
+		return {
+			...state,
+			contents: contentsAfterRemoval,
+			trashContents: [],
+		}; }
+	case CLEAR_ICEBOX:
+		return { contents: [], noExpirationItems: [], noFoodGroupItems: [], trashContents: [] };
+	case CLEAR_CLARIFYING_ITEMS:
+		return { ...state, noExpirationItems: [], noFoodGroupItems: [] };
 	default:
 		return state;
 	}

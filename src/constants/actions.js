@@ -12,8 +12,12 @@ export const CLEAR_ICEBOX_SEARCH = "CLEAR_ICEBOX_SEARCH";
 export const POPULATE_ICEBOX = "POPULATE_ICEBOX";
 export const ADD_ITEMS = "ADD_ITEMS";
 export const CLARIFY_ITEMS = "CLARIFY_ITEMS";
+export const ADD_TO_TRASH = "ADD_TO_TRASH";
+export const REMOVE_FROM_TRASH = "REMOVE_FROM_TRASH";
 export const REMOVE_ITEMS = "REMOVE_ITEMS";
 export const ICEBOX_ERROR = "ICEBOX_ERROR";
+export const CLEAR_ICEBOX = "CLEAR_ICEBOX";
+export const CLEAR_CLARIFYING_ITEMS = "CLEAR_CLARIFYING_ITEMS";
 // ActionTypes for handling user
 export const GET_USER_INFO = "GET_USER_INFO";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
@@ -29,3 +33,6 @@ export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const ADD_USER_ICEBOX = "ADD_USER_ICEBOX";
 export const REMOVE_USER_ICEBOX = "REMOVE_USER_ICEBOX";
 export const UPDATE_USER_STAPLES = "UPDATE_USER_STAPLES";
+// ActionTypes for handling loading from AJAX calls
+export const START_LOADING = "START_LOADING";
+export const END_LOADING = "END_LOADING";
