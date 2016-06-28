@@ -211,7 +211,7 @@ class IceboxListItem extends Component {
 							</div>
 							<span style={styles.cardBody.Title} id="icebox-item-name">{this.props.name}</span>
 							<span style={styles.cardBody.Subtitle}>
-								Expires in 
+								Expires in
 								<span style={{ color: this.state.textColor }}>
 									<span id="icebox-item-expiration">{this.props.expiration}</span>days
 								</span>

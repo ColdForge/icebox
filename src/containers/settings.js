@@ -19,6 +19,7 @@ import Message from 'material-ui/svg-icons/communication/message';
 import Dinner from 'material-ui/svg-icons/maps/local-dining';
 import SettingsConfirm from '../components/settingsConfirm';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
+import PhotoUploader from '../components/photoUploader';
 
 const styles = {
 	photo: {
@@ -143,13 +144,13 @@ class Settings extends Component {
 					</List>
 					</div>
 					<div className="setting-footer">
-							<FlatButton label="Change/Add Pic" primary={true} style={styles.button} />
+						<PhotoUploader />
 					</div>
 				</div>
 
 				<div className="settings-grid" className="col-sm-4">
 				<div className="settings-header">
-				Household Users
+				  Household Users
 				</div>
 				<div className="settings-divs">
 					<List>

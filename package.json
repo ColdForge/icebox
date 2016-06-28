@@ -57,6 +57,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
     "react-router-redux": "^4.0.5",
+    "react-s3-uploader": "^3.2.0",
     "react-sticky": "^5.0.3",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
