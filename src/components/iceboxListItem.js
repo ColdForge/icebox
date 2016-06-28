@@ -185,11 +185,18 @@ class IceboxListItem extends Component {
 				children={
 					<Paper
 						style={{ ...styles.paper, ...styles[this.props.foodGroup], border: `1px solid ${this.state.textColor}` }}
+						className="iceboxListItem-tile"
 						zDepth={5}
 					>
 						<div style={styles.cardBody}>
 							<div style={styles.cardHeader.Title}>
-								<span style={styles.cardHeader.Title.Group}>{this.props.foodGroup}</span>
+								<span
+									style={styles.cardHeader.Title.Group}
+									id="icebox-item-food-group"
+									data-food-group={this.props.foodGroup}
+								>
+									{this.props.foodGroup}
+								</span>
 								<span style={styles.cardHeader.Title.CheckboxContainer}>
 									<Checkbox
 										iconStyle={{ marginLeft: 0, height: 40, width: 40, stroke: 'white', fill: 'red', paddingRight: 10 }}
@@ -202,9 +209,12 @@ class IceboxListItem extends Component {
 									/>
 								</span>
 							</div>
-							<span style={styles.cardBody.Title}>{this.props.name}</span>
+							<span style={styles.cardBody.Title} id="icebox-item-name">{this.props.name}</span>
 							<span style={styles.cardBody.Subtitle}>
-								Expires in <span style={{ color: this.state.textColor }}>{this.props.expiration} days</span>
+								Expires in 
+								<span style={{ color: this.state.textColor }}>
+									<span id="icebox-item-expiration">{this.props.expiration}</span>days
+								</span>
 							</span>
 						</div>
 					</Paper>

@@ -29,8 +29,8 @@ describe('VisibleIceboxList' , () => {
 
   describe('sorting the VisibleIceboxList', () => {
     it('should default to sorting by expiration date in ascending order', () => {
-      const firstItem = component.find('.iceboxListItem').first().find('#expiration').text();
-      const lastItem = component.find('.iceboxListItem').last().find('#expiration').text();
+      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-expiration').text();
+      const lastItem = component.find('.iceboxListItem').last().find('#icebox-item-expiration').text();
       expect(+firstItem).to.be.below(+lastItem);
     });
 
@@ -44,8 +44,8 @@ describe('VisibleIceboxList' , () => {
         iceboxSearch: "",
       }
       component = renderComponent(VisibleIceboxList, null, state);
-      const firstItem = component.find('.iceboxListItem').first().find('#expiration').text();
-      const lastItem = component.find('.iceboxListItem').last().find('#expiration').text();
+      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-expiration').text();
+      const lastItem = component.find('.iceboxListItem').last().find('#icebox-item-expiration').text();
       expect(+firstItem).to.be.above(+lastItem);
     });
 
@@ -59,8 +59,8 @@ describe('VisibleIceboxList' , () => {
         iceboxSearch: "",
       }
       component = renderComponent(VisibleIceboxList, null, state);
-      const firstItem = component.find('.iceboxListItem').first().find('.item-name').text();
-      const lastItem = component.find('.iceboxListItem').last().find('.item-name').text();
+      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-name').text();
+      const lastItem = component.find('.iceboxListItem').last().find('#icebox-item-name').text();
       expect(firstItem).to.be.below(lastItem);
     });
 
@@ -74,8 +74,8 @@ describe('VisibleIceboxList' , () => {
         iceboxSearch: "",
       }
       component = renderComponent(VisibleIceboxList, null, state);
-      const firstItem = component.find('.iceboxListItem').first().find('.list-item-container').data("food-group");
-      const lastItem = component.find('.iceboxListItem').last().find('.list-item-container').data("food-group");
+      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-food-group').data("food-group");
+      const lastItem = component.find('.iceboxListItem').last().find('#icebox-item-food-group').data("food-group");
       expect(firstItem).to.be.below(lastItem);
     });
 
@@ -89,7 +89,7 @@ describe('VisibleIceboxList' , () => {
         iceboxSearch: "lettuce",
       }
       component = renderComponent(VisibleIceboxList, null, state);
-      const firstItem = component.find('.iceboxListItem').first().find('.item-name').text();
+      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-name').text();
       expect(firstItem).to.equal(DummyItems[3].name);
     })
   })
