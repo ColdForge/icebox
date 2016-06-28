@@ -251,14 +251,31 @@ class FoodItemInput extends Component {
 	handleEditing(editedItems) {
 		this.setState({
 			editedItems,
-		}, () => {
-			console.log('editedItems passed into handleEditing are : ', editedItems);
-			console.log('this.state.editedItems: ', this.state.editedItems);
 		});
 	}
 
 	handleFinalSubmit() {
 		console.log('handleFinalSubmit called in foodItemInput');
+		let flag = true;
+		const foodItems = this.state.editedItems;
+		for (let i = 0; i < foodItems.length; i++) {
+			if (!foodItems[i].expiration || !foodItems[i].foodGroup) {
+				flag = false;
+			}
+		}
+		if (flag) {
+			console.log('no errors in handleFinalSubmit');
+			this.props.resolveIceboxItems({ foodItems });
+			setTimeout(()=>{
+				this.setState({
+					newItems: [],
+					newItemsAdded: false,
+					clarifyingItems: [],
+					editedItems: [],
+					open: false,
+				});
+			},1000);	
+		}
 	}
 
 	renderDialogBody() {
@@ -433,6 +450,7 @@ FoodItemInput.propTypes = {
 	isLoading: React.PropTypes.bool,
 	noExpirationItems: React.PropTypes.array,
 	noFoodGroupItems: React.PropTypes.array,
+	resolveIceboxItems: React.PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
