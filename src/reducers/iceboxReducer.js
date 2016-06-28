@@ -6,6 +6,7 @@ import {
 	REMOVE_ITEMS,
 	CLARIFY_ITEMS,
 	CLEAR_ICEBOX,
+	CLEAR_CLARIFYING_ITEMS,
 } from '../constants/actions';
 import { v4 } from 'node-uuid';
 import _remove from 'lodash/remove';
@@ -107,7 +108,7 @@ export default function (state = INITIAL_STATE, action) {
 		}; }
 	case CLEAR_ICEBOX:
 		return { contents: [], noExpirationItems: [], noFoodGroupItems: [], trashContents: [] };
-	case CLEAR_CLARIFYING_ITEMS: 
+	case CLEAR_CLARIFYING_ITEMS:
 		return { ...state, noExpirationItems: [], noFoodGroupItems: [] };
 	default:
 		return state;

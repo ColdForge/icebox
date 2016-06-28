@@ -183,22 +183,18 @@ export const addIceboxItems = ({ foodItems }) => (
 export const resolveIceboxItems = ({ foodItems }) => (
 	(dispatch) => {
 		dispatch({ type: TYPES.START_LOADING });
-		console.log('foodItems in addIceboxItems is : ', foodItems);
+		console.log('foodItems in resolveIceboxItems is : ', foodItems);
 		axios.post(`${API_URL}/api/icebox/resolve`, { foodItems }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
-				console.log('good response from addIceboxItems is : ', response);
+				console.log('good response from resolveIceboxItems is : ', response);
 				dispatch({ type: TYPES.END_LOADING });
-				dispatch({ type: TYPES.ADD_ITEMS, payload: response.data.recognizedItems });
-				dispatch({
-					type: TYPES.CLARIFY_ITEMS,
-					noExpirationItems: response.data.noExpirationItems,
-					unrecognizedItems: response.data.unrecognizedItems,
-				});
+				dispatch({ type: TYPES.ADD_ITEMS, payload: response.data.addedItems });
+				dispatch({ type: TYPES.CLEAR_CLARIFYING_ITEMS });
 			})
 			.catch(response => {
-				console.log('bad response from addIceboxItems is : ', response);
+				console.log('bad response from resolveIceboxItems is : ', response);
 				dispatch({ type: TYPES.END_LOADING });
 				// dispatch({ type: TYPES.ICEBOX_ERROR, payload: response.data });
 			});
