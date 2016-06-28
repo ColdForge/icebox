@@ -52,10 +52,7 @@ const styles = {
 	},
 };
 
-// let confirmedItems = {};
-
 class FoodItemInput extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -65,6 +62,7 @@ class FoodItemInput extends Component {
 			itemsPosted: false,
 			newItems: [],
 			confirmedItems: {},
+			clarifyingItems: [],
 		};
 		this.discardItems = this.discardItems.bind(this);
 		this.handleOpen = this.handleOpen.bind(this);
@@ -253,7 +251,8 @@ class FoodItemInput extends Component {
 	}
 
 	renderDialogBody() {
-		if (!this.state.recognitionStarted && !this.state.newItemsAdded) {
+		if (!this.state.recognitionStarted && !this.state.newItemsAdded
+				&& this.props.noExpirationItems.length === 0 && this.props.noFoodGroupItems.length === 0) {
 			return (
 				<div>
 					<p> Read the names of your foods out loud, as you load them into the refrigerator.</p>
@@ -263,46 +262,62 @@ class FoodItemInput extends Component {
 			);
 		} else if (this.state.recognitionStarted) {
 			return <LinearProgress mode="indeterminate" style={styles.progressBar} />;
+		} else if (this.props.noExpirationItems.length > 0 || this.props.noFoodGroupItems.length > 0) {
+			return (
+				<div>
+					<p> We were unable to find some of the items you tried to add, </p>
+					<p> could you give us a hand and fill out the missing fields below? </p>
+					<p> Once you're finished, please hit the green submit button! </p>
+				</div>
+			);
 		}
 		return <div></div>;
 	}
 
 	renderActions() {
-		return (!this.state.recognitionStarted) ? (
-			<RaisedButton
-				label="Start Input"
-				className={classNames('animated pulse start-speech-input')}
-				onTouchTap={this.startSpeechRecognition}
-				backgroundColor={green500}
-				style={styles.speechButton}
-				icon={
-					<SvgIcon className="icebox-toolbar-svgicon-speech">
-						<path d={ICONS.Speech.d} />
-					</SvgIcon>
-				}
-			/>
-		) : (
-			<RaisedButton
-				label="End Input"
-				className={classNames('animated pulse end-speech-input')}
-				onTouchTap={this.endSpeechRecognition}
-				backgroundColor={red500}
-				style={styles.speechButton}
-				icon={
-					<SvgIcon className="icebox-toolbar-svgicon-speech">
-						<path d={ICONS.Speech.d} />
-					</SvgIcon>
-				}
-			/>
-		);
+		if(this.props.noExpirationItems.length === 0 && this.props.noFoodGroupItems.length === 0){
+			return (!this.state.recognitionStarted) ? (
+				<RaisedButton
+					label="Start Input"
+					className={classNames('animated pulse start-speech-input')}
+					onTouchTap={this.startSpeechRecognition}
+					backgroundColor={green500}
+					style={styles.speechButton}
+					icon={
+						<SvgIcon className="icebox-toolbar-svgicon-speech">
+							<path d={ICONS.Speech.d} />
+						</SvgIcon>
+					}
+				/>
+			) : (
+				<RaisedButton
+					label="End Input"
+					className={classNames('animated pulse end-speech-input')}
+					onTouchTap={this.endSpeechRecognition}
+					backgroundColor={red500}
+					style={styles.speechButton}
+					icon={
+						<SvgIcon className="icebox-toolbar-svgicon-speech">
+							<path d={ICONS.Speech.d} />
+						</SvgIcon>
+					}
+				/>
+			);
+		}
+		return <div />;
+
 	}
 
 	renderTable() {
-		const clarifyingItems = [...this.props.noExpirationItems, ...this.props.noFoodGroupItems];
+		let clarifyingItems = [...this.props.noExpirationItems, ...this.props.noFoodGroupItems];
+		clarifyingItems = clarifyingItems.map(item => ({ ...item, toggled: true }));
 
 		if (this.state.newItems.length > 0) {
 			return <FoodItemTable items={this.state.newItems} discarded={this.discardItems} />;
 		} else if (this.props.noExpirationItems.length > 0 || this.props.noFoodGroupItems.length > 0) {
+			// this.setState({
+			// 	clarifyingItems,
+			// });
 			return <ResolveItemTable items={clarifyingItems} discarded={this.discardItems} />;
 		}
 		return <div />;
@@ -342,11 +357,22 @@ class FoodItemInput extends Component {
 
 		const postSubmit = [
 			<FlatButton
+				label="Cancel"
+				style={styles.actionButtonCancel}
+				onTouchTap={this.handleCancel}
+			/>,
+			<FlatButton
 				label="Submit"
 				style={styles.actionButtonSubmit}
 				onTouchTap={this.handleFinalSubmit}
 			/>,
 		];
+
+		const renderDialogActions = () => (
+			(!this.state.itemsPosted 
+				&& this.props.noExpirationItems.length === 0 
+				&& this.props.noFoodGroupItems.length === 0) ? preSubmit : postSubmit
+		)
 
 		return (
 			<div style={styles.foodItemInput} className={classNames('animated', 'infinite', 'pulse')}>
@@ -364,7 +390,7 @@ class FoodItemInput extends Component {
 					</SvgIcon>
 				</IconButton>
 				<Dialog
-					actions={!this.state.itemsPosted ? preSubmit : postSubmit}
+					actions={renderDialogActions()}
 					modal={false}
 					open={this.state.open}
 					onRequestClose={this.handleClose}
