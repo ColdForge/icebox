@@ -9,14 +9,22 @@ class ResolveItemTable extends Component {
 			toggled: true,
 			showCheckboxes: false,
 			items: props.items,
+			editedItems: props.items,
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleExpirationChange = this.handleExpirationChange.bind(this);
 		this.handleFoodGroupChange = this.handleFoodGroupChange.bind(this);
 	}
 
-	handleExpirationChange() {
+	handleExpirationChange(id, expiration) {
 		console.log('handleExpirationChange called');
+		const editedItems = this.state.editedItems.slice().map(item => {
+			if (id === item.key) {
+				return { ...item, expiration };
+			}
+			return item;
+		});
+		console.log('editedItems is : ', editedItems);
 	}
 
 	handleFoodGroupChange() {
@@ -49,7 +57,8 @@ class ResolveItemTable extends Component {
 				>
 					{this.props.items.map((row, index) => (
 						<ResolveItemTableEntry
-							key={index}
+							key={row.key}
+							id={row.key}
 							name={row.name}
 							foodGroup={row.foodGroup}
 							handleFoodGroupChange={this.handleFoodGroupChange}
