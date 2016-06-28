@@ -70,8 +70,8 @@ export default function (state = INITIAL_STATE, action) {
 		newItems = action.payload.map(item => ({ ...applyFoodGroupIcon(item), key: v4() }));
 		return { ...state, contents: [...state.contents, ...newItems] };
 	case CLARIFY_ITEMS: {
-		const noExpirationItems = action.noExpirationItems.map(item => ({ ...item, key: v4() }));
-		const unrecognizedItems = action.unrecognizedItems.map(item => ({ ...item, key: v4() }));
+		const noExpirationItems = action.noExpirationItems.map(item => ({ ...item, key: v4(), add: true }));
+		const unrecognizedItems = action.unrecognizedItems.map(item => ({ ...item, key: v4(), add: true }));
 		return {
 			...state,
 			noExpirationItems: [...state.noExpirationItems, ...noExpirationItems],
