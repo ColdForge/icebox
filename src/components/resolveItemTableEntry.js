@@ -47,6 +47,7 @@ class ResolveItemTableEntry extends Component {
 					{(this.props.foodGroup !== 'N/A') ? this.props.foodGroup :
 						<SelectField
 							hintText="Please enter the food group"
+							errorText={!this.state.foodGroup && "Please choose the food group!"}
 							onChange={this.handleSelect}
 							value={this.state.foodGroup}
 						>
@@ -72,6 +73,7 @@ class ResolveItemTableEntry extends Component {
 					{this.props.expiration ||
 						<DatePicker
 							hintText="Please pick the expiration date"
+							errorText={!this.state.expiration && "Please pick a date!"}
 							value={this.state.expiration}
 							onChange={this.handleDatePick}
 							minDate={this.state.minDate}
