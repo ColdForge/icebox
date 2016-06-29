@@ -57,9 +57,9 @@ const styles = {
 		width: 'auto',
 	},
 	instructionTextField: {
-		marginTop: '15px'
+		marginTop: '15px',
 
-	}
+	},
 };
 
 class FoodItemInput extends Component {
@@ -349,10 +349,10 @@ class FoodItemInput extends Component {
 			return <LinearProgress mode="indeterminate" style={styles.progressBar} />;
 		} else if (this.props.noExpirationItems.length > 0 || this.props.noFoodGroupItems.length > 0) {
 			return (
-				<div>
-					<p> We were unable to find some of the items you tried to add, </p>
-					<p> could you give us a hand and fill out the missing fields below? </p>
-					<p> Once you're finished, please hit the green submit button! </p>
+				<div className="instructions" style={styles.instructions}>
+					<p style={styles.instructionTextField}> We were unable to find some of the items you tried to add, </p>
+					<p style={styles.instructionTextField}> could you give us a hand and fill out the missing fields below? </p>
+					<p style={styles.instructionTextField}> Once you're finished, please hit the green submit button! </p>
 				</div>
 			);
 		}
