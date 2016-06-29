@@ -177,23 +177,6 @@ class FoodItemInput extends Component {
 							this.confirmationRecognition.start();
 						}, 2500);
 					});
-
-				// 	setTimeout(() => {
-				// 		finishedRecognition.start();
-				// 		setTimeout(() => {
-				// 			finishedRecognition.onresult = (evt) => {
-				// 				console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
-				// 				const result = evt.results[0][0].transcript.toLowerCase();
-				// 				if (result === 'yes' || result === 'yeah' || result === 'yup') {
-				// 					finishedRecognition.stop();
-				// 					this.endSpeechRecognition();
-				// 				} else {
-				// 					finishedRecognition.stop();
-				// 					this.startSpeechRecognition();
-				// 				}
-				// 			};
-				// 		}, 0);
-				// 	}, 650);
 				}, 5000);
 			}
 		};
@@ -242,14 +225,17 @@ class FoodItemInput extends Component {
 
 		this.confirmationRecognition.onend = () => {
 			console.log('this.confirmationRecognition onend fired');
-			if (this.state.confirmationRecognitionReceived) {
-				this.setState({
-					open: true,
-					renderConfirmationDialog: false,
-				});
-			} else {
+			if(!this.state.confirmationRecognitionReceived){
 				this.confirmationRecognition.start();
 			}
+			// if (this.state.confirmationRecognitionReceived) {
+			// 	this.setState({
+			// 		open: true,
+			// 		renderConfirmationDialog: false,
+			// 	});
+			// } else {
+			// 	this.confirmationRecognition.start();
+			// }
 		};
 
 		this.confirmationRecognition.onresult = event => {
@@ -263,26 +249,37 @@ class FoodItemInput extends Component {
 			if (result === 'yes' || result === 'yeah' || result === 'yup') {
 				// console.log('confirmationRecognition "YES" result is : ',result);
 				this.confirmationRecognition.stop();
-				this.handleConfirmationDialogNo();
+				this.handleConfirmationDialogYes();
 			}
 		};
 	}
 
 	handleConfirmationDialogYes() {
+		console.log('handleConfirmationDialogYes fired');
 		this.setState({
 			renderConfirmationDialog: false,
 			confirmationRecognitionReceived: true,
+			open: true,
 		}, () => {
 			this.confirmationRecognition.stop();
+			// this.setState({
+			// 	open: true,
+			// })
 		});
 	}
 
 	handleConfirmationDialogNo() {
+		console.log('handleConfirmationDialogNo fired');
 		this.setState({
 			renderConfirmationDialog: false,
 			confirmationRecognitionReceived: true,
+			open: true,
 		}, () => {
 			this.confirmationRecognition.stop();
+			this.startSpeechRecognition();
+			// this.setState({
+			// 	open: true,
+			// })
 		});
 	}
 
