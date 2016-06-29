@@ -64,6 +64,7 @@ class FoodItemInput extends Component {
 			confirmedItems: {},
 			clarifyingItems: [],
 			editedItems: [],
+			renderConfirmationDialog: false,
 		};
 		this.discardItems = this.discardItems.bind(this);
 		this.handleOpen = this.handleOpen.bind(this);
@@ -114,11 +115,13 @@ class FoodItemInput extends Component {
 		const SpeechGrammarList = webkitSpeechGrammarList;
 		// const SpeechRecognitionEvent = SpeechRecognitionEvent;
 		this.recognition = new SpeechRecognition();
+		this.confirmationRecognition = new SpeechRecognition();
 		// const recognition = new SpeechGrammarList();
 		// const speechRecognitionList = new SpeechGrammarList();
 		// speechRecognitionList.addFromString(grammar, 1);
 		this.recognition.interimResults = false;
 		this.Kate = window.speechSynthesis;
+		this.initializeSpeechSynthesis();
 		/* eslint-enable */
 
 		this.recognition.onresult = (event) => {
@@ -163,35 +166,35 @@ class FoodItemInput extends Component {
 				this.speechTimeout = window.setTimeout(() => {
 					console.log('no speech for 10 seconds');
 					this.endSpeechRecognition();
-
-					const voices = window.speechSynthesis.getVoices();
-					const areYouFinished = new SpeechSynthesisUtterance('Are you finished?');
-					areYouFinished.voice = voices[20];
-					areYouFinished.rate = 0.9;
-					areYouFinished.pitch = 0.8;
-
-					const finishedRecognition = new SpeechRecognition();
-					setTimeout(() => {
-						this.Kate.speak(areYouFinished);
+					this.Kate.speak(this.voiceSnippet);
+					this.initializeConfirmationRecognition();
+					this.setState({
+						open: false,
+						renderConfirmationDialog: true,
+						confirmationRecognitionReceived: false,
+					}, () => {
 						setTimeout(() => {
-							finishedRecognition.start();
-							setTimeout(() => {
-								finishedRecognition.onresult = (evt) => {
-									console.log('event is : ', evt);
-									console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
-									const result = evt.results[0][0].transcript.toLowerCase();
-									if (result === 'yes' || result === 'yeah' || result === 'yup') {
-										finishedRecognition.stop();
-										this.endSpeechRecognition();
-									} else {
-										finishedRecognition.stop();
-										this.startSpeechRecognition();
-									}
-								};
-							}, 0);
-						}, 650);
-					}, 500);
-				}, 10000);
+							this.confirmationRecognition.start();
+						}, 2500);
+					});
+
+				// 	setTimeout(() => {
+				// 		finishedRecognition.start();
+				// 		setTimeout(() => {
+				// 			finishedRecognition.onresult = (evt) => {
+				// 				console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
+				// 				const result = evt.results[0][0].transcript.toLowerCase();
+				// 				if (result === 'yes' || result === 'yeah' || result === 'yup') {
+				// 					finishedRecognition.stop();
+				// 					this.endSpeechRecognition();
+				// 				} else {
+				// 					finishedRecognition.stop();
+				// 					this.startSpeechRecognition();
+				// 				}
+				// 			};
+				// 		}, 0);
+				// 	}, 650);
+				}, 5000);
 			}
 		};
 		this.recognition.onsoundend = () => {
@@ -208,6 +211,79 @@ class FoodItemInput extends Component {
 				window.clearTimeout(this.speechTimeout);
 			}
 		};
+	}
+
+	initializeSpeechSynthesis() {
+		/* eslint-disable */
+		const voices = window.speechSynthesis.getVoices();
+		console.log('voices available are : ',voices);
+		this.voiceSnippet = new SpeechSynthesisUtterance('Is that the last of the groceries?');
+		this.voiceSnippet.voice = voices[20];
+		this.voiceSnippet.rate = 0.9;
+		this.voiceSnippet.pitch = 0.8;
+		/* eslint-enable */
+	}
+
+	initializeConfirmationRecognition() {
+		console.log('initializeConfirmationRecognition fired');
+		/* eslint-disable */
+		const SpeechRecognition = webkitSpeechRecognition;
+		const SpeechGrammarList = webkitSpeechGrammarList;
+		this.confirmationRecognition = new SpeechRecognition();
+		// this.confirmationRecognition.interimResults = false;
+		/* eslint-enable */
+		this.confirmationRecognition.onstart = () => {
+			console.log('this.confirmationRecognition onstart fired');
+		};
+
+		this.confirmationRecognition.onaudioend = () => {
+			console.log('confirmationRecognition on audioend event fired');
+		};
+
+		this.confirmationRecognition.onend = () => {
+			console.log('this.confirmationRecognition onend fired');
+			if (this.state.confirmationRecognitionReceived) {
+				this.setState({
+					open: true,
+					renderConfirmationDialog: false,
+				});
+			} else {
+				this.confirmationRecognition.start();
+			}
+		};
+
+		this.confirmationRecognition.onresult = event => {
+			console.log('event on finishedRecognition onend is : ', event.results[0][0].transcript);
+			const result = event.results[0][0].transcript.toLowerCase();
+			if (result === 'no' || result === 'naw' || result === 'nope') {
+				// console.log('confirmationRecognition "NO" result is : ',result);
+				this.confirmationRecognition.stop();
+				this.handleConfirmationDialogNo();
+			}
+			if (result === 'yes' || result === 'yeah' || result === 'yup') {
+				// console.log('confirmationRecognition "YES" result is : ',result);
+				this.confirmationRecognition.stop();
+				this.handleConfirmationDialogNo();
+			}
+		};
+	}
+
+	handleConfirmationDialogYes() {
+		this.setState({
+			renderConfirmationDialog: false,
+			confirmationRecognitionReceived: true,
+		}, () => {
+			this.confirmationRecognition.stop();
+		});
+	}
+
+	handleConfirmationDialogNo() {
+		this.setState({
+			renderConfirmationDialog: false,
+			confirmationRecognitionReceived: true,
+		}, () => {
+			this.confirmationRecognition.stop();
+		});
 	}
 
 	// make an array out of the Speech user input
@@ -428,8 +504,30 @@ class FoodItemInput extends Component {
 				&& this.props.noFoodGroupItems.length === 0) ? preSubmit : postSubmit
 		);
 
+		const confirmationDialogActions = [
+			<FlatButton
+				label="No"
+				primary
+				onTouchTap={this.handleConfirmationDialogNo}
+			/>,
+			<FlatButton
+				label="Yes"
+				primary
+				disabled
+				onTouchTap={this.handleConfirmationDialogYes}
+			/>,
+		];
+
 		return (
 			<div style={styles.foodItemInput} className={classNames('animated', 'infinite', 'pulse')}>
+				<Dialog
+					title="Done?"
+					actions={confirmationDialogActions}
+					modal
+					open={this.state.renderConfirmationDialog}
+				>
+					Are you finished putting away your groceries?
+				</Dialog>
 				<IconButton
 					tooltip="Speech"
 					tooltipPosition="bottom-center"
