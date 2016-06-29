@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Drawer from 'material-ui/Drawer';
+import ICONS from '../styles/icons';
+import SvgIcon from 'material-ui/SvgIcon';
+import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
@@ -14,37 +17,44 @@ const styles = {
 		alignItems: 'stretch',
 	},
 	profileTile: {
-		backgroundColor: '#A1B38E',
+		backgroundColor: '#F1F1F1',
 		flex: 2,
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
 	profileImg: {
-		height: 300,
-		width: 300,
-		borderRadius: 20,
+		width: '60%',
+		borderRadius: 5,
+		boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
 	},
 	tile1: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#EEB87C',
+		backgroundColor: '#F1F1F1',
 	},
 	tile2: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#A53934',
+		backgroundColor: '#F1F1F1',
 	},
 	tile3: {
 		flex: 1,
 		width: '100%',
-		backgroundColor: '#A1B38E',
+		backgroundColor: '#F1F1F1',
 	},
 	button: {
-		color: 'white',
+		position: 'relative',
+		top: 30,
+		color: '#556270',
+		backgroundColor: '#FFFFFF',
 		fontSize: '2em',
-		height: '100%',
-		width: '100%',
+		height: '50%',
+		width: '60%',
+		boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
+	},
+	icon: {
+		opacity: 0.75,
 	},
 };
 
@@ -71,16 +81,39 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 					className="app-drawer-icebox"
 					onTouchTap={() => updateDrawer()}
 				>
+					<IconButton iconStyle={styles.icon}>
+						<SvgIcon className="icon">
+							<path d={ICONS.Icebox.d} />
+						</SvgIcon>
+					</IconButton>
 					Icebox
 				</FlatButton>
 			</Link>
 			<Link to="/recipes" style={styles.tile2}>
-				<FlatButton style={styles.button} className="app-drawer-recipes" onTouchTap={() => updateDrawer()}>
+				<FlatButton
+					style={styles.button}
+					className="app-drawer-recipes"
+					onTouchTap={() => updateDrawer()}
+				>
+					<IconButton iconStyle={styles.icon}>
+						<SvgIcon className="icon">
+							<path d={ICONS.Recipes.d} />
+						</SvgIcon>
+					</IconButton>
 					Recipes
 				</FlatButton>
 			</Link>
 			<Link to="/settings" style={styles.tile3}>
-				<FlatButton style={styles.button} className="app-drawer-settings" onTouchTap={() => updateDrawer()}>
+				<FlatButton
+					style={styles.button}
+					className="app-drawer-settings"
+					onTouchTap={() => updateDrawer()}
+				>
+					<IconButton iconStyle={styles.icon}>
+						<SvgIcon className="icon">
+							<path d={ICONS.Settings.d} />
+						</SvgIcon>
+					</IconButton>
 					Settings
 				</FlatButton>
 			</Link>

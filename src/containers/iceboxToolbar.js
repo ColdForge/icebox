@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { SORT_EXPIRATION, SORT_FOODGROUP, SORT_FOODNAME, ASCENDING, DESCENDING } from '../constants/sorts';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
+import ICONS from '../styles/icons';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import SvgIcon from 'material-ui/SvgIcon';
-import ICONS from '../styles/icons';
 import FoodItemInput from '../components/foodItemInput';
 
 const styles = {
