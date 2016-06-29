@@ -111,19 +111,15 @@ class FoodItemInput extends Component {
 	speechRecognitionInit() {
 		/* eslint-disable */
 		const SpeechRecognition = webkitSpeechRecognition;
-		this.recognition = new SpeechRecognition();
-		this.Kate = window.speechSynthesis;
-		/* eslint-enable */
-
-		// const SpeechGrammarList = webkitSpeechGrammarList;
+		const SpeechGrammarList = webkitSpeechGrammarList;
 		// const SpeechRecognitionEvent = SpeechRecognitionEvent;
+		this.recognition = new SpeechRecognition();
 		// const recognition = new SpeechGrammarList();
 		// const speechRecognitionList = new SpeechGrammarList();
 		// speechRecognitionList.addFromString(grammar, 1);
 		this.recognition.interimResults = false;
-
-		// let speechFlag = false;
-		// const speechResults = [];
+		this.Kate = window.speechSynthesis;
+		/* eslint-enable */
 
 		this.recognition.onresult = (event) => {
 			for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -155,36 +151,62 @@ class FoodItemInput extends Component {
 		this.recognition.onstart = () => {
 			console.log('this.recognition.onstart fired');
 		};
+		this.recognition.onspeechstart = () => {
+			console.log('on speech start event fired');
+			window.clearTimeout(this.speechTimeout);
+		};
+		this.recognition.onspeechend = () => {
+			console.log('this.recognition.onspeechend fired');
+			if (!this.state.recognitionStarted) {
+				window.clearTimeout(this.speechTimeout);
+			} else {
+				this.speechTimeout = window.setTimeout(() => {
+					console.log('no speech for 10 seconds');
+					this.endSpeechRecognition();
+
+					const voices = window.speechSynthesis.getVoices();
+					const areYouFinished = new SpeechSynthesisUtterance('Are you finished?');
+					areYouFinished.voice = voices[20];
+					areYouFinished.rate = 0.9;
+					areYouFinished.pitch = 0.8;
+
+					const finishedRecognition = new SpeechRecognition();
+					setTimeout(() => {
+						this.Kate.speak(areYouFinished);
+						setTimeout(() => {
+							finishedRecognition.start();
+							setTimeout(() => {
+								finishedRecognition.onresult = (evt) => {
+									console.log('event is : ', evt);
+									console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
+									const result = evt.results[0][0].transcript.toLowerCase();
+									if (result === 'yes' || result === 'yeah' || result === 'yup') {
+										finishedRecognition.stop();
+										this.endSpeechRecognition();
+									} else {
+										finishedRecognition.stop();
+										this.startSpeechRecognition();
+									}
+								};
+							}, 0);
+						}, 650);
+					}, 500);
+				}, 10000);
+			}
+		};
+		this.recognition.onsoundend = () => {
+			console.log('this.recognition.onsoundend fired');
+		};
+		this.recognition.onaudioend = () => {
+			console.log('this.recognition.onaudioend fired');
+		};
 		this.recognition.onend = () => {
 			console.log('this.recognition.onend fired');
-			this.recognition.stop();
-			const voices = window.speechSynthesis.getVoices();
-			const areYouFinished = new SpeechSynthesisUtterance('Are you finished?');
-			areYouFinished.voice = voices[20];
-			areYouFinished.rate = 0.9;
-			areYouFinished.pitch = 0.8;
-
-			const finishedRecognition = new SpeechRecognition();
-			setTimeout(() => {
-				this.Kate.speak(areYouFinished);
-				setTimeout(() => {
-					finishedRecognition.start();
-					setTimeout(() => {
-						finishedRecognition.onresult = (evt) => {
-							console.log('event is : ', evt);
-							console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
-							const result = evt.results[0][0].transcript.toLowerCase();
-							if (result === 'yes' || result === 'yeah' || result === 'yup') {
-								finishedRecognition.stop();
-								this.endSpeechRecognition();
-							} else {
-								finishedRecognition.stop();
-								this.startSpeechRecognition();
-							}
-						};
-					}, 0);
-				}, 650);
-			}, 500);
+			if (this.state.recognitionStarted) {
+				this.recognition.start();
+			} else {
+				window.clearTimeout(this.speechTimeout);
+			}
 		};
 	}
 
@@ -269,7 +291,6 @@ class FoodItemInput extends Component {
 				this.setState({
 					newItems: [],
 					newItemsAdded: false,
-					itemsPosted: false,
 					clarifyingItems: [],
 					editedItems: [],
 					open: false,
@@ -435,15 +456,6 @@ class FoodItemInput extends Component {
 		);
 	}
 }
-/*
-<div style={styles.dialogTitle}>
-	{this.renderActions()}
-</div>
-<br />
-{this.renderDialogBody()}
-<br />
-<FoodItemTable items={this.state.newItems} discarded={this.discardItems} />
-*/
 
 FoodItemInput.propTypes = {
 	submitFoods: React.PropTypes.func,
@@ -460,4 +472,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, actions)(FoodItemInput);
-
