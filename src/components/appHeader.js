@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import SvgIcon from 'material-ui/SvgIcon';
 import AppDrawer from './appDrawer';
 import FlatButton from 'material-ui/FlatButton';
 import * as actions from '../actions/index';
@@ -11,6 +10,7 @@ import Message from 'material-ui/svg-icons/social/notifications';
 import { green50 } from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 
 const styles = {
 	bar: {
@@ -159,35 +159,25 @@ class AppHeader extends Component {
 				<AppBar
 					// title="Icebox"
 					className="appheader-navbar"
-					titleStyle={{display: 'none'}}
+					titleStyle={{ display: 'none' }}
 					style={styles.bar}
-					// iconElementLeft={
-					// 	<IconButton
-					// 		className="appheader-menu-button"
-					// 		children={
-					// 			<SvgIcon>
-					// 				<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-					// 			</SvgIcon>
-					// 		}
-					// 		onClick={this.handleToggle}
-					// 	/>
-					// }
-					// onTitleTouchTap={pushToHome}
 					children={
 						<div
 							className="appheader-children-container"
 						>
 							<div className="appheader-left-container">
-								<div className="appheader-menu-button">
-									<IconButton
-										children={
-											<SvgIcon>
-												<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-											</SvgIcon>
-										}
-										onClick={this.handleToggle}
+								<IconButton
+									className="appheader-menu-button"
+									iconStyle={{ width: 48, height: 48 }}
+									style={{ width: 64, height: 64, padding: 8 }}
+									onTouchTap={this.handleToggle}
+								>
+									<MenuIcon
+										className="appheader-menu-button-icon"
+										color={'white'}
+										hoverColor={'orange'}
 									/>
-								</div>
+								</IconButton>
 							</div>
 							<div className="appheader-middle-container">
 								<h1 onClick={pushToHome}>Icebox</h1>
@@ -206,7 +196,21 @@ class AppHeader extends Component {
 		);
 	}
 }
-
+// <IconButton
+// 	className="appheader-menu-button"
+// 	children={
+// 		// <svg width="60px" height="60px" style={{fill:'white'}}>
+// 		// 	<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+// 		// </svg>
+// 		// <SvgIcon
+// 		// 	className="appheader-menu-button-icon"
+// 		// 	color="white"
+// 		// >
+// 		// 	<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+// 		// </SvgIcon>
+// 	}
+// 	onClick={this.handleToggle}
+// />
 const mapStateToProps = state => ({
 	authenticated: state.auth.authenticated,
 	user: state.user,
