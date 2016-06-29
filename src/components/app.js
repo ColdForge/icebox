@@ -21,7 +21,7 @@ const styles = {
 const App = ({ children }) => (
 	<div style={styles.container} className="app-container">
 		<AppHeader />
-		<div 
+		<div
 			style={styles.body}
 			className="app-body"
 		>

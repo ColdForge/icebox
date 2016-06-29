@@ -91,7 +91,7 @@ class AppHeader extends Component {
 		];
 
 		return this.props.authenticated ? (
-			<div style={styles.buttonContainer}>
+			<div style={styles.buttonContainer} className="appheader-right-buttons">
 				<div>
 					<IconButton className="help-button" onTouchTap={this.toggleMessage}>
 						<Message color={green50} />
@@ -120,7 +120,7 @@ class AppHeader extends Component {
 				/>
 			</div>
 		) : (
-			<div style={styles.buttonContainer}>
+			<div style={styles.buttonContainer} className="appheader-right-buttons">
 				<Link to="/signup" key={3}>
 					<FlatButton
 						className="signup-button"
@@ -157,25 +157,47 @@ class AppHeader extends Component {
 		return (
 			<div className="appheader">
 				<AppBar
-					title="Icebox"
+					// title="Icebox"
 					className="appheader-navbar"
-					titleStyle={styles.title}
+					titleStyle={{display: 'none'}}
 					style={styles.bar}
-					iconElementLeft={
-						<IconButton
-							className="appheader-menu-button"
-							children={
-								<SvgIcon>
-									<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-								</SvgIcon>
-							}
-							onClick={this.handleToggle}
-						/>
-
+					// iconElementLeft={
+					// 	<IconButton
+					// 		className="appheader-menu-button"
+					// 		children={
+					// 			<SvgIcon>
+					// 				<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+					// 			</SvgIcon>
+					// 		}
+					// 		onClick={this.handleToggle}
+					// 	/>
+					// }
+					// onTitleTouchTap={pushToHome}
+					children={
+						<div
+							className="appheader-children-container"
+						>
+							<div className="appheader-left-container">
+								<div className="appheader-menu-button">
+									<IconButton
+										children={
+											<SvgIcon>
+												<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+											</SvgIcon>
+										}
+										onClick={this.handleToggle}
+									/>
+								</div>
+							</div>
+							<div className="appheader-middle-container">
+								<h1 onClick={pushToHome}>Icebox</h1>
+							</div>
+							<div className="appheader-right-container">
+								{this.renderButtons()}
+							</div>
+						</div>
 					}
-					onTitleTouchTap={pushToHome}
-					children={this.renderButtons()}
-					showMenuIconButton={this.props.authenticated}
+					showMenuIconButton={false}
 				/>
 				<div>
 				{this.renderDrawer()}
