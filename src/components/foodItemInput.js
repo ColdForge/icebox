@@ -50,6 +50,16 @@ const styles = {
 	CircularProgress: {
 		alignSelf: 'center',
 	},
+	instructions: {
+		margin: 'auto',
+		textAlign: 'center',
+		height: 'auto',
+		width: 'auto',
+	},
+	instructionTextField: {
+		marginTop: '15px'
+
+	}
 };
 
 class FoodItemInput extends Component {
@@ -330,10 +340,9 @@ class FoodItemInput extends Component {
 		if (!this.state.recognitionStarted && !this.state.newItemsAdded
 				&& this.props.noExpirationItems.length === 0 && this.props.noFoodGroupItems.length === 0) {
 			return (
-				<div>
-					<p> Read the names of your foods out loud, as you load them into the refrigerator.</p>
-					<p> After each food say "next" and when you are done say "end" like this:</p>
-					<p>"Tomatoes..next..Milk..next..Chicken...end"</p>
+				<div className="instructions" style={styles.instructions}>
+					<p style={styles.instructionTextField}>Click Icon Above</p>
+					<p style={styles.instructionTextField}>Insert Items by Voice</p>
 				</div>
 			);
 		} else if (this.state.recognitionStarted) {
