@@ -44,16 +44,15 @@ export const signupUser = ({ email, name, password }) => (
 	}
 );
 
-export const signoutUser = () => {
-	localStorage.removeItem('token');
-	localStorage.removeItem('state');
-	browserHistory.push('/');
-	return dispatch => {
+export const signoutUser = () => (
+	dispatch => {
 		dispatch({ type: TYPES.DEAUTHORIZE_USER });
-		// dispatch({ type: TYPES.CLEAR_USER_INFO });
-		// dispatch({ type: TYPES.CLEAR_ICEBOX });
-	};
-};
+		dispatch({ type: TYPES.CLEAR_USER_INFO });
+		dispatch({ type: TYPES.CLEAR_ICEBOX });
+		localStorage.clear();
+		browserHistory.push('/');
+	}
+);
 
 export const getUserProfile = () => (
 	(dispatch) => {
