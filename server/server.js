@@ -71,6 +71,12 @@ var j = schedule.scheduleJob(rule, function(){
     });
 });
 
+db.select('id')
+  .from('staples')
+  .then(function(resp){
+    console.log('Staples list is being generated', resp);
+    });
+
 
 var port = process.env.PORT || 8080;
 var server = require('http').createServer(app);
