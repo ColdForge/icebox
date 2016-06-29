@@ -585,9 +585,9 @@ module.exports = {
                   .from('staples')
                   .then(function(resp){
                     console.log('Staples list is being generated', resp, newID);
-                    // resp.forEach(function(id){
-                    //   db.insert({ stapleID: id, iceboxID: newID, status: false}).into('staple_items');
-                    // });
+                    resp.forEach(function(id){
+                      db.insert({ stapleID: id.id, iceboxID: newID, status: false}).into('staple_items');
+                    });
                   });
               })
           })
