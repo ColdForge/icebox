@@ -64,6 +64,7 @@ class FoodItemInput extends Component {
 			confirmedItems: {},
 			clarifyingItems: [],
 			editedItems: [],
+			renderConfirmationDialog: false,
 		};
 		this.discardItems = this.discardItems.bind(this);
 		this.handleOpen = this.handleOpen.bind(this);
@@ -80,20 +81,18 @@ class FoodItemInput extends Component {
 	}
 
 	discardItems(item) {
-		console.log('item passed into discardItems is : ', item);
+		// console.log('item passed into discardItems is : ', item);
 		const bool = this.state.confirmedItems[item];
-		console.log('bool is : ', bool);
+		// console.log('bool is : ', bool);
 		this.setState({
 			confirmedItems: {
 				...this.state.confirmedItems,
 				[item]: !bool,
 			},
-		}, () => {
-			console.log('result of this.setState in discardItems is : ', this.state);
 		});
 		// confirmedItems[item] = !confirmedItems[item];
 		// console.log('Discarded Items', confirmedItems);
-		console.log('Discarded items are : ', this.state.confirmedItems);
+		// console.log('Discarded items are : ', this.state.confirmedItems);
 	}
 
 	startSpeechRecognition() {
@@ -111,26 +110,23 @@ class FoodItemInput extends Component {
 	speechRecognitionInit() {
 		/* eslint-disable */
 		const SpeechRecognition = webkitSpeechRecognition;
-		this.recognition = new SpeechRecognition();
-		this.Kate = window.speechSynthesis;
-		/* eslint-enable */
-
-		// const SpeechGrammarList = webkitSpeechGrammarList;
+		const SpeechGrammarList = webkitSpeechGrammarList;
 		// const SpeechRecognitionEvent = SpeechRecognitionEvent;
+		this.recognition = new SpeechRecognition();
+		this.confirmationRecognition = new SpeechRecognition();
 		// const recognition = new SpeechGrammarList();
 		// const speechRecognitionList = new SpeechGrammarList();
 		// speechRecognitionList.addFromString(grammar, 1);
 		this.recognition.interimResults = false;
-
-		// let speechFlag = false;
-		// const speechResults = [];
-
+		this.Kate = window.speechSynthesis;
+		this.initializeSpeechSynthesis();
+		/* eslint-enable */
 
 		this.recognition.onresult = (event) => {
 			for (let i = event.resultIndex; i < event.results.length; ++i) {
 				const identificated = event.results[i][0].transcript;
 				if (event.results[i].isFinal) {
-					console.log('Final sentence is : ', identificated);
+					// console.log('Final sentence is : ', identificated);
 					const tempRes = identificated.split('next');
 					// function handling edge cases goes here
 					const cleanList = this.listErrorHandling(tempRes);
@@ -142,51 +138,103 @@ class FoodItemInput extends Component {
 					this.setState({
 						confirmedItems: { ...this.state.confirmedItems, ...itemsObject },
 					}, () => {
-						console.log('result of this.setState in recognition on result is : ', this.state.confirmedItems);
+						// console.log('result of this.setState in recognition on result is : ', this.state.confirmedItems);
 					});
 					const itemsToAdd = [...this.state.newItems, ...cleanList];
 					this.setState({ newItems: itemsToAdd, newItemsAdded: true });
-					console.log('this is state.newItems: ', this.state.newItems);
+					// console.log('this is state.newItems: ', this.state.newItems);
 				} else {
-					console.log('I understood : ', identificated);
+					// console.log('I understood : ', identificated);
 				}
 			}
 		};
-
-		this.recognition.onstart = () => {
-			console.log('this.recognition.onstart fired');
+		this.recognition.onspeechstart = () => {
+			window.clearTimeout(this.speechTimeout);
+		};
+		this.recognition.onspeechend = () => {
+			if (!this.state.recognitionStarted) {
+				window.clearTimeout(this.speechTimeout);
+			} else {
+				this.speechTimeout = window.setTimeout(() => {
+					this.endSpeechRecognition();
+					this.Kate.speak(this.voiceSnippet);
+					this.initializeConfirmationRecognition();
+					this.setState({
+						open: false,
+						renderConfirmationDialog: true,
+						confirmationRecognitionReceived: false,
+					}, () => {
+						setTimeout(() => {
+							this.confirmationRecognition.start();
+						}, 2500);
+					});
+				}, 10000);
+			}
 		};
 		this.recognition.onend = () => {
-			console.log('this.recognition.onend fired');
-			this.recognition.stop();
-			const voices = window.speechSynthesis.getVoices();
-			const areYouFinished = new SpeechSynthesisUtterance('Are you finished?');
-			areYouFinished.voice = voices[20];
-			areYouFinished.rate = 0.9;
-			areYouFinished.pitch = 0.8;
-
-			const finishedRecognition = new SpeechRecognition();
-			setTimeout(() => {
-				this.Kate.speak(areYouFinished);
-				setTimeout(() => {
-					finishedRecognition.start();
-					setTimeout(() => {
-						finishedRecognition.onresult = (evt) => {
-							console.log('event is : ', evt);
-							console.log('event on finishedRecognition onend is : ', evt.results[0][0].transcript);
-							const result = evt.results[0][0].transcript.toLowerCase();
-							if (result === 'yes' || result === 'yeah' || result === 'yup') {
-								finishedRecognition.stop();
-								this.endSpeechRecognition();
-							} else {
-								finishedRecognition.stop();
-								this.startSpeechRecognition();
-							}
-						};
-					}, 0);
-				}, 650);
-			}, 500);
+			if (this.state.recognitionStarted) {
+				this.recognition.start();
+			} else {
+				window.clearTimeout(this.speechTimeout);
+			}
 		};
+	}
+
+	initializeSpeechSynthesis() {
+		/* eslint-disable */
+		this.voiceSnippet = new SpeechSynthesisUtterance('Is that the last of the groceries?');
+		this.voiceSnippet.rate = 0.9;
+		this.voiceSnippet.pitch = 0.8;
+		/* eslint-enable */
+	}
+
+	initializeConfirmationRecognition() {
+		// console.log('initializeConfirmationRecognition fired');
+		/* eslint-disable */
+		const SpeechRecognition = webkitSpeechRecognition;
+		const SpeechGrammarList = webkitSpeechGrammarList;
+		this.confirmationRecognition = new SpeechRecognition();
+		/* eslint-enable */
+		this.confirmationRecognition.onend = () => {
+			if (!this.state.confirmationRecognitionReceived) {
+				this.confirmationRecognition.start();
+			}
+		};
+		this.confirmationRecognition.onresult = event => {
+			// console.log('event on finishedRecognition onend is : ', event.results[0][0].transcript);
+			const result = event.results[0][0].transcript.toLowerCase();
+			if (result === 'no' || result === 'naw' || result === 'nope') {
+				this.confirmationRecognition.stop();
+				this.handleConfirmationDialogNo();
+			}
+			if (result === 'yes' || result === 'yeah' || result === 'yup') {
+				this.confirmationRecognition.stop();
+				this.handleConfirmationDialogYes();
+			}
+		};
+	}
+
+	handleConfirmationDialogYes() {
+		// console.log('handleConfirmationDialogYes fired');
+		this.setState({
+			renderConfirmationDialog: false,
+			confirmationRecognitionReceived: true,
+			open: true,
+		}, () => {
+			this.confirmationRecognition.stop();
+		});
+	}
+
+	handleConfirmationDialogNo() {
+		// console.log('handleConfirmationDialogNo fired');
+		this.setState({
+			renderConfirmationDialog: false,
+			confirmationRecognitionReceived: true,
+			open: true,
+		}, () => {
+			this.confirmationRecognition.stop();
+			this.startSpeechRecognition();
+		});
 	}
 
 	// make an array out of the Speech user input
@@ -255,7 +303,7 @@ class FoodItemInput extends Component {
 	}
 
 	handleFinalSubmit() {
-		console.log('handleFinalSubmit called in foodItemInput');
+		// console.log('handleFinalSubmit called in foodItemInput');
 		let flag = true;
 		const foodItems = this.state.editedItems;
 		for (let i = 0; i < foodItems.length; i++) {
@@ -264,7 +312,7 @@ class FoodItemInput extends Component {
 			}
 		}
 		if (flag) {
-			console.log('no errors in handleFinalSubmit');
+			// console.log('no errors in handleFinalSubmit');
 			this.props.resolveIceboxItems({ foodItems });
 			setTimeout(() => {
 				this.setState({
@@ -357,7 +405,7 @@ class FoodItemInput extends Component {
 	}
 
 	renderModalBody() {
-		console.log('renderModalBody, this.props.isLoading is : ', this.props.isLoading);
+		// console.log('renderModalBody, this.props.isLoading is : ', this.props.isLoading);
 		return (!this.props.isLoading) ? (
 			<div>
 				<div style={styles.dialogTitle}>
@@ -407,8 +455,29 @@ class FoodItemInput extends Component {
 				&& this.props.noFoodGroupItems.length === 0) ? preSubmit : postSubmit
 		);
 
+		const confirmationDialogActions = [
+			<FlatButton
+				label="No"
+				primary
+				onTouchTap={this.handleConfirmationDialogNo}
+			/>,
+			<FlatButton
+				label="Yes"
+				primary
+				onTouchTap={this.handleConfirmationDialogYes}
+			/>,
+		];
+
 		return (
 			<div style={styles.foodItemInput} className={classNames('animated', 'infinite', 'pulse')}>
+				<Dialog
+					title="Done?"
+					actions={confirmationDialogActions}
+					modal
+					open={this.state.renderConfirmationDialog}
+				>
+					Are you finished putting away your groceries?
+				</Dialog>
 				<IconButton
 					tooltip="Speech"
 					tooltipPosition="bottom-center"
@@ -435,15 +504,6 @@ class FoodItemInput extends Component {
 		);
 	}
 }
-/*
-<div style={styles.dialogTitle}>
-	{this.renderActions()}
-</div>
-<br />
-{this.renderDialogBody()}
-<br />
-<FoodItemTable items={this.state.newItems} discarded={this.discardItems} />
-*/
 
 FoodItemInput.propTypes = {
 	submitFoods: React.PropTypes.func,
@@ -460,4 +520,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, actions)(FoodItemInput);
-
