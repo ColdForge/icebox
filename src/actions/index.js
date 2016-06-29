@@ -11,7 +11,7 @@ export const authError = (error) => ({
 });
 
 export const signinUser = ({ email, password }) => (
-	(dispatch) => {
+	dispatch => {
 		axios.post(`${API_URL}/user/signin`, { email, password })
 			.then(response => {
 				// console.log('response inside signinUser : ', response);
@@ -28,7 +28,7 @@ export const signinUser = ({ email, password }) => (
 );
 
 export const signupUser = ({ email, name, password }) => (
-	(dispatch) => {
+	dispatch => {
 		axios.post(`${API_URL}/user/signup`, { email, name, password })
 			.then(response => {
 				// console.log('Response from signup', response);
@@ -55,7 +55,7 @@ export const signoutUser = () => (
 );
 
 export const getUserProfile = () => (
-	(dispatch) => {
+	dispatch => {
 		axios.get(`${API_URL}/api/profile`, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
@@ -71,7 +71,7 @@ export const getUserProfile = () => (
 );
 
 export const addUserToIcebox = ({ email }) => (
-	(dispatch) => {
+	dispatch => {
 		// console.log('Inside of addUser in actions', email);
 		axios.post(`${API_URL}/api/profile/add`, { email }, {
 			headers: { authorization: localStorage.getItem('token') },
@@ -87,7 +87,7 @@ export const addUserToIcebox = ({ email }) => (
 );
 
 export const removeUserFromIcebox = ({ user }) => (
-	(dispatch) => {
+	dispatch => {
 		// console.log('Inside of removeUser in actions', user);
 		axios.post(`${API_URL}/api/profile/remove`, { user }, {
 			headers: { authorization: localStorage.getItem('token') },
@@ -103,7 +103,7 @@ export const removeUserFromIcebox = ({ user }) => (
 );
 
 export const updateUserStaples = (staples) => (
-	(dispatch) => {
+	dispatch => {
 		// console.log('Inside of updateUserStaples in actions', staples);
 		axios.post(`${API_URL}/api/profile/staples`, staples, {
 			headers: { authorization: localStorage.getItem('token') },
@@ -119,7 +119,7 @@ export const updateUserStaples = (staples) => (
 );
 
 export const acceptInvite = (details) => (
-	(dispatch) => {
+	dispatch => {
 		// console.log('Inside of acceptInvitation in actions', details);
 		axios.post(`${API_URL}/api/profile/accept`, details, {
 			headers: { authorization: localStorage.getItem('token') },
@@ -155,7 +155,7 @@ export const clearIceboxSearch = () => ({
 });
 
 export const addIceboxItems = ({ foodItems }) => (
-	(dispatch) => {
+	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
 		// console.log('foodItems in addIceboxItems is : ', foodItems);
 		axios.post(`${API_URL}/api/icebox/add`, { foodItems }, {
@@ -180,7 +180,7 @@ export const addIceboxItems = ({ foodItems }) => (
 );
 
 export const resolveIceboxItems = ({ foodItems }) => (
-	(dispatch) => {
+	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
 		// console.log('foodItems in resolveIceboxItems is : ', foodItems);
 		axios.post(`${API_URL}/api/icebox/resolve`, { foodItems }, {
@@ -233,7 +233,7 @@ export const removeFromTrash = ({ id }) => ({
 });
 
 export const getRecipes = () => (
-	(dispatch) => {
+	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
 		axios.get(`${API_URL}/api/icebox/pastRecipes`, {
 			headers: { authorization: localStorage.getItem('token') },
@@ -250,7 +250,7 @@ export const getRecipes = () => (
 );
 
 export const getRecipeSuggestions = () => (
-	(dispatch) => {
+	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
 		axios.get(`${API_URL}/api/icebox/recipes`, {
 			headers: { authorization: localStorage.getItem('token') },
@@ -268,7 +268,7 @@ export const getRecipeSuggestions = () => (
 );
 
 export const chooseRecipe = ({ recipe }) => (
-	(dispatch) => {
+	dispatch => {
 		axios.post(`${API_URL}/api/icebox/recipes`, { recipe }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
@@ -283,8 +283,7 @@ export const chooseRecipe = ({ recipe }) => (
 );
 
 export const showRecipeDetails = (recipeId) => (
-
-	(dispatch) => {
+	dispatch => {
 		// console.log('actions, showRecDetail params: ', recipeId);
 		axios.get(`${API_URL}/api/icebox/recipe_details`, {
 			headers: { authorization: localStorage.getItem('token'), getId: recipeId },
