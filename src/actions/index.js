@@ -11,10 +11,10 @@ export const authError = (error) => ({
 });
 
 export const signinUser = ({ email, password }) => (
-	(dispatch) => {
+	dispatch => {
 		axios.post(`${API_URL}/user/signin`, { email, password })
 			.then(response => {
-				console.log('response inside signinUser : ', response);
+				// console.log('response inside signinUser : ', response);
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				dispatch({ type: TYPES.GET_USER_INFO, payload: response.data });
 				dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
@@ -28,10 +28,10 @@ export const signinUser = ({ email, password }) => (
 );
 
 export const signupUser = ({ email, name, password }) => (
-	(dispatch) => {
+	dispatch => {
 		axios.post(`${API_URL}/user/signup`, { email, name, password })
 			.then(response => {
-				console.log('Response from signup', response);
+				// console.log('Response from signup', response);
 				dispatch({ type: TYPES.AUTHORIZE_USER });
 				dispatch({ type: TYPES.GET_USER_INFO, payload: response.data });
 				localStorage.setItem('token', response.data.token);
@@ -44,24 +44,23 @@ export const signupUser = ({ email, name, password }) => (
 	}
 );
 
-export const signoutUser = () => {
-	localStorage.removeItem('token');
-	localStorage.removeItem('state');
-	browserHistory.push('/');
-	return dispatch => {
+export const signoutUser = () => (
+	dispatch => {
 		dispatch({ type: TYPES.DEAUTHORIZE_USER });
-		// dispatch({ type: TYPES.CLEAR_USER_INFO });
-		// dispatch({ type: TYPES.CLEAR_ICEBOX });
-	};
-};
+		dispatch({ type: TYPES.CLEAR_USER_INFO });
+		dispatch({ type: TYPES.CLEAR_ICEBOX });
+		localStorage.clear();
+		browserHistory.push('/');
+	}
+);
 
 export const getUserProfile = () => (
-	(dispatch) => {
+	dispatch => {
 		axios.get(`${API_URL}/api/profile`, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
-				console.log('Successful', response);
+				// console.log('Successful', response);
 				dispatch({ type: TYPES.GET_USER_PROFILE, payload: response.data });
 			})
 			.catch(response => (
@@ -72,13 +71,13 @@ export const getUserProfile = () => (
 );
 
 export const addUserToIcebox = ({ email }) => (
-	(dispatch) => {
-		console.log('Inside of addUser in actions', email);
+	dispatch => {
+		// console.log('Inside of addUser in actions', email);
 		axios.post(`${API_URL}/api/profile/add`, { email }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 		.then(response => {
-			console.log('Successfully added user', response);
+			// console.log('Successfully added user', response);
 			dispatch({ type: TYPES.ADD_USER_ICEBOX, payload: response.data });
 		})
 		.catch(response => (
@@ -88,13 +87,13 @@ export const addUserToIcebox = ({ email }) => (
 );
 
 export const removeUserFromIcebox = ({ user }) => (
-	(dispatch) => {
-		console.log('Inside of removeUser in actions', user);
+	dispatch => {
+		// console.log('Inside of removeUser in actions', user);
 		axios.post(`${API_URL}/api/profile/remove`, { user }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 		.then(response => {
-			console.log('Successfully removed user', response);
+			// console.log('Successfully removed user', response);
 			dispatch({ type: TYPES.REMOVE_USER_ICEBOX, payload: response.data });
 		})
 		.catch(response => (
@@ -104,13 +103,13 @@ export const removeUserFromIcebox = ({ user }) => (
 );
 
 export const updateUserStaples = (staples) => (
-	(dispatch) => {
-		console.log('Inside of updateUserStaples in actions', staples);
+	dispatch => {
+		// console.log('Inside of updateUserStaples in actions', staples);
 		axios.post(`${API_URL}/api/profile/staples`, staples, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 		.then(response => {
-			console.log('Successfully added user', response);
+			// console.log('Successfully added user', response);
 			dispatch({ type: TYPES.UPDATE_USER_STAPLES, payload: response.data });
 		})
 		.catch(response => (
@@ -120,13 +119,13 @@ export const updateUserStaples = (staples) => (
 );
 
 export const acceptInvite = (details) => (
-	(dispatch) => {
-		console.log('Inside of acceptInvitation in actions', details);
+	dispatch => {
+		// console.log('Inside of acceptInvitation in actions', details);
 		axios.post(`${API_URL}/api/profile/accept`, details, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 		.then(response => {
-			console.log('Successfully accepted invite', response);
+			// console.log('Successfully accepted invite', response);
 			dispatch({ type: TYPES.UPDATE_USER_INFO, payload: response.data });
 			dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
 		})
@@ -156,14 +155,14 @@ export const clearIceboxSearch = () => ({
 });
 
 export const addIceboxItems = ({ foodItems }) => (
-	(dispatch) => {
+	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
-		console.log('foodItems in addIceboxItems is : ', foodItems);
+		// console.log('foodItems in addIceboxItems is : ', foodItems);
 		axios.post(`${API_URL}/api/icebox/add`, { foodItems }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
-				console.log('good response from addIceboxItems is : ', response);
+				// console.log('good response from addIceboxItems is : ', response);
 				dispatch({ type: TYPES.ADD_ITEMS, payload: response.data.recognizedItems });
 				dispatch({
 					type: TYPES.CLARIFY_ITEMS,
@@ -172,8 +171,8 @@ export const addIceboxItems = ({ foodItems }) => (
 				});
 				dispatch({ type: TYPES.END_LOADING });
 			})
-			.catch(response => {
-				console.log('bad response from addIceboxItems is : ', response);
+			.catch(() => {
+				// console.log('bad response from addIceboxItems is : ', response);
 				dispatch({ type: TYPES.END_LOADING });
 				// dispatch({ type: TYPES.ICEBOX_ERROR, payload: response.data });
 			});
@@ -181,20 +180,20 @@ export const addIceboxItems = ({ foodItems }) => (
 );
 
 export const resolveIceboxItems = ({ foodItems }) => (
-	(dispatch) => {
+	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
-		console.log('foodItems in resolveIceboxItems is : ', foodItems);
+		// console.log('foodItems in resolveIceboxItems is : ', foodItems);
 		axios.post(`${API_URL}/api/icebox/resolve`, { foodItems }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
-				console.log('good response from resolveIceboxItems is : ', response);
+				// console.log('good response from resolveIceboxItems is : ', response);
 				dispatch({ type: TYPES.END_LOADING });
 				dispatch({ type: TYPES.ADD_ITEMS, payload: response.data.addedItems });
 				dispatch({ type: TYPES.CLEAR_CLARIFYING_ITEMS });
 			})
-			.catch(response => {
-				console.log('bad response from resolveIceboxItems is : ', response);
+			.catch(() => {
+				// console.log('bad response from resolveIceboxItems is : ', response);
 				dispatch({ type: TYPES.END_LOADING });
 				// dispatch({ type: TYPES.ICEBOX_ERROR, payload: response.data });
 			});
@@ -204,7 +203,7 @@ export const resolveIceboxItems = ({ foodItems }) => (
 export const removeIceboxItems = ({ items }) => (
 	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
-		console.log('items passed in are : ', items);
+		// console.log('items passed in are : ', items);
 		const itemIDs = {};
 		items.forEach(item => {
 			itemIDs[item.itemID] = true;
@@ -216,20 +215,17 @@ export const removeIceboxItems = ({ items }) => (
 				dispatch({ type: TYPES.END_LOADING });
 				dispatch({ type: TYPES.REMOVE_ITEMS, payload: itemIDs });
 			})
-			.catch(response => {
+			.catch(() => {
 				dispatch({ type: TYPES.END_LOADING });
-				console.log('error in removeIceboxItems, response of : ', response);
+				// console.log('error in removeIceboxItems, response of : ', response);
 			});
 	}
 );
 
-export const addToTrash = ({ id }) => {
-	console.log('addToTrash called, with id of : ', id);
-	return {
-		type: TYPES.ADD_TO_TRASH,
-		payload: id,
-	};
-};
+export const addToTrash = ({ id }) => ({
+	type: TYPES.ADD_TO_TRASH,
+	payload: id,
+});
 
 export const removeFromTrash = ({ id }) => ({
 	type: TYPES.REMOVE_FROM_TRASH,
@@ -237,7 +233,7 @@ export const removeFromTrash = ({ id }) => ({
 });
 
 export const getRecipes = () => (
-	(dispatch) => {
+	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
 		axios.get(`${API_URL}/api/icebox/pastRecipes`, {
 			headers: { authorization: localStorage.getItem('token') },
@@ -246,15 +242,15 @@ export const getRecipes = () => (
 				dispatch({ type: TYPES.END_LOADING });
 				dispatch({ type: TYPES.GET_RECIPES, payload: response.data });
 			})
-			.catch(response => {
+			.catch(() => {
 				dispatch({ type: TYPES.END_LOADING });
-				console.log('error in getRecipes, response of : ', response);
+				// console.log('error in getRecipes, response of : ', response);
 			});
 	}
 );
 
 export const getRecipeSuggestions = () => (
-	(dispatch) => {
+	dispatch => {
 		dispatch({ type: TYPES.START_LOADING });
 		axios.get(`${API_URL}/api/icebox/recipes`, {
 			headers: { authorization: localStorage.getItem('token') },
@@ -264,42 +260,41 @@ export const getRecipeSuggestions = () => (
 				dispatch({ type: TYPES.END_LOADING });
 				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data });
 			})
-			.catch(response => {
+			.catch(() => {
 				dispatch({ type: TYPES.END_LOADING });
-				console.log('error in getRecipeSuggestions, response of : ', response);
+				// console.log('error in getRecipeSuggestions, response of : ', response);
 			});
 	}
 );
 
 export const chooseRecipe = ({ recipe }) => (
-	(dispatch) => {
+	dispatch => {
 		axios.post(`${API_URL}/api/icebox/recipes`, { recipe }, {
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
 				dispatch({ type: TYPES.SET_CHOSEN_RECIPE, payload: response.data });
-			})
-			.catch(response => (
-				response
-				// console.log('error in chooseRecipe, response of : ',response);
-			));
+			});
+			// .catch(response => (
+			// 	response
+			// 	// console.log('error in chooseRecipe, response of : ',response);
+			// ));
 	}
 );
 
 export const showRecipeDetails = (recipeId) => (
-
-	(dispatch) => {
-		console.log('actions, showRecDetail params: ', recipeId);
+	dispatch => {
+		// console.log('actions, showRecDetail params: ', recipeId);
 		axios.get(`${API_URL}/api/icebox/recipe_details`, {
 			headers: { authorization: localStorage.getItem('token'), getId: recipeId },
 		})
 			.then(response => {
-				console.log('Actions, showRecipeDetails resp', response);
+				// console.log('Actions, showRecipeDetails resp', response);
 				dispatch({ type: TYPES.GET_RECIPE_DETAIL, payload: response.data });
-			})
-				.catch(response => (
-					response
-				));
+			});
+			// .catch(response => (
+			// 	response
+			// ));
 	}
 );
 
