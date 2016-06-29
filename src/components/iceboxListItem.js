@@ -7,7 +7,7 @@ import Checkbox from 'material-ui/Checkbox';
 
 const styles = {
 	gridTile: {
-		padding: 10,
+		// padding: 10,
 	},
 	paper: {
 		height: '100%',
@@ -21,62 +21,77 @@ const styles = {
 	Beef: {
 		backgroundImage: "url('/../../assets/beef.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Beverages: {
 		backgroundImage: "url('/../../assets/beverages.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Dairy: {
 		backgroundImage: "url('/../../assets/dairy.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Fruit: {
 		backgroundImage: "url('/../../assets/fruit.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Grains: {
 		backgroundImage: "url('/../../assets/grains.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Lamb: {
 		backgroundImage: "url('/../../assets/lamb.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Legumes: {
 		backgroundImage: "url('/../../assets/legumes.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Meats: {
 		backgroundImage: "url('/../../assets/meats.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Nuts: {
 		backgroundImage: "url('/../../assets/nuts.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Pork: {
 		backgroundImage: "url('/../../assets/pork.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Poultry: {
 		backgroundImage: "url('/../../assets/poultry.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Sauces: {
 		backgroundImage: "url('/../../assets/sauces.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Seafood: {
 		backgroundImage: "url('/../../assets/seafood.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Sweets: {
 		backgroundImage: "url('/../../assets/sweets.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	Vegetables: {
 		backgroundImage: "url('/../../assets/vegetables.jpg')",
 		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	cardHeader: {
 		flex: 1,

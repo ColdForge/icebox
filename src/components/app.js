@@ -19,11 +19,12 @@ const styles = {
 };
 
 const App = ({ children }) => (
-	<div style={styles.container} className="app-body">
-		<div style={styles.header}>
-			<AppHeader />
-		</div>
-		<div style={styles.body}>
+	<div style={styles.container} className="app-container">
+		<AppHeader />
+		<div 
+			style={styles.body}
+			className="app-body"
+		>
 			<ReactCSSTransitionGroup
 				component="div" transitionName="example" className="animation-container"
 				transitionEnterTimeout={500} transitionLeaveTimeout={500}

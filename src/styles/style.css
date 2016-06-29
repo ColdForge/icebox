@@ -74,7 +74,7 @@ p, div {
   height: 100%;
 }
 
-.app-body {
+.app-container {
   height: 100%;
 /*  padding-top: 50px;
   padding-bottom: 50px;*/
@@ -85,6 +85,18 @@ p, div {
   background: #50a3a2;
   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+.app-body {
+	padding-top: 64px;
+}
+
+.appheader {
+  /*position: -webkit-sticky;*/
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
 .appheader-navbar {
