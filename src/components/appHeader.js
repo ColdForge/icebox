@@ -14,7 +14,7 @@ import Dialog from 'material-ui/Dialog';
 
 const styles = {
 	bar: {
-		backgroundColor: 'rgba(85, 98, 112, 0.5)',
+		// backgroundColor: 'rgba(85, 98, 112, 0.5)',
 	},
 	buttonContainer: {
 		display: 'flex',
@@ -57,7 +57,7 @@ class AppHeader extends Component {
 		if (nextProps.user.invite && !this.state.inviteConfirmed) {
 			this.setState({ message: true });
 		}
-		console.log('Popup is firing with: ', nextProps.user.invite);
+		// console.log('Popup is firing with: ', nextProps.user.invite);
 	}
 
 	toggleMessage() {
@@ -158,6 +158,7 @@ class AppHeader extends Component {
 			<div>
 				<AppBar
 					title="Icebox"
+					className="appheader-navbar"
 					titleStyle={styles.title}
 					style={styles.bar}
 					iconElementLeft={

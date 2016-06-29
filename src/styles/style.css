@@ -80,8 +80,25 @@ p, div {
   padding-bottom: 50px;*/
   text-align: center;
   color: #f8f8f8;
-  background: url(../../assets/background.jpeg) no-repeat center center;
-  background-size: cover;
+/*  background: url(../../assets/background.jpeg) no-repeat center center;
+  background-size: cover;*/
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+.appheader-navbar {
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+.icebox-toolbar {
+  /*background: rgba(255,255,255,0.1);*/
+
+/*  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);*/
 }
 
 /*.landing-div, .signin-div, .signup-div {
@@ -166,8 +183,16 @@ form .text-field-input div label {
 /* Icebox Component Styling */
 
 .icebox-container {
-  background: #F1F1F1 no-repeat center center;
-  background-size: cover;
+/*  background: #F1F1F1 no-repeat center center;
+  background-size: cover;*/
+  height: 100%;
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+.icebox-list {
+  height: 100%;
 }
 
 /* Tooltip container */
@@ -325,8 +350,8 @@ form .text-field-input div label {
 /*  Recipe Component Styling  */
 .recipes-container {
   height: 100%;
-  background: #F1F1F1 no-repeat center center;
-  background-size: cover;
+/*  background: #F1F1F1 no-repeat center center;
+  background-size: cover;*/
 }
 
 .recipes-container h1 {

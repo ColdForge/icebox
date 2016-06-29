@@ -37,7 +37,7 @@ const styles = {
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: 72,
-		backgroundColor: 'rgba(156, 223, 158, 0.5)',
+		backgroundColor: 'rgba(255, 255, 255, 0.0)',
 	},
 	toolbarGroup1: {
 		marginLeft: '10px',
@@ -127,7 +127,11 @@ class IceboxToolbar extends Component {
 
 	render() {
 		return (
-			<Toolbar style={styles.toolbar} noGutter={true}>
+			<Toolbar
+				style={styles.toolbar}
+				noGutter={true}
+				className="icebox-toolbar"
+			>
 				<ToolbarGroup
 					firstChild={true}
 					style={styles.toolbarGroup1}
