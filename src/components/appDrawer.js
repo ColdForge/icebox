@@ -4,7 +4,6 @@ import Drawer from 'material-ui/Drawer';
 import ICONS from '../styles/icons';
 import SvgIcon from 'material-ui/SvgIcon';
 import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
 import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
@@ -55,8 +54,8 @@ const styles = {
 		boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
 	},
 	icon: {
-		opacity: 0.75
-	}
+		opacity: 0.75,
+	},
 };
 
 const AppDrawer = ({ drawerOpen, updateDrawer }) => (
@@ -76,14 +75,13 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 					src={'https://avatars2.githubusercontent.com/u/16884524?v=3&s=460'}
 				/>
 			</div>
-
 			<Link to="/icebox" style={styles.tile1}>
 				<FlatButton
 					style={styles.button}
 					className="app-drawer-icebox"
 					onTouchTap={() => updateDrawer()}
 				>
-				  <IconButton  iconStyle={styles.icon}>
+					<IconButton iconStyle={styles.icon}>
 						<SvgIcon className="icon">
 							<path d={ICONS.Icebox.d} />
 						</SvgIcon>
@@ -95,7 +93,8 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				<FlatButton
 					style={styles.button}
 					className="app-drawer-recipes"
-					onTouchTap={() => updateDrawer()}>
+					onTouchTap={() => updateDrawer()}
+				>
 					<IconButton iconStyle={styles.icon}>
 						<SvgIcon className="icon">
 							<path d={ICONS.Recipes.d} />
@@ -108,7 +107,8 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				<FlatButton
 					style={styles.button}
 					className="app-drawer-settings"
-					onTouchTap={() => updateDrawer()}>
+					onTouchTap={() => updateDrawer()}
+				>
 					<IconButton iconStyle={styles.icon}>
 						<SvgIcon className="icon">
 							<path d={ICONS.Settings.d} />
