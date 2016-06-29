@@ -51,6 +51,7 @@ class AppHeader extends Component {
 		this.toggleMessage = this.toggleMessage.bind(this);
 		this.acceptInvite = this.acceptInvite.bind(this);
 		this.denyInvite = this.denyInvite.bind(this);
+		this.renderMenuButton = this.renderMenuButton.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -151,6 +152,25 @@ class AppHeader extends Component {
 		) : (<div></div>);
 	}
 
+	renderMenuButton(){
+		return this.props.authenticated ? (
+			<IconButton
+				className="appheader-menu-button"
+				iconStyle={{ width: 48, height: 48 }}
+				style={{ width: 64, height: 64, padding: 8 }}
+				onTouchTap={this.handleToggle}
+			>
+				<MenuIcon
+					className="appheader-menu-button-icon"
+					color={'white'}
+					hoverColor={'orange'}
+				/>
+			</IconButton>
+		) : (
+			<div style={{width:64,height:64}} />
+		);
+	}
+
 	render() {
 		// const boundHandleToggle = this.handleToggle.bind(this);
 		const pushToHome = () => browserHistory.push('/');
@@ -166,18 +186,7 @@ class AppHeader extends Component {
 							className="appheader-children-container"
 						>
 							<div className="appheader-left-container">
-								<IconButton
-									className="appheader-menu-button"
-									iconStyle={{ width: 48, height: 48 }}
-									style={{ width: 64, height: 64, padding: 8 }}
-									onTouchTap={this.handleToggle}
-								>
-									<MenuIcon
-										className="appheader-menu-button-icon"
-										color={'white'}
-										hoverColor={'orange'}
-									/>
-								</IconButton>
+								{this.renderMenuButton()}
 							</div>
 							<div className="appheader-middle-container">
 								<h1 onClick={pushToHome}>Icebox</h1>
