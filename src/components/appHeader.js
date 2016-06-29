@@ -152,7 +152,7 @@ class AppHeader extends Component {
 		) : (<div></div>);
 	}
 
-	renderMenuButton(){
+	renderMenuButton() {
 		return this.props.authenticated ? (
 			<IconButton
 				className="appheader-menu-button"
@@ -167,7 +167,7 @@ class AppHeader extends Component {
 				/>
 			</IconButton>
 		) : (
-			<div style={{width:64,height:64}} />
+			<div style={{ width: 64, height: 64 }} />
 		);
 	}
 
