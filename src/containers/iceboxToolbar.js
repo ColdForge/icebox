@@ -138,11 +138,14 @@ class IceboxToolbar extends Component {
 				>
 					<IconButton
 						tooltip="Search"
-						iconStyle={{width: '48px', height: '48px'}}
-						style={{width: '60px', height: '60px', padding: 0}}
+						iconStyle={{width: 48, height: 48}}
+						style={{width: 64, height: 64, padding: 8}}
 						className="icebox-toolbar-search"
 					>
-						<SvgIcon className="icebox-toolbar-svgicon-search">
+						<SvgIcon
+							className="icebox-toolbar-svgicon-search"
+							color="white"
+						>
 							<path d={ICONS.Search.d} />
 						</SvgIcon>
 					</IconButton>
@@ -166,13 +169,14 @@ class IceboxToolbar extends Component {
 					{this.renderDeleteButton()}
 					<IconButton
 						tooltip="Asc/Desc"
-						iconStyle={{width: '48px', height: '48px'}}
-						style={{width: '60px', height: '60px', padding: 0}}
+						iconStyle={{width: 48, height: 48}}
+						style={{width: 64, height: 64, padding: 8}}
 						className="icebox-toolbar-sort-arrows"
 						onClick={() => this.changeSortDirection()}
 					>
 						<SvgIcon
 							className="icebox-toolbar-svgicon-sort-arrows"
+							color="white"
 						>
 							<path d={ICONS.SortArrows.d} />
 						</SvgIcon>
@@ -182,14 +186,14 @@ class IceboxToolbar extends Component {
 						iconButtonElement={
 							<IconButton
 								tooltip="Sort"
-								iconStyle={{width: '48px', height: '48px'}}
-								style={{width: '60px', height: '60px', padding: 0}}
+								iconStyle={{width: 48, height: 48}}
+								style={{width: 64, height: 64, padding: 8}}
 								className="icebox-toolbar-sort"
 							>
 								<SvgIcon
 									className="icebox-toolbar-svgicon-sort"
 									style={styles.svgicon}
-
+									color="white"
 								>
 									<path d={ICONS.Sort.d} />
 								</SvgIcon>
