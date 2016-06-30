@@ -24,7 +24,6 @@ const configureStore = (testMode,state) => {
     store = createStoreWithMiddleware(reducers,persistedState, window.devToolsExtension ? window.devToolsExtension() : f => f);
     if(token) {
       store.dispatch({ type: AUTHORIZE_USER });
-      browserHistory.push('/icebox');
     }
 
     store.subscribe(throttle(() => {

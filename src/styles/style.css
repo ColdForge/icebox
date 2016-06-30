@@ -511,6 +511,9 @@ form .text-field-input div label {
   height: 100%;
 /*  background: #F1F1F1 no-repeat center center;
   background-size: cover;*/
+  background: #53e3a6;
+  background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
+  background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
 }
 
 .recipes-container h1 {
@@ -518,12 +521,57 @@ form .text-field-input div label {
 }
 
 .recipes-tabs {
-  background-color: white;
+  /*background-color: white;*/
 }
 
 .recipes-tab {
-  background-color: white;
-  color: black;
+  /*background-color: white;*/
+  /*color: black;*/
+}
+
+.recipes-toolbar {
+	z-index: 50;
+	position: fixed;
+	height: 72px;
+	width: 100%;
+	top: 72px;
+	background: #53e3a6;
+	background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
+	background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
+}
+
+.recipes-toolbar-button {
+	background-color: rgba(0,0,0,0);
+	height: 100%;
+	width: 100%;
+	font-size: 32;
+	color: white;
+}
+
+.recipe-suggestion-list-container {
+	position: fixed;
+	top: 144px;
+	height: 100%;
+	width: 100%;
+	background: #FFFFFF;
+	background: -webkit-linear-gradient(top left, #FFFFFF 100%, #FFFFFF 0%);
+	background: linear-gradient(to bottom right, #FFFFFF 100%, #FFFFFF 0%);
+}
+
+.recipe-suggestion-list {
+	height: 100%;
+}
+
+.recipe-suggestion-list-item {
+
+}
+
+.recipe-list-container {
+	margin-top: 72px;
+	height: 100%;
+	background: #FFFFFF;
+	background: -webkit-linear-gradient(top left, #FFFFFF 100%, #FFFFFF 0%);
+	background: linear-grad
 }
 
 .settings-container {

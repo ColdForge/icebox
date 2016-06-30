@@ -18,7 +18,7 @@ const styles = {
 };
 
 const RecipeList = ({ recipes }) => (
-	<div style={styles.root}>
+	<div style={styles.root} className="recipe-list-container">
 		<GridList
 			className="icebox-list"
 			cellHeight={400}

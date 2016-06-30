@@ -13,7 +13,10 @@ const styles = {
 };
 
 const RecipeSuggestionListItem = ({ recipe, chooseRecipe, getRecipeDetails, recipeLocation }) => (
-	<Card onExpandChange={getRecipeDetails}>
+	<Card
+		className="recipe-suggestion-list-item"
+		onExpandChange={getRecipeDetails}
+	>
 		<CardHeader
 			title={recipe.title}
 			subtitle={`Missing Ingredients: ${recipe.missedIngredientCount}  Used Ingredients: ${recipe.usedIngredientCount}`}

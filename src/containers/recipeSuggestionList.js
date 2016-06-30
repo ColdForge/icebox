@@ -36,8 +36,8 @@ class RecipeSuggestionList extends Component {
 
   render() {
     return (
-      <div>
-        <List className="icebox-list">
+      <div className="recipe-suggestion-list-container">
+        <List className="recipe-suggestion-list">
           {this.props.suggestions.map(suggestion => (
             <RecipeSuggestionListItem
               key={suggestion.key}
