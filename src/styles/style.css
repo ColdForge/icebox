@@ -29,6 +29,16 @@ p, div {
   margin-right: auto;
 }
 
+/*.landing-div, .signin-div, .signup-div {
+	height: 100%;
+	padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  color: #f8f8f8;
+  background: url(../../assets/icebox-landing.jpg) no-repeat center center;
+  background-size: cover;
+}*/
+
 form .text-field-input {
   -webkit-appearance: none;
        -moz-appearance: none;
@@ -294,8 +304,10 @@ form .text-field-input div label {
 	float: right;
 }
 
+/* Icebox Toolbar Component Styling */
+
 .icebox-toolbar {
-	z-index: 1000;
+	z-index: 50;
 	position: fixed;
 	height: 72px;
 	width: 100%;
@@ -306,7 +318,7 @@ form .text-field-input div label {
 }
 
 .icebox-toolbar-scroll {
-	z-index: 1000;
+	z-index: 50;
 	position: fixed;
 	height: 72px;
 	width: 100%;
@@ -316,15 +328,19 @@ form .text-field-input div label {
 	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);
 }
 
-/*.landing-div, .signin-div, .signup-div {
-	height: 100%;
-	padding-top: 50px;
-  padding-bottom: 50px;
-  text-align: center;
-  color: #f8f8f8;
-  background: url(../../assets/icebox-landing.jpg) no-repeat center center;
-  background-size: cover;
-}*/
+/* Food Item Input Component Styling */
+
+.start-speech-input {
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+}
+
+.end-speech-input {
+  animation-duration: 1.5s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+}
 
 /* Icebox Component Styling */
 
@@ -352,103 +368,6 @@ form .text-field-input div label {
 
 .icebox-list {
   height: 100%;
-}
-
-/* Tooltip container */
-.tooltip {
-  z-index: 1000;
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-	visibility: hidden;
-	width: 120px;
-	background-color: black;
-	color: #fff;
-	text-align: center;
-	padding: 5px 0;
-	border-radius: 6px;
-
-	/* Position the tooltip text - see examples below! */
-	position: absolute;
-	z-index: 1;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-	visibility: visible;
-}
-
-/* Icebox Toolbar */
-
-@charset "UTF-8";
-
-.animated {
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.animated.infinite {
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-}
-
-/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
-
-@-webkit-keyframes pulse {
-  from {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    -webkit-transform: scale3d(1.05, 1.05, 1.05);
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  to {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-@keyframes pulse {
-  from {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    -webkit-transform: scale3d(1.05, 1.05, 1.05);
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  to {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulse {
-  -webkit-animation-name: pulse;
-  animation-name: pulse;
-}
-
-.start-speech-input {
-  animation-duration: 3s;
-  animation-delay: 1s;
-  animation-iteration-count: infinite;
-}
-
-.end-speech-input {
-  animation-duration: 1.5s;
-  animation-delay: 1s;
-  animation-iteration-count: infinite;
 }
 
 .iceboxListItem {
@@ -506,11 +425,42 @@ form .text-field-input div label {
   vertical-align: middle;
 }
 
+/* Tooltip container */
+.tooltip {
+  z-index: 1000;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 6px;
+
+	/* Position the tooltip text - see examples below! */
+	position: absolute;
+	z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
 /*  Recipe Component Styling  */
 .recipes-container {
   height: 100%;
 /*  background: #F1F1F1 no-repeat center center;
   background-size: cover;*/
+  background: #53e3a6;
+  background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
+  background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
 }
 
 .recipes-container h1 {
@@ -518,13 +468,118 @@ form .text-field-input div label {
 }
 
 .recipes-tabs {
-  background-color: white;
+  /*background-color: white;*/
 }
 
 .recipes-tab {
-  background-color: white;
-  color: black;
+  /*background-color: white;*/
+  /*color: black;*/
 }
+
+/* Recipes Toolbar Component Styling */
+
+.recipes-toolbar {
+	z-index: 50;
+	position: fixed;
+	height: 72px;
+	width: 100%;
+	top: 72px;
+	background: #53e3a6;
+	background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
+	background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
+}
+
+.recipes-toolbar-button {
+	background-color: rgba(0,0,0,0);
+	height: 100%;
+	width: 100%;
+	font-size: 32;
+	color: white;
+}
+
+/* Recipe Suggestion Component Styling */
+
+.recipe-suggestion-list-container {
+	position: fixed;
+	top: 144px;
+	height: 100%;
+	width: 100%;
+	background: #53e3a6;
+	background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
+	background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
+}
+
+.recipe-suggestion-list {
+	height: 100%;
+}
+
+.recipe-suggestion-tile {
+	height: 100%;
+	padding-bottom: 72px;
+}
+
+.recipe-suggestion-card-bg {
+	height: 100%;
+	background-color: rgb(0,0,0);
+}
+
+div.recipe-suggestion-card > div {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.recipe-suggestion-card-title {
+	flex: 1;
+}
+
+.recipe-suggestion-card-text {
+	text-align: left;
+	flex: 2;
+}
+
+.recipe-suggestion-card-list {
+	font-size: 18px;
+	list-style-type: none;
+}
+
+.recipe-suggestion-card-actions {
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.recipe-suggestion-card-buttons {
+	height: 100px;
+	width: 100%;
+	flex: 1;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	padding-bottom: 20px;
+}
+
+.recipe-suggestion-card-button {
+	margin: 4px;
+	flex: 1;
+	margin-right: 4px;
+	margin-left: 4px;
+	text-align: center;
+}
+
+/* Past Recipes Component Styling */
+
+.recipe-list-container {
+	margin-top: 72px;
+	height: 100%;
+	background: #FFFFFF;
+	background: -webkit-linear-gradient(top left, #FFFFFF 100%, #FFFFFF 0%);
+	background: linear-grad
+}
+
+/* Settings Component Styling */
 
 .settings-container {
   width: 90%;
@@ -744,5 +799,62 @@ form .text-field-input div label {
 .landing-backdrop {
   position: relative;
   background: transparent;
+}
+
+/* Animations */
+
+@charset "UTF-8";
+
+.animated {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
 }
 

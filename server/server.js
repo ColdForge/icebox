@@ -45,6 +45,12 @@ app.post('/user/signin', requireSignin, Auth.signin);
 // route when new user signs up
 app.post('/user/signup', Auth.signup);
 
+// handle every other route with index.html, which will contain
+// a script tag to your application's JavaScript file(s).
+app.get('*', function (req, res){
+	res.sendFile(path.resolve(__dirname + '/../index.html'));
+})
+
 // router(app);
 
 var rule = new schedule.RecurrenceRule();

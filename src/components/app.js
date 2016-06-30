@@ -20,23 +20,6 @@ const styles = {
 	},
 };
 
-const scrollChecker = () => {
-	if (document.body.scrollTop > 72 || document.documentElement.scrollTop > 72) {
-		document.getElementById('appheader').className = 'appheader-hidden';
-		document.getElementById('icebox-toolbar').className = 'icebox-toolbar-scroll';
-		document.getElementById('goTop').className = 'goTop-show';
-	} else {
-		document.getElementById('appheader').className = 'appheader';
-		document.getElementById('icebox-toolbar').className = 'icebox-toolbar';
-		document.getElementById('goTop').className = 'goTop';
-	}
-};
-
-window.onscroll = function () {
-	scrollChecker();
-};
-
-
 const App = ({ children }) => (
 	<div style={styles.container} className="app-container">
 		<AppHeader />

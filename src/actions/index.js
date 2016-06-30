@@ -20,6 +20,18 @@ export const signinUser = ({ email, password }) => (
 				dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
 				localStorage.setItem('token', response.data.token);
 				browserHistory.push('/icebox');
+				axios.get(`${API_URL}/api/icebox/pastRecipes`, {
+					headers: { authorization: localStorage.getItem('token') },
+				})
+					.then(recipesResponse => {
+						console.log('recipesResponse after signin is : ', recipesResponse);
+						// dispatch({ type: TYPES.END_LOADING });
+						dispatch({ type: TYPES.GET_RECIPES, payload: recipesResponse.data });
+					})
+					.catch((error) => {
+						// dispatch({ type: TYPES.END_LOADING });
+						console.log('error in getRecipes, error of : ', error);
+					});
 			})
 			.catch(response => {
 				dispatch(authError(response));
@@ -49,6 +61,7 @@ export const signoutUser = () => (
 		dispatch({ type: TYPES.DEAUTHORIZE_USER });
 		dispatch({ type: TYPES.CLEAR_USER_INFO });
 		dispatch({ type: TYPES.CLEAR_ICEBOX });
+		dispatch({ type: TYPES.CLEAR_RECIPES });
 		localStorage.clear();
 		browserHistory.push('/');
 	}
@@ -256,9 +269,9 @@ export const getRecipeSuggestions = () => (
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
-				// console.log('response from getRecipeSuggestions is : ', response);
+				console.log('response from getRecipeSuggestions is : ', response);
 				dispatch({ type: TYPES.END_LOADING });
-				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data });
+				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data.suggestions });
 			})
 			.catch(() => {
 				dispatch({ type: TYPES.END_LOADING });
@@ -273,6 +286,7 @@ export const chooseRecipe = ({ recipe }) => (
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
+				console.log('chooseRecipe fired with recipe of : ', recipe);
 				dispatch({ type: TYPES.SET_CHOSEN_RECIPE, payload: response.data });
 			});
 			// .catch(response => (
