@@ -29,7 +29,7 @@ const styles = {
 	},
 	lead: {
 		marginLeft: 35,
-	}
+	},
 };
 
 const brandName = 'ColdForge';
