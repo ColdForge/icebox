@@ -175,7 +175,7 @@ class AppHeader extends Component {
 		// const boundHandleToggle = this.handleToggle.bind(this);
 		const pushToHome = () => browserHistory.push('/');
 		return (
-			<div className="appheader">
+			<div className="appheader" id="appheader">
 				<AppBar
 					// title="Icebox"
 					className="appheader-navbar"

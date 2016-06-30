@@ -17,6 +17,75 @@ p, div {
 	height: 100%;
 }
 
+/* Signin and Signup Components Styling */
+
+.signin-form, .signup-form {
+  /*background-color: #556270;*/
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form .text-field-input {
+  -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    outline: 0;
+    border: 1px solid rgba(85, 98, 112, 0.7);
+    background-color: rgba(85, 98, 112, 0.6);
+    width: 90%;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 10px auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    -webkit-transition-duration: 0.25s;
+            transition-duration: 0.25s;
+    font-weight: 300;
+}
+
+form .text-field-input:hover {
+  background-color: rgba(85, 98, 112, 0.8);
+}
+form .text-field-input:focus {
+  background-color: white;
+  width: 300px;
+  color: #53e3a6;
+}
+
+form .text-field-input div label {
+  color: white;
+}
+
+.signin-form-button, .signup-form-button {
+  width: 90%;
+}
+
+/* Landing Page Component Styling */
+
+.landing-title {
+  padding-top: 200px;
+  color: black;
+
+}
+.intro-message {
+  position: relative;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+  margin: 0;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  font-weight: 800;
+  font-size: 80px;
+}
+
 /* CSS for Animations */
 .animation-container {
   height: 100%;
@@ -100,11 +169,18 @@ p, div {
   z-index: 1000;
 }
 
+.appheader-hidden {
+	display: hidden;
+}
+
 .appheader-navbar {
   /*background: #50a3a2;*/
-  background: #50a3a2;
+  background: #A35051;
+  background: -webkit-linear-gradient(top left, #A35051 0%, #A35051 0%);
+  background: linear-gradient(to bottom right, #A35051 0%, #A35051 0%);
+/*  background: #50a3a2;
   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);*/
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -162,11 +238,25 @@ p, div {
 }
 
 .icebox-toolbar {
-  /*background: rgba(255,255,255,0.1);*/
+	z-index: 1000;
+	position: fixed;
+	height: 72px;
+	width: 100%;
+	top: 72px;
+	background: #50a3a2;
+	background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 0%);
+	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);
+}
 
-/*  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);*/
+.icebox-toolbar-scroll {
+	z-index: 1000;
+	position: fixed;
+	height: 72px;
+	width: 100%;
+	top: 0;
+	background: #50a3a2;
+	background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 0%);
+	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);
 }
 
 /*.landing-div, .signin-div, .signup-div {
@@ -179,81 +269,13 @@ p, div {
   background-size: cover;
 }*/
 
-/* Signin and Signup Components Styling */
-
-.signin-form, .signup-form {
-  /*background-color: #556270;*/
-  border-radius: 5px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-top: 80px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-form .text-field-input {
-  -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    outline: 0;
-    border: 1px solid rgba(85, 98, 112, 0.7);
-    background-color: rgba(85, 98, 112, 0.6);
-    width: 90%;
-    border-radius: 3px;
-    padding: 10px 15px;
-    margin: 10px auto 10px auto;
-    display: block;
-    text-align: center;
-    font-size: 18px;
-    color: white;
-    -webkit-transition-duration: 0.25s;
-            transition-duration: 0.25s;
-    font-weight: 300;
-}
-
-form .text-field-input:hover {
-  background-color: rgba(85, 98, 112, 0.8);
-}
-form .text-field-input:focus {
-  background-color: white;
-  width: 300px;
-  color: #53e3a6;
-}
-
-form .text-field-input div label {
-  color: white;
-}
-
-.signin-form-button, .signup-form-button {
-  width: 90%;
-}
-
-/* Landing Page Component Styling */
-
-.landing-title {
-  padding-top: 200px;
-  color: black;
-
-}
-.intro-message {
-  position: relative;
-  padding-top: 20%;
-  padding-bottom: 20%;
-}
-
-.intro-message > h1 {
-  margin: 0;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-  font-weight: 800;
-  font-size: 80px;
-}
-
 /* Icebox Component Styling */
 
 .icebox-container {
 /*  background: #F1F1F1 no-repeat center center;
   background-size: cover;*/
   height: 100%;
+  margin-top: 72px;
   padding-bottom: 72px;
 /*  background: #50a3a2;
   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
