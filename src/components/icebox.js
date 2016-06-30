@@ -18,7 +18,7 @@ const Icebox = () => {
 	window.onscroll = function () {
 		scrollChecker();
 	};
-	
+
 	return (
 		<div className="icebox-container">
 			<IceboxToolbar />

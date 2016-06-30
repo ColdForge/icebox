@@ -553,9 +553,9 @@ form .text-field-input div label {
 	top: 144px;
 	height: 100%;
 	width: 100%;
-	background: #FFFFFF;
-	background: -webkit-linear-gradient(top left, #FFFFFF 100%, #FFFFFF 0%);
-	background: linear-gradient(to bottom right, #FFFFFF 100%, #FFFFFF 0%);
+	background: #53e3a6;
+	background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
+	background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
 }
 
 .recipe-suggestion-list {
@@ -563,7 +563,7 @@ form .text-field-input div label {
 }
 
 .recipe-suggestion-list-item {
-
+	height: 33%;
 }
 
 .recipe-list-container {

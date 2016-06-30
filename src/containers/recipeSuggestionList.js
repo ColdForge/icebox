@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { List } from 'material-ui/List';
+import { GridList } from 'material-ui/GridList';
 import * as actions from '../actions';
 // import Avatar from 'material-ui/Avatar';
 // import Subheader from 'material-ui/Subheader';
@@ -9,12 +10,19 @@ import RecipeSuggestionListItem from '../components/recipeSuggestionListItem';
 class RecipeSuggestionList extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      suggestionsOpen: {},
+    }
     this.handleRecipeChoice = this.handleRecipeChoice.bind(this);
   }
 
   componentWillMount() {
     this.props.getRecipeSuggestions();
     console.log("RSL: suggestion will mount fired")
+  }
+
+  handleSuggestionToggle(id){
+
   }
 
   handleRecipeChoice(recipe) {
@@ -35,19 +43,29 @@ class RecipeSuggestionList extends Component {
   }
 
   render() {
+    const chosenRecipeID = this.props.chosenRecipe ? this.props.chosenRecipe.id : null;
+    const height = window.innerHeight - 144;
+    console.log('height is : ',height)
+    console.log('this.props.suggestions are : ',this.props.suggestions);
     return (
       <div className="recipe-suggestion-list-container">
-        <List className="recipe-suggestion-list">
+        <GridList
+          className="recipe-suggestion-list"
+          cellHeight={height}
+          cols={3}
+          padding={5}
+        >
           {this.props.suggestions.map(suggestion => (
             <RecipeSuggestionListItem
               key={suggestion.key}
+              chosenRecipeID={chosenRecipeID}
               recipe={suggestion}
               chooseRecipe={this.handleRecipeChoice.bind(this,suggestion)}
               getRecipeDetails={this.handleRecipeDetails.bind(this, suggestion)}
               recipeLocation={this.props.recipeDetail}
             />
           ))}
-        </List>
+        </GridList>
       </div>
     );
   }
@@ -65,6 +83,18 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, actions)(RecipeSuggestionList);
+
+// <List className="recipe-suggestion-list">
+//   {this.props.suggestions.map(suggestion => (
+//     <RecipeSuggestionListItem
+//       key={suggestion.key}
+//       recipe={suggestion}
+//       chooseRecipe={this.handleRecipeChoice.bind(this,suggestion)}
+//       getRecipeDetails={this.handleRecipeDetails.bind(this, suggestion)}
+//       recipeLocation={this.props.recipeDetail}
+//     />
+//   ))}
+// </List>
 
 //let SelectableList = MakeSelectable(List);
 
