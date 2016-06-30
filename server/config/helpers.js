@@ -476,7 +476,6 @@ module.exports = {
     console.log('req.user received in postRecipe is : ',req.user);
     var user = req.user;
     var recipe = req.body.recipe;
-
     db.insert({ userID: user.id, title: recipe.title,
       pic_url: recipe.image, ingredients_used: recipe.usedIngredientCount,
       ingredients_missing: recipe.missedIngredientCount, recipeID: recipe.id})
@@ -484,10 +483,14 @@ module.exports = {
       .where('userID', user.id)
       .then(function(resp){
         console.log('Recipe has been added to user account', resp);
-        res.send(resp);
+        res.json({
+          recipesTableID: resp,
+          recipe: recipe,
+        });
       })
       .catch(function(err){
         console.log('Error posting recipe', err);
+        res.send({error: err});
       });
   },
   //working on this section - AY - add ability to get recipe history
