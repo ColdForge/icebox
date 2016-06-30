@@ -25,7 +25,7 @@ const styles = {
 		height: 48,
 	},
 	textField: {
-		marginTop: '8px',
+		marginTop: '12px',
 		height: '40px',
 		width: '200px',
 		borderRadius: '10px',
@@ -40,7 +40,8 @@ const styles = {
 		backgroundColor: 'rgba(255, 255, 255, 0.0)',
 	},
 	toolbarGroup1: {
-		marginLeft: '10px',
+		marginLeft: 24,
+		// paddingLeft: 24,
 		width: '33%',
 		display: 'flex',
 		justifyContent: 'flex-start',
@@ -51,7 +52,7 @@ const styles = {
 		justifyContent: 'center',
 	},
 	toolbarGroup3: {
-		marginRight: '10px',
+		marginRight: 24,
 		width: '33%',
 		display: 'flex',
 		justifyContent: 'flex-end',
@@ -68,8 +69,21 @@ class IceboxToolbar extends Component {
 	constructor(props){
 		super(props);
 
+		this.state = {
+			searchOpen: false,
+		};
+
+		this.toggleSearch = this.toggleSearch.bind(this);
 		this.submitFoods = this.submitFoods.bind(this);
 		this.renderDeleteButton = this.renderDeleteButton.bind(this);
+		this.renderSearchBar = this.renderSearchBar.bind(this);
+		this.renderClearSearchButton = this.renderClearSearchButton.bind(this);
+	}
+
+	toggleSearch(){
+		this.setState({
+			searchOpen: !this.state.searchOpen
+		});
 	}
 
 	handleSearch(event) {
@@ -95,11 +109,16 @@ class IceboxToolbar extends Component {
 			return (
 				<IconButton
 					tooltip="Clear Search"
-					style={styles.button}
+					iconStyle={{width: 48, height: 48}}
+					style={{width: 64, height: 64, padding: 8}}
 					className="icebox-toolbar-clear-search"
 					onTouchTap={() => this.props.clearIceboxSearch()}
 				>
-					<SvgIcon className="icebox-toolbar-clear-search-svgicon">
+					<SvgIcon
+						className="icebox-toolbar-clear-search-svgicon"
+						color="white"
+						hoverColor="red"
+					>
 						<path d={ICONS.ClearSearch.d} />
 					</SvgIcon>
 				</IconButton>
@@ -109,6 +128,21 @@ class IceboxToolbar extends Component {
 				<div style={styles.buttonPlaceholder} />
 			);
 		}
+	}
+
+	renderSearchBar(){
+		return (this.state.searchOpen) ? (
+			<TextField
+				id="icebox-toolbar-search-field"
+				value={this.props.iceboxSearch}
+				onChange={event => this.handleSearch(event)}
+				style={styles.textField}
+				inputStyle={{fontSize:18,color: 'orange', textAlign:'center'}}
+				underlineShow={false}
+			/>
+		) : (
+			<div style={{ marginTop: '12px',height: '40px',width: '200px'}} />
+		);
 	}
 
 	renderDeleteButton(){
@@ -123,7 +157,6 @@ class IceboxToolbar extends Component {
 			<div />
 		);
 	}
-
 
 	render() {
 		return (
@@ -141,20 +174,17 @@ class IceboxToolbar extends Component {
 						iconStyle={{width: 48, height: 48}}
 						style={{width: 64, height: 64, padding: 8}}
 						className="icebox-toolbar-search"
+						onTouchTap={this.toggleSearch}
 					>
 						<SvgIcon
 							className="icebox-toolbar-svgicon-search"
 							color="white"
+							hoverColor="orange"
 						>
 							<path d={ICONS.Search.d} />
 						</SvgIcon>
 					</IconButton>
-					<TextField
-						id="icebox-toolbar-search-field"
-						value={this.props.iceboxSearch}
-						onChange={event => this.handleSearch(event)}
-						style={styles.textField}
-					/>
+					{this.renderSearchBar()}
 					{this.renderClearSearchButton()}
 				</ToolbarGroup>
 				<ToolbarGroup
@@ -177,6 +207,7 @@ class IceboxToolbar extends Component {
 						<SvgIcon
 							className="icebox-toolbar-svgicon-sort-arrows"
 							color="white"
+							hoverColor={'orange'}
 						>
 							<path d={ICONS.SortArrows.d} />
 						</SvgIcon>
@@ -194,6 +225,7 @@ class IceboxToolbar extends Component {
 									className="icebox-toolbar-svgicon-sort"
 									style={styles.svgicon}
 									color="white"
+									hoverColor={'orange'}
 								>
 									<path d={ICONS.Sort.d} />
 								</SvgIcon>
