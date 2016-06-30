@@ -47,8 +47,15 @@ const styles = {
 		backgroundColor: '#FFFFFF',
 		width: '100%',
 	},
+	cpWrapper: {
+		position: 'relative',
+		margin: 'auto',
+	},
 	CircularProgress: {
-		alignSelf: 'center',
+		position: 'absolute',
+		float: 'left',
+		margin: 'auto',
+		display: 'center',
 	},
 	instructions: {
 		margin: 'auto',
@@ -178,7 +185,7 @@ class FoodItemInput extends Component {
 							this.confirmationRecognition.start();
 						}, 2500);
 					});
-				}, 10000);
+				}, 5000);
 			}
 		};
 		this.recognition.onend = () => {
@@ -426,7 +433,10 @@ class FoodItemInput extends Component {
 				{this.renderTable()}
 			</div>
 		) : (
-			<CircularProgress style={styles.CircularProgress} size={4} />
+			<div style={styles.cpWrapper}>
+				<CircularProgress
+					innerStyle={styles.CircularProgress} size={4} />
+			</div>
 		);
 	}
 
