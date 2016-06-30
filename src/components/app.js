@@ -53,18 +53,18 @@ const App = ({ children }) => (
 				})}
 			</ReactCSSTransitionGroup>
 		</div>
-		<div 
+		<div
 			id="goTop"
 			className="goTop"
 		>
 			<IconButton
 				iconStyle={{ width: 54, height: 54 }}
 				style={{ width: 64, height: 64, padding: 8 }}
-				onTouchTap={() => window.scrollTo(0,0)}
+				onTouchTap={() => window.scrollTo(0, 0)}
 				tooltip="Go to top"
 				tooltipPosition="bottom-center"
 			>
-				<GoUp 
+				<GoUp
 					color="white"
 				/>
 			</IconButton>
