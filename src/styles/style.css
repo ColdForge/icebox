@@ -139,6 +139,36 @@ form .text-field-input div label {
 
 /* Main App Component Styling */
 
+/*#scroll-to-top {
+	background: #a35051;
+	padding: 5px;
+	position:fixed;
+	bottom:-100px;
+	right:10px;
+}*/
+
+.goTop {
+	background: #a35051;
+	color: white;
+	font-size: 18px;
+	font-weight: 800;
+	padding: 10px;
+	position:fixed;
+	bottom:-100px;
+	right:40px;
+}
+
+.goTop-show {
+	background:#a35051;
+	color: white;
+	font-size: 18px;
+	font-weight: 800;
+	padding:10px;
+	position:fixed;
+	bottom:80px;
+	right:40px;
+}
+
 .main {
   height: 100%;
 }
