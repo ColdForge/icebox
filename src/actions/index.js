@@ -256,9 +256,9 @@ export const getRecipeSuggestions = () => (
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
-				// console.log('response from getRecipeSuggestions is : ', response);
+				console.log('response from getRecipeSuggestions is : ', response);
 				dispatch({ type: TYPES.END_LOADING });
-				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data });
+				dispatch({ type: TYPES.GET_RECIPE_SUGGESTIONS, payload: response.data.suggestions });
 			})
 			.catch(() => {
 				dispatch({ type: TYPES.END_LOADING });
