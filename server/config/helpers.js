@@ -557,6 +557,7 @@ module.exports = {
     console.log('Hitting removeUser db helper with', req.body, req.user);
     var removedUser = req.body.user;
     var user = req.user;
+    var newID;
 
     if(user.id === removedUser.id){
       return res.send("Can't remove yourself");
@@ -566,6 +567,7 @@ module.exports = {
       .into('iceboxes')
       .then(function(resp){
         console.log('New icebox created', resp);
+        newID = resp[0];
         db('users')
           .where('id', removedUser.id)
           .update({
@@ -579,6 +581,14 @@ module.exports = {
               .then(function(users){
                 console.log('Found it', users);
                 res.send({ profile: user, household: users });
+                db.select('id')
+                  .from('staples')
+                  .then(function(resp){
+                    console.log('Staples list is being generated', resp, newID);
+                    resp.forEach(function(id){
+                      db.insert({ stapleID: id.id, iceboxID: newID, status: false}).into('staple_items');
+                    });
+                  });
               })
           })
       })
