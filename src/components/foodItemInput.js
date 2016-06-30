@@ -435,7 +435,8 @@ class FoodItemInput extends Component {
 		) : (
 			<div style={styles.cpWrapper}>
 				<CircularProgress
-					innerStyle={styles.CircularProgress} size={4} />
+					innerStyle={styles.CircularProgress} size={4}
+    />
 			</div>
 		);
 	}
