@@ -9,30 +9,58 @@ const styles = {
 	},
 };
 
-const Recipes = () => (
-	<div className="recipes-container">
-		<Tabs
-			style={styles.tabs}
-			className="recipes-tabs"
-		>
-			<Tab
-				label="Recipe Suggestions"
-				className="recipes-tab"
+const Recipes = ({ children }) => {
+	console.log('children passed into recipes is : ', children);
+	const index = children.props.location.pathname === '/recipes' ? 0 : 1;
+	return (
+		<div className="recipes-container">
+			<Tabs
+				style={styles.tabs}
+				className="recipes-tabs"
+				initialSelectedIndex={index}
 			>
-				<div>
-					<RecipeSuggestionList />
-				</div>
-			</Tab>
-			<Tab
-				label="Past Recipes"
-				className="recipes-tab"
-			>
-				<div>
-					<RecipeList />
-				</div>
-			</Tab>
-		</Tabs>
-	</div>
-);
+				<Tab
+					label="Recipe Suggestions"
+					className="recipes-tab"
+				>
+					<div>
+						<RecipeSuggestionList />
+					</div>
+				</Tab>
+				<Tab
+					label="Past Recipes"
+					className="recipes-tab"
+				>
+					<div>
+						<RecipeList />
+					</div>
+				</Tab>
+			</Tabs>
+		</div>
+	);
+};
+
+Recipes.propTypes = {
+	children: React.PropTypes.element,
+};
 
 export default Recipes;
+
+/*
+<Tab
+	label="Recipe Suggestions"
+	className="recipes-tab"
+>
+	<div>
+		<RecipeSuggestionList />
+	</div>
+</Tab>
+<Tab
+	label="Past Recipes"
+	className="recipes-tab"
+>
+	<div>
+		<RecipeList />
+	</div>
+</Tab>
+*/

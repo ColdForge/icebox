@@ -125,7 +125,7 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				className="app-drawer-pastrecipes"
 				onTouchTap={() => {
 					updateDrawer();
-					browserHistory.push('/recipes');
+					browserHistory.push('/pastrecipes');
 				}}
 				primaryText="Past Recipes"
 				leftIcon={<Favorite />}
