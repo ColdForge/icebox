@@ -86,11 +86,17 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 					/>
 					<CardTitle title={recipe.title} style={{ flex: 1 }} />
 					<CardText style={{ textAlign: 'left', flex: 2 }}>
-						<ul style={{ fontSize: 18 }}>
+						<ul style={{ fontSize: 18, listStyleType: 'none', }}>
 							<li>Ready in {recipe.readyInMinutes} minutes</li>
-							<li>{recipe.servings} servings</li>
-							<li>Missing Ingredients: {recipe.missedIngredientCount}</li>
-							<li>Used Ingredients: {recipe.usedIngredientCount}</li>
+							<li>Makes {recipe.servings} servings</li>
+							<li>Missing {recipe.missedIngredientCount} ingredients</li>
+							<li>Uses {recipe.usedIngredientCount} ingredients</li>
+							{recipe.dairyFree && <li>Dairy Free</li>}
+							{recipe.glutenFree && <li>Gluten Free</li>}
+							{recipe.ketogenic && <li>Ketogenic</li>}
+							{recipe.sustainable && <li>Sustainable</li>}
+							{recipe.vegan && <li>Vegan</li>}
+							{recipe.vegetarian && <li>Vegetarian</li>}
 						</ul>
 					</CardText>
 					<CardActions style={styles.cardActions}>
@@ -99,6 +105,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 								style={styles.button}
 								linkButton
 								href={recipe.sourceUrl}
+								target='_blank'
 								label="Recipe"
 								labelStyle={styles.buttonLabel}
 								backgroundColor={'#53E3A6'}
