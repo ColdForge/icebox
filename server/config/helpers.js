@@ -386,7 +386,7 @@ module.exports = {
     }
   },
   getRecipeSuggestions: function(req, res){
-    console.log('HELPERS 122: getRecipesSugg fired in helpers, req.user is : ',req.user);
+    // console.log('HELPERS 122: getRecipesSugg fired in helpers, req.user is : ',req.user);
     var icebox = req.user.iceboxID;
     var recipeCollect = [];
 
@@ -394,40 +394,81 @@ module.exports = {
     .from('icebox_items')
     .where('iceboxID', icebox)
     .innerJoin('foods', 'icebox_items.foodID', 'foods.id')
-    .then(function(resp){
-      console.log('resp from innerJoin is : ');
-
-      resp.forEach(function(food){
-        if(food.daysToExpire <= 3){
+    .then(function(iceboxSelectResult){
+      // console.log('iceboxSelectResult from innerJoin is : ');
+      iceboxSelectResult.forEach(function(food){
+        if(food.daysToExpire <= 5){
           recipeCollect.push(food.name);
         }
       });
+
+      function getRecipeDetailsByID(recipeID) {
+        return new Promise(function(resolve,reject){
+          foodAPI.getRecipeDetailWithID(recipeID, resolve);
+        })
+      }
 
       db.select('*')
         .from('staple_items')
         .innerJoin('staples', 'staple_items.stapleID', 'staples.id')
         .where('iceboxID', icebox)
-        .then(function(resp){
-          console.log('Staples', resp);
-          resp.forEach(function(staple){
+        .then(function(staplesSelectResult){
+          // console.log('Staples', staplesSelectResult);
+          staplesSelectResult.forEach(function(staple){
             recipeCollect.push(staple.name);
-            console.log('Recipe collection', recipeCollect);
+            // console.log('Recipe collection', recipeCollect);
           });
-        }).then(function(resp){
-          console.log('HELPERS 141: resp from select in getRecipes is : ')
+        })
+        .then(function(endResult){
+          // console.log('HELPERS 141: resp from select in getRecipes is : ')
           var result = new Promise(function(resolve){
             foodAPI.getRecipeFromIngredients(recipeCollect, resolve);
-          }).then(function(resp){
-            console.log('HELPERS 145: Successfull call to recipe API');
-            res.send(resp);
+          })
+          .then(function(resp){
+            // console.log('HELPERS 145: Successfull call to recipe API');
+            // console.log('HELPER DB SELECT RESP IS : ',resp);
+            var getRecipeDetailsResults = [];
+            var recipeSuggestionsObject = {};
+            resp.forEach(function(recipe){
+              recipeSuggestionsObject[recipe.id] = recipe;
+              getRecipeDetailsResults.push(getRecipeDetailsByID(recipe.id));
+            });
+            Promise.all(getRecipeDetailsResults)
+            .then(function(promisesResponse){
+              console.log('promise.all response is : ',promisesResponse);
+              var recipeSuggestions = []
+              promisesResponse.forEach(function(promisesResponseObject){
+                Object.assign(recipeSuggestionsObject[promisesResponseObject.id],
+                {
+                  cookingMinutes: promisesResponseObject.cookingMinutes,
+                  dairyFree: promisesResponseObject.dairyFree,
+                  extendedIngredients: promisesResponseObject.extendedIngredients,
+                  glutenFree: promisesResponseObject.glutenFree,
+                  ketogenic: promisesResponseObject.ketogenic,
+                  preparationMinutes: promisesResponseObject.preparationMinutes,
+                  readyInMinutes: promisesResponseObject.readyInMinutes,
+                  servings: promisesResponseObject.servings,
+                  sourceUrl: promisesResponseObject.sourceUrl,
+                  spoonacularUrl: promisesResponseObject.spoonacularSourceUrl,
+                  sustainable: promisesResponseObject.sustainable,
+                  vegan: promisesResponseObject.vegan,
+                  vegetarian: promisesResponseObject.vegetarian,
+                });
+              })
+              res.json({ suggestions: resp });
+            })
+            .catch(function(promisesError){
+              console.log('promise.all error is : ',promisesError);
+              res.json({ error: promisesError })
+            });
           });
         });
 
-      }).catch(function(err){
+      })
+      .catch(function(err){
         console.log('HELPERS 149: Error getting items', err);
         res.send('Icebox items could not be found');
       });
-
   },
   chooseRecipeSuggestion: function(req, res){
     console.log('req.body received in postRecipe is : ',req.body);

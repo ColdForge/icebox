@@ -51,7 +51,7 @@ module.exports = {
     }
     request(options)
       .then(function(response){
-        console.log('API UTILS 53: response from getRecipeFromIngredients is : ');
+        console.log('API UTILS 53: response from getRecipeFromIngredients is : ',response);
         cb(response);
       })
       .catch(function(error){
