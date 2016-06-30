@@ -562,8 +562,60 @@ form .text-field-input div label {
 	height: 100%;
 }
 
-.recipe-suggestion-list-item {
-	height: 33%;
+.recipe-suggestion-tile {
+	height: 100%;
+	padding-bottom: 72px;
+}
+
+.recipe-suggestion-card-bg {
+	height: 100%;
+	background-color: rgb(0,0,0);
+}
+
+div.recipe-suggestion-card > div {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.recipe-suggestion-card-title {
+	flex: 1;
+}
+
+.recipe-suggestion-card-text {
+	text-align: left;
+	flex: 2;
+}
+
+.recipe-suggestion-card-list {
+	font-size: 18px;
+	list-style-type: none;
+}
+
+.recipe-suggestion-card-actions {
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.recipe-suggestion-card-buttons {
+	height: 100px;
+	width: 100%;
+	flex: 1;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	padding-bottom: 20px;
+}
+
+.recipe-suggestion-card-button {
+	margin: 4px;
+	flex: 1;
+	margin-right: 4px;
+	margin-left: 4px;
+	text-align: center;
 }
 
 .recipe-list-container {
