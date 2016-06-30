@@ -20,6 +20,18 @@ export const signinUser = ({ email, password }) => (
 				dispatch({ type: TYPES.POPULATE_ICEBOX, payload: response.data.contents });
 				localStorage.setItem('token', response.data.token);
 				browserHistory.push('/icebox');
+				axios.get(`${API_URL}/api/icebox/pastRecipes`, {
+					headers: { authorization: localStorage.getItem('token') },
+				})
+					.then(recipesResponse => {
+						console.log('recipesResponse after signin is : ',recipesResponse);
+						// dispatch({ type: TYPES.END_LOADING });
+						dispatch({ type: TYPES.GET_RECIPES, payload: recipesResponse.data });
+					})
+					.catch((error) => {
+						// dispatch({ type: TYPES.END_LOADING });
+						console.log('error in getRecipes, error of : ', error);
+					});
 			})
 			.catch(response => {
 				dispatch(authError(response));
