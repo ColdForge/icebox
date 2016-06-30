@@ -1,69 +1,61 @@
 import React from 'react';
 import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
+import Talker from 'material-ui/svg-icons/action/record-voice-over';
+import Calendar from 'material-ui/svg-icons/editor/insert-invitation';
+import Silverware from 'material-ui/svg-icons/maps/restaurant';
+import { green50, deepOrange800 } from 'material-ui/styles/colors';
 import {
-  // Code,
-  CustomerQuote, CustomerQuotes,
-  // DropdownMenu, DropdownToggle,
-  Footer,
-  // FooterAddress,
-  Hero,
-  HorizontalSplit,
-  ImageList,
-  // ImageListItem,
-  // Navbar,
-  // NavItem,
-  Page,
-  // PricingPlan,
-  // PricingTable,
-  Section,
-  // SignupInline, SignupModal,
-  // Stripe,
-  Team,
-  TeamMember,
+	Footer,
+	Hero,
+	HorizontalSplit,
+	ImageList,
+	Page,
+	Section,
 } from 'neal-react';
+
+const styles = {
+	navButtons: {
+		color: green50,
+		height: 50,
+		width: 75,
+		fontSize: 20,
+		backgroundColor: deepOrange800,
+		margin: 10,
+	},
+	talker: {
+		width: 75,
+		height: 75,
+	},
+};
 
 const brandName = 'ColdForge';
 
-const colin = <h2 className="name"> Colin Zarnegar </h2>;
-const austin = <h2 className="name"> Austin Sefton </h2>;
-const nathan = <h2 className="name"> Nathaniel Schwab </h2>;
-const andy = <h2 className="name"> Andrew J Yao </h2>;
-
-const pm = <h3 className="title"> Product Manager </h3>;
-const fe = <h3 className="title"> Front End </h3>;
-const fs = <h3 className="title"> Full Stack </h3>;
-const sm = <h3 className="title"> Scrum Master </h3>;
-
 const Landing = () => (
-
 	<Page>
-		<Link to="signup" className="nav-link">
-			<FlatButton
-				primary
-				className="pull-right"
-				backgroundColor="white"
-   >
-				Sign Up
-			</FlatButton>
-		</Link>
-		<Link to="signin" className="nav-link">
-			<FlatButton
-				primary
-				className="pull-right"
-				backgroundColor="white"
-   >
-				Sign In
-			</FlatButton>
-		</Link>
-		<div className="banner-text">
-			<div className="display-4 banner-title"> Icebox </div>
-			<p className="lead"> The complete refrigerator companion that helps you minimize waste
-			by putting you in control </p>
+		<div className="banner-box">
+			<div className="banner-title"> Icebox </div>
+			<div className="banner-text">
+				<p className="lead">"The complete refrigerator companion"</p>
+			</div>
+			<Link to="signin" className="nav-link">
+				<FlatButton
+					style={styles.navButtons}
+				>
+					Sign In
+				</FlatButton>
+			</Link>
+			<Link to="signup" className="nav-link">
+				<FlatButton
+					style={styles.navButtons}
+				>
+					Sign Up
+				</FlatButton>
+			</Link>
 		</div>
 		<Hero
-			backgroundImage="../../assets/background.jpeg"
-			className="text-xs-center banner-display"
+			backgroundImage="../../assets/veggieDrop.jpg"
+			className="banner-display"
 		/>
 
 		<div className="spacer"></div>
@@ -71,65 +63,90 @@ const Landing = () => (
 		<Section>
 			<HorizontalSplit padding="md">
 				<div className="bar1-text">
+					<Talker style={styles.talker} />
 					<p className="lead">Input Items by Voice</p>
-					<p> Neal is based on <a href="http://v4-alpha.getbootstrap.com/" target="_blank">
-					Bootstrap 4</a> and ships with navbar, hero, footer, sections, horizontal split,
-					pricing tables, customer quotes and other components you need for a landing page.
-					No more repetitive coding! Oh, and it's easy to extend.
+					<p>
+						Add items to your icebox as you unload your groceries with
+						the sound of your voice. Icebox goes hands-free in the kitchen
+						so that you can spend more time gettings things done and less
+						time playing with an app.
 					</p>
 				</div>
 				<div className="bar1-text">
-					<p className="lead">Keeps Track of Expiration Dates</p>
-					<p>External integrations like &nbsp;
-						<a href="http://www.google.com/analytics/">Google Analytics</a>,&nbsp;
-						<a href="https://segment.com/">Segment</a>,&nbsp;
-						<a href="https://stripe.com/">Stripe</a> and&nbsp;
-						<a href="http://typeform.com">Typeform</a> are included.
-						No more copying & pasting integration code, all you need is your API keys.
-						We automatically track events when visitors navigate to different parts of your page.
+					<Calendar style={styles.talker} />
+					<p className="lead">Track Food Expiration Dates</p>
+					<p>
+						Keep track of how long your food will last so that you can better
+						plan your grocery shopping and what meals you cook. With Icebox
+						mobile, take what is in your refriegerator with you and never buy
+						something you already have.
 					</p>
 				</div>
 				<div className="bar1-text">
+					<Silverware style={styles.talker} />
 					<p className="lead">Sends you Smart Recipies</p>
-					<p>Because you are relying on react.js and third-party integration you don't
-					need a server to host your landing page. Simply upload it to an Amazon S3 bucket,
-					enable website hosting, and it's ready to go!</p>
+					<p>
+						Icebox will suggest recipes to you based on the food that is
+						expiring in your fridge. Choose your recipe and forget about
+						having to decide what is for dinner or finding creative ways
+						to use up the food you have.
+					</p>
 				</div>
 			</HorizontalSplit>
 		</Section>
+
 		<div className="spacer"></div>
-		<hero className="hero2">
-			<div className="bar2">
-				<div className="large-text-wrapper">
-					<div className="large-text-1">Because you are relying on react.js and third-party integration</div>
-					<div className="large-text-2"></div>
-					<div className="large-text-3">The most important task at first is to build something people want</div>
-				</div>
+
+		<div className="bar2">
+			<div className="large-text-1">
+				<p>"...nearly 40% of the food produced in the United States
+				winds up in a landfill..."
+				</p>
+				<p>–fastcoexist.com</p>
 			</div>
-		</hero>
+		</div>
+
 		<div className="spacer"></div>
 
 		<Section>
-			<CustomerQuotes>
-				<CustomerQuote name="Paul Graham" title="YC">
-					<p>What I tell founders is not to sweat the business model too much at first.
-					The most important task at first is to build something people want.
-					If you don't do that, it won't matter how clever your business model is.
-					</p>
-				</CustomerQuote>
-				<CustomerQuote name="Elon Musk">
-					<p>I came to the conclusion that we should aspire to increase the scope and
-					scale of human consciousness in order to better understand what questions to ask.
-					Really, the only thing that makes sense is to strive for greater collective enlightenment.
-					</p>
-				</CustomerQuote>
-				<CustomerQuote name="Reid Hoffman" title="Linkedin">
-					<p>
-					If you are not embarrassed by the first version of your product, you've launched too late.
-					</p>
-				</CustomerQuote>
-			</CustomerQuotes>
+			<div className="team-wrapper">
+				<div className="container">
+					<h1 className="team-header">The Engineering Team</h1>
+					<div className="row">
+						<div className="col-md-3">
+							<div className="profile">
+								<img className="profile-photo" src="../../assets/landing/profiles/colin.png" alt="Colin Zarnegar" />
+								<h2>Colin Zarnegar</h2>
+								<h4>Product Owner</h4>
+							</div>
+						</div>
+						<div className="col-md-3">
+							<div className="profile">
+								<img className="profile-photo" src="../../assets/landing/profiles/austin.jpeg" alt="Austin Sefton" />
+								<h2>Austin Sefton</h2>
+								<h4>Front End</h4>
+							</div>
+						</div>
+						<div className="col-md-3">
+							<div className="profile">
+								<img className="profile-photo" src="../../assets/landing/profiles/nate.jpeg" alt="Nathaniel Schwab" />
+								<h2>Nathaniel Schwab</h2>
+								<h4>Scrum Master</h4>
+							</div>
+						</div>
+						<div className="col-md-3">
+							<div className="profile">
+								<img className="profile-photo" src="../../assets/landing/profiles/andy.jpeg" alt="Andrew Yao" />
+								<h2>Andrew Yao</h2>
+								<h4>Full Stack</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</Section>
+
+		<div className="spacer"></div>
 
 		<Section className="subhero">
 			<ImageList centered>
@@ -141,45 +158,23 @@ const Landing = () => (
 				<img className="tech" id="css3" src={"../../assets/landing/technologies/css3.png"} role="presentation" />
 			</ImageList>
 		</Section>
-		<Section>
-			<Team className="profile-wrapper">
-				<div className="profile">
-					<TeamMember
-						className="profile"
-						imageUrl="../../assets/landing/profiles/colin.png"
-					> {colin}{pm}
-					</TeamMember>
-				</div>
-				<div className="profile">
-					<TeamMember
-						className="profile"
-						imageUrl="../../assets/landing/profiles/austin.jpeg"
-					> {austin}{fe}
-					</TeamMember>
-				</div>
-				<div className="profile">
-					<TeamMember
-						className="profile"
-						imageUrl="../../assets/landing/profiles/nate.jpeg"
-					> {nathan}{sm}
-					</TeamMember>
-				</div>
-				<div className="profile">
-					<TeamMember
-						className="profile"
-						imageUrl="../../assets/landing/profiles/andy.jpeg"
-					> {andy}{fs}
-					</TeamMember>
-				</div>
-			</Team>
-		</Section>
-		<div className="spacer"></div>
+
+		<div className="credit">
+			<a href="http://www.freepik.com/free-photos-vectors/food">
+				First food photograph designed by Onlyyouqj - Freepik.com
+			</a>
+		</div>
+		<div className="credit">
+			<a href="http://www.freepik.com/free-photos-vectors/food">
+				Second food photograph designed by Kstudio - Freepik.com
+			</a>
+		</div>
+
 		<Footer
 			brandName={brandName}
-			facebookUrl="http://www.facebook.com"
-			twitterUrl="http://www.twitter.com/dennybritz"
-			githubUrl="https://github.com/dennybritz/neal-react"
+			githubUrl="https://github.com/ColdForge/icebox"
 		/>
+
 	</Page>
 );
 

@@ -68,11 +68,38 @@ form .text-field-input div label {
 
 /* Landing Page Component Styling */
 
+.landing-brand {
+  font-weight: bold;
+  color: #4CAF50;
+  font-size: 40px;
+  margin: auto 0 auto 20px;
+}
+
 .landing-title {
   padding-top: 200px;
   color: black;
-
 }
+
+.landing-header {
+  height: 50px;
+  margin: 0;
+  padding: 10px;
+  background: transparent;
+}
+
+.pull-right {
+  color: white;
+}
+
+.landing-pic {
+  height: 600x;
+}
+
+.nav-link {
+  background-color: transparent;
+  color: white;
+}
+
 .intro-message {
   position: relative;
   padding-top: 20%;
@@ -547,14 +574,21 @@ form .text-field-input div label {
 .banner-display {
   color: white;
   height: 750px;
+  background-repeat: repeat-y;
+
 }
 
-.banner-text {
+.lead {
+  font-style: italic;
+}
+
+.banner-box {
   position: absolute;
   color: white;
   width: 100%;
   top: 250px;
   left: 15px;
+  text-align: center;
 }
 
 .banner-title {
@@ -574,6 +608,7 @@ form .text-field-input div label {
 
 .bar1-text {
   width: 80%;
+  text-align: center;
 }
 
 /* second grey bar */
@@ -581,7 +616,7 @@ form .text-field-input div label {
 .bar2 {
   position: relative;
   padding: 15px;
-  background: url('http://www.insymbio.com/images/itemImages/Other%20Residues_Generic%20Organic%20Waste.jpg');
+  background-image: url('../../assets/food2.jpg');
   height: 700px;
   color: white;
   width: 100%;
@@ -595,8 +630,23 @@ form .text-field-input div label {
 }
 
 .large-text-1 {
-  position: absolute;
-  font-size: 40px;
+  display: block;
+  font-size: 30px;
+  font-style: italic;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 700px;
+  background-color: black;
+  opacity: 0.7;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.credit {
+  text-align: center;
 }
 
 .large-text-2 {
@@ -656,6 +706,7 @@ form .text-field-input div label {
   margin: 40px;
 }
 
+
 /* profiles */
 .profile-wrapper {
   padding: 15px;
@@ -663,6 +714,21 @@ form .text-field-input div label {
 
 .profile {
   margin: 40px 0px 40px 0px;
+  text-align: center;
+}
+
+.profile-photo {
+  width: 250px;
+}
+
+.team-header {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.team-wrapper {
+  text-align: center;
 }
 
 .name {
