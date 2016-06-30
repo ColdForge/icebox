@@ -87,6 +87,7 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 		</div>
 		<List>
 			<ListItem
+				className="app-drawer-settings"
 				onTouchTap={() => {
 					updateDrawer();
 					browserHistory.push('/settings');
@@ -95,6 +96,7 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				leftIcon={<AccountBox />}
 			/>
 			<ListItem
+				className="app-drawer-icebox"
 				onTouchTap={() => {
 					updateDrawer();
 					browserHistory.push('/icebox');
@@ -107,6 +109,7 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				}
 			/>
 			<ListItem
+				className="app-drawer-recipes"
 				onTouchTap={() => {
 					updateDrawer();
 					browserHistory.push('/recipes');
@@ -119,6 +122,7 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				}
 			/>
 			<ListItem
+				className="app-drawer-pastrecipes"
 				onTouchTap={() => {
 					updateDrawer();
 					browserHistory.push('/recipes');
@@ -127,6 +131,7 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				leftIcon={<Favorite />}
 			/>
 			<ListItem
+				className="app-drawer-calendar"
 				onTouchTap={() => {
 					updateDrawer();
 					browserHistory.push('/recipes');
@@ -135,6 +140,7 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				leftIcon={<Calendar />}
 			/>
 			<ListItem
+				className="app-drawer-shopping-list"
 				onTouchTap={() => {
 					updateDrawer();
 					browserHistory.push('/recipes');
@@ -143,6 +149,7 @@ const AppDrawer = ({ drawerOpen, updateDrawer }) => (
 				leftIcon={<ShoppingCart />}
 			/>
 			<ListItem
+				className="app-drawer-help"
 				onTouchTap={() => {
 					updateDrawer();
 					browserHistory.push('/');
