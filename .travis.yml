@@ -5,3 +5,16 @@ script:
   - npm run lint
   - npm test
   - npm run compile
+deploy:
+  provider: codedeploy
+  access_key_id: AKIAJRCYVTE5NKU64IUA
+  secret_access_key:
+    secure: bUwOSMnltXsc97oBQ7wlpHIc+z7qCyMjSBq9GkxiLClHt6wKfGZQWCdC8wT16SBrNTFbbwOSVqW3dYvLOO0Pb1Df2+6DSNypur7DGoplfk3oh8vrcL7nvH62Ihr+y2fXxCxrYdZkKyrh7QOvX4yyReuTqOY5pV13o13NGouIH0kfk8zqxbgbrdOx/pNyOOr6IjS0EIjP1JOf1F+ItYufTEBXZV49ufOG/m5Eu9w6IoJXP0k5f5YAjWi+TGbhKz5IU7S/gSCljqdZruwYJyzyEoc3Ib1xyyEUymKCPXrYzgPc2mWxN1lUtmmf2Ln4ufsrACsd3cW8DkNrO9ovKPUltSuumdcTVVn3DJETScn7WQ4hdLOK9ygmnG10mol5n95tyD2lpgjj8QTZalRTPGZ1YJZNbzTOg6Sisjo8NuU6iRTUO4OqxfZe1YDGQQaS6OJptKcP9kThHnBV7iNDFTaHbf1hoxKM7cU+eWu6ts2TTcCcA8kjP8h7Oqm6uWqG+sCCpTiXJJztgr1nEz/mmd9pm2uCR1ywk9ihNFqbFSq6ubFdzX+e/1j/hPnNssaboUafFDztuxKYG+XbA1iwHCdVHKnHh1wcAqNduFiN/eZ5Z1D/UBJ4v7MhylcVMAzKGr3qll7uD+5F7hdBsBHOS/V3wPrjTZFtWMwy3Hnj8qmMca8=
+  bucket: ''
+  key: ''
+  bundle_type: js
+  application: icebox
+  deployment_group: ProductionIcebox
+  on:
+    repo: ColdForge/icebox
+    branch: dev
