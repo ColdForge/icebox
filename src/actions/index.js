@@ -49,6 +49,7 @@ export const signoutUser = () => (
 		dispatch({ type: TYPES.DEAUTHORIZE_USER });
 		dispatch({ type: TYPES.CLEAR_USER_INFO });
 		dispatch({ type: TYPES.CLEAR_ICEBOX });
+		dispatch({ type: TYPES.CLEAR_RECIPES });
 		localStorage.clear();
 		browserHistory.push('/');
 	}
@@ -273,6 +274,7 @@ export const chooseRecipe = ({ recipe }) => (
 			headers: { authorization: localStorage.getItem('token') },
 		})
 			.then(response => {
+				console.log('chooseRecipe fired with recipe of : ', recipe);
 				dispatch({ type: TYPES.SET_CHOSEN_RECIPE, payload: response.data });
 			});
 			// .catch(response => (

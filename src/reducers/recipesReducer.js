@@ -1,5 +1,5 @@
 import { GET_RECIPES, GET_RECIPE_SUGGESTIONS, GET_RECIPE_DETAIL,
-				SET_CHOSEN_RECIPE, CLEAR_CHOSEN_RECIPE } from '../constants/actions';
+				SET_CHOSEN_RECIPE, CLEAR_CHOSEN_RECIPE, CLEAR_RECIPES } from '../constants/actions';
 import { v4 } from 'node-uuid';
 
 const INITIAL_STATE = {
@@ -26,6 +26,8 @@ export default function (state = INITIAL_STATE, action) {
 		return { ...state, chosenRecipe: null };
 	case GET_RECIPE_DETAIL:
 		return { ...state, recipeDetail: action.payload.sourceUrl };
+	case CLEAR_RECIPES:
+		return { suggestions: [], pastSuggestions: [], chosenRecipe: null, recipeDetail: null };
 	default:
 		return state;
 	}
