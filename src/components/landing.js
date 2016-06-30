@@ -27,6 +27,9 @@ const styles = {
 		width: 75,
 		height: 75,
 	},
+	lead: {
+		marginLeft: 35,
+	}
 };
 
 const brandName = 'ColdForge';
@@ -56,13 +59,14 @@ const Landing = () => (
 		<Hero
 			backgroundImage="../../assets/veggieDrop.jpg"
 			className="banner-display"
+			style={styles.landingImage}
 		/>
 
 		<div className="spacer"></div>
 
 		<Section>
 			<HorizontalSplit padding="md">
-				<div className="bar1-text">
+				<div className="bar1-text" style={styles.lead}>
 					<Talker style={styles.talker} />
 					<p className="lead">Input Items by Voice</p>
 					<p>
@@ -72,7 +76,7 @@ const Landing = () => (
 						time playing with an app.
 					</p>
 				</div>
-				<div className="bar1-text">
+				<div className="bar1-text" style={styles.lead}>
 					<Calendar style={styles.talker} />
 					<p className="lead">Track Food Expiration Dates</p>
 					<p>
@@ -82,7 +86,7 @@ const Landing = () => (
 						something you already have.
 					</p>
 				</div>
-				<div className="bar1-text">
+				<div className="bar1-text" style={styles.lead}>
 					<Silverware style={styles.talker} />
 					<p className="lead">Sends you Smart Recipies</p>
 					<p>
