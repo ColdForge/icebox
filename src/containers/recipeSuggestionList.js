@@ -17,8 +17,10 @@ class RecipeSuggestionList extends Component {
   }
 
   componentWillMount() {
-    this.props.getRecipeSuggestions();
-    console.log("RSL: suggestion will mount fired")
+    if(this.props.suggestions.length === 0){
+      this.props.getRecipeSuggestions();
+      console.log("RSL: suggestion will mount fired")
+    }
   }
 
   handleSuggestionToggle(id){

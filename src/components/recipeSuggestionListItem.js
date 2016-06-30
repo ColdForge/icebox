@@ -82,7 +82,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 					containerStyle={{ height: '100%', display: 'flex', flexDirection: 'column' }}
 				>
 					<CardMedia
-						style={{ ...styles.imageContainer, backgroundImage: 'url($(recipe.image))' }}
+						style={{ ...styles.imageContainer, backgroundImage: `url(${recipe.image})` }}
 					/>
 					<CardTitle title={recipe.title} style={{ flex: 1 }} />
 					<CardText style={{ textAlign: 'left', flex: 2 }}>
