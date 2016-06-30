@@ -22,8 +22,6 @@ const styles = {
 		justifyContent: 'flex-start',
 	},
 	profileTile: {
-		// backgroundColor: '#F1F1F1',
-		// flex: 2,
 		display: 'flex',
 		alignItems: 'flex-start',
 		justifyContent: 'center',
