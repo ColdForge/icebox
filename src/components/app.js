@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import AppHeader from './appHeader';
+import IconButton from 'material-ui/IconButton';
+import GoUp from 'material-ui/svg-icons/navigation/expand-less';
 
 const styles = {
 	container: {
@@ -18,12 +20,30 @@ const styles = {
 	},
 };
 
+const scrollChecker = () => {
+	if (document.body.scrollTop > 72 || document.documentElement.scrollTop > 72) {
+		document.getElementById('appheader').className = 'appheader-hidden';
+		document.getElementById('icebox-toolbar').className = 'icebox-toolbar-scroll';
+		document.getElementById('goTop').className = 'goTop-show';
+	} else {
+		document.getElementById('appheader').className = 'appheader';
+		document.getElementById('icebox-toolbar').className = 'icebox-toolbar';
+		document.getElementById('goTop').className = 'goTop';
+	}
+};
+
+window.onscroll = function () {
+	scrollChecker();
+};
+
+
 const App = ({ children }) => (
-	<div style={styles.container} className="app-body">
-		<div style={styles.header}>
-			<AppHeader />
-		</div>
-		<div style={styles.body}>
+	<div style={styles.container} className="app-container">
+		<AppHeader />
+		<div
+			style={styles.body}
+			className="app-body"
+		>
 			<ReactCSSTransitionGroup
 				component="div" transitionName="example" className="animation-container"
 				transitionEnterTimeout={500} transitionLeaveTimeout={500}
@@ -33,6 +53,23 @@ const App = ({ children }) => (
 				})}
 			</ReactCSSTransitionGroup>
 		</div>
+		<div
+			id="goTop"
+			className="goTop"
+		>
+			<IconButton
+				iconStyle={{ width: 54, height: 54 }}
+				style={{ width: 64, height: 64, padding: 8 }}
+				onTouchTap={() => window.scrollTo(0, 0)}
+				tooltip="Go to top"
+				tooltipPosition="bottom-center"
+			>
+				<GoUp
+					color="white"
+				/>
+			</IconButton>
+		</div>
+
 	</div>
 );
 

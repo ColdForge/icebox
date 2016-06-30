@@ -4,7 +4,7 @@ import { GridList } from 'material-ui/GridList';
 import IceboxListItem from './iceboxListItem';
 
 const IceboxList = ({ contents, addToTrash, removeFromTrash }) => (
-	<div>
+	<div className="icebox-list-container">
 		<GridList
 			className="icebox-list"
 			cellHeight={400}

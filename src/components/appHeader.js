@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import SvgIcon from 'material-ui/SvgIcon';
 import AppDrawer from './appDrawer';
 import FlatButton from 'material-ui/FlatButton';
 import * as actions from '../actions/index';
@@ -11,10 +10,11 @@ import Message from 'material-ui/svg-icons/social/notifications';
 import { green50 } from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 
 const styles = {
 	bar: {
-		backgroundColor: 'rgba(85, 98, 112, 0.5)',
+		// backgroundColor: 'rgba(85, 98, 112, 0.5)',
 	},
 	buttonContainer: {
 		display: 'flex',
@@ -51,13 +51,14 @@ class AppHeader extends Component {
 		this.toggleMessage = this.toggleMessage.bind(this);
 		this.acceptInvite = this.acceptInvite.bind(this);
 		this.denyInvite = this.denyInvite.bind(this);
+		this.renderMenuButton = this.renderMenuButton.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.user.invite && !this.state.inviteConfirmed) {
 			this.setState({ message: true });
 		}
-		console.log('Popup is firing with: ', nextProps.user.invite);
+		// console.log('Popup is firing with: ', nextProps.user.invite);
 	}
 
 	toggleMessage() {
@@ -91,7 +92,7 @@ class AppHeader extends Component {
 		];
 
 		return this.props.authenticated ? (
-			<div style={styles.buttonContainer}>
+			<div style={styles.buttonContainer} className="appheader-right-buttons">
 				<div>
 					<IconButton className="help-button" onTouchTap={this.toggleMessage}>
 						<Message color={green50} />
@@ -120,7 +121,7 @@ class AppHeader extends Component {
 				/>
 			</div>
 		) : (
-			<div style={styles.buttonContainer}>
+			<div style={styles.buttonContainer} className="appheader-right-buttons">
 				<Link to="/signup" key={3}>
 					<FlatButton
 						className="signup-button"
@@ -151,30 +152,51 @@ class AppHeader extends Component {
 		) : (<div></div>);
 	}
 
+	renderMenuButton() {
+		return this.props.authenticated ? (
+			<IconButton
+				className="appheader-menu-button"
+				iconStyle={{ width: 48, height: 48 }}
+				style={{ width: 64, height: 64, padding: 8 }}
+				onTouchTap={this.handleToggle}
+			>
+				<MenuIcon
+					className="appheader-menu-button-icon"
+					color={'white'}
+					hoverColor={'orange'}
+				/>
+			</IconButton>
+		) : (
+			<div style={{ width: 64, height: 64 }} />
+		);
+	}
+
 	render() {
 		// const boundHandleToggle = this.handleToggle.bind(this);
 		const pushToHome = () => browserHistory.push('/');
 		return (
-			<div>
+			<div className="appheader" id="appheader">
 				<AppBar
-					title="Icebox"
-					titleStyle={styles.title}
+					// title="Icebox"
+					className="appheader-navbar"
+					titleStyle={{ display: 'none' }}
 					style={styles.bar}
-					iconElementLeft={
-						<IconButton
-							className="appheader-menu-button"
-							children={
-								<SvgIcon>
-									<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-								</SvgIcon>
-							}
-							onClick={this.handleToggle}
-						/>
-
+					children={
+						<div
+							className="appheader-children-container"
+						>
+							<div className="appheader-left-container">
+								{this.renderMenuButton()}
+							</div>
+							<div className="appheader-middle-container">
+								<h1 onClick={pushToHome}>Icebox</h1>
+							</div>
+							<div className="appheader-right-container">
+								{this.renderButtons()}
+							</div>
+						</div>
 					}
-					onTitleTouchTap={pushToHome}
-					children={this.renderButtons()}
-					showMenuIconButton={this.props.authenticated}
+					showMenuIconButton={false}
 				/>
 				<div>
 				{this.renderDrawer()}
@@ -183,7 +205,21 @@ class AppHeader extends Component {
 		);
 	}
 }
-
+// <IconButton
+// 	className="appheader-menu-button"
+// 	children={
+// 		// <svg width="60px" height="60px" style={{fill:'white'}}>
+// 		// 	<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+// 		// </svg>
+// 		// <SvgIcon
+// 		// 	className="appheader-menu-button-icon"
+// 		// 	color="white"
+// 		// >
+// 		// 	<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+// 		// </SvgIcon>
+// 	}
+// 	onClick={this.handleToggle}
+// />
 const mapStateToProps = state => ({
 	authenticated: state.auth.authenticated,
 	user: state.user,

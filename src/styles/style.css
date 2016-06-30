@@ -17,83 +17,6 @@ p, div {
 	height: 100%;
 }
 
-/* CSS for Animations */
-.animation-container {
-  height: 100%;
-  width: 100%;
-}
-
-.example-appear {
-  opacity: 0;
-  transform: translate(-250px, 0);
-  transform: translate3d(-250px, 0, 0);
-}
-
-.example-appear.example-appear-active {
-  opacity: 1;
-  transform: translate(0, 0);
-  transform: translate3d(0, 0, 0);
-  transition-property: transform, opacity;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
-}
-
-.example-enter {
-  opacity: 0;
-  transform: translate(-250px, 0);
-  transform: translate3d(-250px, 0, 0);
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transform: translate(0, 0);
-  transform: translate3d(0, 0, 0);
-  transition-property: transform, opacity;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
-}
-
-.example-leave {
-  opacity: 1;
-  transform: translate(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  transition-property: transform, opacity;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0;
-  transform: translate(250px, 0);
-  transform: translate3d(250px, 0, 0);
-}
-
-/* Main App Component Styling */
-
-.main {
-  height: 100%;
-}
-
-.app-body {
-  height: 100%;
-/*  padding-top: 50px;
-  padding-bottom: 50px;*/
-  text-align: center;
-  color: #f8f8f8;
-  background: url(../../assets/background.jpeg) no-repeat center center;
-  background-size: cover;
-}
-
-/*.landing-div, .signin-div, .signup-div {
-	height: 100%;
-	padding-top: 50px;
-  padding-bottom: 50px;
-  text-align: center;
-  color: #f8f8f8;
-  background: url(../../assets/icebox-landing.jpg) no-repeat center center;
-  background-size: cover;
-}*/
-
 /* Signin and Signup Components Styling */
 
 .signin-form, .signup-form {
@@ -163,11 +86,245 @@ form .text-field-input div label {
   font-size: 80px;
 }
 
+/* CSS for Animations */
+.animation-container {
+  height: 100%;
+  width: 100%;
+}
+
+.example-appear {
+  opacity: 0;
+  transform: translate(-250px, 0);
+  transform: translate3d(-250px, 0, 0);
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+}
+
+.example-enter {
+  opacity: 0;
+  transform: translate(-250px, 0);
+  transform: translate3d(-250px, 0, 0);
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+}
+
+.example-leave {
+  opacity: 1;
+  transform: translate(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0;
+  transform: translate(250px, 0);
+  transform: translate3d(250px, 0, 0);
+}
+
+/* Main App Component Styling */
+
+/*#scroll-to-top {
+	background: #a35051;
+	padding: 5px;
+	position:fixed;
+	bottom:-100px;
+	right:10px;
+}*/
+
+.goTop {
+	background: #a35051;
+	color: white;
+	font-size: 18px;
+	font-weight: 800;
+	padding: 10px;
+	position:fixed;
+	bottom:-100px;
+	right:40px;
+}
+
+.goTop-show {
+	background:#a35051;
+	color: white;
+	font-size: 18px;
+	font-weight: 800;
+	padding:10px;
+	position:fixed;
+	bottom:80px;
+	right:40px;
+}
+
+.main {
+  height: 100%;
+}
+
+.app-container {
+  height: 100%;
+/*  padding-top: 50px;
+  padding-bottom: 50px;*/
+  text-align: center;
+  color: #f8f8f8;
+/*  background: url(../../assets/background.jpeg) no-repeat center center;
+  background-size: cover;*/
+  background: #50a3a2;
+/*  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);*/
+}
+
+.app-body {
+	padding-top: 72px;
+}
+
+.appheader {
+  /*position: -webkit-sticky;*/
+  position: fixed;
+  height: 72px;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.appheader-hidden {
+	display: hidden;
+}
+
+.appheader-navbar {
+  /*background: #50a3a2;*/
+  background: #A35051;
+  background: -webkit-linear-gradient(top left, #A35051 0%, #A35051 0%);
+  background: linear-gradient(to bottom right, #A35051 0%, #A35051 0%);
+/*  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);*/
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.appheader-children-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.appheader-left-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex: 1;
+}
+
+.appheader-menu-button {
+	float: left;
+/*	width: 64px;
+	height: 64px;
+	padding: 8px;*/
+}
+
+.appheader-menu-button-icon {
+/*	width: 64px;
+	height: 64px;
+	padding: 8px;*/
+/*	width: 48px;
+	height: 48px;
+	color: white;*/
+}
+.appheader-middle-container {
+	flex: 2;
+}
+.appheader-middle-container h1 {
+	font-size: 32;
+	color: white;
+}
+.appheader-right-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	flex: 1;
+}
+.appheader-right-buttons {
+	float: right;
+}
+
+.icebox-toolbar {
+	z-index: 1000;
+	position: fixed;
+	height: 72px;
+	width: 100%;
+	top: 72px;
+	background: #50a3a2;
+	background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 0%);
+	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);
+}
+
+.icebox-toolbar-scroll {
+	z-index: 1000;
+	position: fixed;
+	height: 72px;
+	width: 100%;
+	top: 0;
+	background: #50a3a2;
+	background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 0%);
+	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);
+}
+
+/*.landing-div, .signin-div, .signup-div {
+	height: 100%;
+	padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  color: #f8f8f8;
+  background: url(../../assets/icebox-landing.jpg) no-repeat center center;
+  background-size: cover;
+}*/
+
 /* Icebox Component Styling */
 
 .icebox-container {
-  background: #F1F1F1 no-repeat center center;
-  background-size: cover;
+/*  background: #F1F1F1 no-repeat center center;
+  background-size: cover;*/
+  height: 100%;
+  margin-top: 72px;
+  padding-bottom: 72px;
+/*  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);*/
+  background: #53e3a6;
+  background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
+  background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
+}
+
+.icebox-list-container {
+/*	padding-bottom: 40px;
+  height: 100%;
+  background: #53e3a6;
+  background: -webkit-linear-gradient(top left, #53e3a6 0%, #50a3a2 100%);
+  background: linear-gradient(to bottom right, #53e3a6 0%, #50a3a2 100%);*/
+}
+
+.icebox-list {
+  height: 100%;
 }
 
 /* Tooltip container */
@@ -325,8 +482,8 @@ form .text-field-input div label {
 /*  Recipe Component Styling  */
 .recipes-container {
   height: 100%;
-  background: #F1F1F1 no-repeat center center;
-  background-size: cover;
+/*  background: #F1F1F1 no-repeat center center;
+  background-size: cover;*/
 }
 
 .recipes-container h1 {
