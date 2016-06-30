@@ -24,7 +24,7 @@ export const signinUser = ({ email, password }) => (
 					headers: { authorization: localStorage.getItem('token') },
 				})
 					.then(recipesResponse => {
-						console.log('recipesResponse after signin is : ',recipesResponse);
+						console.log('recipesResponse after signin is : ', recipesResponse);
 						// dispatch({ type: TYPES.END_LOADING });
 						dispatch({ type: TYPES.GET_RECIPES, payload: recipesResponse.data });
 					})
