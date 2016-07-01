@@ -25,11 +25,11 @@ const styles = {
 
 	},
 	title: {
-		color: '#FFFFFF',
+		color: '#40593A',
 		fontSize: 30,
 	},
 	label: {
-		color: '#FFFFFF',
+		color: '#40593A',
 		fontSize: 18,
 	},
 };
@@ -162,7 +162,7 @@ class AppHeader extends Component {
 			>
 				<MenuIcon
 					className="appheader-menu-button-icon"
-					color={'white'}
+					color={'#40593A'}
 					hoverColor={'orange'}
 				/>
 			</IconButton>
@@ -175,26 +175,63 @@ class AppHeader extends Component {
 		// const boundHandleToggle = this.handleToggle.bind(this);
 		const pushToHome = () => browserHistory.push('/');
 		return (
-			<div className="appheader" id="appheader">
+			<div
+				className="appheader"
+				id="appheader"
+				style={{ paddingBottom: 0, marginBottom: 0 }}
+			>
 				<AppBar
 					// title="Icebox"
 					className="appheader-navbar"
 					titleStyle={{ display: 'none' }}
-					style={styles.bar}
+					style={{ paddingLeft: 0, paddingRight: 0 }}
 					children={
 						<div
-							className="appheader-children-container"
+							className="appheader-bar"
 						>
-							<div className="appheader-left-container">
-								{this.renderMenuButton()}
+							<div
+								className="appheader-children-container"
+							>
+								<div className="appheader-left-container">
+									{this.renderMenuButton()}
+								</div>
+								<div className="appheader-middle-container">
+									<h1 onClick={pushToHome}>Icebox</h1>
+								</div>
+								<div className="appheader-right-container">
+									{this.renderButtons()}
+								</div>
 							</div>
-							<div className="appheader-middle-container">
-								<h1 onClick={pushToHome}>Icebox</h1>
-							</div>
-							<div className="appheader-right-container">
-								{this.renderButtons()}
+							<div
+								className="appheader-color-container"
+							>
+								<div
+									style={{ backgroundColor: '#f5e5c4' }}
+									className="appheader-color-bar"
+								/>
+								<div
+									style={{ backgroundColor: '#edb97d' }}
+									className="appheader-color-bar"
+								/>
+								<div
+									style={{ backgroundColor: '#d48548' }}
+									className="appheader-color-bar"
+								/>
+								<div
+									style={{ backgroundColor: '#40593a' }}
+									className="appheader-color-bar"
+								/>
+								<div
+									style={{ backgroundColor: '#769481' }}
+									className="appheader-color-bar"
+								/>
+								<div
+									style={{ backgroundColor: '#aec2b7' }}
+									className="appheader-color-bar"
+								/>
 							</div>
 						</div>
+
 					}
 					showMenuIconButton={false}
 				/>
@@ -205,21 +242,7 @@ class AppHeader extends Component {
 		);
 	}
 }
-// <IconButton
-// 	className="appheader-menu-button"
-// 	children={
-// 		// <svg width="60px" height="60px" style={{fill:'white'}}>
-// 		// 	<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-// 		// </svg>
-// 		// <SvgIcon
-// 		// 	className="appheader-menu-button-icon"
-// 		// 	color="white"
-// 		// >
-// 		// 	<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-// 		// </SvgIcon>
-// 	}
-// 	onClick={this.handleToggle}
-// />
+
 const mapStateToProps = state => ({
 	authenticated: state.auth.authenticated,
 	user: state.user,
