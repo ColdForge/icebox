@@ -23,14 +23,15 @@ class Recipes extends Component {
 			<div className="recipes-container">
 				<Tabs
 					style={styles.tabs}
-					style={{ backgoundColor: 'white' }}
+					// style={{ backgoundColor: 'white'}}
 					className="recipes-tabs"
-					// tabItemContainerStyle={{backgoundColor: 'white'}}
+					// contentContainerStyle={{height: '100%'}}
+					// tabItemContainerStyle={{ backgoundColor: 'white', height: '100%' }}
 				>
 					<Tab
 						label="Recipe Suggestions"
 						className="recipes-tab"
-						style={{ backgoundColor: 'white' }}
+						style={{ backgoundColor: 'white', height: '100%' }}
 					>
 						<div>
 							<RecipeSuggestionList />
@@ -39,7 +40,7 @@ class Recipes extends Component {
 					<Tab
 						label="Past Recipes"
 						className="recipes-tab"
-						style={{ backgoundColor: 'white' }}
+						style={{ backgoundColor: 'white', height: '100%' }}
 					>
 						<div>
 							<RecipeList />
@@ -55,33 +56,3 @@ class Recipes extends Component {
 // };
 
 export default Recipes;
-
-/*
-<Tabs
-	// style={styles.tabs}
-	style={{backgoundColor: 'white'}}
-	className="recipes-tabs"
-	// tabItemContainerStyle={{backgoundColor: 'white'}}
-	initialSelectedIndex={index}
->
-	<Tab
-		label="Recipe Suggestions"
-		className="recipes-tab"
-		style={{backgoundColor: 'white'}}
-	>
-		<div>
-			<RecipeSuggestionList />
-		</div>
-	</Tab>
-	<Tab
-		label="Past Recipes"
-		className="recipes-tab"
-		style={{backgoundColor: 'white'}}
-	>
-		<div>
-			<RecipeList />
-		</div>
-	</Tab>
-</Tabs>
-*/
-

@@ -17,27 +17,30 @@ const styles = {
 	},
 };
 
-const RecipeList = ({ recipes }) => (
-	<div style={styles.root} className="recipe-list-container">
-		<GridList
-			className="icebox-list"
-			cellHeight={400}
-			style={styles.gridlist}
-			cols={3}
-		>
-			{recipes.map(recipe => (
-				<RecipeListItem
-					key={recipe.key}
-					name={recipe.name}
-					imageUrl={recipe.image}
-					sourceUrl={recipe.sourceUrl}
-					recipeID={recipe.recipeID}
-					prepTime={recipe.readyInMinutes}
-				/>
-			))}
-		</GridList>
-	</div>
-);
+const RecipeList = ({ recipes }) => {
+	const height = window.innerHeight - 144;
+	return (
+		<div style={styles.root} className="recipe-list-container">
+			<GridList
+				className="recipe-list"
+				cellHeight={height/2}
+				style={styles.gridlist}
+				cols={3}
+			>
+				{recipes.map(recipe => (
+					<RecipeListItem
+						key={recipe.recipeID}
+						title={recipe.title}
+						imageUrl={recipe.pic_url}
+						// sourceUrl={recipe.sourceUrl}
+						recipeID={recipe.recipeID}
+						// prepTime={recipe.readyInMinutes}
+					/>
+				))}
+			</GridList>
+		</div>
+	);
+}
 
 RecipeList.propTypes = {
 	recipes: React.PropTypes.array.isRequired,
