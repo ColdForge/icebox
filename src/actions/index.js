@@ -26,7 +26,7 @@ export const signinUser = ({ email, password }) => (
 					.then(recipesResponse => {
 						console.log('recipesResponse after signin is : ', recipesResponse);
 						// dispatch({ type: TYPES.END_LOADING });
-						dispatch({ type: TYPES.GET_RECIPES, payload: recipesResponse.data });
+						dispatch({ type: TYPES.GET_RECIPES, payload: recipesResponse.data.pastRecipes });
 					})
 					.catch((error) => {
 						// dispatch({ type: TYPES.END_LOADING });

@@ -12,6 +12,7 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
 	case GET_RECIPES:
+		console.log('GET_RECIPES action.payload is : ', action.payload);
 		return { ...state, pastSuggestions: [...state.pastSuggestions, ...action.payload] };
 	case GET_RECIPE_SUGGESTIONS: {
 		console.log('GET_RECIPE_SUGGESTIONS action.payload is : ', action.payload);
