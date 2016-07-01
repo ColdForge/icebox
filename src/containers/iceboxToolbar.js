@@ -116,8 +116,8 @@ class IceboxToolbar extends Component {
 				>
 					<SvgIcon
 						className="icebox-toolbar-clear-search-svgicon"
-						color="white"
-						hoverColor="red"
+						color="#D48548"
+						hoverColor="#EDB97D"
 					>
 						<path d={ICONS.ClearSearch.d} />
 					</SvgIcon>
@@ -137,7 +137,7 @@ class IceboxToolbar extends Component {
 				value={this.props.iceboxSearch}
 				onChange={event => this.handleSearch(event)}
 				style={styles.textField}
-				inputStyle={{fontSize:18,color: 'orange', textAlign:'center'}}
+				inputStyle={{fontSize:18,color: '#D48548', textAlign:'center'}}
 				underlineShow={false}
 			/>
 		) : (
@@ -179,8 +179,8 @@ class IceboxToolbar extends Component {
 					>
 						<SvgIcon
 							className="icebox-toolbar-svgicon-search"
-							color="white"
-							hoverColor="orange"
+							color="#D48548"
+							hoverColor="#EDB97D"
 						>
 							<path d={ICONS.Search.d} />
 						</SvgIcon>
@@ -207,8 +207,8 @@ class IceboxToolbar extends Component {
 					>
 						<SvgIcon
 							className="icebox-toolbar-svgicon-sort-arrows"
-							color="white"
-							hoverColor={'orange'}
+							color="#D48548"
+							hoverColor={'#EDB97D'}
 						>
 							<path d={ICONS.SortArrows.d} />
 						</SvgIcon>
@@ -225,8 +225,8 @@ class IceboxToolbar extends Component {
 								<SvgIcon
 									className="icebox-toolbar-svgicon-sort"
 									style={styles.svgicon}
-									color="white"
-									hoverColor={'orange'}
+									color="#D48548"
+									hoverColor={'#EDB97D'}
 								>
 									<path d={ICONS.Sort.d} />
 								</SvgIcon>

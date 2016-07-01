@@ -39,10 +39,17 @@ const muiTheme = {
 		primary2Color: red500,
 		primary3Color: blue500,
 		accent1Color: '#D48548',
-    accent2Color: green200,
-    accent3Color: green200,
+    accent2Color: '#FFFFFF',
+    accent3Color: '#F5E5C4',
 	},
 };
+// #F5E5C4
+// #EDB97D
+// #D48548
+// #40593A
+// #769481
+// #AEC2B7
+
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
