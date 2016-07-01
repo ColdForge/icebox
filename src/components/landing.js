@@ -7,7 +7,6 @@ import Silverware from 'material-ui/svg-icons/maps/restaurant';
 import { green50, deepOrange800 } from 'material-ui/styles/colors';
 import {
 	Footer,
-	Hero,
 	HorizontalSplit,
 	ImageList,
 	Page,
@@ -17,7 +16,7 @@ import {
 const styles = {
 	landingImage: {
 		height: 1000,
-		backgroundImage: "url('../../assets/veggieDrop.jpg')"
+		backgroundImage: "url('../../assets/veggieDrop.jpg')",
 	},
 	navButtons: {
 		color: green50,
