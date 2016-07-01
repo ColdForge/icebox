@@ -56,6 +56,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 				className="recipe-suggestion-card-button"
 				label="Choose!"
 				disabled={!!chosenRecipeID}
+				disabledBackgroundColor={''}
 				labelStyle={styles.buttonLabel}
 				onTouchTap={chooseRecipe}
 				backgroundColor={'#53E3A6'}
@@ -107,7 +108,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 RecipeSuggestionListItem.propTypes = {
 	recipe: React.PropTypes.object.isRequired,
 	chooseRecipe: React.PropTypes.func,
-	chosenRecipeID: React.PropTypes.string,
+	chosenRecipeID: React.PropTypes.number,
 	getRecipeDetails: React.PropTypes.func,
 	recipeLocation: React.PropTypes.string,
 };

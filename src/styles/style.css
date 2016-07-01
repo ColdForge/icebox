@@ -456,11 +456,9 @@ form .text-field-input div label {
 /*  Recipe Component Styling  */
 .recipes-container {
   height: 100%;
-/*  background: #F1F1F1 no-repeat center center;
-  background-size: cover;*/
-  background: #53e3a6;
-  background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
-  background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
+  background: #F5E5C4;
+  background: -webkit-linear-gradient(top left, #F5E5C4 0%, #EDB97D 100%);
+  background: linear-gradient(to bottom right, #F5E5C4 0%, #EDB97D 100%);
 }
 
 .recipes-container h1 {
@@ -484,9 +482,6 @@ form .text-field-input div label {
 	height: 72px;
 	width: 100%;
 	top: 72px;
-	background: #53e3a6;
-	background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
-	background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
 }
 
 .recipes-toolbar-button {
@@ -500,13 +495,10 @@ form .text-field-input div label {
 /* Recipe Suggestion Component Styling */
 
 .recipe-suggestion-list-container {
-	position: fixed;
-	top: 144px;
+/*	position: fixed;
+	top: 144px;*/
 	height: 100%;
 	width: 100%;
-	background: #53e3a6;
-	background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
-	background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
 }
 
 .recipe-suggestion-list {
@@ -515,7 +507,6 @@ form .text-field-input div label {
 
 .recipe-suggestion-tile {
 	height: 100%;
-	padding-bottom: 72px;
 }
 
 .recipe-suggestion-card-bg {
@@ -572,11 +563,17 @@ div.recipe-suggestion-card > div {
 /* Past Recipes Component Styling */
 
 .recipe-list-container {
-	margin-top: 72px;
 	height: 100%;
-	background: #FFFFFF;
-	background: -webkit-linear-gradient(top left, #FFFFFF 100%, #FFFFFF 0%);
-	background: linear-grad
+	width: 100%;
+}
+
+.recipe-list {
+	height: 100%;
+	width: 100%;
+}
+
+.recipe-tile {
+
 }
 
 /* Settings Component Styling */
