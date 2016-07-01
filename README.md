@@ -187,12 +187,16 @@
 * iceboxToolbar.js: handles voice features and food item inputs
 * recipeList.js: takes in past recipe choices from redux state and renders the list
 * recipeSuggestionList.js: takes in new recipe suggestions from redux state and handles choice
-* settings.js: handles adding/removing users, changing photos, and updating staples inventory 
+* settings.js: handles adding/removing users, changing photos, and updating staples inventory
+ 
 
 ### Back-End
 
 #### Server
-The Node.js/Express server handles requests to create a new user, authenticate user credentials upon login, provide a web token so user can stay signed in, creating new wishes, removing a wish from a wishlist, and marking a wish as purchased when a wish has been fulfilled.
+The Node.js/Express server handles serving static files, routing for signin/signup and applying authentication 
+middleware. The server also contains a cron job for nightly updates to food expiration periods in the database. 
+All other routing uses database helper functions and is handled in the server/routes/router.js file. Routes 
+are matched up to their respective database helpers which can be found in server/config/helpers.js
 
 #### REST/CRUD Outline:
 
@@ -224,12 +228,14 @@ DELETE:
 
 
 ### Database
+
   We used Google Coud SQL, which uses MySQL, in order to create relationships between multiple users
   and their shared iceboxes, their associated food items and staples and recipe choices for each user.
   We built our queries using knex.js to be able to interface with the database from our node
   environment in javascript. 
 
 #### Schema
+
 * A visual representation of the schema can be found in the root directory
 * Foods and staples are connected to iceboxes through join tables
 * Each user has an icebox and their own respective recipes and past recipes
