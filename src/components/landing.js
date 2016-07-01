@@ -30,31 +30,36 @@ const styles = {
 	lead: {
 		marginLeft: 35,
 	},
+	bannerBox: {
+		margin: 'auto',
+	}
 };
 
 const brandName = 'ColdForge';
 
 const Landing = () => (
 	<Page>
-		<div className="banner-box">
-			<div className="banner-title"> Icebox </div>
-			<div className="banner-text">
-				<p className="lead">"The complete refrigerator companion"</p>
+		<div className="banner-box" style={styles.bannerBox}>
+			<div className="large-text-title">
+				<div className="banner-title"> Icebox </div>
+				<div className="banner-text">
+					<p className="lead">"The complete refrigerator companion"</p>
+				</div>
+				<Link to="signin" className="nav-link">
+					<FlatButton
+						style={styles.navButtons}
+					>
+						Sign In
+					</FlatButton>
+				</Link>
+				<Link to="signup" className="nav-link">
+					<FlatButton
+						style={styles.navButtons}
+					>
+						Sign Up
+					</FlatButton>
+				</Link>
 			</div>
-			<Link to="signin" className="nav-link">
-				<FlatButton
-					style={styles.navButtons}
-				>
-					Sign In
-				</FlatButton>
-			</Link>
-			<Link to="signup" className="nav-link">
-				<FlatButton
-					style={styles.navButtons}
-				>
-					Sign Up
-				</FlatButton>
-			</Link>
 		</div>
 		<Hero
 			backgroundImage="../../assets/veggieDrop.jpg"

@@ -641,8 +641,7 @@ div.recipe-suggestion-card > div {
   position: absolute;
   color: white;
   width: 100%;
-  top: 250px;
-  left: 15px;
+  top: 50%;
   text-align: center;
 }
 
@@ -682,6 +681,21 @@ div.recipe-suggestion-card > div {
   text-align: center;
   height: auto;
   width: auto;
+}
+
+.large-text-title {
+  display: block;
+  font-size: 30px;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 700px;
+  background-color: black;
+  opacity: .8;
+  border-radius: 5px;
+  padding: 20px;
 }
 
 .large-text-1 {
