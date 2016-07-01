@@ -137,7 +137,15 @@ class IceboxToolbar extends Component {
 				value={this.props.iceboxSearch}
 				onChange={event => this.handleSearch(event)}
 				style={styles.textField}
-				inputStyle={{fontSize:18,color: '#D48548', textAlign:'center'}}
+				inputStyle={
+					{ 
+						borderRadius: '4px',
+						fontSize:18,
+						color: '#D48548',
+						textAlign:'center',
+						backgroundColor:'#F5E5C4',
+					}
+				}
 				underlineShow={false}
 			/>
 		) : (
