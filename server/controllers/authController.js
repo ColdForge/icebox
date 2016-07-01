@@ -61,7 +61,7 @@ module.exports = {
 				} else {
 					knex('auth_users')
 						.join('iceboxes', 'auth_users.iceboxID', '=', 'iceboxes.id')
-						.select('auth_users.id', 'auth_users.iceboxID', 'iceboxes.user_email')
+						.select('auth_users.id', 'auth_users.iceboxID', 'iceboxes.user_email', 'iceboxes.user_name')
 						.where('auth_users.user_email', user.email)
 						.then(function(resp){
 							console.log('Auth success', resp);
@@ -75,7 +75,7 @@ module.exports = {
 								}
 								 
 		
-								knex.insert({user_email: user.email})//, icebox_name: user.name + "'s Icebox"})
+								knex.insert({ user_email: user.email, user_name: user.name })//, icebox_name: user.name + "'s Icebox"})
 				  				.into('iceboxes')
 				  				.then(function(resp){
 				    				user['iceboxID'] = resp[0];
