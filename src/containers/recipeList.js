@@ -12,7 +12,7 @@ const styles = {
 	gridList: {
 		width: 500,
 		height: 500,
-		overflowY: 'auto',
+		overflowY: 'scroll',
 		marginBottom: 24,
 	},
 };
@@ -20,21 +20,20 @@ const styles = {
 const RecipeList = ({ recipes }) => {
 	const height = window.innerHeight - 144;
 	return (
-		<div style={styles.root} className="recipe-list-container">
+		<div
+			// style={styles.root}
+			className="recipe-list-container"
+		>
 			<GridList
 				className="recipe-list"
 				cellHeight={height/2}
-				style={styles.gridlist}
+				// style={styles.gridlist}
 				cols={3}
 			>
 				{recipes.map(recipe => (
 					<RecipeListItem
 						key={recipe.recipeID}
-						title={recipe.title}
-						imageUrl={recipe.pic_url}
-						// sourceUrl={recipe.sourceUrl}
-						recipeID={recipe.recipeID}
-						// prepTime={recipe.readyInMinutes}
+						recipe={recipe}
 					/>
 				))}
 			</GridList>

@@ -570,10 +570,18 @@ div.recipe-suggestion-card > div {
 .recipe-list {
 	height: 100%;
 	width: 100%;
+	background: #F5E5C4;
+	background: -webkit-linear-gradient(top left, #F5E5C4 0%, #EDB97D 100%);
+	background: linear-gradient(to bottom right, #F5E5C4 0%, #EDB97D 100%);
 }
 
 .recipe-tile {
 
+}
+
+.recipe-tile-image {
+	width: auto;
+	height: 100%;
 }
 
 /* Settings Component Styling */
