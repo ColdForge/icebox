@@ -224,13 +224,13 @@ form .text-field-input div label {
 }
 
 .app-body {
-	padding-top: 72px;
+	padding-top: 96px;
 }
 
 .appheader {
   /*position: -webkit-sticky;*/
   position: fixed;
-  height: 72px;
+  height: 96px;
   width: 100%;
   top: 0;
   z-index: 1000;
@@ -242,12 +242,14 @@ form .text-field-input div label {
 
 .appheader-navbar {
   /*background: #50a3a2;*/
-  background: #A35051;
+  padding-left: 0px;
+  padding-right: 0px;
+/*  background: #A35051;
   background: -webkit-linear-gradient(top left, #A35051 0%, #A35051 0%);
-  background: linear-gradient(to bottom right, #A35051 0%, #A35051 0%);
-/*  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);*/
+  background: linear-gradient(to bottom right, #A35051 0%, #A35051 0%);*/
+  background: #FFF;
+  background: -webkit-linear-gradient(top left, #FFF 0%, #FFF 100%);
+  background: linear-gradient(to bottom right, #FFF 0%, #FFF 0%);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -256,7 +258,26 @@ form .text-field-input div label {
   width: 100%;
 }
 
+.appheader-bar {
+	width: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.appheader-color-container {
+
+}
+
+.appheader-color-bar{
+	width: 100%;
+	height: 4px;
+}
+
 .appheader-children-container {
+	padding-left: 24px;
+	padding-right: 24px;
+	flex: 1;
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -292,7 +313,7 @@ form .text-field-input div label {
 }
 .appheader-middle-container h1 {
 	font-size: 32;
-	color: white;
+	color: #40593A;
 }
 .appheader-right-container {
 	display: flex;
@@ -311,10 +332,10 @@ form .text-field-input div label {
 	position: fixed;
 	height: 72px;
 	width: 100%;
-	top: 72px;
-	background: #50a3a2;
+	top: 96px;
+/*	background: #50a3a2;
 	background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 0%);
-	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);
+	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);*/
 }
 
 .icebox-toolbar-scroll {
@@ -323,9 +344,9 @@ form .text-field-input div label {
 	height: 72px;
 	width: 100%;
 	top: 0;
-	background: #50a3a2;
+/*	background: #50a3a2;
 	background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 0%);
-	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);
+	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 0%);*/
 }
 
 /* Food Item Input Component Styling */
@@ -349,13 +370,16 @@ form .text-field-input div label {
   background-size: cover;*/
   height: 100%;
   margin-top: 72px;
-  padding-bottom: 72px;
+  margin-bottom: 72px;
+  background: #FFFFFF;
+  background: -webkit-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
+  background: linear-gradient(to bottom right, #FFFFFF 0%, #FFFFFF 100%);
 /*  background: #50a3a2;
   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);*/
-  background: #53e3a6;
+/*  background: #53e3a6;
   background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
-  background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);
+  background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);*/
 }
 
 .icebox-list-container {

@@ -5,7 +5,7 @@ const RecipeListItem = ({ recipe }) => (
 	<GridTile
 		title={recipe.title}
 		className="recipe-tile"
-		subtitle={`Prep Time: ${recipe.readyInMinutes}min, Recipe ID: ${recipe.recipeID}`}
+		subtitle={`Prep Time: ${recipe.readyInMinutes}min, Servings: ${recipe.servings}`}
 		containerElement={<a href={recipe.sourceUrl} target="_blank"></a>}
 	>
 		<img
