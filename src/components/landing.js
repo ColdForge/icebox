@@ -32,7 +32,7 @@ const styles = {
 	},
 	bannerBox: {
 		margin: 'auto',
-	}
+	},
 };
 
 const brandName = 'ColdForge';
