@@ -495,11 +495,12 @@ module.exports = {
   },
   //working on this section - AY - add ability to get recipe history
 	getPreviousRecipes: function(req, res){
-		var user = req.body.user;
+		var user = req.user;
+    console.log('user in getPreviousRecipes : ',user);
 
 		db.select('*')
 			.from('recipes')
-			.where('userID', id)
+			.where('userID', user.id)
 			.then(function(resp){
 				console.log('Previous Recipe request call successful', resp);
 				res.send(resp);
