@@ -10,11 +10,12 @@ deploy:
   access_key_id: AKIAJRCYVTE5NKU64IUA
   secret_access_key:
     secure: jZQNGBjbxSOxKqVTih1mTcslvCuFJaMvzcGD3RIFksTv2v1hthUFL+v6cJorzMGqzRMT/2vJQ7jAgOErJsljKOPSZ3NtpI8TKl4XC+2WAHzuGrJTGKEs73uMVPcije/T8MufRjj75pH7qEG7yPA1Q0SfSbSsJVQH4ZoDVLnVCVtEAxq8uiX06BA+a0JYc6WZMH/+nUZkYP5G3rPUF+MqD3bUz0eo2+8Qxvx5G4VtmUvVbjNvo0kGUGzMVkBFIW3ARWpZlb2zCk7YXH3hUwzcFpNwQ71v77nuhjGzF03l0RTk6XV0jgx93A+Y4VkoVpT55RsCh/fLBR+4Dee2vWcZghwPiCTz24VsI2kQGIlxxh7AFckJZAVA34WMCbSmA4uBcYB3L1vc4xq1e7XXJjJumLK4Gl61eZprYNglvdUwdKAP+f4us346UotnpFP38OCwFwMNPZEAOPb5LAEwSPUPVkl4JeLFvBH4APkUajaRI/dWr88l5Dvv70D8kiqhezKHMeETKZLFhheDAnS/f9Sh/NCQ2k96T1JzHwrebmVLqrZXO+21EIlneR+fGw/smgY4+cMSmvhzuolTI6azeTSvG08INbsrQQsDwUjDsZP8zHc2dgowd+qZNvSCFrQVV8lfH6eYvG8nFE6Bo5A0AfOm1mGcT3TVKU1dNmwWsgyzO/U=
-  bucket: ''
+  bucket: 'S3 Bucket'
+  revision_type: github
   key: ''
   bundle_type: ''
   application: IceboxApp
   deployment_group: Production
   on:
-    repo: yaoandrew/icebox
+    repo: ColdForge/icebox
     branch: deploy
