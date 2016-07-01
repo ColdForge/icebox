@@ -20,6 +20,7 @@ import Dinner from 'material-ui/svg-icons/maps/local-dining';
 import SettingsConfirm from '../components/settingsConfirm';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
 import PhotoUploader from '../components/photoUploader';
+import classNames from 'classnames';
 
 const styles = {
 	photo: {
@@ -107,111 +108,101 @@ class Settings extends Component {
 	}
 
 	render() {
-
 		return (
-			<div className="container">
+			<div className={classNames("settings-container","container")}>
 				<div className="row">
-
-				<div className="settings-box col-md-4">
-				<div className="settings-header">
-				Profile
-				</div>
-				<div className="settings-divs">	
-					<List>
-						<ListItem>
-							<img style={styles.photo} className="img-rounded" src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
-						</ListItem>
-						<ListItem>
-							<h4>Username: {this.props.email}</h4>
-						</ListItem>
-						<ListItem>
-							<h4>Name: {this.props.name} </h4>
-						</ListItem>
-						<ListItem>
-							<div>
-								<Dialog
-									actions={<FlatButton label="OK" primary={true} onTouchTap={this.messageToggle} />}
-									modal={false}
-									open={this.state.alertOpen}
-									onRequestClose={this.messageToggle}
-								>
-									<Message />
-									<h3>{this.state.confirm}</h3>
-								</Dialog>
-							</div>
-						</ListItem>
-					</List>
-					</div>
-					<div className="setting-footer">
-						<PhotoUploader />
-					</div>
-					</div>
-
-				<div className="settings-box col-md-4">
-				<div className="settings-header">
-				  Household Users
-				</div>
-				<div className="settings-divs">
-					<List>
-						<Table>
-							<TableBody displayRowCheckbox={false} >
-								{this.props.household.map((person, i) => (
-									<TableRow key={i} >
-										<TableRowColumn>
-											<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />
-										</TableRowColumn>
-										<TableRowColumn>
-											<h4>{person.name}</h4>
-										</TableRowColumn>
-										<TableRowColumn>
-											<SettingsConfirm className="houseItem" confirmSubmit={this.removeUser.bind(this, person, i)} />
-										</TableRowColumn>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</List>
-						<SettingsEntry addUser={this.addUser}/>
-					</div>
-						<div className="setting-footer">
+					<div className={classNames("settings-grid","col-sm-4")}>
+						<div className="settings-header">
+						Profile
 						</div>
-				</div>
+						<div className="settings-divs">
+							<List>
+								<ListItem>
+									<img style={styles.photo} className="img-rounded" src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
+								</ListItem>
+								<ListItem>
+									<h4>Username: {this.props.email}</h4>
+								</ListItem>
+								<ListItem>
+									<h4>Name: {this.props.name} </h4>
+								</ListItem>
+								<ListItem>
+									<div>
+										<Dialog
+											actions={<FlatButton label="OK" primary={true} onTouchTap={this.messageToggle} />}
+											modal={false}
+											open={this.state.alertOpen}
+											onRequestClose={this.messageToggle}
+										>
+											<Message />
+											<h3>{this.state.confirm}</h3>
+										</Dialog>
+									</div>
+								</ListItem>
+							</List>
+						</div>
+						<div className="setting-footer">
+							<PhotoUploader />
+						</div>
+					</div>
 
-				<div className="settings-box col-md-4">
-				<div className="settings-header">
-				Staples
-				</div>
-				<div className="settings-divs">
-					<List>
-						<Table>
-							<TableBody displayRowCheckbox={false} >
-								{this.props.staples.map(staple => (
-									<TableRow key={staple.id} >
-									<TableRowColumn><Dinner /></TableRowColumn>
-									<TableRowColumn>{staple.name}</TableRowColumn>
-									<TableRowColumn>
-										<Toggle defaultToggled={!!staple.status} onToggle={this.handleToggle} name={staple.id} />
-									</TableRowColumn>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</List>
-				</div>
-				<div className="setting-footer">
-					<FlatButton 
-						label="Update" 
-						primary2 
-						backgroundColor={'#F5E5C4'} 
-						style={styles.button} 
-						onClick={this.updateStaples} 
-						hoverColor={'white'}
-					/>
-				</div>
-				</div>
+					<div className={classNames("settings-grid","col-sm-4")}>
+						<div className="settings-header">
+						  Household Users
+						</div>
+						<div className="settings-divs">
+							<List>
+								<Table>
+									<TableBody displayRowCheckbox={false} >
+										{this.props.household.map((person, i) => (
+											<TableRow key={i} >
+												<TableRowColumn>
+													<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />
+												</TableRowColumn>
+												<TableRowColumn>
+													<h4>{person.name}</h4>
+												</TableRowColumn>
+												<TableRowColumn>
+													<SettingsConfirm className="houseItem" confirmSubmit={this.removeUser.bind(this, person, i)} />
+												</TableRowColumn>
+											</TableRow>
+										))}
+									</TableBody>
+								</Table>
+							</List>
+						</div>
+						<div className="setting-footer">
+							<SettingsEntry addUser={this.addUser}/>
+						</div>
+					</div>
 
+					<div className={classNames("settings-grid","col-sm-4")}>
+						<div className="settings-header">
+						Staples
+						</div>
+						<div className="settings-divs">
+							<List>
+								<Table>
+									<TableBody displayRowCheckbox={false} >
+										{this.props.staples.map(staple => (
+											<TableRow key={staple.id} >
+											<TableRowColumn><Dinner /></TableRowColumn>
+											<TableRowColumn>{staple.name}</TableRowColumn>
+											<TableRowColumn>
+												<Toggle defaultToggled={!!staple.status} onToggle={this.handleToggle} name={staple.id} />
+											</TableRowColumn>
+											</TableRow>
+										))}
+									</TableBody>
+								</Table>
+							</List>
+						</div>
+						<div className="setting-footer">
+							<FlatButton label="Update" primary={true} style={styles.button} onClick={this.updateStaples} />
+						</div>
+					</div>
 				</div>
-				</div>
+			</div>
 		);
 	}
 }
