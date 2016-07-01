@@ -1,16 +1,16 @@
 # Icebox
 [![Build Status](https://travis-ci.org/ColdForge/icebox.svg?branch=dev)](https://travis-ci.org/ColdForge/icebox)
 
-#### Icebox is a food management application that helps you keep track of what groceries you have
-#### in your refrigerator and when they are going bad. It will suggest recipes to you based on your
-#### expiring food items, saving you the hassle of deciding what to make for dinner and preventing food
-#### waste by putting everything to use. It uses voice input to free up your hands for loading groceries
-#### or preparing meals.
+ Icebox is a food management application that helps you keep track of what groceries you have
+ in your refrigerator and when they are going bad. It will suggest recipes to you based on your
+ expiring food items, saving you the hassle of deciding what to make for dinner and preventing food
+ waste by putting everything to use. It uses voice input to free up your hands for loading groceries
+ or preparing meals.
 
 # Icebox Mobile
 
-#### Icebox also has a mobile application developed in React-Native to increase usability in the
-#### kitchen environment following a grocery run or in cooking preparation.
+ Icebox also has a mobile application developed in React-Native to increase usability in the
+ kitchen environment following a grocery run or in cooking preparation.
 * [Icebox Mobile App](https://github.com/ColdForge/icebox-native)
 
 
