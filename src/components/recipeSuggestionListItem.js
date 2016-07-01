@@ -32,6 +32,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 		if (chosenRecipeID && recipe.id === chosenRecipeID) {
 			return (
 				<RaisedButton
+					key={1}
 					className="recipe-suggestion-card-button"
 					linkButton
 					href={recipe.sourceUrl}
@@ -44,6 +45,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 		}
 		return [
 			<RaisedButton
+				key={2}
 				className="recipe-suggestion-card-button"
 				linkButton
 				href={recipe.sourceUrl}
@@ -53,6 +55,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 				backgroundColor={'#53E3A6'}
 			/>,
 			<RaisedButton
+				key={3}
 				className="recipe-suggestion-card-button"
 				label="Choose!"
 				disabled={!!chosenRecipeID}
