@@ -9,7 +9,7 @@ const IceboxList = ({ contents, addToTrash, removeFromTrash }) => (
 			className="icebox-list"
 			cellHeight={400}
 			cols={3}
-			padding={10}
+			padding={0}
 		>
 			{contents.map(item => (
 				<IceboxListItem

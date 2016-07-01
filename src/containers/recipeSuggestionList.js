@@ -40,7 +40,7 @@ class RecipeSuggestionList extends Component {
   }
 
   render() {
-    const height = window.innerHeight - 144;
+    const height = window.innerHeight - 120;
     return (
       <div className="recipe-suggestion-list-container">
       	<SweetAlert

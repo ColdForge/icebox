@@ -476,11 +476,26 @@ module.exports = {
     console.log('req.user received in postRecipe is : ',req.user);
     var user = req.user;
     var recipe = req.body.recipe;
-    db.insert({ userID: user.id, title: recipe.title,
-      pic_url: recipe.image, ingredients_used: recipe.usedIngredientCount,
-      ingredients_missing: recipe.missedIngredientCount, recipeID: recipe.id})
+    db.insert({
+      recipeID: recipe.id,
+      userID: user.id,
+      title: recipe.title,
+      readyInMinutes: recipe.readyInMinutes,
+      servings: recipe.servings,
+      dairyFree: recipe.dairyFree,
+      glutenFree: recipe.glutenFree,
+      ketogenic: recipe.ketogenic,
+      sustainable: recipe.sustainable,
+      vegetarian: recipe.vegetarian,
+      vegan: recipe.vegan,
+      image: recipe.image,
+      sourceUrl: recipe.sourceUrl,
+      spoonacularUrl: recipe.spoonacularUrl,
+      ingredients_used: recipe.usedIngredientCount,
+      ingredients_missing: recipe.missedIngredientCount,
+    })
       .into('recipes')
-      .where('userID', user.id)
+      // .where('userID', user.id)
       .then(function(resp){
         console.log('Recipe has been added to user account', resp);
         res.json({
@@ -495,14 +510,15 @@ module.exports = {
   },
   //working on this section - AY - add ability to get recipe history
 	getPreviousRecipes: function(req, res){
-		var user = req.body.user;
+		var user = req.user;
+    console.log('user in getPreviousRecipes : ',user);
 
 		db.select('*')
 			.from('recipes')
-			.where('userID', id)
+			.where('userID', user.id)
 			.then(function(resp){
 				console.log('Previous Recipe request call successful', resp);
-				res.send(resp);
+				res.json({pastRecipes: resp});
 			}).catch(function(err){
 				console.log('Error getting items', err);
 				res.send('Previous recipes could not be found');

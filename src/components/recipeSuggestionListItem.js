@@ -32,6 +32,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 		if (chosenRecipeID && recipe.id === chosenRecipeID) {
 			return (
 				<RaisedButton
+					key={1}
 					className="recipe-suggestion-card-button"
 					linkButton
 					href={recipe.sourceUrl}
@@ -44,6 +45,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 		}
 		return [
 			<RaisedButton
+				key={2}
 				className="recipe-suggestion-card-button"
 				linkButton
 				href={recipe.sourceUrl}
@@ -53,9 +55,11 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 				backgroundColor={'#53E3A6'}
 			/>,
 			<RaisedButton
+				key={3}
 				className="recipe-suggestion-card-button"
 				label="Choose!"
 				disabled={!!chosenRecipeID}
+				disabledBackgroundColor={''}
 				labelStyle={styles.buttonLabel}
 				onTouchTap={chooseRecipe}
 				backgroundColor={'#53E3A6'}
@@ -107,7 +111,7 @@ const RecipeSuggestionListItem = ({ recipe, chooseRecipe, chosenRecipeID }) => {
 RecipeSuggestionListItem.propTypes = {
 	recipe: React.PropTypes.object.isRequired,
 	chooseRecipe: React.PropTypes.func,
-	chosenRecipeID: React.PropTypes.string,
+	chosenRecipeID: React.PropTypes.number,
 	getRecipeDetails: React.PropTypes.func,
 	recipeLocation: React.PropTypes.string,
 };

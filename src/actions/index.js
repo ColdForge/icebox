@@ -21,12 +21,12 @@ export const signinUser = ({ email, password }) => (
 				localStorage.setItem('token', response.data.token);
 				browserHistory.push('/icebox');
 				axios.get(`${API_URL}/api/icebox/pastRecipes`, {
-					headers: { authorization: localStorage.getItem('token') },
+					headers: { authorization: response.data.token },
 				})
 					.then(recipesResponse => {
 						console.log('recipesResponse after signin is : ', recipesResponse);
 						// dispatch({ type: TYPES.END_LOADING });
-						dispatch({ type: TYPES.GET_RECIPES, payload: recipesResponse.data });
+						dispatch({ type: TYPES.GET_RECIPES, payload: recipesResponse.data.pastRecipes });
 					})
 					.catch((error) => {
 						// dispatch({ type: TYPES.END_LOADING });

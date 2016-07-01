@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import IceboxToolbar from '../containers/iceboxToolbar';
 import VisibleIceboxList from '../containers/visibleIceboxList';
 
-const Icebox = () => {
-	const scrollChecker = () => {
+class Icebox extends Component {
+	constructor(props) {
+		super(props);
+		this.scrollChecker = this.scrollChecker.bind(this);
+	}
+	componentDidMount() {
+		document.addEventListener('scroll', this.scrollChecker);
+	}
+	componentWillUnmount() {
+		document.removeEventListener('scroll', this.scrollChecker);
+	}
+	scrollChecker() {
 		if (document.body.scrollTop > 72 || document.documentElement.scrollTop > 72) {
 			document.getElementById('appheader').className = 'appheader-hidden';
 			document.getElementById('icebox-toolbar').className = 'icebox-toolbar-scroll';
@@ -13,18 +23,15 @@ const Icebox = () => {
 			document.getElementById('icebox-toolbar').className = 'icebox-toolbar';
 			document.getElementById('goTop').className = 'goTop';
 		}
-	};
-
-	window.onscroll = function () {
-		scrollChecker();
-	};
-
-	return (
-		<div className="icebox-container">
-			<IceboxToolbar />
-			<VisibleIceboxList />
-		</div>
-	);
-};
+	}
+	render() {
+		return (
+			<div className="icebox-container">
+				<IceboxToolbar />
+				<VisibleIceboxList />
+			</div>
+		);
+	}
+}
 
 export default Icebox;

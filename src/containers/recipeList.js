@@ -12,32 +12,34 @@ const styles = {
 	gridList: {
 		width: 500,
 		height: 500,
-		overflowY: 'auto',
+		overflowY: 'scroll',
 		marginBottom: 24,
 	},
 };
 
-const RecipeList = ({ recipes }) => (
-	<div style={styles.root} className="recipe-list-container">
-		<GridList
-			className="icebox-list"
-			cellHeight={400}
-			style={styles.gridlist}
-			cols={3}
+const RecipeList = ({ recipes }) => {
+	const height = window.innerHeight - 144;
+	return (
+		<div
+			// style={styles.root}
+			className="recipe-list-container"
 		>
-			{recipes.map(recipe => (
-				<RecipeListItem
-					key={recipe.key}
-					name={recipe.name}
-					imageUrl={recipe.image}
-					sourceUrl={recipe.sourceUrl}
-					recipeID={recipe.recipeID}
-					prepTime={recipe.readyInMinutes}
-				/>
-			))}
-		</GridList>
-	</div>
-);
+			<GridList
+				className="recipe-list"
+				cellHeight={height/2}
+				// style={styles.gridlist}
+				cols={3}
+			>
+				{recipes.map(recipe => (
+					<RecipeListItem
+						key={recipe.recipeID}
+						recipe={recipe}
+					/>
+				))}
+			</GridList>
+		</div>
+	);
+}
 
 RecipeList.propTypes = {
 	recipes: React.PropTypes.array.isRequired,

@@ -33,14 +33,23 @@ const store = configureStore();
 const muiTheme = {
 	fontFamily: 'Roboto, sans-serif',
 	palette: {
-		primary1Color: green500,
+		textColor: '#D48548',
+		alternateTextColor: '#D48548',
+		primary1Color: '#F5E5C4',
 		primary2Color: red500,
 		primary3Color: blue500,
-		accent1Color: red500,
-    accent2Color: green200,
-    accent3Color: green200,
+		accent1Color: '#D48548',
+    accent2Color: '#FFFFFF',
+    accent3Color: '#F5E5C4',
 	},
 };
+// #F5E5C4
+// #EDB97D
+// #D48548
+// #40593A
+// #769481
+// #AEC2B7
+
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
@@ -52,10 +61,7 @@ ReactDOM.render(
 						<Route path="signin" component={Signin} />
 						<Route path="signup" component={Signup} />
 						<Route path="icebox" component={Icebox} />
-	          <Route component={Recipes}>
-	          	<Route path="recipes" component={RecipeSuggestionList} />
-	          	<Route path="pastrecipes" component={RecipeList} />
-	          </Route>
+	          <Route path="recipes" component={Recipes} />
 	          <Route path="settings" component={Settings} />
 	          <Route path="foodItemInput" component={FoodItemInput} />
 					</Route>

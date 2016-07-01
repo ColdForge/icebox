@@ -76,7 +76,6 @@ class FoodItemInput extends Component {
 			open: false,
 			recognitionStarted: false,
 			newItemsAdded: false,
-			itemsPosted: false,
 			newItems: [],
 			confirmedItems: {},
 			clarifyingItems: [],
@@ -307,9 +306,10 @@ class FoodItemInput extends Component {
 		const submitObject = { ...this.state.confirmedItems, length: this.state.newItems.length };
 		// confirmedItems.length = this.state.newItems.length;
 		this.props.submitFoods(submitObject);
-
+		console.log('handleSubmit fired with newItems of : ', this.state.newItems);
+		console.log('submitObject is : ', submitObject);
 		// handleSubmit should not close modal immediately, as user needs to verify results
-		this.setState({ newItems: [], newItemsAdded: false, itemsPosted: true, confirmedItems: {} });
+		this.setState({ newItems: [], newItemsAdded: false, confirmedItems: {} });
 		// this.setState({ open: false, newItems: [], newItemsAdded: false, confirmedItems: {} });
 	}
 
@@ -463,15 +463,14 @@ class FoodItemInput extends Component {
 				onTouchTap={this.handleCancel}
 			/>,
 			<FlatButton
-				label="Submit"
+				label="Confirm"
 				style={styles.actionButtonSubmit}
 				onTouchTap={this.handleFinalSubmit}
 			/>,
 		];
 
 		const renderDialogActions = () => (
-			(!this.state.itemsPosted
-				&& this.props.noExpirationItems.length === 0
+			(this.props.noExpirationItems.length === 0
 				&& this.props.noFoodGroupItems.length === 0) ? preSubmit : postSubmit
 		);
 
