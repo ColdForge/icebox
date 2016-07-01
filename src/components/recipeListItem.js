@@ -1,22 +1,27 @@
 import React from 'react';
 import { GridTile } from 'material-ui/GridList';
 
-const RecipeListItem = ({ title, imageUrl, recipeID }) => (
+const RecipeListItem = ({ recipe }) => (
 	<GridTile
-		title={title}
+		title={recipe.title}
 		className="recipe-tile"
-		subtitle={`Prep Time: min, Recipe ID: ${recipeID}`}
-		containerElement={<a href="www.google.com" target="_blank"></a>}
+		subtitle={`Prep Time: ${recipe.readyInMinutes}min, Recipe ID: ${recipe.recipeID}`}
+		containerElement={<a href={recipe.sourceUrl} target="_blank"></a>}
 	>
-		<img src={imageUrl} alt="Recipe" />
+		<img
+			src={recipe.image}
+			role="presentation"
+			className="recipe-tile-image"
+		/>
 	</GridTile>
 );
 
 RecipeListItem.propTypes = {
-	title: React.PropTypes.string.isRequired,
-	imageUrl: React.PropTypes.string.isRequired,
+	recipe: React.PropTypes.object.isRequired,
+	// title: React.PropTypes.string.isRequired,
+	// imageUrl: React.PropTypes.string.isRequired,
 	// sourceUrl: React.PropTypes.string.isRequired,
-	recipeID: React.PropTypes.number.isRequired,
+	// recipeID: React.PropTypes.number.isRequired,
 	// prepTime: React.PropTypes.number.isRequired,
 };
 
