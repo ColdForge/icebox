@@ -518,7 +518,7 @@ module.exports = {
 			.where('userID', user.id)
 			.then(function(resp){
 				console.log('Previous Recipe request call successful', resp);
-				res.send(resp);
+				res.json({pastRecipes: resp});
 			}).catch(function(err){
 				console.log('Error getting items', err);
 				res.send('Previous recipes could not be found');
