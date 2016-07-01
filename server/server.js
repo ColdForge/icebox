@@ -13,6 +13,7 @@ var schedule = require('node-schedule');
 var app = express();
 var food = require('./config/apiutils.js');
 var cors = require('cors');
+var AWS = require('aws-sdk');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -20,10 +21,10 @@ app.use(express.static(__dirname + '/../'));
 app.use(cors());
 
 // app.use('/s3', require('react-s3-uploader/s3router')({
-//     bucket: "MyS3Bucket",
-//     region: 'us-east-1', //optional
-//     signatureVersion: 'v4', //optional (use for some amazon regions: frankfurt and others)
-//     headers: {'Access-Control-Allow-Origin': '*'}, // optional
+//     bucket: "iceboxs3",
+//     // region: 'us-east-1', //optional
+//     // signatureVersion: 'v4', //optional (use for some amazon regions: frankfurt and others)
+//     // headers: {'Access-Control-Allow-Origin': '*'}, // optional
 //     ACL: 'private' // this is default
 // }));
 
