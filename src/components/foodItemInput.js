@@ -306,8 +306,8 @@ class FoodItemInput extends Component {
 		const submitObject = { ...this.state.confirmedItems, length: this.state.newItems.length };
 		// confirmedItems.length = this.state.newItems.length;
 		this.props.submitFoods(submitObject);
-		console.log('handleSubmit fired with newItems of : ',this.state.newItems)
-		console.log('submitObject is : ',submitObject)
+		console.log('handleSubmit fired with newItems of : ', this.state.newItems);
+		console.log('submitObject is : ', submitObject);
 		// handleSubmit should not close modal immediately, as user needs to verify results
 		this.setState({ newItems: [], newItemsAdded: false, confirmedItems: {} });
 		// this.setState({ open: false, newItems: [], newItemsAdded: false, confirmedItems: {} });
