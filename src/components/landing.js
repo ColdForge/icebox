@@ -15,6 +15,10 @@ import {
 } from 'neal-react';
 
 const styles = {
+	landingImage: {
+		height: 1000,
+		backgroundImage: "url('../../assets/veggieDrop.jpg')"
+	},
 	navButtons: {
 		color: green50,
 		height: 50,
@@ -61,8 +65,7 @@ const Landing = () => (
 				</Link>
 			</div>
 		</div>
-		<Hero
-			backgroundImage="../../assets/veggieDrop.jpg"
+		<div
 			className="banner-display"
 			style={styles.landingImage}
 		/>
