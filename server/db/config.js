@@ -15,8 +15,8 @@ knex.schema.hasTable('iceboxes').then(function(exists){
 	if(!exists){
 		knex.schema.createTable('iceboxes',function(icebox){
 			icebox.increments('id').primary();
-			icebox.varchar('owner_email', 255);
-			icebox.string('icebox_name', 255);
+			icebox.varchar('user_email', 255).unique();
+			icebox.string('user_name', 255);
 			icebox.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
 		}).then(function (table) {
       console.log('Created iceboxes Table', table);
@@ -45,6 +45,7 @@ knex.schema.hasTable('users').then(function(exists){
 			user.string('name',255);
 			user.varchar('email',255);
 			user.varchar('password',255);
+			user.varchar('profileUrl',255);
 			user.integer('iceboxID', 11).unsigned();
 			user.foreign('iceboxID').references('id').inTable('iceboxes');  //post.integer('user_id').unsigned().references('users.id')
 			user.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
@@ -76,7 +77,17 @@ knex.schema.hasTable('recipes').then(function(exists){
 			recipe.integer('userID', 11).unsigned();
 			recipe.foreign('userID').references('id').inTable('users');
 			recipe.string('title',255);
-			recipe.varchar('pic_url',255);
+			recipe.integer('readyInMinutes',11);
+			recipe.integer('servings',11);
+			recipe.boolean('dairyFree');
+			recipe.boolean('glutenFree');
+			recipe.boolean('ketogenic');
+			recipe.boolean('sustainable');
+			recipe.boolean('vegan');
+			recipe.boolean('vegetarian');
+			recipe.varchar('image',255);
+			recipe.varchar('sourceUrl',255);
+			recipe.varchar('spoonacularUrl',255);
 			recipe.integer('ingredients_used');
 			recipe.integer('ingredients_missing');
 			recipe.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
