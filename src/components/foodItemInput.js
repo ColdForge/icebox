@@ -19,7 +19,6 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-
 const styles = {
 	foodItemInput: {
 		height: '60px',
@@ -488,7 +487,7 @@ class FoodItemInput extends Component {
 		];
 
 		return (
-			<div style={styles.foodItemInput} className={classNames('animated', 'infinite', 'pulse')}>
+			<div className={classNames('animated', 'infinite', 'pulse', 'food-item-input-container')}>
 				<Dialog
 					title="Done?"
 					actions={confirmationDialogActions}
@@ -506,7 +505,11 @@ class FoodItemInput extends Component {
 					label="Dialog"
 					onTouchTap={this.handleOpen}
 				>
-					<SvgIcon className="icebox-toolbar-svgicon-speech">
+					<SvgIcon
+						className="icebox-toolbar-svgicon-speech"
+						color="#D48548"
+						hoverColor="#EDB97D"
+					>
 						<path d={ICONS.Speech.d} />
 					</SvgIcon>
 				</IconButton>

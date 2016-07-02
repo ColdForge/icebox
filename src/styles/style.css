@@ -351,6 +351,13 @@ form .text-field-input div label {
 
 /* Food Item Input Component Styling */
 
+.food-item-input-container {
+	height: 60px;
+	width: 60px;
+	border-radius: 30px;
+	background-color: #FFFFFF;
+}
+
 .start-speech-input {
   animation-duration: 3s;
   animation-delay: 1s;

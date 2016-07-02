@@ -37,11 +37,9 @@ const styles = {
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: 72,
-		// backgroundColor: 'rgba(255, 255, 255, 0.0)',
 	},
 	toolbarGroup1: {
 		marginLeft: 24,
-		// paddingLeft: 24,
 		width: '33%',
 		display: 'flex',
 		justifyContent: 'flex-start',
@@ -157,6 +155,7 @@ class IceboxToolbar extends Component {
 		return (this.props.trashContents.length > 0) ? (
 			<RaisedButton
 				label="Remove Items?"
+				labelStyle={{fontSize:20,color:'white'}}
 				secondary={true}
 				style={styles.removeButton}
 				onTouchTap={() => this.props.removeIceboxItems({ items: this.props.trashContents })}
@@ -200,7 +199,6 @@ class IceboxToolbar extends Component {
 					style={styles.toolbarGroup2}
 				>
 					  <FoodItemInput submitFoods={this.submitFoods}/>
-
 				</ToolbarGroup>
 				<ToolbarGroup
 					style={styles.toolbarGroup3}
