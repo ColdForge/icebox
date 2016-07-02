@@ -87,7 +87,9 @@ class IceboxListItem extends Component {
 								</div>
 							</div>
 							<div className="icebox-item-card-body">
-								<p className="icebox-item-name">{this.props.name}</p>
+								<div className="icebox-item-name-container">
+									<p className="icebox-item-name">{this.props.name}</p>
+								</div>
 								<div className="icebox-item-info">
 									<p className="icebox-item-expiration-text">Expires in</p>
 									<p className={classNames('icebox-item-expiration-date', `${this.state.textColor}`)}>

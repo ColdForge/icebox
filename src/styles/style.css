@@ -440,6 +440,7 @@ form .text-field-input div label {
 .icebox-item-food-group {
 	flex: 2;
 	text-align: left;
+	color: #c4c4c4;
 }
 
 .icebox-item-remove-container {
@@ -457,18 +458,34 @@ form .text-field-input div label {
 	justify-content: center;
 }
 
-.icebox-item-name {
+.icebox-item-name-container {
 	flex: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icebox-item-name {
 	font-family: 'Helvetica Neue', Helvetica;
-	font-size: 5em;
+	font-size: 4.2em;
 	color: white;
 }
 
 .icebox-item-info {
 	flex: 1;
 	font-family: 'Helvetica Neue', Helvetica;
-	font-size: 3em;
+	/*font-size: 3em;*/
 	color: white;
+}
+
+.icebox-item-expiration-text {
+	margin-bottom: -15px;
+	font-size: 1.5em;
+	color: #c4c4c4;
+}
+
+.icebox-item-expiration-date {
+	font-size: 3.5em;
 }
 
 .list-item-container {
@@ -577,7 +594,7 @@ form .text-field-input div label {
 	border: 1px solid orange;
 }
 .Border-Green {
-	border: 1px solid green;
+	border: 1px solid #32fc00;
 }
 .Expiration-Red {
 	color: red;
@@ -586,7 +603,7 @@ form .text-field-input div label {
 	color: orange;
 }
 .Expiration-Green {
-	color: green;
+	color: #32fc00;
 }
 
 /* Tooltip container */
