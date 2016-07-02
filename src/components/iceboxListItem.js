@@ -5,6 +5,144 @@ import Checkbox from 'material-ui/Checkbox';
 import classNames from 'classnames';
 import SvgIcon from 'material-ui/SvgIcon';
 
+const styles = {
+	paper: {
+		height: '100%',
+		width: '100%',
+		display: 'flex',
+		flexDirection: 'column',
+	},
+	Beef: {
+		backgroundImage: "url('/../../assets/beef.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Beverages: {
+		backgroundImage: "url('/../../assets/beverages.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Dairy: {
+		backgroundImage: "url('/../../assets/dairy.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Fruit: {
+		backgroundImage: "url('/../../assets/fruit.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Grains: {
+		backgroundImage: "url('/../../assets/grains.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Lamb: {
+		backgroundImage: "url('/../../assets/lamb.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Legumes: {
+		backgroundImage: "url('/../../assets/legumes.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Meats: {
+		backgroundImage: "url('/../../assets/meats.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Nuts: {
+		backgroundImage: "url('/../../assets/nuts.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Pork: {
+		backgroundImage: "url('/../../assets/pork.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Poultry: {
+		backgroundImage: "url('/../../assets/poultry.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Sauces: {
+		backgroundImage: "url('/../../assets/sauces.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Seafood: {
+		backgroundImage: "url('/../../assets/seafood.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Sweets: {
+		backgroundImage: "url('/../../assets/sweets.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	Vegetables: {
+		backgroundImage: "url('/../../assets/vegetables.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
+	},
+	cardHeader: {
+		flex: 1,
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		Title: {
+			marginLeft: 10,
+			paddingLeft: 10,
+			marginRight: 10,
+			width: '100%',
+			flex: 1,
+			fontFamily: '"Helvetica Neue", Helvetica',
+			fontSize: '2em',
+			color: 'white',
+			display: 'flex',
+			flexDirection: 'row',
+			Group: {
+				flex: 2,
+				textAlign: 'left',
+			},
+			CheckboxContainer: {
+				flex: 1,
+				textAlign: 'right',
+				paddingRight: 10,
+			},
+			Checkbox: {
+				marginLeft: 0,
+				paddingLeft: 0,
+				color: 'white',
+			},
+		},
+	},
+	cardBody: {
+		flex: 1,
+		display: 'flex',
+		backgroundColor: 'rgba(0,0,0,0.6)',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		Title: {
+			flex: 2,
+			fontFamily: '"Helvetica Neue", Helvetica',
+			fontSize: '5em',
+			color: 'white',
+		},
+		Subtitle: {
+			flex: 2,
+			fontFamily: '"Helvetica Neue", Helvetica',
+			fontSize: '3em',
+			color: 'white',
+		},
+	},
+};
+
+
 class IceboxListItem extends Component {
 	constructor(props) {
 		super(props);
@@ -104,6 +242,7 @@ class IceboxListItem extends Component {
 		);
 	}
 }
+
 
 IceboxListItem.propTypes = {
 	name: React.PropTypes.string.isRequired,
