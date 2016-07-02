@@ -105,6 +105,7 @@ class IceboxListItem extends Component {
 	}
 }
 
+
 IceboxListItem.propTypes = {
 	name: React.PropTypes.string.isRequired,
 	foodGroup: React.PropTypes.string.isRequired,

@@ -81,8 +81,6 @@ export default function (state = INITIAL_STATE, action) {
 	case ADD_TO_TRASH: {
 		const contentsAfterAdd = state.contents.slice();
 		const trashAfterAdd = _remove(contentsAfterAdd, item => (item.itemID === action.payload));
-		console.log('inside ADD_TO_TRASH in iceboxReducer, action.payload is : ', action.payload);
-		console.log('trashAfterAdd is : ', trashAfterAdd);
 		return {
 			...state,
 			trashContents: [...state.trashContents, ...trashAfterAdd],
@@ -90,17 +88,13 @@ export default function (state = INITIAL_STATE, action) {
 	case REMOVE_FROM_TRASH: {
 		const trashAfterRemove = state.trashContents.slice();
 		_remove(trashAfterRemove, item => (item.itemID === action.payload));
-		console.log('inside REMOVE_FROM_TRASH in iceboxReducer, action.payload is : ', action.payload);
-		console.log('trashAfterRemove is : ', trashAfterRemove);
 		return {
 			...state,
 			trashContents: trashAfterRemove,
 		}; }
 	case REMOVE_ITEMS: {
 		const contentsAfterRemoval = state.contents.slice();
-		console.log('state.contents.length is : ', state.contents.length);
 		_remove(contentsAfterRemoval, item => (action.payload[item.itemID] === true));
-		console.log('contentsAfterRemoval.length is : ', contentsAfterRemoval.length);
 		return {
 			...state,
 			contents: contentsAfterRemoval,

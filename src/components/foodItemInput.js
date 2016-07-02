@@ -96,18 +96,13 @@ class FoodItemInput extends Component {
 	}
 
 	discardItems(item) {
-		// console.log('item passed into discardItems is : ', item);
 		const bool = this.state.confirmedItems[item];
-		// console.log('bool is : ', bool);
 		this.setState({
 			confirmedItems: {
 				...this.state.confirmedItems,
 				[item]: !bool,
 			},
 		});
-		// confirmedItems[item] = !confirmedItems[item];
-		// console.log('Discarded Items', confirmedItems);
-		// console.log('Discarded items are : ', this.state.confirmedItems);
 	}
 
 	startSpeechRecognition() {
@@ -126,12 +121,8 @@ class FoodItemInput extends Component {
 		/* eslint-disable */
 		const SpeechRecognition = webkitSpeechRecognition;
 		const SpeechGrammarList = webkitSpeechGrammarList;
-		// const SpeechRecognitionEvent = SpeechRecognitionEvent;
 		this.recognition = new SpeechRecognition();
 		this.confirmationRecognition = new SpeechRecognition();
-		// const recognition = new SpeechGrammarList();
-		// const speechRecognitionList = new SpeechGrammarList();
-		// speechRecognitionList.addFromString(grammar, 1);
 		this.recognition.interimResults = false;
 		this.Kate = window.speechSynthesis;
 		this.initializeSpeechSynthesis();
@@ -141,23 +132,18 @@ class FoodItemInput extends Component {
 			for (let i = event.resultIndex; i < event.results.length; ++i) {
 				const identificated = event.results[i][0].transcript;
 				if (event.results[i].isFinal) {
-					// console.log('Final sentence is : ', identificated);
 					const tempRes = identificated.split('next');
-					// function handling edge cases goes here
 					const cleanList = this.listErrorHandling(tempRes);
 					const itemsObject = {};
 					cleanList.forEach(item => {
-						// confirmedItems[item] = true;
 						itemsObject[item] = true;
 					});
 					this.setState({
 						confirmedItems: { ...this.state.confirmedItems, ...itemsObject },
 					}, () => {
-						// console.log('result of this.setState in recognition on result is : ', this.state.confirmedItems);
 					});
 					const itemsToAdd = [...this.state.newItems, ...cleanList];
 					this.setState({ newItems: itemsToAdd, newItemsAdded: true });
-					// console.log('this is state.newItems: ', this.state.newItems);
 				} else {
 					// console.log('I understood : ', identificated);
 				}
@@ -204,7 +190,6 @@ class FoodItemInput extends Component {
 	}
 
 	initializeConfirmationRecognition() {
-		// console.log('initializeConfirmationRecognition fired');
 		/* eslint-disable */
 		const SpeechRecognition = webkitSpeechRecognition;
 		const SpeechGrammarList = webkitSpeechGrammarList;
@@ -216,7 +201,6 @@ class FoodItemInput extends Component {
 			}
 		};
 		this.confirmationRecognition.onresult = event => {
-			// console.log('event on finishedRecognition onend is : ', event.results[0][0].transcript);
 			const result = event.results[0][0].transcript.toLowerCase();
 			if (result === 'no' || result === 'naw' || result === 'nope') {
 				this.confirmationRecognition.stop();
@@ -230,7 +214,6 @@ class FoodItemInput extends Component {
 	}
 
 	handleConfirmationDialogYes() {
-		// console.log('handleConfirmationDialogYes fired');
 		this.setState({
 			renderConfirmationDialog: false,
 			confirmationRecognitionReceived: true,
@@ -241,7 +224,6 @@ class FoodItemInput extends Component {
 	}
 
 	handleConfirmationDialogNo() {
-		// console.log('handleConfirmationDialogNo fired');
 		this.setState({
 			renderConfirmationDialog: false,
 			confirmationRecognitionReceived: true,
@@ -252,12 +234,10 @@ class FoodItemInput extends Component {
 		});
 	}
 
-	// make an array out of the Speech user input
-	// map that array to the component state
+
 	listErrorHandling(list) {
 		const list1 = list.map(item => {
 			if (item !== '' && item !== undefined) {
-				// takes out all white space on front and end of string
 				const tempItem = item.split(' ');
 				if (item[0] === ' ') {
 					tempItem.shift();
@@ -265,7 +245,6 @@ class FoodItemInput extends Component {
 				if (item[item.length - 1] === ' ') {
 					tempItem.pop();
 				}
-				// capitalizes first char in each word of item
 				for (let i = 0; i < tempItem.length; i++) {
 					const arr = tempItem[i].split('');
 					if (arr[0] !== undefined) {
@@ -277,7 +256,6 @@ class FoodItemInput extends Component {
 			}
 			return '';
 		});
-		// splices out all empty strings
 		for (let i = 0; i < list1.length; i++) {
 			const curr = list1[i];
 			if (curr === '') {
@@ -303,13 +281,8 @@ class FoodItemInput extends Component {
 
 	handleSubmit() {
 		const submitObject = { ...this.state.confirmedItems, length: this.state.newItems.length };
-		// confirmedItems.length = this.state.newItems.length;
 		this.props.submitFoods(submitObject);
-		console.log('handleSubmit fired with newItems of : ', this.state.newItems);
-		console.log('submitObject is : ', submitObject);
-		// handleSubmit should not close modal immediately, as user needs to verify results
 		this.setState({ newItems: [], newItemsAdded: false, confirmedItems: {} });
-		// this.setState({ open: false, newItems: [], newItemsAdded: false, confirmedItems: {} });
 	}
 
 	handleEditing(editedItems) {
@@ -319,7 +292,6 @@ class FoodItemInput extends Component {
 	}
 
 	handleFinalSubmit() {
-		// console.log('handleFinalSubmit called in foodItemInput');
 		let flag = true;
 		const foodItems = this.state.editedItems;
 		for (let i = 0; i < foodItems.length; i++) {
@@ -328,7 +300,6 @@ class FoodItemInput extends Component {
 			}
 		}
 		if (flag) {
-			// console.log('no errors in handleFinalSubmit');
 			this.props.resolveIceboxItems({ foodItems });
 			setTimeout(() => {
 				this.setState({
@@ -405,9 +376,6 @@ class FoodItemInput extends Component {
 		if (this.state.newItems.length > 0) {
 			return <FoodItemTable items={this.state.newItems} discarded={this.discardItems} />;
 		} else if (this.props.noExpirationItems.length > 0 || this.props.noFoodGroupItems.length > 0) {
-			// this.setState({
-			// 	clarifyingItems,
-			// });
 			return (
 				<ResolveItemTable
 					items={clarifyingItems}
@@ -420,7 +388,6 @@ class FoodItemInput extends Component {
 	}
 
 	renderModalBody() {
-		// console.log('renderModalBody, this.props.isLoading is : ', this.props.isLoading);
 		return (!this.props.isLoading) ? (
 			<div>
 				<div style={styles.dialogTitle}>
