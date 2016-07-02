@@ -9,8 +9,9 @@
 
 # Icebox Mobile
 
- Icebox also has a mobile application developed in React-Native to increase usability in the
- kitchen environment following a grocery run or in cooking preparation.
+ Icebox also has a mobile application developed in React-Native to allow users to take their 
+ icebox with them while shopping and to increase usability in the kitchen environment following 
+ a grocery run.
 * [Icebox Mobile App](https://github.com/ColdForge/icebox-native)
 
 
