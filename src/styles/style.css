@@ -657,7 +657,7 @@ div.recipe-suggestion-card > div {
 
 .banner-display {
   color: white;
-  height: 750px;
+  height: window.innerHeight;
   background-repeat: repeat-y;
 
 }
@@ -699,8 +699,10 @@ div.recipe-suggestion-card > div {
 .bar2 {
   position: relative;
   padding: 15px;
-  background-image: url('../../assets/food2.jpg');
-  height: 700px;
+  background-image: url('../../assets/landing-image2.jpg');
+  background-position: center, center;
+  background-size: cover;
+  height: 1000px;
   color: white;
   width: 100%;
 }

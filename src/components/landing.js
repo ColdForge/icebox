@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
 import Talker from 'material-ui/svg-icons/action/record-voice-over';
 import Calendar from 'material-ui/svg-icons/editor/insert-invitation';
 import Silverware from 'material-ui/svg-icons/maps/restaurant';
 import { green50, deepOrange800 } from 'material-ui/styles/colors';
+import SvgIcon from 'material-ui/SvgIcon';
 import {
 	Footer,
 	HorizontalSplit,
@@ -16,7 +18,9 @@ import {
 const styles = {
 	landingImage: {
 		height: 1000,
-		backgroundImage: "url('../../assets/veggieDrop.jpg')",
+		backgroundImage: "url('../../assets/landing-image1.jpg')",
+		backgroundPosition: 'center, center',
+		backgroundSize: 'cover',
 	},
 	navButtons: {
 		color: green50,
@@ -36,9 +40,25 @@ const styles = {
 	bannerBox: {
 		margin: 'auto',
 	},
+	whiteText: {
+		color: 'white',
+	},
 };
 
 const brandName = 'ColdForge';
+
+
+const githubPath = 'M8,0 C3.58,0 0,3.58 0,8 C0,11.54 2.29,14.53 5.47,15.59'
+	+ ' C5.87,15.66 6.02,15.42 6.02,15.21 C6.02,15.02 6.01,14.39 6.01,13.72'
+	+ ' C4,14.09 3.48,13.23 3.32,12.78 C3.23,12.55 2.84,11.84 2.5,11.65 C2.22,11.5'
+	+ ' 1.82,11.13 2.49,11.12 C3.12,11.11 3.57,11.7 3.72,11.94 C4.44,13.15 5.59,12.81'
+	+ ' 6.05,12.6 C6.12,12.08 6.33,11.73 6.56,11.53 C4.78,11.33 2.92,10.64 2.92,7.58'
+	+ ' C2.92,6.71 3.23,5.99 3.74,5.43 C3.66,5.23 3.38,4.41 3.82,3.31 C3.82,3.31 4.49,3.1'
+	+ ' 6.02,4.13 C6.66,3.95 7.34,3.86 8.02,3.86 C8.7,3.86 9.38,3.95 10.02,4.13 C11.55,3.09'
+	+ ' 12.22,3.31 12.22,3.31 C12.66,4.41 12.38,5.23 12.3,5.43 C12.81,5.99 13.12,6.7 13.12,7.58'
+	+ ' C13.12,10.65 11.25,11.33 9.47,11.53 C9.76,11.78 10.01,12.26 10.01,13.01'
+	+ ' C10.01,14.08 10,14.94 10,15.21 C10,15.42 10.15,15.67 10.55,15.59 C13.71,14.53'
+	+ ' 16,11.53 16,8 C16,3.58 12.42,0 8,0 L8,0 Z';
 
 const Landing = () => (
 	<Page>
@@ -129,13 +149,35 @@ const Landing = () => (
 								<img className="profile-photo" src="../../assets/landing/profiles/colin.png" alt="Colin Zarnegar" />
 								<h2>Colin Zarnegar</h2>
 								<h4>Product Owner</h4>
+								<h4>Full Stack Engineer</h4>
+								<IconButton
+									linkButton
+									href="https://github.com/czarnega"
+									target="_blank"
+									iconStyle={{ width: 48, height: 48 }}
+								>
+									<SvgIcon color="black">
+										<path d={githubPath} />
+									</SvgIcon>
+								</IconButton>
 							</div>
 						</div>
 						<div className="col-md-3">
 							<div className="profile">
 								<img className="profile-photo" src="../../assets/landing/profiles/austin.jpeg" alt="Austin Sefton" />
 								<h2>Austin Sefton</h2>
-								<h4>Front End</h4>
+								<h4>Front End Engineer</h4>
+								<h4 style={styles.whiteText}>white text</h4>
+								<IconButton
+									linkButton
+									href="https://github.com/sefton419"
+									target="_blank"
+									iconStyle={{ width: 48, height: 48 }}
+								>
+									<SvgIcon color="black">
+										<path d={githubPath} />
+									</SvgIcon>
+								</IconButton>
 							</div>
 						</div>
 						<div className="col-md-3">
@@ -143,13 +185,35 @@ const Landing = () => (
 								<img className="profile-photo" src="../../assets/landing/profiles/nate.jpeg" alt="Nathaniel Schwab" />
 								<h2>Nathaniel Schwab</h2>
 								<h4>Scrum Master</h4>
+								<h4>Full Stack Engineer</h4>
+								<IconButton
+									linkButton
+									href="https://github.com/natesMI"
+									target="_blank"
+									iconStyle={{ width: 48, height: 48 }}
+								>
+									<SvgIcon color="black">
+										<path d={githubPath} />
+									</SvgIcon>
+								</IconButton>
 							</div>
 						</div>
 						<div className="col-md-3">
 							<div className="profile">
 								<img className="profile-photo" src="../../assets/landing/profiles/andy.jpeg" alt="Andrew Yao" />
 								<h2>Andrew Yao</h2>
-								<h4>Full Stack</h4>
+								<h4>Full Stack Engineer</h4>
+								<h4 style={styles.whiteText}>white text</h4>
+								<IconButton
+									linkButton
+									href="https://github.com/yaoandrew"
+									target="_blank"
+									iconStyle={{ width: 48, height: 48 }}
+								>
+									<SvgIcon color="black">
+										<path d={githubPath} />
+									</SvgIcon>
+								</IconButton>
 							</div>
 						</div>
 					</div>
@@ -172,12 +236,7 @@ const Landing = () => (
 
 		<div className="credit">
 			<a href="http://www.freepik.com/free-photos-vectors/food">
-				First food photograph designed by Onlyyouqj - Freepik.com
-			</a>
-		</div>
-		<div className="credit">
-			<a href="http://www.freepik.com/free-photos-vectors/food">
-				Second food photograph designed by Kstudio - Freepik.com
+				All photographs designed by Onlyyouqj - Freepik.com
 			</a>
 		</div>
 
