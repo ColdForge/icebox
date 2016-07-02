@@ -625,21 +625,34 @@ div.recipe-suggestion-card > div {
   background-color: white;
   height: 350px;
   overflow: scroll;
+  border-left: 1px solid #D48548;
+  border-right: 1px solid #D48548;
+}
+
+.settings-box {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
 }
 
 .settings-header {
-  background-color: #4CAF50;
+  background-color: #40593A;
   padding: 10px;
   font-weight: bold;
   width: 325px;
   margin: 40px auto 0px auto;
 }
 .setting-footer {
-  background-color: white;
+  background-color: #D48548;
   width: 325px;
   margin: 0 auto;
   height: 60px;
-  padding-bottom: 10px;
+  border: 2px solid #D48548;
+  padding: auto 0;
+}
+
+.invite-button {
+  margin: auto 0;
 }
 
 /* Landing Page Styling */

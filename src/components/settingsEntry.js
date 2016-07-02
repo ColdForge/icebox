@@ -55,7 +55,14 @@ class SettingsEntry extends Component {
 
 		return (
 			<div>
-				<FlatButton label="Invite User" primary onTouchTap={this.handleOpen} />
+				<FlatButton
+					label="ADD +"
+					primary2
+					backgroundColor={'#F5E5C4'}
+					onTouchTap={this.handleOpen}
+					hoverColor={'#F5E5C4'}
+					style={{ width: '100%', height: 48 }}
+				/>
 				<Dialog
 					title="Add a Household User"
 					actions={actions}

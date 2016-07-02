@@ -35,7 +35,6 @@ const styles = {
 	houseItem: {
 		display: 'inline-block',
 	},
-  
 };
 
 class Settings extends Component {
@@ -110,14 +109,14 @@ class Settings extends Component {
 	render() {
 
 		return (
-			<div className="settings-container" className="container">
-			<div className="row">
-				<div className="settings-grid" className="col-sm-4">
+			<div className="container">
+				<div className="row">
+
+				<div className="settings-box col-md-4">
 				<div className="settings-header">
 				Profile
 				</div>
-				<div className="settings-divs">
-				
+				<div className="settings-divs">	
 					<List>
 						<ListItem>
 							<img style={styles.photo} className="img-rounded" src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
@@ -146,9 +145,9 @@ class Settings extends Component {
 					<div className="setting-footer">
 						<PhotoUploader />
 					</div>
-				</div>
+					</div>
 
-				<div className="settings-grid" className="col-sm-4">
+				<div className="settings-box col-md-4">
 				<div className="settings-header">
 				  Household Users
 				</div>
@@ -172,13 +171,13 @@ class Settings extends Component {
 							</TableBody>
 						</Table>
 					</List>
-					</div>
-						<div className="setting-footer">
 						<SettingsEntry addUser={this.addUser}/>
 					</div>
+						<div className="setting-footer">
+						</div>
 				</div>
 
-				<div className="settings-grid" className="col-sm-4">
+				<div className="settings-box col-md-4">
 				<div className="settings-header">
 				Staples
 				</div>
@@ -200,11 +199,19 @@ class Settings extends Component {
 					</List>
 				</div>
 				<div className="setting-footer">
-					<FlatButton label="Update" primary={true} style={styles.button} onClick={this.updateStaples} />
+					<FlatButton 
+						label="Update" 
+						primary2 
+						backgroundColor={'#F5E5C4'} 
+						style={styles.button} 
+						onClick={this.updateStaples} 
+						hoverColor={'white'}
+					/>
 				</div>
 				</div>
+
 				</div>
-			</div>
+				</div>
 		);
 	}
 }
