@@ -19,6 +19,7 @@ const styles = {
 	removeButton: {
 		height: 48,
 		zIndex: 100,
+		overflow: 'hidden',
 	},
 	buttonPlaceholder: {
 		width: 48,
@@ -96,10 +97,8 @@ class IceboxToolbar extends Component {
 		this.props.setSortBy(value)
 	}
 
-  // trying to call this method, which comes from props
 	submitFoods(foodItems) {
 		this.props.addIceboxItems({ foodItems });
-		console.log('Submit foods is firing', foodItems);
 	}
 
 	renderClearSearchButton() {

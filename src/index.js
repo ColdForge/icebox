@@ -2,13 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import {
-	green500,
-	red500,
-	blue500,
-	green50,
-	green200,
-} from 'material-ui/styles/colors';
+import { red500 } from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -21,8 +15,6 @@ import Icebox from './components/icebox';
 import Recipes from './components/recipes';
 import FoodItemInput from './components/foodItemInput';
 import Settings from './containers/settings';
-import RecipeSuggestionList from './containers/recipeSuggestionList';
-import RecipeList from './containers/recipeList';
 
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
@@ -44,12 +36,6 @@ const muiTheme = {
 		borderColor: '#AEC2B7',
 	},
 };
-// #F5E5C4
-// #EDB97D
-// #D48548
-// #40593A
-// #769481
-// #AEC2B7
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>

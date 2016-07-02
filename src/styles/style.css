@@ -8,10 +8,10 @@ html,
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto';
 }
+
 p, div {
   font-family: 'Roboto';
 }
-
 
 #app {
 	height: 100%;
@@ -29,7 +29,8 @@ p, div {
   margin-right: auto;
 }
 
-/*.landing-div, .signin-div, .signup-div {
+/*
+.landing-div, .signin-div, .signup-div {
 	height: 100%;
 	padding-top: 50px;
   padding-bottom: 50px;
@@ -37,7 +38,8 @@ p, div {
   color: #f8f8f8;
   background: url(../../assets/icebox-landing.jpg) no-repeat center center;
   background-size: cover;
-}*/
+}
+*/
 
 form .text-field-input {
   -webkit-appearance: none;
@@ -373,28 +375,16 @@ form .text-field-input div label {
 /* Icebox Component Styling */
 
 .icebox-container {
-/*  background: #F1F1F1 no-repeat center center;
-  background-size: cover;*/
   height: 100%;
   margin-top: 72px;
   margin-bottom: 72px;
   background: #FFFFFF;
   background: -webkit-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
   background: linear-gradient(to bottom right, #FFFFFF 0%, #FFFFFF 100%);
-/*  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);*/
-/*  background: #53e3a6;
-  background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
-  background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);*/
 }
 
 .icebox-list-container {
-/*	padding-bottom: 40px;
-  height: 100%;
-  background: #53e3a6;
-  background: -webkit-linear-gradient(top left, #53e3a6 0%, #50a3a2 100%);
-  background: linear-gradient(to bottom right, #53e3a6 0%, #50a3a2 100%);*/
+
 }
 
 .icebox-list {
@@ -445,8 +435,6 @@ form .text-field-input div label {
 
 .icebox-item-remove-container {
 	flex: 1;
-/*	text-align: right;
-	padding-right: 10px;*/
 	position: relative;
 }
 
@@ -474,7 +462,6 @@ form .text-field-input div label {
 .icebox-item-info {
 	flex: 1;
 	font-family: 'Helvetica Neue', Helvetica;
-	/*font-size: 3em;*/
 	color: white;
 }
 
@@ -486,12 +473,6 @@ form .text-field-input div label {
 
 .icebox-item-expiration-date {
 	font-size: 3.5em;
-}
-
-.list-item-container {
-  position: relative;
-  font-size: 25px;
-  height: 50px;
 }
 
 .food-group-icon {
