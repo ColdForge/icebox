@@ -39,9 +39,9 @@ const muiTheme = {
 		primary2Color: red500,
 		primary3Color: red500,
 		accent1Color: '#D48548',
-    accent2Color: '#FFFFFF',
-    accent3Color: '#F5E5C4',
-    borderColor: '#AEC2B7',
+		accent2Color: '#FFFFFF',
+		accent3Color: '#F5E5C4',
+		borderColor: '#AEC2B7',
 	},
 };
 // #F5E5C4
