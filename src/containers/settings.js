@@ -27,9 +27,6 @@ const styles = {
 		height: 150,
 		width: 150,
 	},
-	button: {
-		margin: 12,
-	},
 	alert: {
 		width: 300
 	},
@@ -109,98 +106,108 @@ class Settings extends Component {
 
 	render() {
 		return (
-			<div className={classNames("settings-container","container")}>
+
+			<div className="container-fluid">
 				<div className="row">
-					<div className={classNames("settings-grid","col-sm-4")}>
-						<div className="settings-header">
-						Profile
-						</div>
-						<div className="settings-divs">
-							<List>
-								<ListItem>
-									<img style={styles.photo} className="img-rounded" src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
-								</ListItem>
-								<ListItem>
-									<h4>Username: {this.props.email}</h4>
-								</ListItem>
-								<ListItem>
-									<h4>Name: {this.props.name} </h4>
-								</ListItem>
-								<ListItem>
-									<div>
-										<Dialog
-											actions={<FlatButton label="OK" primary={true} onTouchTap={this.messageToggle} />}
-											modal={false}
-											open={this.state.alertOpen}
-											onRequestClose={this.messageToggle}
-										>
-											<Message />
-											<h3>{this.state.confirm}</h3>
-										</Dialog>
-									</div>
-								</ListItem>
-							</List>
-						</div>
-						<div className="setting-footer">
+
+				<div className="settings-box col-md-4">
+				<div className="settings-header">
+				Profile
+				</div>
+				<div className="settings-divs">	
+					<List>
+						<ListItem disabled>
+							<img style={styles.photo} className="img-rounded" src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"}/>
+						</ListItem>
+						<ListItem style={{height: 40}} disabled>
+							<h4>Username: {this.props.email}</h4>
+						</ListItem>
+						<ListItem style={{height: 40}} disabled>
+							<h4>Name: {this.props.name} </h4>
+						</ListItem>
+						<ListItem style={{height: 40}} disabled>
 							<PhotoUploader />
-						</div>
+						</ListItem>
+						<ListItem disabled>
+							<div>
+								<Dialog
+									actions={<FlatButton label="OK" primary={true} onTouchTap={this.messageToggle} />}
+									modal={false}
+									open={this.state.alertOpen}
+									onRequestClose={this.messageToggle}
+								>
+									<Message />
+									<h3>{this.state.confirm}</h3>
+								</Dialog>
+							</div>
+						</ListItem>
+					</List>
+					</div>
+					<div className="setting-footer">
+					</div>
 					</div>
 
-					<div className={classNames("settings-grid","col-sm-4")}>
-						<div className="settings-header">
-						  Household Users
-						</div>
-						<div className="settings-divs">
-							<List>
-								<Table>
-									<TableBody displayRowCheckbox={false} >
-										{this.props.household.map((person, i) => (
-											<TableRow key={i} >
-												<TableRowColumn>
-													<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />
-												</TableRowColumn>
-												<TableRowColumn>
-													<h4>{person.name}</h4>
-												</TableRowColumn>
-												<TableRowColumn>
-													<SettingsConfirm className="houseItem" confirmSubmit={this.removeUser.bind(this, person, i)} />
-												</TableRowColumn>
-											</TableRow>
-										))}
-									</TableBody>
-								</Table>
-							</List>
-						</div>
-						<div className="setting-footer">
-							<SettingsEntry addUser={this.addUser}/>
-						</div>
+				<div className="settings-box col-md-4">
+				<div className="settings-header">
+				  Household Users
+				</div>
+				<div className="settings-divs">
+					<List>
+						<Table>
+							<TableBody displayRowCheckbox={false} >
+								{this.props.household.map((person, i) => (
+									<TableRow key={i} >
+										<TableRowColumn>
+											<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />
+										</TableRowColumn>
+										<TableRowColumn>
+											<h4>{person.name}</h4>
+										</TableRowColumn>
+										<TableRowColumn>
+											<SettingsConfirm className="houseItem" confirmSubmit={this.removeUser.bind(this, person, i)} />
+										</TableRowColumn>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					</List>
+						<SettingsEntry addUser={this.addUser}/>
 					</div>
+						<div className="setting-footer"></div>
+				</div>
 
-					<div className={classNames("settings-grid","col-sm-4")}>
-						<div className="settings-header">
-						Staples
-						</div>
-						<div className="settings-divs">
-							<List>
-								<Table>
-									<TableBody displayRowCheckbox={false} >
-										{this.props.staples.map(staple => (
-											<TableRow key={staple.id} >
-											<TableRowColumn><Dinner /></TableRowColumn>
-											<TableRowColumn>{staple.name}</TableRowColumn>
-											<TableRowColumn>
-												<Toggle defaultToggled={!!staple.status} onToggle={this.handleToggle} name={staple.id} />
-											</TableRowColumn>
-											</TableRow>
-										))}
-									</TableBody>
-								</Table>
-							</List>
-						</div>
-						<div className="setting-footer">
-							<FlatButton label="Update" primary={true} style={styles.button} onClick={this.updateStaples} />
-						</div>
-					</div>
+				<div className="settings-box col-md-4">
+				<div className="settings-header">
+				Staples
+				</div>
+				<div className="settings-divs">
+					<List>
+						<Table>
+							<TableBody displayRowCheckbox={false} >
+								{this.props.staples.map(staple => (
+									<TableRow key={staple.id} >
+									<TableRowColumn><Dinner /></TableRowColumn>
+									<TableRowColumn>{staple.name}</TableRowColumn>
+									<TableRowColumn>
+										<Toggle defaultToggled={!!staple.status} onToggle={this.handleToggle} name={staple.id} />
+									</TableRowColumn>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					</List>
+					<FlatButton 
+						label="Update" 
+						primary2 
+						backgroundColor={'#F5E5C4'} 
+						style={{width: '95%', height: 35}} 
+						onClick={this.updateStaples} 
+						hoverColor={'#F5E5C4'}
+					/>
+				</div>
+				<div className="setting-footer">
+				</div>
+				</div>
 				</div>
 			</div>
 		);
