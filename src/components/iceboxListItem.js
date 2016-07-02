@@ -3,16 +3,7 @@ import { GridTile } from 'material-ui/GridList';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import classNames from 'classnames';
-// import MinusCheckbox from 'material-ui/svg-icons/toggle/indeterminate-check-box';
-// import DeleteAction from 'material-ui/svg-icons/action/delete';
-
-const styles = {
-	Checkbox: {
-		marginLeft: 0,
-		paddingLeft: 0,
-		color: 'white',
-	},
-};
+import SvgIcon from 'material-ui/SvgIcon';
 
 class IceboxListItem extends Component {
 	constructor(props) {
@@ -76,13 +67,22 @@ class IceboxListItem extends Component {
 								</p>
 								<div className="icebox-item-remove-container">
 									<Checkbox
-										iconStyle={{ marginLeft: 0, height: 40, width: 40, stroke: 'white', fill: 'red', paddingRight: 10 }}
-										label="Remove"
-										labelStyle={{ color: 'red', fontSize: 12, margin: 0, padding: 0 }}
-										labelPosition="left"
+										checkedIcon={
+												/* eslint-disable */
+											<SvgIcon style={{stroke:'black',fill:'red'}}>
+												<path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" />
+											</SvgIcon>
+												/* eslint-enable */
+										}
+										uncheckedIcon={
+											<SvgIcon style={{ stroke: 'white', fill: 'none' }}>
+												<path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+											</SvgIcon>
+										}
 										checked={this.state.checked}
 										onCheck={this.handleChange}
-										style={styles.Checkbox}
+										style={{ position: 'absolute', right: '0px', top: '0px', width: '60px', height: '60px' }}
+										iconStyle={{ marginLeft: 0, height: 48, width: 48 }}
 									/>
 								</div>
 							</div>
