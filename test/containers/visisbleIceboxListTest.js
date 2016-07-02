@@ -24,13 +24,14 @@ describe('VisibleIceboxList' , () => {
   });
 
   it('should contain as many iceboxListItems as are in state.icebox', () => {
-    expect(component.find('.iceboxListItem').length).to.equal(DummyItems.length);
+    expect(component.find('.icebox-item-tile').length).to.equal(DummyItems.length);
   });
 
   describe('sorting the VisibleIceboxList', () => {
     it('should default to sorting by expiration date in ascending order', () => {
-      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-expiration').text();
-      const lastItem = component.find('.iceboxListItem').last().find('#icebox-item-expiration').text();
+      const firstItem = component.find('.icebox-item-tile').first().find('.icebox-item-expiration-date').text().slice(0,-4);
+      console.log('firstItem is : ',firstItem);
+      const lastItem = component.find('.icebox-item-tile').last().find('.icebox-item-expiration-date').text().slice(0,-4);
       expect(+firstItem).to.be.below(+lastItem);
     });
 
@@ -44,8 +45,8 @@ describe('VisibleIceboxList' , () => {
         iceboxSearch: "",
       }
       component = renderComponent(VisibleIceboxList, null, state);
-      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-expiration').text();
-      const lastItem = component.find('.iceboxListItem').last().find('#icebox-item-expiration').text();
+      const firstItem = component.find('.icebox-item-tile').first().find('.icebox-item-expiration-date').text().slice(0,-4);
+      const lastItem = component.find('.icebox-item-tile').last().find('.icebox-item-expiration-date').text().slice(0,-4);
       expect(+firstItem).to.be.above(+lastItem);
     });
 
@@ -59,8 +60,8 @@ describe('VisibleIceboxList' , () => {
         iceboxSearch: "",
       }
       component = renderComponent(VisibleIceboxList, null, state);
-      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-name').text();
-      const lastItem = component.find('.iceboxListItem').last().find('#icebox-item-name').text();
+      const firstItem = component.find('.icebox-item-tile').first().find('.icebox-item-name').text();
+      const lastItem = component.find('.icebox-item-tile').last().find('.icebox-item-name').text();
       expect(firstItem).to.be.below(lastItem);
     });
 
@@ -74,8 +75,8 @@ describe('VisibleIceboxList' , () => {
         iceboxSearch: "",
       }
       component = renderComponent(VisibleIceboxList, null, state);
-      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-food-group').data("food-group");
-      const lastItem = component.find('.iceboxListItem').last().find('#icebox-item-food-group').data("food-group");
+      const firstItem = component.find('.icebox-item-tile').first().find('.icebox-item-food-group').data("food-group");
+      const lastItem = component.find('.icebox-item-tile').last().find('.icebox-item-food-group').data("food-group");
       expect(firstItem).to.be.below(lastItem);
     });
 
@@ -89,7 +90,7 @@ describe('VisibleIceboxList' , () => {
         iceboxSearch: "lettuce",
       }
       component = renderComponent(VisibleIceboxList, null, state);
-      const firstItem = component.find('.iceboxListItem').first().find('#icebox-item-name').text();
+      const firstItem = component.find('.icebox-item-tile').first().find('.icebox-item-name').text();
       expect(firstItem).to.equal(DummyItems[3].name);
     })
   })

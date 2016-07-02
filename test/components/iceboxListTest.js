@@ -18,7 +18,7 @@ describe('IceboxList' , () => {
   });
 
   it('should contain as many iceboxListItems as are passed in', () => {
-    expect(component.find('.iceboxListItem').length).to.equal(3);
+    expect(component.find('.icebox-item-tile').length).to.equal(3);
   });
 
 });

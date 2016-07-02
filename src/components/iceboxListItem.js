@@ -7,70 +7,10 @@ import classNames from 'classnames';
 // import DeleteAction from 'material-ui/svg-icons/action/delete';
 
 const styles = {
-	gridTile: {
-		// padding: 10,
-	},
-	paper: {
-		height: '100%',
-		width: '100%',
-		// width: 100,
-		// margin: 20,
-		// textAlign: 'center',
-		display: 'flex',
-		flexDirection: 'column',
-	},
-	cardHeader: {
-		flex: 1,
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		Title: {
-			marginLeft: 10,
-			paddingLeft: 10,
-			marginRight: 10,
-			width: '100%',
-			flex: 1,
-			fontFamily: '"Helvetica Neue", Helvetica',
-			fontSize: '2em',
-			color: 'white',
-			display: 'flex',
-			flexDirection: 'row',
-			Group: {
-				flex: 2,
-				textAlign: 'left',
-			},
-			CheckboxContainer: {
-				flex: 1,
-				textAlign: 'right',
-				paddingRight: 10,
-			},
-			Checkbox: {
-				marginLeft: 0,
-				paddingLeft: 0,
-				color: 'white',
-			},
-		},
-	},
-	cardBody: {
-		flex: 1,
-		display: 'flex',
-		backgroundColor: 'rgba(0,0,0,0.6)',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		Title: {
-			flex: 2,
-			fontFamily: '"Helvetica Neue", Helvetica',
-			fontSize: '5em',
-			color: 'white',
-		},
-		Subtitle: {
-			flex: 2,
-			fontFamily: '"Helvetica Neue", Helvetica',
-			fontSize: '3em',
-			color: 'white',
-		},
+	Checkbox: {
+		marginLeft: 0,
+		paddingLeft: 0,
+		color: 'white',
 	},
 };
 
@@ -109,7 +49,6 @@ class IceboxListItem extends Component {
 	}
 
 	handleChange() {
-		console.log('handleChange in iceboxListItem fired, this.state.checked is : ', this.state.checked);
 		if (this.state.checked) {
 			this.setState({
 				checked: false,
@@ -127,19 +66,15 @@ class IceboxListItem extends Component {
 				className="icebox-item-tile"
 				children={
 					<Paper
-						className={classNames("icebox-item-container",`${this.props.foodGroup}`,`${this.state.borderColor}`)}
+						className={classNames('icebox-item-container', `${this.props.foodGroup}`, `${this.state.borderColor}`)}
 						zDepth={5}
 					>
 						<div className="icebox-item-card">
-							<div className="icebox-item-card-title">
-								<span
-									className="icebox-item-food-group"
-									id="icebox-item-food-group"
-									data-food-group={this.props.foodGroup}
-								>
+							<div className="icebox-item-card-header">
+								<p className="icebox-item-food-group" data-food-group={this.props.foodGroup}>
 									{this.props.foodGroup}
-								</span>
-								<span className="icebox-item-remove-container">
+								</p>
+								<div className="icebox-item-remove-container">
 									<Checkbox
 										iconStyle={{ marginLeft: 0, height: 40, width: 40, stroke: 'white', fill: 'red', paddingRight: 10 }}
 										label="Remove"
@@ -147,30 +82,25 @@ class IceboxListItem extends Component {
 										labelPosition="left"
 										checked={this.state.checked}
 										onCheck={this.handleChange}
-										style={styles.cardHeader.Title.Checkbox}
+										style={styles.Checkbox}
 									/>
-								</span>
+								</div>
 							</div>
-							<span className="icebox-item-name" id="icebox-item-name">{this.props.name}</span>
-							<span className="icebox-item-info">
-								<p>Expires in</p>
-								<p>
-									<span
-										id="icebox-item-expiration"
-										className={classNames(`${this.state.textColor}`)}
-									>
-										{this.props.expiration}
-									</span>
-								</p>
-								<p>days</p>
-							</span>
+							<div className="icebox-item-card-body">
+								<p className="icebox-item-name">{this.props.name}</p>
+								<div className="icebox-item-info">
+									<p className="icebox-item-expiration-text">Expires in</p>
+									<p className={classNames('icebox-item-expiration-date', `${this.state.textColor}`)}>
+										{this.props.expiration} days
+									</p>
+								</div>
+							</div>
 						</div>
 					</Paper>
 				}
 			/>
 		);
 	}
-
 }
 
 IceboxListItem.propTypes = {

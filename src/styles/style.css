@@ -422,7 +422,7 @@ form .text-field-input div label {
 	justify-content: center;
 }
 
-.icebox-item-card-title {
+.icebox-item-card-header {
 	flex: 1;
 	font-family: 'Helvetica Neue', Helvetica;
 	font-size: 2em;
@@ -446,6 +446,14 @@ form .text-field-input div label {
 	padding-right: 10px;
 }
 
+.icebox-item-card-body {
+	flex: 9;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
 .icebox-item-name {
 	flex: 2;
 	font-family: 'Helvetica Neue', Helvetica;
@@ -454,7 +462,7 @@ form .text-field-input div label {
 }
 
 .icebox-item-info {
-	flex: 2;
+	flex: 1;
 	font-family: 'Helvetica Neue', Helvetica;
 	font-size: 3em;
 	color: white;
