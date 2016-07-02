@@ -58,15 +58,12 @@ class Settings extends Component {
 
 	addUser(email) {
     this.props.addUserToIcebox({ email });
-    console.log({email: email, status: 'Success'});
 	}
 
 	removeUser(user, i) {
-		console.log('remove firing', user, i);
 		if(user.name === this.props.name){
       this.setState({ confirm: "Can't remove yourself!!!", alertOpen: true });
 		} else {
-	    console.log('User being removed', user, i);
 			this.props.removeUserFromIcebox({ user });
 		}
 	}
@@ -79,7 +76,6 @@ class Settings extends Component {
 				[event.target.name]: !bool,
 			},
 		});
-		console.log('toggled', this.state.confirmedStaples);
 	}
 
 	messageToggle() {
@@ -87,7 +83,6 @@ class Settings extends Component {
 	}
 
 	updateStaples() {
-    console.log('updateStaples is firing', this.state.confirmedStaples);
     this.props.updateUserStaples(this.state.confirmedStaples);
     this.setState({ confirm: "Successfully updated staples", alertOpen: true });
 	}
@@ -125,7 +120,7 @@ class Settings extends Component {
 						<ListItem style={{height: 40}} disabled>
 							<h4>Name: {this.props.name} </h4>
 						</ListItem>
-						<ListItem style={{height: 40}} disabled>
+						<ListItem style={{height: 40, width: '100%'}} disabled>
 							<PhotoUploader />
 						</ListItem>
 						<ListItem disabled>
@@ -156,7 +151,7 @@ class Settings extends Component {
 						<Table>
 							<TableBody displayRowCheckbox={false} >
 								{this.props.household.map((person, i) => (
-									<TableRow key={i} >
+									<TableRow key={person.id} >
 										<TableRowColumn>
 											<Avatar src={"https://avatars2.githubusercontent.com/u/16884524?v=3&s=460"} />
 										</TableRowColumn>
@@ -200,7 +195,7 @@ class Settings extends Component {
 						label="Update" 
 						primary2 
 						backgroundColor={'#F5E5C4'} 
-						style={{width: '95%', height: 35}} 
+						style={{width: '90%', height: 35}} 
 						onClick={this.updateStaples} 
 						hoverColor={'#F5E5C4'}
 					/>

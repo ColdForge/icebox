@@ -61,7 +61,7 @@ class SettingsEntry extends Component {
 					backgroundColor={'#F5E5C4'}
 					onTouchTap={this.handleOpen}
 					hoverColor={'#F5E5C4'}
-					style={{ width: '95%', height: 35 }}
+					style={{ width: '90%', height: 35 }}
 				/>
 				<Dialog
 					title="Add a Household User"
