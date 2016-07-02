@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { GridTile } from 'material-ui/GridList';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
+import classNames from 'classnames';
 // import MinusCheckbox from 'material-ui/svg-icons/toggle/indeterminate-check-box';
 // import DeleteAction from 'material-ui/svg-icons/action/delete';
 
@@ -17,81 +18,6 @@ const styles = {
 		// textAlign: 'center',
 		display: 'flex',
 		flexDirection: 'column',
-	},
-	Beef: {
-		backgroundImage: "url('/../../assets/beef.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Beverages: {
-		backgroundImage: "url('/../../assets/beverages.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Dairy: {
-		backgroundImage: "url('/../../assets/dairy.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Fruit: {
-		backgroundImage: "url('/../../assets/fruit.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Grains: {
-		backgroundImage: "url('/../../assets/grains.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Lamb: {
-		backgroundImage: "url('/../../assets/lamb.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Legumes: {
-		backgroundImage: "url('/../../assets/legumes.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Meats: {
-		backgroundImage: "url('/../../assets/meats.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Nuts: {
-		backgroundImage: "url('/../../assets/nuts.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Pork: {
-		backgroundImage: "url('/../../assets/pork.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Poultry: {
-		backgroundImage: "url('/../../assets/poultry.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Sauces: {
-		backgroundImage: "url('/../../assets/sauces.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Seafood: {
-		backgroundImage: "url('/../../assets/seafood.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Sweets: {
-		backgroundImage: "url('/../../assets/sweets.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
-	},
-	Vegetables: {
-		backgroundImage: "url('/../../assets/vegetables.jpg')",
-		backgroundPosition: 'center, center',
-		backgroundSize: 'cover',
 	},
 	cardHeader: {
 		flex: 1,
@@ -164,17 +90,20 @@ class IceboxListItem extends Component {
 	componentWillMount() {
 		if (this.props.expiration <= 3) {
 			this.setState({
-				textColor: 'red',
+				borderColor: 'Border-Red',
+				textColor: 'Expiration-Red',
 			});
 		}
 		if (this.props.expiration > 3 && this.props.expiration <= 6) {
 			this.setState({
-				textColor: 'orange',
+				borderColor: 'Border-Orange',
+				textColor: 'Expiration-Orange',
 			});
 		}
 		if (this.props.expiration >= 7) {
 			this.setState({
-				textColor: '#7FFF00',
+				borderColor: 'Border-Green',
+				textColor: 'Expiration-Green',
 			});
 		}
 	}
@@ -195,24 +124,22 @@ class IceboxListItem extends Component {
 	render() {
 		return (
 			<GridTile
-				className="iceboxListItem"
-				style={{ ...styles.gridTile }}
+				className="icebox-item-tile"
 				children={
 					<Paper
-						style={{ ...styles.paper, ...styles[this.props.foodGroup], border: `1px solid ${this.state.textColor}` }}
-						className="iceboxListItem-tile"
+						className={classNames("icebox-item-container",`${this.props.foodGroup}`,`${this.state.borderColor}`)}
 						zDepth={5}
 					>
-						<div style={styles.cardBody}>
-							<div style={styles.cardHeader.Title}>
+						<div className="icebox-item-card">
+							<div className="icebox-item-card-title">
 								<span
-									style={styles.cardHeader.Title.Group}
+									className="icebox-item-food-group"
 									id="icebox-item-food-group"
 									data-food-group={this.props.foodGroup}
 								>
 									{this.props.foodGroup}
 								</span>
-								<span style={styles.cardHeader.Title.CheckboxContainer}>
+								<span className="icebox-item-remove-container">
 									<Checkbox
 										iconStyle={{ marginLeft: 0, height: 40, width: 40, stroke: 'white', fill: 'red', paddingRight: 10 }}
 										label="Remove"
@@ -224,12 +151,18 @@ class IceboxListItem extends Component {
 									/>
 								</span>
 							</div>
-							<span style={styles.cardBody.Title} id="icebox-item-name">{this.props.name}</span>
-							<span style={styles.cardBody.Subtitle}>
-								Expires in
-								<span style={{ color: this.state.textColor }}>
-									<span id="icebox-item-expiration">{this.props.expiration}</span>days
-								</span>
+							<span className="icebox-item-name" id="icebox-item-name">{this.props.name}</span>
+							<span className="icebox-item-info">
+								<p>Expires in</p>
+								<p>
+									<span
+										id="icebox-item-expiration"
+										className={classNames(`${this.state.textColor}`)}
+									>
+										{this.props.expiration}
+									</span>
+								</p>
+								<p>days</p>
 							</span>
 						</div>
 					</Paper>
@@ -240,79 +173,10 @@ class IceboxListItem extends Component {
 
 }
 
-// const IceboxListItem = ({ name, foodGroup, expiration, itemID, addToTrash, removeFromTrash }) => {
-// 	if (!name) {
-// 		return <GridTile primaryText="Loading..." />;
-// 	}
-
-// 	let textColor = 'black';
-
-// 	if (expiration <= 3) {
-// 		textColor = 'red';
-// 	}
-// 	if (expiration > 3 && expiration <= 6) {
-// 		textColor = 'orange';
-// 	}
-// 	if (expiration >= 7) {
-// 		textColor = '#7FFF00';
-// 	}
-// 	const handleChange = (event) => {
-// 		console.log('handleClick fired on checkbox with e.target of : ',event.target,' and itemID of : ',itemID);
-// 		// console.log('value is : ',event.target.value);
-// 		// let bool = event.target.value;
-// 		if(event.target.value == false) {
-// 			event.target.value = true;
-// 			console.log('event.target.value is false')
-// 		}
-// 		if(event.target.value == true) {
-// 			event.target.value = false;
-// 			console.log('event.target.value is true')
-// 		}
-// 	}
-// 	// console.log('foodGroup passed into IceboxListItem is : ', foodGroup);
-// 	return (
-// 		<GridTile
-// 			className="iceboxListItem"
-// 			style={{ ...styles.gridTile }}
-// 			children={
-// 				<Paper style={{ ...styles.paper, ...styles[foodGroup], border: `1px solid ${textColor}` }} zDepth={5}>
-// 					<div style={styles.cardBody}>
-// 						<div style={styles.cardHeader.Title}>
-// 							<span style={styles.cardHeader.Title.Group}>{foodGroup}</span>
-// 							<span style={styles.cardHeader.Title.CheckboxContainer}>
-// 								<input
-// 									type="checkbox"
-// 									value={}
-// 									onChange={handleChange}
-// 								/>
-// 							</span>
-// 						</div>
-// 						<span style={styles.cardBody.Title}>{name}</span>
-// 						<span style={styles.cardBody.Subtitle}>
-// 							Expires in <span style={{ color: textColor }}>{expiration} days</span>
-// 						</span>
-// 					</div>
-// 				</Paper>
-// 			}
-// 		/>
-// 	);
-// };
-/*
-<div className="list-item-container" data-food-group={foodGroup}>
-	<img className="food-group-icon" height="24" width="24" alt="Food Group" src={iconPath} />
-	<div className="item-name">
-	{name}
-	</div>
-	<div className={textColor} id="expiration">
-	{expiration}
-	</div>
-</div>
-*/
 IceboxListItem.propTypes = {
 	name: React.PropTypes.string.isRequired,
 	foodGroup: React.PropTypes.string.isRequired,
 	itemID: React.PropTypes.number,
-	// iconPath: React.PropTypes.string.isRequired,
 	expiration: React.PropTypes.number.isRequired,
 	addToTrash: React.PropTypes.func,
 	removeFromTrash: React.PropTypes.func,

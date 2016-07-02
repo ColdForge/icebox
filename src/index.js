@@ -51,7 +51,6 @@ const muiTheme = {
 // #769481
 // #AEC2B7
 
-
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
 		<Provider className="container" store={store}>
