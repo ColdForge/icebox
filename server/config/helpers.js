@@ -150,7 +150,7 @@ module.exports = {
                 name: item.name,
                 iceboxID: user.iceboxID,
                 foodID: result[0],
-                itemID: resp,
+                itemID: resp[0],
                 foodGroup: item.foodGroup, 
                 expiration: item.expiration
               });

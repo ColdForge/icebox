@@ -2,13 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import {
-	green500,
-	red500,
-	blue500,
-	green50,
-	green200,
-} from 'material-ui/styles/colors';
+import { red500 } from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -21,8 +15,6 @@ import Icebox from './components/icebox';
 import Recipes from './components/recipes';
 import FoodItemInput from './components/foodItemInput';
 import Settings from './containers/settings';
-import RecipeSuggestionList from './containers/recipeSuggestionList';
-import RecipeList from './containers/recipeList';
 
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
@@ -33,23 +25,17 @@ const store = configureStore();
 const muiTheme = {
 	fontFamily: 'Roboto, sans-serif',
 	palette: {
-		textColor: '#D48548',
+		textColor: '#40593A',
 		alternateTextColor: '#D48548',
-		primary1Color: '#F5E5C4',
+		primary1Color: '#40593A',
 		primary2Color: red500,
-		primary3Color: blue500,
+		primary3Color: red500,
 		accent1Color: '#D48548',
-    accent2Color: '#FFFFFF',
-    accent3Color: '#F5E5C4',
+		accent2Color: '#FFFFFF',
+		accent3Color: '#F5E5C4',
+		borderColor: '#AEC2B7',
 	},
 };
-// #F5E5C4
-// #EDB97D
-// #D48548
-// #40593A
-// #769481
-// #AEC2B7
-
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>

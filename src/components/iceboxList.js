@@ -1,14 +1,13 @@
 import React from 'react';
-// import { List } from 'material-ui/List';
 import { GridList } from 'material-ui/GridList';
 import IceboxListItem from './iceboxListItem';
 
-const IceboxList = ({ contents, addToTrash, removeFromTrash }) => (
+const IceboxList = ({ windowWidth, contents, addToTrash, removeFromTrash }) => (
 	<div className="icebox-list-container">
 		<GridList
 			className="icebox-list"
 			cellHeight={400}
-			cols={3}
+			cols={windowWidth < 1000 ? 2 : 3}
 			padding={0}
 		>
 			{contents.map(item => (
@@ -28,6 +27,7 @@ const IceboxList = ({ contents, addToTrash, removeFromTrash }) => (
 );
 
 IceboxList.propTypes = {
+	windowWidth: React.PropTypes.number,
 	contents: React.PropTypes.array.isRequired,
 	addToTrash: React.PropTypes.func,
 	removeFromTrash: React.PropTypes.func,

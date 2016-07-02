@@ -8,10 +8,10 @@ html,
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto';
 }
+
 p, div {
   font-family: 'Roboto';
 }
-
 
 #app {
 	height: 100%;
@@ -29,7 +29,8 @@ p, div {
   margin-right: auto;
 }
 
-/*.landing-div, .signin-div, .signup-div {
+/*
+.landing-div, .signin-div, .signup-div {
 	height: 100%;
 	padding-top: 50px;
   padding-bottom: 50px;
@@ -37,7 +38,8 @@ p, div {
   color: #f8f8f8;
   background: url(../../assets/icebox-landing.jpg) no-repeat center center;
   background-size: cover;
-}*/
+}
+*/
 
 form .text-field-input {
   -webkit-appearance: none;
@@ -351,6 +353,13 @@ form .text-field-input div label {
 
 /* Food Item Input Component Styling */
 
+.food-item-input-container {
+	height: 60px;
+	width: 60px;
+	border-radius: 30px;
+	background-color: #FFFFFF;
+}
+
 .start-speech-input {
   animation-duration: 3s;
   animation-delay: 1s;
@@ -366,43 +375,104 @@ form .text-field-input div label {
 /* Icebox Component Styling */
 
 .icebox-container {
-/*  background: #F1F1F1 no-repeat center center;
-  background-size: cover;*/
   height: 100%;
   margin-top: 72px;
   margin-bottom: 72px;
   background: #FFFFFF;
   background: -webkit-linear-gradient(top left, #FFFFFF 0%, #FFFFFF 100%);
   background: linear-gradient(to bottom right, #FFFFFF 0%, #FFFFFF 100%);
-/*  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);*/
-/*  background: #53e3a6;
-  background: -webkit-linear-gradient(top left, #53e3a6 100%, #50a3a2 0%);
-  background: linear-gradient(to bottom right, #53e3a6 100%, #50a3a2 0%);*/
 }
 
 .icebox-list-container {
-/*	padding-bottom: 40px;
-  height: 100%;
-  background: #53e3a6;
-  background: -webkit-linear-gradient(top left, #53e3a6 0%, #50a3a2 100%);
-  background: linear-gradient(to bottom right, #53e3a6 0%, #50a3a2 100%);*/
+
 }
 
 .icebox-list {
   height: 100%;
 }
 
-.iceboxListItem {
+.icebox-item-tile {
   display: table-cell;
   vertical-align: middle;
 }
 
-.list-item-container {
-  position: relative;
-  font-size: 25px;
-  height: 50px;
+.icebox-item-container {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.icebox-item-card {
+	flex: 1;
+	display: flex;
+	background-color: rgba(0,0,0,0.6);
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.icebox-item-card-header {
+	flex: 1;
+	font-family: 'Helvetica Neue', Helvetica;
+	font-size: 2em;
+	color: white;
+	margin-left: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 10px;
+	height: 60px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.icebox-item-food-group {
+	flex: 2;
+	text-align: left;
+	color: #c4c4c4;
+}
+
+.icebox-item-remove-container {
+	flex: 1;
+	position: relative;
+}
+
+.icebox-item-card-body {
+	flex: 9;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.icebox-item-name-container {
+	flex: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icebox-item-name {
+	font-family: 'Helvetica Neue', Helvetica;
+	font-size: 4.2em;
+	color: white;
+}
+
+.icebox-item-info {
+	flex: 1;
+	font-family: 'Helvetica Neue', Helvetica;
+	color: white;
+}
+
+.icebox-item-expiration-text {
+	margin-bottom: -15px;
+	font-size: 1.5em;
+	color: #c4c4c4;
+}
+
+.icebox-item-expiration-date {
+	font-size: 3.5em;
 }
 
 .food-group-icon {
@@ -421,32 +491,100 @@ form .text-field-input div label {
   left: 5px;
 }
 
-.expiration-red {
-  top: 13px;
-  position: absolute;
-  right: 15px;
-  color: red;
-  float: right;
-  display: table-cell;
-  vertical-align: middle;
+.Beef {
+	background-image: url('/../../assets/beef.jpg');
+	background-position: center, center;
+	background-size: cover;
 }
-.expiration-orange {
-  top: 13px;
-  position: absolute;
-  right: 15px;
-  color: orange;
-  float: right;
-  display: table-cell;
-  vertical-align: middle;
+.Beverages {
+	background-image: url('/../../assets/beverages.jpg');
+	background-position: center, center;
+	background-size: cover;
 }
-.expiration-black {
-  top: 13px;
-  position: absolute;
-  right: 15px;
-  color: black;
-  float: right;
-  display: table-cell;
-  vertical-align: middle;
+.Dairy {
+	background-image: url('/../../assets/dairy.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Fruit {
+	background-image: url('/../../assets/fruit.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Grains {
+	background-image: url('/../../assets/grains.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Lamb {
+	background-image: url('/../../assets/lamb.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Legumes {
+	background-image: url('/../../assets/legumes.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Meats {
+	background-image: url('/../../assets/meats.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Nuts {
+	background-image: url('/../../assets/nuts.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Pork {
+	background-image: url('/../../assets/pork.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Poultry {
+	background-image: url('/../../assets/poultry.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Sauces {
+	background-image: url('/../../assets/sauces.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Seafood {
+	background-image: url('/../../assets/seafood.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+.Sweets {
+	background-image: url('/../../assets/sweets.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+
+.Vegetables {
+	background-image: url('/../../assets/vegetables.jpg');
+	background-position: center, center;
+	background-size: cover;
+}
+
+.Border-Red {
+	border: 1px solid red;
+}
+.Border-Orange {
+	border: 1px solid orange;
+}
+.Border-Green {
+	border: 1px solid #32fc00;
+}
+.Expiration-Red {
+	color: red;
+}
+.Expiration-Orange {
+	color: orange;
+}
+.Expiration-Green {
+	color: #32fc00;
 }
 
 /* Tooltip container */

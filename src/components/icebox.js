@@ -5,6 +5,9 @@ import VisibleIceboxList from '../containers/visibleIceboxList';
 class Icebox extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			windowWidth: window.innerWidth,
+		};
 		this.scrollChecker = this.scrollChecker.bind(this);
 	}
 	componentDidMount() {
@@ -28,7 +31,7 @@ class Icebox extends Component {
 		return (
 			<div className="icebox-container">
 				<IceboxToolbar />
-				<VisibleIceboxList />
+				<VisibleIceboxList windowWidth={this.state.windowWidth} />
 			</div>
 		);
 	}

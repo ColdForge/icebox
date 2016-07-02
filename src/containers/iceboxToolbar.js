@@ -19,6 +19,7 @@ const styles = {
 	removeButton: {
 		height: 48,
 		zIndex: 100,
+		overflow: 'hidden',
 	},
 	buttonPlaceholder: {
 		width: 48,
@@ -37,11 +38,9 @@ const styles = {
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: 72,
-		// backgroundColor: 'rgba(255, 255, 255, 0.0)',
 	},
 	toolbarGroup1: {
 		marginLeft: 24,
-		// paddingLeft: 24,
 		width: '33%',
 		display: 'flex',
 		justifyContent: 'flex-start',
@@ -98,10 +97,8 @@ class IceboxToolbar extends Component {
 		this.props.setSortBy(value)
 	}
 
-  // trying to call this method, which comes from props
 	submitFoods(foodItems) {
 		this.props.addIceboxItems({ foodItems });
-		console.log('Submit foods is firing', foodItems);
 	}
 
 	renderClearSearchButton() {
@@ -137,7 +134,15 @@ class IceboxToolbar extends Component {
 				value={this.props.iceboxSearch}
 				onChange={event => this.handleSearch(event)}
 				style={styles.textField}
-				inputStyle={{fontSize:18,color: '#D48548', textAlign:'center'}}
+				inputStyle={
+					{ 
+						borderRadius: '4px',
+						fontSize:18,
+						color: '#D48548',
+						textAlign:'center',
+						backgroundColor:'#F5E5C4',
+					}
+				}
 				underlineShow={false}
 			/>
 		) : (
@@ -149,6 +154,7 @@ class IceboxToolbar extends Component {
 		return (this.props.trashContents.length > 0) ? (
 			<RaisedButton
 				label="Remove Items?"
+				labelStyle={{fontSize:20,color:'white'}}
 				secondary={true}
 				style={styles.removeButton}
 				onTouchTap={() => this.props.removeIceboxItems({ items: this.props.trashContents })}
@@ -192,7 +198,6 @@ class IceboxToolbar extends Component {
 					style={styles.toolbarGroup2}
 				>
 					  <FoodItemInput submitFoods={this.submitFoods}/>
-
 				</ToolbarGroup>
 				<ToolbarGroup
 					style={styles.toolbarGroup3}
