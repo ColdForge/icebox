@@ -39,7 +39,14 @@ class PhotoUploader extends Component {
 	render() {
 		return (
 			<div>
-				<FlatButton label="Change/Add Pic" primary style={styles.button} onTouchTap={this.handleOpen} />
+				<FlatButton
+					label="Change/Add Pic"
+					primary2
+					backgroundColor={'#F5E5C4'}
+					style={styles.button}
+					onTouchTap={this.handleOpen}
+					hoverColor={'white'}
+				/>
 				<Dialog
 					actions={<FlatButton label="DONE" primary onTouchTap={this.handleClose} />}
 					modal={false}
