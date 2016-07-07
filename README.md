@@ -14,9 +14,9 @@
  a grocery run.
 * [Icebox Mobile App](https://github.com/ColdForge/icebox-native)
 
-![Image of Mobile1](/assets/IceboxMobile1.png)
-![Image of Mobile2](/assets/IceboxMobile2.png)
-![Image of Mobile3](/assets/IceboxMobile3.png)
+![Image of Mobile1](/assets/IceboxMobile1.png =250px)
+![Image of Mobile2](/assets/IceboxMobile2.png =250px)
+![Image of Mobile3](/assets/IceboxMobile3.png =250px)
 
 ### Developer Documentation
 
