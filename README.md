@@ -15,7 +15,6 @@
 * [Icebox Mobile App](https://github.com/ColdForge/icebox-native)
 
 <div align="center">
-    <img width="10%">
     <img src="/assets/IceboxMobile1.png" alt="Screenshot1" width="20%" />
     <img width="10%">
     <img src="/assets/IceboxMobile2.png" alt="Screenshot1" width="20%" />
